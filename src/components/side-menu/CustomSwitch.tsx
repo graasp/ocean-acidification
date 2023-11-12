@@ -1,0 +1,31 @@
+import { Dispatch, SetStateAction } from 'react';
+
+import { Box, Switch, Typography } from '@mui/material';
+
+interface Props {
+  label: string;
+  isChecked: boolean;
+  setIsChecked: Dispatch<SetStateAction<boolean>>;
+}
+
+const containerStyles = {
+  display: 'flex',
+  width: '90%',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  margin: '0 auto',
+  marginTop: '1em',
+};
+
+const CustomSwitch = ({
+  label,
+  isChecked,
+  setIsChecked,
+}: Props): JSX.Element => (
+  <Box sx={containerStyles}>
+    <Typography variant="body2">{label}</Typography>
+    <Switch checked={isChecked} onChange={() => setIsChecked(!isChecked)} />
+  </Box>
+);
+
+export default CustomSwitch;
