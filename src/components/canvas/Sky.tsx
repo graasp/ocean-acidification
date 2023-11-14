@@ -11,7 +11,6 @@ const Sky = ({ width, height }: Props): JSX.Element => (
   <Rect
     width={width}
     height={height * SKY_HEIGHT}
-    fillLinearGradientStartPoint={{ x: 0, y: 0 }}
     fillLinearGradientEndPoint={{
       x: 0,
       y: height * SKY_HEIGHT,
