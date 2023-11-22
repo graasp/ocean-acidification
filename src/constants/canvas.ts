@@ -9,7 +9,6 @@ export const REEF_BLOCKER_HEIGHT = 1 - (SKY_HEIGHT + SEA_HEIGHT) + 0.001;
 export const SKY_GRADIENT = [0, '#a4c8ea', 1, '#c8def2'];
 export const SEA_GRADIENT = [0, '#9cc9e5', 1, '#6ba5c9'];
 export const REEF_BLOCKER_GRADIENT = [0, '#6ba5c9', 1, '#6b91a0'];
-export const RANDOM_COORDINATES = generateRandomCoordinates(20);
 
 export const EXCHANGE_CIRCLE_FILL = '';
 export const EXCHANGE_CIRCLE_BORDER = '';
@@ -61,3 +60,22 @@ export const REEF_GROUP = [
   { x: 0.545, y: 0.94, rotation: -20 },
   { x: 0.59, y: 0.89, rotation: 60 },
 ];
+
+const NUM_CO2_MOLS_SKY = 8;
+export const CO2_MOLS_SKY_COORDINATES = generateRandomCoordinates(
+  NUM_CO2_MOLS_SKY,
+  0,
+  SKY_HEIGHT,
+);
+const NUM_CO2_MOLS_SEA = 0;
+export const CO2_MOLS_SEA_COORDINATES = generateRandomCoordinates(
+  NUM_CO2_MOLS_SEA,
+  SKY_HEIGHT + EXCHANGE_CIRCLE_RADIUS,
+  0.5,
+);
+const NUM_WATER_MOLS_SEA = 5;
+export const WATER_MOLS_SEA_COORDINATES = generateRandomCoordinates(
+  NUM_WATER_MOLS_SEA,
+  SKY_HEIGHT + EXCHANGE_CIRCLE_RADIUS,
+  0.5,
+);
