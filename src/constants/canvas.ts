@@ -1,5 +1,7 @@
 import { generateRandomCoordinates } from '@/utils/canvas';
 
+export const INTERVAL_COUNT_INCREMENTED_EVERY = 50;
+
 export const CANVAS_WIDTH = 0.75;
 
 export const SKY_HEIGHT = 0.35;
@@ -61,21 +63,18 @@ export const REEF_GROUP = [
   { x: 0.59, y: 0.89, rotation: 60 },
 ];
 
-const NUM_CO2_MOLS_SKY = 8;
+const NUM_CO2_MOLS_SKY = 1;
 export const CO2_MOLS_SKY_COORDINATES = generateRandomCoordinates(
   NUM_CO2_MOLS_SKY,
   0,
   SKY_HEIGHT,
 );
-const NUM_CO2_MOLS_SEA = 0;
-export const CO2_MOLS_SEA_COORDINATES = generateRandomCoordinates(
-  NUM_CO2_MOLS_SEA,
-  SKY_HEIGHT + EXCHANGE_CIRCLE_RADIUS,
-  0.5,
-);
-const NUM_WATER_MOLS_SEA = 5;
+
+const NUM_WATER_MOLS_SEA = 1;
 export const WATER_MOLS_SEA_COORDINATES = generateRandomCoordinates(
   NUM_WATER_MOLS_SEA,
   SKY_HEIGHT + EXCHANGE_CIRCLE_RADIUS,
   0.5,
 );
+
+export const MOVEMENT_PER_INTERVAL = 0.005;
