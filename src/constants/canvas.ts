@@ -1,15 +1,16 @@
 import { generateRandomCoordinates } from '@/utils/canvas';
 
+export const INTERVAL_COUNT_INCREMENTED_EVERY = 50;
+
 export const CANVAS_WIDTH = 0.75;
 
 export const SKY_HEIGHT = 0.35;
-export const SEA_HEIGHT = 0.54;
+export const SEA_HEIGHT = 0.53;
 export const REEF_BLOCKER_HEIGHT = 1 - (SKY_HEIGHT + SEA_HEIGHT) + 0.001;
 
 export const SKY_GRADIENT = [0, '#a4c8ea', 1, '#c8def2'];
 export const SEA_GRADIENT = [0, '#9cc9e5', 1, '#6ba5c9'];
 export const REEF_BLOCKER_GRADIENT = [0, '#6ba5c9', 1, '#6b91a0'];
-export const RANDOM_COORDINATES = generateRandomCoordinates(20);
 
 export const EXCHANGE_CIRCLE_FILL = '';
 export const EXCHANGE_CIRCLE_BORDER = '';
@@ -29,14 +30,18 @@ export const OXYGEN_FILL = 'indianred';
 export const HYDROGEN_FILL = 'grey';
 
 export const PH_SCALE_BEGINS_X = 0.2;
-export const PH_SCALE_BEGINS_Y = -0.1;
+export const PH_SCALE_BEGINS_Y = -0.11;
 export const PH_SCALE_WIDTH = 0.6;
 export const PH_SCALE_HEIGHT = 0.075;
-export const PH_SCALE_BORDER_RADIUS = 5;
 export const PH_SCALE_GRADIENT = [0, '#ff4040', 1, '#fAf9f6'];
 export const MARKER_FILL = '#1a1a1b';
 export const MARKER_BORDER_WIDTH = 6;
 export const MARKER_WIDTH = 0.035;
+export const PH_SCALE_POINTS = [8.2, 8.15, 8.1, 8.05, 8, 7.95, 7.9, 7.85, 7.8];
+export const PH_SCALE_AXIS_COLOR = 'black';
+export const PH_SCALE_AXIS_HEIGHT = 5;
+export const PH_SCALE_AXIS_STROKE_WIDTH = 1;
+export const PH_SCALE_AXIS_LABEL_MARGIN = 2;
 
 export const REEF_POINTS = [
   0, 0, 0.003, -0.029, -0.029, -0.059, -0.037, -0.074, -0.029, -0.088, -0.007,
@@ -52,8 +57,24 @@ export const REEF_POINTS = [
 export const REEF_TENSION = 0.5;
 
 export const REEF_GROUP = [
-  { x: 0.285, y: 0.92, rotation: 0 },
-  { x: 0.36, y: 0.92, rotation: 40 },
-  { x: 0.545, y: 0.95, rotation: -20 },
-  { x: 0.59, y: 0.9, rotation: 60 },
+  { x: 0.285, y: 0.91, rotation: 0 },
+  { x: 0.36, y: 0.91, rotation: 40 },
+  { x: 0.545, y: 0.94, rotation: -20 },
+  { x: 0.59, y: 0.89, rotation: 60 },
 ];
+
+const NUM_CO2_MOLS_SKY = 1;
+export const CO2_MOLS_SKY_COORDINATES = generateRandomCoordinates(
+  NUM_CO2_MOLS_SKY,
+  0,
+  SKY_HEIGHT,
+);
+
+const NUM_WATER_MOLS_SEA = 1;
+export const WATER_MOLS_SEA_COORDINATES = generateRandomCoordinates(
+  NUM_WATER_MOLS_SEA,
+  SKY_HEIGHT + EXCHANGE_CIRCLE_RADIUS,
+  0.5,
+);
+
+export const MOVEMENT_PER_INTERVAL = 0.005;

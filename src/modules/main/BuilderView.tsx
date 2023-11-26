@@ -7,6 +7,7 @@ import Canvas from '@/components/canvas/Canvas';
 import SideMenu from '@/components/side-menu/SideMenu';
 import { BUILDER_VIEW_CY } from '@/config/selectors';
 import { CANVAS_WIDTH } from '@/constants/canvas';
+import AppSettingsProvider from '@/contexts/AppSettingsProvider';
 
 const openSideMenuFabStyles = {
   right: 5,
@@ -49,29 +50,31 @@ const BuilderView = (): JSX.Element => {
       id="container"
       style={{ height: '100vh', width: '100vw', display: 'flex' }}
     >
-      <Canvas
-        width={
-          showSideMenu ? dimensions.width * CANVAS_WIDTH : dimensions.width
-        }
-        height={dimensions.height}
-      />
-      {showSideMenu && (
-        <SideMenu
-          showSideMenu={showSideMenu}
-          setShowSideMenu={setShowSideMenu}
+      <AppSettingsProvider>
+        <Canvas
+          width={
+            showSideMenu ? dimensions.width * CANVAS_WIDTH : dimensions.width
+          }
+          height={dimensions.height}
         />
-      )}
-      {!showSideMenu && (
-        <Tooltip title="Open side menu" placement="left">
-          <Fab
-            sx={openSideMenuFabStyles}
-            color="primary"
-            onClick={() => setShowSideMenu(true)}
-          >
-            <Tune />
-          </Fab>
-        </Tooltip>
-      )}
+        {showSideMenu && (
+          <SideMenu
+            showSideMenu={showSideMenu}
+            setShowSideMenu={setShowSideMenu}
+          />
+        )}
+        {!showSideMenu && (
+          <Tooltip title="Open side menu" placement="left">
+            <Fab
+              sx={openSideMenuFabStyles}
+              color="primary"
+              onClick={() => setShowSideMenu(true)}
+            >
+              <Tune />
+            </Fab>
+          </Tooltip>
+        )}
+      </AppSettingsProvider>
     </div>
   );
 };

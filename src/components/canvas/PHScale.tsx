@@ -1,16 +1,15 @@
 import { Group, Rect } from 'react-konva';
 
 import {
-  MARKER_BORDER_WIDTH,
-  MARKER_FILL,
-  MARKER_WIDTH,
   PH_SCALE_BEGINS_X,
   PH_SCALE_BEGINS_Y,
-  PH_SCALE_BORDER_RADIUS,
   PH_SCALE_GRADIENT,
   PH_SCALE_HEIGHT,
   PH_SCALE_WIDTH,
 } from '@/constants/canvas';
+
+import PHScaleMarker from './PHScaleMarker';
+import PHScaleUnits from './PHScaleUnits';
 
 interface Props {
   width: number;
@@ -22,7 +21,6 @@ const PHScale = ({ width, height }: Props): JSX.Element => {
   const scaleBeginsY = height + height * PH_SCALE_BEGINS_Y;
   const scaleWidth = width * PH_SCALE_WIDTH;
   const scaleHeight = height * PH_SCALE_HEIGHT;
-  const markerWidth = scaleWidth * MARKER_WIDTH;
 
   return (
     <Group x={scaleBeginsX} y={scaleBeginsY}>
@@ -31,15 +29,9 @@ const PHScale = ({ width, height }: Props): JSX.Element => {
         height={scaleHeight}
         fillLinearGradientEndPoint={{ x: scaleWidth, y: 0 }}
         fillLinearGradientColorStops={PH_SCALE_GRADIENT}
-        cornerRadius={PH_SCALE_BORDER_RADIUS}
       />
-      <Rect
-        x={scaleWidth / 2}
-        width={markerWidth}
-        height={scaleHeight}
-        stroke={MARKER_FILL}
-        strokeWidth={MARKER_BORDER_WIDTH}
-      />
+      <PHScaleMarker scaleWidth={scaleWidth} scaleHeight={scaleHeight} />
+      <PHScaleUnits scaleHeight={scaleHeight} scaleWidth={scaleWidth} />
     </Group>
   );
 };

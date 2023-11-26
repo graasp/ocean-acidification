@@ -1,6 +1,8 @@
-import { Rect } from 'react-konva';
+import { Group, Rect } from 'react-konva';
 
 import { SKY_GRADIENT, SKY_HEIGHT } from '@/constants/canvas';
+
+import CarbonDioxideMolecules from './CarbonDioxideMolecules';
 
 interface Props {
   width: number;
@@ -8,15 +10,18 @@ interface Props {
 }
 
 const Sky = ({ width, height }: Props): JSX.Element => (
-  <Rect
-    width={width}
-    height={height * SKY_HEIGHT}
-    fillLinearGradientEndPoint={{
-      x: 0,
-      y: height * SKY_HEIGHT,
-    }}
-    fillLinearGradientColorStops={SKY_GRADIENT}
-  />
+  <Group>
+    <Rect
+      width={width}
+      height={height * SKY_HEIGHT}
+      fillLinearGradientEndPoint={{
+        x: 0,
+        y: height * SKY_HEIGHT,
+      }}
+      fillLinearGradientColorStops={SKY_GRADIENT}
+    />
+    <CarbonDioxideMolecules width={width} height={height} />
+  </Group>
 );
 
 export default Sky;

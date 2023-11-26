@@ -4,34 +4,41 @@ interface MoleculeCenter {
 }
 
 interface AtomsCoordinates {
-  topOxygen: MoleculeCenter;
-  carbon: MoleculeCenter;
-  bottomOxygen: MoleculeCenter;
+  top: MoleculeCenter;
+  center: MoleculeCenter;
+  bottom: MoleculeCenter;
 }
 
-export const generateRandomCoordinates = (count: number): MoleculeCenter[] => {
+const generateRandomNum = (min: number, max: number): number =>
+  Math.random() * (max - min) + min;
+
+export const generateRandomCoordinates = (
+  count: number,
+  yStart: number,
+  yEnd: number,
+): MoleculeCenter[] => {
   const centers = [];
   for (let i = 1; i <= count; i += 1) {
-    centers.push({ x: Math.random(), y: Math.random() });
+    centers.push({ x: Math.random(), y: generateRandomNum(yStart, yEnd) });
   }
   return centers;
 };
 
-export const determineCo2AtomCoordinates = (
+export const determineAtomCoordinates = (
   moleculeCenter: MoleculeCenter,
-  carbonRadius: number,
-  oxygenRadius: number,
+  centerAtomRadius: number,
+  peripheralAtomRadius: number,
 ): AtomsCoordinates => {
   const { x: moleculeCenterX, y: moleculeCenterY } = moleculeCenter;
   return {
-    topOxygen: {
+    top: {
       x: moleculeCenterX,
-      y: moleculeCenterY - carbonRadius - oxygenRadius,
+      y: moleculeCenterY - centerAtomRadius - peripheralAtomRadius,
     },
-    carbon: { x: moleculeCenterX, y: moleculeCenterY },
-    bottomOxygen: {
+    center: { x: moleculeCenterX, y: moleculeCenterY },
+    bottom: {
       x: moleculeCenterX,
-      y: moleculeCenterY + carbonRadius + oxygenRadius,
+      y: moleculeCenterY + centerAtomRadius + peripheralAtomRadius,
     },
   };
 };

@@ -1,14 +1,17 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useContext, useEffect, useRef } from 'react';
 
-import {
-  ChevronRight,
-  Info,
-  PlayCircleOutline,
-  RotateLeft,
-  SlowMotionVideo,
-} from '@mui/icons-material';
-import { Box, IconButton, Tooltip } from '@mui/material';
-import { blue, green, orange } from '@mui/material/colors';
+import { Box } from '@mui/material';
+
+import { incrementIntervalCount } from '@/actions/app-settings';
+import { INTERVAL_COUNT_INCREMENTED_EVERY } from '@/constants/canvas';
+
+import { AppSettingsContext } from '../../contexts/AppSettingsProvider';
+import CloseMenu from './controls/CloseMenu';
+import Pause from './controls/Pause';
+import Play from './controls/Play';
+import ResetButton from './controls/Reset';
+import SlowMotion from './controls/SlowMotion';
+import StartTour from './controls/StartTour';
 
 interface Props {
   setShowSideMenu: Dispatch<SetStateAction<boolean>>;
@@ -36,46 +39,40 @@ const centerContainerStyles = {
   alignItems: 'center',
   justifyContent: 'center',
 };
-const closeButtonStyles = { fontSize: '1em' };
-const playButtonStyles = { fontSize: '2em', color: green[800] };
-const showMotionButtonStyles = { fontSize: '2em', color: blue[800] };
-const undoButtonStyles = { fontSize: '2em', color: orange[800] };
-const infoButtonStyles = { fontSize: '0.9em' };
 
-const Controls = ({ setShowSideMenu }: Props): JSX.Element => (
-  <Box sx={containerStyles}>
-    <Box sx={leftContainerStyles}>
-      <Tooltip title="Close side menu" placement="right">
-        <IconButton onClick={() => setShowSideMenu(false)}>
-          <ChevronRight sx={closeButtonStyles} />
-        </IconButton>
-      </Tooltip>
+const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
+  const applicationInterval = useRef<ReturnType<typeof setInterval>>();
+  const { dispatch, state } = useContext(AppSettingsContext);
+  const { isPaused } = state;
+
+  useEffect(() => {
+    const startInterval = (): void => {
+      applicationInterval.current = setInterval(() => {
+        dispatch(incrementIntervalCount());
+      }, INTERVAL_COUNT_INCREMENTED_EVERY);
+    };
+    if (isPaused) {
+      clearInterval(applicationInterval.current);
+    } else if (!isPaused) {
+      startInterval();
+    }
+  }, [isPaused, dispatch]);
+
+  return (
+    <Box sx={containerStyles}>
+      <Box sx={leftContainerStyles}>
+        <CloseMenu setShowSideMenu={setShowSideMenu} />
+      </Box>
+      <Box sx={centerContainerStyles}>
+        <SlowMotion />
+        {isPaused ? <Play /> : <Pause />}
+        <ResetButton />
+      </Box>
+      <Box sx={rightContainerStyles}>
+        <StartTour />
+      </Box>
     </Box>
-    <Box sx={centerContainerStyles}>
-      <Tooltip title="Play next step">
-        <IconButton>
-          <SlowMotionVideo sx={showMotionButtonStyles} />
-        </IconButton>
-      </Tooltip>
-      <Tooltip title="Play">
-        <IconButton>
-          <PlayCircleOutline sx={playButtonStyles} />
-        </IconButton>
-      </Tooltip>
-      <Tooltip title="Reset">
-        <IconButton>
-          <RotateLeft sx={undoButtonStyles} />
-        </IconButton>
-      </Tooltip>
-    </Box>
-    <Box sx={rightContainerStyles}>
-      <Tooltip title="Start tour" placement="left">
-        <IconButton>
-          <Info color="primary" sx={infoButtonStyles} />
-        </IconButton>
-      </Tooltip>
-    </Box>
-  </Box>
-);
+  );
+};
 
 export default Controls;
