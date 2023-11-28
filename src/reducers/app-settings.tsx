@@ -1,4 +1,8 @@
-import { INCREMENT_INTERVAL_COUNT, TOGGLE_PAUSE } from '../types/app-settings';
+import {
+  INCREMENT_INTERVAL_COUNT,
+  RESET_SETTINGS,
+  TOGGLE_PAUSE,
+} from '../types/app-settings';
 
 export interface appSettingsType {
   intervalCount: number;
@@ -21,6 +25,8 @@ export const appSettingsReducer = (
       return { ...state, isPaused: !state.isPaused };
     case INCREMENT_INTERVAL_COUNT:
       return { ...state, intervalCount: state.intervalCount + 1 };
+    case RESET_SETTINGS:
+      return { ...initialAppSettings };
     default:
       return state;
   }

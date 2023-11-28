@@ -3,8 +3,8 @@ import { Group } from 'react-konva';
 import { HYDROGEN_RADIUS, OXYGEN_RADIUS } from '@/constants/canvas';
 import { determineAtomCoordinates } from '@/utils/canvas';
 
-import Hydrogen from './Hydrogen';
-import Oxygen from './Oxygen';
+import Hydrogen from './atoms/Hydrogen';
+import Oxygen from './atoms/Oxygen';
 
 interface Props {
   x: number;

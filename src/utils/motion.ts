@@ -30,3 +30,15 @@ export const determineMoleculeCoordinates = (
     y: finalY,
   };
 };
+
+export const disappearsAfter = (
+  startPosition: Coordinates,
+  finalPosition: Coordinates,
+): number => {
+  const { x: startX, y: startY } = startPosition;
+  const { x: finalX, y: finalY } = finalPosition;
+  const yIntervals = Math.abs((finalY - startY) / MOVEMENT_PER_INTERVAL);
+  const xIntervals = Math.abs((finalX - startX) / MOVEMENT_PER_INTERVAL);
+  const totalIntervals = yIntervals + xIntervals;
+  return totalIntervals;
+};

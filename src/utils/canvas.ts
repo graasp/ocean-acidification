@@ -9,6 +9,14 @@ interface AtomsCoordinates {
   bottom: MoleculeCenter;
 }
 
+interface CarbonicAcidCoordinates {
+  topOxygen: MoleculeCenter;
+  leftOxygen: MoleculeCenter;
+  rightOxygen: MoleculeCenter;
+  leftHydrogen: MoleculeCenter;
+  rightHydrogen: MoleculeCenter;
+}
+
 const generateRandomNum = (min: number, max: number): number =>
   Math.random() * (max - min) + min;
 
@@ -40,5 +48,42 @@ export const determineAtomCoordinates = (
       x: moleculeCenterX,
       y: moleculeCenterY + centerAtomRadius + peripheralAtomRadius,
     },
+  };
+};
+
+export const createCarbonicAcid = (
+  carbon: MoleculeCenter,
+  carbonRadius: number,
+  oxygenRadius: number,
+  hydrogenRadius: number,
+): CarbonicAcidCoordinates => {
+  const { x: carbonX, y: carbonY } = carbon;
+  const sideOxygenYOffset = Math.sqrt(
+    2 * carbonRadius * oxygenRadius + oxygenRadius ** 2,
+  );
+  const bottomMoleculesY = carbonY + sideOxygenYOffset;
+  const topOxygen = { x: carbonX, y: carbonY - carbonRadius - oxygenRadius };
+  const leftOxygen = {
+    x: carbonX - carbonRadius,
+    y: bottomMoleculesY,
+  };
+  const rightOxygen = {
+    x: carbonX + carbonRadius,
+    y: bottomMoleculesY,
+  };
+  const leftHydrogen = {
+    x: carbonX - carbonRadius - oxygenRadius - hydrogenRadius,
+    y: bottomMoleculesY,
+  };
+  const rightHydrogen = {
+    x: carbonX + carbonRadius + oxygenRadius + hydrogenRadius,
+    y: bottomMoleculesY,
+  };
+  return {
+    topOxygen,
+    leftOxygen,
+    rightOxygen,
+    leftHydrogen,
+    rightHydrogen,
   };
 };
