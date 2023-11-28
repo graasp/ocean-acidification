@@ -1,7 +1,11 @@
 import { Group } from 'react-konva';
 
-import { HYDROGEN_RADIUS, OXYGEN_RADIUS } from '@/constants/canvas';
-import { determineAtomCoordinates } from '@/utils/canvas';
+import {
+  ANGLE_BETWEEN_HYDROGEN_ATOMS,
+  HYDROGEN_RADIUS,
+  OXYGEN_RADIUS,
+} from '@/constants/canvas';
+import { createWater } from '@/utils/canvas';
 
 import Hydrogen from './atoms/Hydrogen';
 import Oxygen from './atoms/Oxygen';
@@ -12,17 +16,18 @@ interface Props {
 }
 
 const Water = ({ x, y }: Props): JSX.Element => {
-  const { top, center, bottom } = determineAtomCoordinates(
+  const { topLeft, center, topRight } = createWater(
     { x, y },
     OXYGEN_RADIUS,
     HYDROGEN_RADIUS,
+    ANGLE_BETWEEN_HYDROGEN_ATOMS,
   );
 
   return (
     <Group>
-      <Hydrogen x={top.x} y={top.y} />
+      <Hydrogen x={topLeft.x} y={topLeft.y} />
       <Oxygen x={center.x} y={center.y} />
-      <Hydrogen x={bottom.x} y={bottom.y} />
+      <Hydrogen x={topRight.x} y={topRight.y} />
     </Group>
   );
 };

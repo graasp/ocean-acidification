@@ -27,7 +27,8 @@ export const OXYGEN_RADIUS = (15 / 17) * CARBON_RADIUS;
 export const HYDROGEN_RADIUS = (10 / 13) * OXYGEN_RADIUS;
 export const CARBON_FILL = 'black';
 export const OXYGEN_FILL = 'indianred';
-export const HYDROGEN_FILL = 'grey';
+export const HYDROGEN_FILL = 'white';
+export const ANGLE_BETWEEN_HYDROGEN_ATOMS = 104.5 * (Math.PI / 180);
 
 export const PH_SCALE_BEGINS_X = 0.2;
 export const PH_SCALE_BEGINS_Y = -0.11;
