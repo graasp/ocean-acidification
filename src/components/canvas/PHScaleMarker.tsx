@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Rect } from 'react-konva';
 
 import {
@@ -5,6 +6,7 @@ import {
   MARKER_FILL,
   MARKER_WIDTH,
 } from '@/constants/canvas';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 interface Props {
   scaleWidth: number;
@@ -12,11 +14,13 @@ interface Props {
 }
 
 const PHScaleMarker = ({ scaleWidth, scaleHeight }: Props): JSX.Element => {
+  const { state } = useContext(AppSettingsContext);
+  const { reefHoles } = state;
   const markerWidth = scaleWidth * MARKER_WIDTH;
 
   return (
     <Rect
-      x={scaleWidth / 2 - markerWidth / 2}
+      x={(1 - reefHoles) * scaleWidth - markerWidth / 2}
       width={markerWidth}
       height={scaleHeight}
       stroke={MARKER_FILL}

@@ -59,10 +59,10 @@ const SideMenu = ({ showSideMenu, setShowSideMenu }: Props): JSX.Element => {
         />
         {/* For debugging/illustrative purposes; todo: remove box and its contents below */}
         <Box style={{ float: 'right' }}>
-          <IconButton onClick={() => dispatch(decrementReefHoles())}>
+          <IconButton onClick={() => dispatch(incrementReefHoles())}>
             <RemoveCircleOutline style={{ color: 'red' }} />
           </IconButton>
-          <IconButton onClick={() => dispatch(incrementReefHoles())}>
+          <IconButton onClick={() => dispatch(decrementReefHoles())}>
             <AddCircleOutline style={{ color: 'blue' }} />
           </IconButton>
         </Box>

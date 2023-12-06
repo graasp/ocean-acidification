@@ -34,11 +34,11 @@ export const PH_SCALE_BEGINS_X = 0.2;
 export const PH_SCALE_BEGINS_Y = -0.11;
 export const PH_SCALE_WIDTH = 0.6;
 export const PH_SCALE_HEIGHT = 0.075;
-export const PH_SCALE_GRADIENT = [0, '#ff4040', 1, '#fAf9f6'];
+export const PH_SCALE_GRADIENT = [0, '#fAf9f6', 1, '#ff4040'];
 export const MARKER_FILL = '#1a1a1b';
 export const MARKER_BORDER_WIDTH = 6;
 export const MARKER_WIDTH = 0.035;
-export const PH_SCALE_POINTS = [8.2, 8.15, 8.1, 8.05, 8, 7.95, 7.9, 7.85, 7.8];
+export const PH_SCALE_POINTS = [7.8, 7.85, 7.9, 7.95, 8, 8.05, 8.1, 8.15, 8.2];
 export const PH_SCALE_AXIS_COLOR = 'black';
 export const PH_SCALE_AXIS_HEIGHT = 5;
 export const PH_SCALE_AXIS_STROKE_WIDTH = 1;
@@ -79,7 +79,7 @@ export const REEF_HOLES_BEGIN_Y =
 export const REEF_HOLES_END_Y = Math.max(...REEF_GROUP.map(({ y }) => y));
 export const REEF_HOLES_RADII = [0.002, 0.004];
 export const TOTAL_NUM_HOLES = 600;
-export const PERCENT_HOLES_INCREMENT = 0.05;
+export const PERCENT_HOLES_INCREMENT = 1 / (PH_SCALE_POINTS.length - 1);
 
 const NUM_CO2_MOLS_SKY = 1;
 export const CO2_MOLS_SKY_COORDINATES = generateRandomCoordinates(
