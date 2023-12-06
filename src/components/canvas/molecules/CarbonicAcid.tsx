@@ -9,7 +9,7 @@ import {
   WATER_MOLS_SEA_COORDINATES,
 } from '@/constants/canvas';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
-import { createCarbonicAcid } from '@/utils/canvas';
+import { createCarbonicAcid } from '@/utils/molecules';
 import { disappearsAfter } from '@/utils/motion';
 
 import Carbon from './atoms/Carbon';

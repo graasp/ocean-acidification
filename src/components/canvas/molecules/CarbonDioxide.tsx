@@ -1,7 +1,7 @@
 import { Group } from 'react-konva';
 
 import { CARBON_RADIUS, OXYGEN_RADIUS } from '@/constants/canvas';
-import { createCarbonDioxide } from '@/utils/canvas';
+import { createCarbonDioxide } from '@/utils/molecules';
 
 import Carbon from './atoms/Carbon';
 import Oxygen from './atoms/Oxygen';

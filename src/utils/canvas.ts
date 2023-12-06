@@ -1,117 +1,46 @@
-interface MoleculeCenter {
+import {
+  REEF_HOLES_BEGIN_X,
+  REEF_HOLES_BEGIN_Y,
+  REEF_HOLES_END_X,
+  REEF_HOLES_END_Y,
+  REEF_HOLES_RADII,
+  TOTAL_NUM_HOLES,
+} from '@/constants/canvas';
+
+import { generateRandomNum } from './molecules';
+
+interface Coordinates {
   x: number;
   y: number;
+  size: number;
+  switchedOn: boolean;
 }
 
-interface CarbonDioxideCoordinates {
-  top: MoleculeCenter;
-  center: MoleculeCenter;
-  bottom: MoleculeCenter;
-}
-
-interface WaterCoordinates {
-  topLeft: MoleculeCenter;
-  center: MoleculeCenter;
-  topRight: MoleculeCenter;
-}
-
-interface CarbonicAcidCoordinates {
-  topOxygen: MoleculeCenter;
-  leftOxygen: MoleculeCenter;
-  rightOxygen: MoleculeCenter;
-  leftHydrogen: MoleculeCenter;
-  rightHydrogen: MoleculeCenter;
-}
-
-const generateRandomNum = (min: number, max: number): number =>
-  Math.random() * (max - min) + min;
-
-export const generateRandomCoordinates = (
-  count: number,
-  yStart: number,
-  yEnd: number,
-): MoleculeCenter[] => {
-  const centers = [];
-  for (let i = 1; i <= count; i += 1) {
-    centers.push({ x: Math.random(), y: generateRandomNum(yStart, yEnd) });
+const generateReefHoles = (numHoles: number): Coordinates[] => {
+  const reefHoles = [];
+  for (let i = 0; i < numHoles; i += 1) {
+    reefHoles.push({
+      x: generateRandomNum(REEF_HOLES_BEGIN_X, REEF_HOLES_END_X),
+      y: generateRandomNum(REEF_HOLES_BEGIN_Y, REEF_HOLES_END_Y),
+      size: REEF_HOLES_RADII[
+        Math.floor(Math.random() * REEF_HOLES_RADII.length)
+      ],
+      switchedOn: false,
+    });
   }
-  return centers;
+  return reefHoles;
 };
 
-export const createCarbonDioxide = (
-  moleculeCenter: MoleculeCenter,
-  carbonRadius: number,
-  oxygenRadius: number,
-): CarbonDioxideCoordinates => {
-  const { x: moleculeCenterX, y: moleculeCenterY } = moleculeCenter;
-  return {
-    top: {
-      x: moleculeCenterX,
-      y: moleculeCenterY - carbonRadius - oxygenRadius,
-    },
-    center: { x: moleculeCenterX, y: moleculeCenterY },
-    bottom: {
-      x: moleculeCenterX,
-      y: moleculeCenterY + carbonRadius + oxygenRadius,
-    },
-  };
-};
+export const ALL_HOLES = generateReefHoles(TOTAL_NUM_HOLES);
 
-export const createWater = (
-  moleculeCenter: MoleculeCenter,
-  oxygenRadius: number,
-  hydrogenRadius: number,
-  angle: number,
-): WaterCoordinates => {
-  const { x: moleculeCenterX, y: moleculeCenterY } = moleculeCenter;
-  const xOffset = (oxygenRadius + hydrogenRadius) * Math.sin(angle / 2);
-  const yOffset = (oxygenRadius + hydrogenRadius) * Math.cos(angle / 2);
-  return {
-    topLeft: {
-      x: moleculeCenterX - xOffset,
-      y: moleculeCenterY - yOffset,
-    },
-    center: { x: moleculeCenterX, y: moleculeCenterY },
-    topRight: {
-      x: moleculeCenterX + xOffset,
-      y: moleculeCenterY - yOffset,
-    },
-  };
-};
-
-export const createCarbonicAcid = (
-  carbon: MoleculeCenter,
-  carbonRadius: number,
-  oxygenRadius: number,
-  hydrogenRadius: number,
-): CarbonicAcidCoordinates => {
-  const { x: carbonX, y: carbonY } = carbon;
-  const sideOxygenYOffset = Math.sqrt(
-    2 * carbonRadius * oxygenRadius + oxygenRadius ** 2,
-  );
-  const bottomMoleculesY = carbonY + sideOxygenYOffset;
-  const topOxygen = { x: carbonX, y: carbonY - carbonRadius - oxygenRadius };
-  const leftOxygen = {
-    x: carbonX - carbonRadius,
-    y: bottomMoleculesY,
-  };
-  const rightOxygen = {
-    x: carbonX + carbonRadius,
-    y: bottomMoleculesY,
-  };
-  const leftHydrogen = {
-    x: carbonX - carbonRadius - oxygenRadius - hydrogenRadius,
-    y: bottomMoleculesY,
-  };
-  const rightHydrogen = {
-    x: carbonX + carbonRadius + oxygenRadius + hydrogenRadius,
-    y: bottomMoleculesY,
-  };
-  return {
-    topOxygen,
-    leftOxygen,
-    rightOxygen,
-    leftHydrogen,
-    rightHydrogen,
-  };
+export const switchOnReefHoles = (
+  allHoles: Coordinates[],
+  percentageOn: number,
+): Coordinates[] => {
+  const numHolesOn = Math.floor(allHoles.length * percentageOn);
+  const allHolesCopy = [...allHoles];
+  for (let i = 0; i < allHoles.length; i += 1) {
+    allHolesCopy[i].switchedOn = i < numHolesOn;
+  }
+  return allHolesCopy;
 };

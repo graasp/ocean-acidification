@@ -1,6 +1,10 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
 
-import { Box, Drawer, Typography } from '@mui/material';
+import { AddCircleOutline, RemoveCircleOutline } from '@mui/icons-material';
+import { Box, Drawer, IconButton, Typography } from '@mui/material';
+
+import { decrementReefHoles, incrementReefHoles } from '@/actions/app-settings';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import CarbonDioxideSlider from './CarbonDioxideSlider';
 import Controls from './Controls';
@@ -17,6 +21,7 @@ const containerStyles = { height: '100%', width: '100%' };
 const headingStyles = { width: '90%', margin: '1em auto' };
 
 const SideMenu = ({ showSideMenu, setShowSideMenu }: Props): JSX.Element => {
+  const { dispatch } = useContext(AppSettingsContext);
   const [fluxesChecked, setFluxesChecked] = useState(false);
   const [carbonicAcidChecked, setCarbonicAcidChecked] = useState(false);
   const [dissociationChecked, setDissociationChecked] = useState(false);
@@ -52,6 +57,15 @@ const SideMenu = ({ showSideMenu, setShowSideMenu }: Props): JSX.Element => {
           isChecked={dissociationChecked}
           setIsChecked={setDissociationChecked}
         />
+        {/* For debugging/illustrative purposes; todo: remove box and its contents below */}
+        <Box style={{ float: 'right' }}>
+          <IconButton onClick={() => dispatch(decrementReefHoles())}>
+            <RemoveCircleOutline style={{ color: 'red' }} />
+          </IconButton>
+          <IconButton onClick={() => dispatch(incrementReefHoles())}>
+            <AddCircleOutline style={{ color: 'blue' }} />
+          </IconButton>
+        </Box>
       </Box>
     </Drawer>
   );

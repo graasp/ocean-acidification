@@ -1,6 +1,6 @@
 import { Line } from 'react-konva';
 
-import { REEF_POINTS, REEF_TENSION } from '@/constants/canvas';
+import { REEF_COLOR, REEF_POINTS, REEF_TENSION } from '@/constants/canvas';
 
 interface Props {
   width: number;
@@ -20,7 +20,7 @@ const Reef = ({ width, height, x, y, rotation }: Props): JSX.Element => {
       points={points}
       closed
       tension={REEF_TENSION}
-      fill="#FC9D9B"
+      fill={REEF_COLOR}
       rotation={rotation}
     />
   );
