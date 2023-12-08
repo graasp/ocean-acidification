@@ -11,6 +11,7 @@ import Controls from './Controls';
 import CustomDivider from './CustomDivider';
 import CustomSwitch from './CustomSwitch';
 import UnitsSwitch from './UnitsSwitch';
+import MoleculeCountTable from './molecule-count-table/MoleculeCountTable';
 
 interface Props {
   showSideMenu: boolean;
@@ -57,13 +58,15 @@ const SideMenu = ({ showSideMenu, setShowSideMenu }: Props): JSX.Element => {
           isChecked={dissociationChecked}
           setIsChecked={setDissociationChecked}
         />
-        {/* For debugging/illustrative purposes; todo: remove box and its contents below */}
-        <Box style={{ float: 'right' }}>
+        <CustomDivider />
+        <MoleculeCountTable />
+        {/* For debugging/illustrative purposes; TODO: remove box and its contents below */}
+        <Box style={{ float: 'right', paddingTop: 25 }}>
           <IconButton onClick={() => dispatch(incrementReefHoles())}>
-            <RemoveCircleOutline style={{ color: 'red' }} />
+            <RemoveCircleOutline style={{ color: 'red', fontSize: 8 }} />
           </IconButton>
           <IconButton onClick={() => dispatch(decrementReefHoles())}>
-            <AddCircleOutline style={{ color: 'blue' }} />
+            <AddCircleOutline style={{ color: 'blue', fontSize: 8 }} />
           </IconButton>
         </Box>
       </Box>
