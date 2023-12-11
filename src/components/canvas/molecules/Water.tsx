@@ -1,7 +1,7 @@
 import { Group } from 'react-konva';
 
 import {
-  ANGLE_BETWEEN_HYDROGEN_ATOMS,
+  ANGLE_HYDROGEN_ATOMS,
   HYDROGEN_RADIUS,
   OXYGEN_RADIUS,
 } from '@/constants/canvas';
@@ -20,7 +20,7 @@ const Water = ({ x, y }: Props): JSX.Element => {
     { x, y },
     OXYGEN_RADIUS,
     HYDROGEN_RADIUS,
-    ANGLE_BETWEEN_HYDROGEN_ATOMS,
+    ANGLE_HYDROGEN_ATOMS,
   );
 
   return (

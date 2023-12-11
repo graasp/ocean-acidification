@@ -17,10 +17,10 @@ interface WaterCoordinates {
 
 interface CarbonicAcidCoordinates {
   topOxygen: MoleculeCenter;
+  bottomOxygen: MoleculeCenter;
   leftOxygen: MoleculeCenter;
-  rightOxygen: MoleculeCenter;
+  topHydrogen: MoleculeCenter;
   leftHydrogen: MoleculeCenter;
-  rightHydrogen: MoleculeCenter;
 }
 
 export const generateRandomNum = (min: number, max: number): number =>
@@ -87,34 +87,51 @@ export const createCarbonicAcid = (
   carbonRadius: number,
   oxygenRadius: number,
   hydrogenRadius: number,
+  oxygenAngle: number,
+  leftOxygenAngle: number,
+  hydrogenAngle: number,
 ): CarbonicAcidCoordinates => {
   const { x: carbonX, y: carbonY } = carbon;
-  const sideOxygenYOffset = Math.sqrt(
-    2 * carbonRadius * oxygenRadius + oxygenRadius ** 2,
-  );
-  const bottomMoleculesY = carbonY + sideOxygenYOffset;
-  const topOxygen = { x: carbonX, y: carbonY - carbonRadius - oxygenRadius };
-  const leftOxygen = {
-    x: carbonX - carbonRadius,
-    y: bottomMoleculesY,
+  const topBottomOxygenXOffset =
+    (carbonRadius + oxygenRadius) * Math.cos(oxygenAngle / 2);
+  const topBottomOxygenYOffset =
+    (carbonRadius + oxygenRadius) * Math.sin(oxygenAngle / 2);
+  const leftOxygenXOffset =
+    (carbonRadius + oxygenRadius) * Math.cos(leftOxygenAngle);
+  const leftOxygenYOffset =
+    (carbonRadius + oxygenRadius) * Math.sin(leftOxygenAngle);
+
+  const hydrogenXOffset =
+    (oxygenRadius + hydrogenRadius) * Math.sin(hydrogenAngle / 2);
+  const hydrogenYOffset =
+    (oxygenRadius + hydrogenRadius) * Math.cos(hydrogenAngle / 2);
+
+  const topOxygen = {
+    x: carbonX + topBottomOxygenXOffset,
+    y: carbonY - topBottomOxygenYOffset,
   };
-  const rightOxygen = {
-    x: carbonX + carbonRadius,
-    y: bottomMoleculesY,
+  const bottomOxygen = {
+    x: carbonX + topBottomOxygenXOffset,
+    y: carbonY + topBottomOxygenYOffset,
+  };
+  const leftOxygen = {
+    x: carbonX - leftOxygenXOffset,
+    y: carbonY - leftOxygenYOffset,
+  };
+  const topHydrogen = {
+    x: topOxygen.x - hydrogenXOffset,
+    y: topOxygen.y - hydrogenYOffset,
   };
   const leftHydrogen = {
-    x: carbonX - carbonRadius - oxygenRadius - hydrogenRadius,
-    y: bottomMoleculesY,
+    x: leftOxygen.x - hydrogenXOffset,
+    y: leftOxygen.y - hydrogenYOffset,
   };
-  const rightHydrogen = {
-    x: carbonX + carbonRadius + oxygenRadius + hydrogenRadius,
-    y: bottomMoleculesY,
-  };
+
   return {
     topOxygen,
+    bottomOxygen,
     leftOxygen,
-    rightOxygen,
+    topHydrogen,
     leftHydrogen,
-    rightHydrogen,
   };
 };

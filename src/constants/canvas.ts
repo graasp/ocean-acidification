@@ -28,7 +28,10 @@ export const HYDROGEN_RADIUS = (10 / 13) * OXYGEN_RADIUS;
 export const CARBON_FILL = 'black';
 export const OXYGEN_FILL = 'indianred';
 export const HYDROGEN_FILL = 'white';
-export const ANGLE_BETWEEN_HYDROGEN_ATOMS = 104.5 * (Math.PI / 180);
+export const ANGLE_HYDROGEN_ATOMS = 104.5 * (Math.PI / 180);
+// Carbonic acid; angles derived from illustration by teachers
+export const ANGLE_TOP_BOTTOM_OXYGENS = 125.5 * (Math.PI / 180);
+export const LEFT_OXYGEN_ANGLE = 8.25 * (Math.PI / 180);
 
 export const PH_SCALE_BEGINS_X = 0.2;
 export const PH_SCALE_BEGINS_Y = -0.11;

@@ -1,16 +1,14 @@
-import { useContext } from 'react';
 import { Group } from 'react-konva';
 
 import {
+  ANGLE_HYDROGEN_ATOMS,
+  ANGLE_TOP_BOTTOM_OXYGENS,
   CARBON_RADIUS,
-  CO2_MOLS_SKY_COORDINATES,
   HYDROGEN_RADIUS,
+  LEFT_OXYGEN_ANGLE,
   OXYGEN_RADIUS,
-  WATER_MOLS_SEA_COORDINATES,
 } from '@/constants/canvas';
-import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createCarbonicAcid } from '@/utils/molecules';
-import { disappearsAfter } from '@/utils/motion';
 
 import Carbon from './atoms/Carbon';
 import Hydrogen from './atoms/Hydrogen';
@@ -22,30 +20,27 @@ interface Props {
 }
 
 const CarbonicAcid = ({ width, height }: Props): JSX.Element | null => {
-  const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
-  const waterMolecule = WATER_MOLS_SEA_COORDINATES[0];
-  const carbonDioxideMolecule = CO2_MOLS_SKY_COORDINATES[0];
-  const disappear = disappearsAfter(carbonDioxideMolecule, waterMolecule);
-
-  const { topOxygen, leftOxygen, rightOxygen, leftHydrogen, rightHydrogen } =
+  const { topOxygen, leftOxygen, bottomOxygen, topHydrogen, leftHydrogen } =
     createCarbonicAcid(
-      { x: waterMolecule.x * width, y: waterMolecule.y * height },
+      { x: 0.3 * width, y: 0.5 * height },
       CARBON_RADIUS,
       OXYGEN_RADIUS,
       HYDROGEN_RADIUS,
+      ANGLE_TOP_BOTTOM_OXYGENS,
+      LEFT_OXYGEN_ANGLE,
+      ANGLE_HYDROGEN_ATOMS,
     );
 
-  return intervalCount > disappear ? (
+  return (
     <Group>
       <Oxygen x={topOxygen.x} y={topOxygen.y} />
-      <Carbon x={waterMolecule.x * width} y={waterMolecule.y * height} />
+      <Carbon x={0.3 * width} y={0.5 * height} />
       <Oxygen x={leftOxygen.x} y={leftOxygen.y} />
-      <Oxygen x={rightOxygen.x} y={rightOxygen.y} />
+      <Oxygen x={bottomOxygen.x} y={bottomOxygen.y} />
+      <Hydrogen x={topHydrogen.x} y={topHydrogen.y} />
       <Hydrogen x={leftHydrogen.x} y={leftHydrogen.y} />
-      <Hydrogen x={rightHydrogen.x} y={rightHydrogen.y} />
     </Group>
-  ) : null;
+  );
 };
 
 export default CarbonicAcid;
