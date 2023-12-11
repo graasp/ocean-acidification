@@ -1,11 +1,11 @@
 import { Group } from 'react-konva';
 
 import {
-  ANGLE_HYDROGEN_ATOMS,
-  ANGLE_TOP_BOTTOM_OXYGENS,
   CARBON_RADIUS,
+  HYDROGENS_ANGLE,
   HYDROGEN_RADIUS,
   LEFT_OXYGEN_ANGLE,
+  OXYGENS_ANGLE,
   OXYGEN_RADIUS,
 } from '@/constants/canvas';
 import { createCarbonicAcid } from '@/utils/molecules';
@@ -26,9 +26,9 @@ const CarbonicAcid = ({ width, height }: Props): JSX.Element | null => {
       CARBON_RADIUS,
       OXYGEN_RADIUS,
       HYDROGEN_RADIUS,
-      ANGLE_TOP_BOTTOM_OXYGENS,
+      OXYGENS_ANGLE,
       LEFT_OXYGEN_ANGLE,
-      ANGLE_HYDROGEN_ATOMS,
+      HYDROGENS_ANGLE,
     );
 
   return (

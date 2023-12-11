@@ -1,29 +1,30 @@
 import { Group } from 'react-konva';
 
 import {
+  CARBON_RADIUS,
   HYDROGENS_ANGLE,
   HYDROGEN_RADIUS,
   OXYGEN_RADIUS,
 } from '@/constants/canvas';
-import { createHydroxide } from '@/utils/molecules';
+import { createCarboxyl } from '@/utils/molecules';
 
+import CarbonDioxide from './CarbonDioxide';
 import Hydrogen from './atoms/Hydrogen';
-import Oxygen from './atoms/Oxygen';
 
-const Hydroxide = (): JSX.Element => {
-  const { oxygen, hydrogen } = createHydroxide(
-    { x: 200, y: 200 },
+const Carboxyl = (): JSX.Element => {
+  const { hydrogen } = createCarboxyl(
+    { x: 500, y: 400 },
+    CARBON_RADIUS,
     OXYGEN_RADIUS,
     HYDROGEN_RADIUS,
     HYDROGENS_ANGLE,
   );
-
   return (
-    <Group draggable>
+    <Group>
       <Hydrogen x={hydrogen.x} y={hydrogen.y} />
-      <Oxygen x={oxygen.x} y={oxygen.y} />
+      <CarbonDioxide x={500} y={400} />
     </Group>
   );
 };
 
-export default Hydroxide;
+export default Carboxyl;
