@@ -1,44 +1,46 @@
-interface MoleculeCenter {
+import {
+  REEF_HOLES_BEGIN_X,
+  REEF_HOLES_BEGIN_Y,
+  REEF_HOLES_END_X,
+  REEF_HOLES_END_Y,
+  REEF_HOLES_RADII,
+  TOTAL_NUM_HOLES,
+} from '@/constants/canvas';
+
+import { generateRandomNum } from './molecules';
+
+interface Coordinates {
   x: number;
   y: number;
+  size: number;
+  switchedOn: boolean;
 }
 
-interface AtomsCoordinates {
-  top: MoleculeCenter;
-  center: MoleculeCenter;
-  bottom: MoleculeCenter;
-}
-
-const generateRandomNum = (min: number, max: number): number =>
-  Math.random() * (max - min) + min;
-
-export const generateRandomCoordinates = (
-  count: number,
-  yStart: number,
-  yEnd: number,
-): MoleculeCenter[] => {
-  const centers = [];
-  for (let i = 1; i <= count; i += 1) {
-    centers.push({ x: Math.random(), y: generateRandomNum(yStart, yEnd) });
+const generateReefHoles = (numHoles: number): Coordinates[] => {
+  const reefHoles = [];
+  for (let i = 0; i < numHoles; i += 1) {
+    reefHoles.push({
+      x: generateRandomNum(REEF_HOLES_BEGIN_X, REEF_HOLES_END_X),
+      y: generateRandomNum(REEF_HOLES_BEGIN_Y, REEF_HOLES_END_Y),
+      size: REEF_HOLES_RADII[
+        Math.floor(Math.random() * REEF_HOLES_RADII.length)
+      ],
+      switchedOn: false,
+    });
   }
-  return centers;
+  return reefHoles;
 };
 
-export const determineAtomCoordinates = (
-  moleculeCenter: MoleculeCenter,
-  centerAtomRadius: number,
-  peripheralAtomRadius: number,
-): AtomsCoordinates => {
-  const { x: moleculeCenterX, y: moleculeCenterY } = moleculeCenter;
-  return {
-    top: {
-      x: moleculeCenterX,
-      y: moleculeCenterY - centerAtomRadius - peripheralAtomRadius,
-    },
-    center: { x: moleculeCenterX, y: moleculeCenterY },
-    bottom: {
-      x: moleculeCenterX,
-      y: moleculeCenterY + centerAtomRadius + peripheralAtomRadius,
-    },
-  };
+export const ALL_HOLES = generateReefHoles(TOTAL_NUM_HOLES);
+
+export const switchOnReefHoles = (
+  allHoles: Coordinates[],
+  percentageOn: number,
+): Coordinates[] => {
+  const numHolesOn = Math.floor(allHoles.length * percentageOn);
+  const allHolesCopy = [...allHoles];
+  for (let i = 0; i < allHoles.length; i += 1) {
+    allHolesCopy[i].switchedOn = i < numHolesOn;
+  }
+  return allHolesCopy;
 };

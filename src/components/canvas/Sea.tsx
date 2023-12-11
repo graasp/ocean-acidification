@@ -1,7 +1,7 @@
 import { Group, Rect } from 'react-konva';
 
 import {
-  SEA_GRADIENT,
+  SEA_FILL,
   SEA_HEIGHT,
   SKY_HEIGHT,
   WATER_MOLS_SEA_COORDINATES,
@@ -20,11 +20,7 @@ const Sea = ({ width, height }: Props): JSX.Element => (
       y={height * SKY_HEIGHT}
       width={width}
       height={height * SEA_HEIGHT}
-      fillLinearGradientEndPoint={{
-        x: 0,
-        y: height * SEA_HEIGHT,
-      }}
-      fillLinearGradientColorStops={SEA_GRADIENT}
+      fill={SEA_FILL}
     />
     <WaterMolecules
       width={width}

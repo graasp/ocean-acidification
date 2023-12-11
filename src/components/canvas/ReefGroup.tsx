@@ -3,6 +3,7 @@ import { Group } from 'react-konva';
 import { REEF_GROUP } from '@/constants/canvas';
 
 import Reef from './Reef';
+import ReefHoles from './ReefHoles';
 
 interface Props {
   width: number;
@@ -21,6 +22,7 @@ const ReefGroup = ({ width, height }: Props): JSX.Element => (
         key={index}
       />
     ))}
+    <ReefHoles width={width} height={height} />
   </Group>
 );
 

@@ -1,4 +1,4 @@
-import { generateRandomCoordinates } from '@/utils/canvas';
+import { generateRandomCoordinates } from '@/utils/molecules';
 
 export const INTERVAL_COUNT_INCREMENTED_EVERY = 50;
 
@@ -9,7 +9,7 @@ export const SEA_HEIGHT = 0.53;
 export const REEF_BLOCKER_HEIGHT = 1 - (SKY_HEIGHT + SEA_HEIGHT) + 0.001;
 
 export const SKY_GRADIENT = [0, '#a4c8ea', 1, '#c8def2'];
-export const SEA_GRADIENT = [0, '#9cc9e5', 1, '#6ba5c9'];
+export const SEA_FILL = '#6ba5c9';
 export const REEF_BLOCKER_GRADIENT = [0, '#6ba5c9', 1, '#6b91a0'];
 
 export const EXCHANGE_CIRCLE_FILL = '';
@@ -27,17 +27,21 @@ export const OXYGEN_RADIUS = (15 / 17) * CARBON_RADIUS;
 export const HYDROGEN_RADIUS = (10 / 13) * OXYGEN_RADIUS;
 export const CARBON_FILL = 'black';
 export const OXYGEN_FILL = 'indianred';
-export const HYDROGEN_FILL = 'grey';
+export const HYDROGEN_FILL = 'white';
+export const ANGLE_HYDROGEN_ATOMS = 104.5 * (Math.PI / 180);
+// Carbonic acid; angles derived from illustration by teachers
+export const ANGLE_TOP_BOTTOM_OXYGENS = 125.5 * (Math.PI / 180);
+export const LEFT_OXYGEN_ANGLE = 8.25 * (Math.PI / 180);
 
 export const PH_SCALE_BEGINS_X = 0.2;
 export const PH_SCALE_BEGINS_Y = -0.11;
 export const PH_SCALE_WIDTH = 0.6;
 export const PH_SCALE_HEIGHT = 0.075;
-export const PH_SCALE_GRADIENT = [0, '#ff4040', 1, '#fAf9f6'];
+export const PH_SCALE_GRADIENT = [0, '#fAf9f6', 1, '#ff4040'];
 export const MARKER_FILL = '#1a1a1b';
 export const MARKER_BORDER_WIDTH = 6;
 export const MARKER_WIDTH = 0.035;
-export const PH_SCALE_POINTS = [8.2, 8.15, 8.1, 8.05, 8, 7.95, 7.9, 7.85, 7.8];
+export const PH_SCALE_POINTS = [7.8, 7.85, 7.9, 7.95, 8, 8.05, 8.1, 8.15, 8.2];
 export const PH_SCALE_AXIS_COLOR = 'black';
 export const PH_SCALE_AXIS_HEIGHT = 5;
 export const PH_SCALE_AXIS_STROKE_WIDTH = 1;
@@ -55,13 +59,30 @@ export const REEF_POINTS = [
   0.096, 0,
 ];
 export const REEF_TENSION = 0.5;
-
+export const REEF_COLOR = 'white';
 export const REEF_GROUP = [
   { x: 0.285, y: 0.91, rotation: 0 },
   { x: 0.36, y: 0.91, rotation: 40 },
   { x: 0.545, y: 0.94, rotation: -20 },
   { x: 0.59, y: 0.89, rotation: 60 },
 ];
+const REEF_HEIGHT = Math.min(
+  ...REEF_POINTS.filter((point, index) => index % 2 !== 0),
+);
+const REEF_WIDTH =
+  Math.max(...REEF_POINTS.filter((point, index) => index % 2 === 0)) -
+  Math.min(...REEF_POINTS.filter((point, index) => index % 2 === 0));
+export const REEF_HOLES_BEGIN_X =
+  Math.min(...REEF_GROUP.map(({ x }) => x)) +
+  Math.min(...REEF_POINTS.filter((point, index) => index % 2 === 0));
+export const REEF_HOLES_END_X =
+  Math.max(...REEF_GROUP.map(({ x }) => x)) + REEF_WIDTH;
+export const REEF_HOLES_BEGIN_Y =
+  Math.max(...REEF_GROUP.map(({ y }) => y)) + REEF_HEIGHT;
+export const REEF_HOLES_END_Y = Math.max(...REEF_GROUP.map(({ y }) => y));
+export const REEF_HOLES_RADII = [0.002, 0.004];
+export const TOTAL_NUM_HOLES = 600;
+export const PERCENT_HOLES_INCREMENT = 1 / (PH_SCALE_POINTS.length - 1);
 
 const NUM_CO2_MOLS_SKY = 1;
 export const CO2_MOLS_SKY_COORDINATES = generateRandomCoordinates(

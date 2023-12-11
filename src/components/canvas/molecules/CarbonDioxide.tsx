@@ -1,10 +1,10 @@
 import { Group } from 'react-konva';
 
 import { CARBON_RADIUS, OXYGEN_RADIUS } from '@/constants/canvas';
-import { determineAtomCoordinates } from '@/utils/canvas';
+import { createCarbonDioxide } from '@/utils/molecules';
 
-import Carbon from './Carbon';
-import Oxygen from './Oxygen';
+import Carbon from './atoms/Carbon';
+import Oxygen from './atoms/Oxygen';
 
 interface Props {
   x: number;
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const CarbonDioxide = ({ x, y }: Props): JSX.Element => {
-  const { top, center, bottom } = determineAtomCoordinates(
+  const { top, center, bottom } = createCarbonDioxide(
     { x, y },
     OXYGEN_RADIUS,
     CARBON_RADIUS,
