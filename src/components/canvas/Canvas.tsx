@@ -7,6 +7,7 @@ import ReefGroup from './ReefGroup';
 import Sea from './Sea';
 import Sky from './Sky';
 import CarbonicAcid from './molecules/CarbonicAcid';
+import Hydroxide from './molecules/Hydroxide';
 
 interface Props {
   width: number;
@@ -23,6 +24,7 @@ const Canvas = ({ width, height }: Props): JSX.Element => (
       <ReefBlocker width={width} height={height} />
       <PHScale width={width} height={height} />
       <CarbonicAcid width={width} height={height} />
+      <Hydroxide />
     </Layer>
   </Stage>
 );
