@@ -1,11 +1,11 @@
 import { Group } from 'react-konva';
 
 import {
-  ANGLE_HYDROGEN_ATOMS,
-  ANGLE_TOP_BOTTOM_OXYGENS,
   CARBON_RADIUS,
+  HYDROGENS_ANGLE,
   HYDROGEN_RADIUS,
   LEFT_OXYGEN_ANGLE,
+  OXYGENS_ANGLE,
   OXYGEN_RADIUS,
 } from '@/constants/canvas';
 import { createCarbonicAcid } from '@/utils/molecules';
@@ -15,26 +15,26 @@ import Hydrogen from './atoms/Hydrogen';
 import Oxygen from './atoms/Oxygen';
 
 interface Props {
-  width: number;
-  height: number;
+  x: number;
+  y: number;
 }
 
-const CarbonicAcid = ({ width, height }: Props): JSX.Element | null => {
+const CarbonicAcid = ({ x, y }: Props): JSX.Element | null => {
   const { topOxygen, leftOxygen, bottomOxygen, topHydrogen, leftHydrogen } =
     createCarbonicAcid(
-      { x: 0.3 * width, y: 0.5 * height },
+      { x, y },
       CARBON_RADIUS,
       OXYGEN_RADIUS,
       HYDROGEN_RADIUS,
-      ANGLE_TOP_BOTTOM_OXYGENS,
+      OXYGENS_ANGLE,
       LEFT_OXYGEN_ANGLE,
-      ANGLE_HYDROGEN_ATOMS,
+      HYDROGENS_ANGLE,
     );
 
   return (
     <Group>
       <Oxygen x={topOxygen.x} y={topOxygen.y} />
-      <Carbon x={0.3 * width} y={0.5 * height} />
+      <Carbon x={x} y={y} />
       <Oxygen x={leftOxygen.x} y={leftOxygen.y} />
       <Oxygen x={bottomOxygen.x} y={bottomOxygen.y} />
       <Hydrogen x={topHydrogen.x} y={topHydrogen.y} />

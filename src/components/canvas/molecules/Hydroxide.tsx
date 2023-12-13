@@ -5,7 +5,7 @@ import {
   HYDROGEN_RADIUS,
   OXYGEN_RADIUS,
 } from '@/constants/canvas';
-import { createWater } from '@/utils/molecules';
+import { createHydroxide } from '@/utils/molecules';
 
 import Hydrogen from './atoms/Hydrogen';
 import Oxygen from './atoms/Oxygen';
@@ -15,8 +15,8 @@ interface Props {
   y: number;
 }
 
-const Water = ({ x, y }: Props): JSX.Element => {
-  const { topLeft, center, topRight } = createWater(
+const Hydroxide = ({ x, y }: Props): JSX.Element => {
+  const { oxygen, hydrogen } = createHydroxide(
     { x, y },
     OXYGEN_RADIUS,
     HYDROGEN_RADIUS,
@@ -24,12 +24,11 @@ const Water = ({ x, y }: Props): JSX.Element => {
   );
 
   return (
-    <Group>
-      <Hydrogen x={topLeft.x} y={topLeft.y} />
-      <Oxygen x={center.x} y={center.y} />
-      <Hydrogen x={topRight.x} y={topRight.y} />
+    <Group draggable>
+      <Hydrogen x={hydrogen.x} y={hydrogen.y} />
+      <Oxygen x={oxygen.x} y={oxygen.y} />
     </Group>
   );
 };
 
-export default Water;
+export default Hydroxide;
