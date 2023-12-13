@@ -1,6 +1,6 @@
 import { generateRandomCoordinates } from '@/utils/molecules';
 
-export const INTERVAL_COUNT_INCREMENTED_EVERY = 50;
+export const INTERVAL_COUNT_INCREMENTED_EVERY = 25;
 
 export const CANVAS_WIDTH = 0.75;
 
@@ -29,6 +29,8 @@ export const CARBON_FILL = 'black';
 export const OXYGEN_FILL = 'indianred';
 export const HYDROGEN_FILL = 'white';
 export const HYDROGENS_ANGLE = 104.5 * (Math.PI / 180);
+export const HYDROGEN_X_OFFSET =
+  Math.sin(HYDROGENS_ANGLE / 2) * (OXYGEN_RADIUS + HYDROGEN_RADIUS);
 // Carbonic acid; angles derived from illustration by teachers
 export const OXYGENS_ANGLE = 125.5 * (Math.PI / 180);
 export const LEFT_OXYGEN_ANGLE = 8.25 * (Math.PI / 180);
@@ -84,18 +86,18 @@ export const REEF_HOLES_RADII = [0.002, 0.004];
 export const TOTAL_NUM_HOLES = 600;
 export const PERCENT_HOLES_INCREMENT = 1 / (PH_SCALE_POINTS.length - 1);
 
-const NUM_CO2_MOLS_SKY = 1;
+const NUM_CO2_MOLS_SKY = 0;
 export const CO2_MOLS_SKY_COORDINATES = generateRandomCoordinates(
   NUM_CO2_MOLS_SKY,
   0,
   SKY_HEIGHT,
 );
 
-const NUM_WATER_MOLS_SEA = 1;
+const NUM_WATER_MOLS_SEA = 0;
 export const WATER_MOLS_SEA_COORDINATES = generateRandomCoordinates(
   NUM_WATER_MOLS_SEA,
   SKY_HEIGHT + EXCHANGE_CIRCLE_RADIUS,
   0.5,
 );
 
-export const MOVEMENT_PER_INTERVAL = 0.005;
+export const MOVEMENT_PER_INTERVAL = 0.0025;

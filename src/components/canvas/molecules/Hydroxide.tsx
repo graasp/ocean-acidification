@@ -10,9 +10,14 @@ import { createHydroxide } from '@/utils/molecules';
 import Hydrogen from './atoms/Hydrogen';
 import Oxygen from './atoms/Oxygen';
 
-const Hydroxide = (): JSX.Element => {
+interface Props {
+  x: number;
+  y: number;
+}
+
+const Hydroxide = ({ x, y }: Props): JSX.Element => {
   const { oxygen, hydrogen } = createHydroxide(
-    { x: 200, y: 200 },
+    { x, y },
     OXYGEN_RADIUS,
     HYDROGEN_RADIUS,
     HYDROGENS_ANGLE,
