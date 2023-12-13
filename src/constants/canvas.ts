@@ -1,5 +1,3 @@
-import { generateRandomCoordinates } from '@/utils/molecules';
-
 export const INTERVAL_COUNT_INCREMENTED_EVERY = 25;
 
 export const CANVAS_WIDTH = 0.75;
@@ -85,19 +83,5 @@ export const REEF_HOLES_END_Y = Math.max(...REEF_GROUP.map(({ y }) => y));
 export const REEF_HOLES_RADII = [0.002, 0.004];
 export const TOTAL_NUM_HOLES = 600;
 export const PERCENT_HOLES_INCREMENT = 1 / (PH_SCALE_POINTS.length - 1);
-
-const NUM_CO2_MOLS_SKY = 0;
-export const CO2_MOLS_SKY_COORDINATES = generateRandomCoordinates(
-  NUM_CO2_MOLS_SKY,
-  0,
-  SKY_HEIGHT,
-);
-
-const NUM_WATER_MOLS_SEA = 0;
-export const WATER_MOLS_SEA_COORDINATES = generateRandomCoordinates(
-  NUM_WATER_MOLS_SEA,
-  SKY_HEIGHT + EXCHANGE_CIRCLE_RADIUS,
-  0.5,
-);
 
 export const MOVEMENT_PER_INTERVAL = 0.0025;
