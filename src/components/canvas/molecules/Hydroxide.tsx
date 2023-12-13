@@ -5,7 +5,7 @@ import {
   HYDROGEN_RADIUS,
   OXYGEN_RADIUS,
 } from '@/constants/canvas';
-import { createHydroxide } from '@/utils/molecules';
+import { createHydroxide } from '@/utils/molecules/';
 
 import Hydrogen from './atoms/Hydrogen';
 import Oxygen from './atoms/Oxygen';
