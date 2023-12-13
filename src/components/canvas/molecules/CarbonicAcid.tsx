@@ -8,7 +8,7 @@ import {
   OXYGENS_ANGLE,
   OXYGEN_RADIUS,
 } from '@/constants/canvas';
-import { createCarbonicAcid } from '@/utils/molecules';
+import { createCarbonicAcid } from '@/utils/molecules/';
 
 import Carbon from './atoms/Carbon';
 import Hydrogen from './atoms/Hydrogen';
