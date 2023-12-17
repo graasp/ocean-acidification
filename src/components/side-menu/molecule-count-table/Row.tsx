@@ -15,7 +15,7 @@ const rowStyles = {
 };
 const leftLabelStyles = { width: '30%' };
 const centerItemStyles = {
-  width: '50%',
+  width: '20%',
   display: 'flex',
   justifyContent: 'center',
 };

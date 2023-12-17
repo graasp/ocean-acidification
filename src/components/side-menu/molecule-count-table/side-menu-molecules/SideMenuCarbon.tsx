@@ -4,7 +4,7 @@ import { CARBON_RADIUS } from '@/constants/side-menu';
 import SideMenuAtom from './SideMenuAtom';
 
 const SideMenuCarbon = (): JSX.Element => (
-  <SideMenuAtom radius={CARBON_RADIUS} color={CARBON_FILL} showBorder={false} />
+  <SideMenuAtom radius={CARBON_RADIUS} color={CARBON_FILL} />
 );
 
 export default SideMenuCarbon;

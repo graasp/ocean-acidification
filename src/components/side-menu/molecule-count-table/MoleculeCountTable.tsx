@@ -1,8 +1,11 @@
 import { Box } from '@mui/material';
 
+import { SEA_FILL } from '@/constants/canvas';
+
 import Heading from './Heading';
 import {
-  carbonDioxideLabel,
+  carbonDioxideGasLabel,
+  carbonDioxideWaterLabel,
   carbonicAcidLabel,
   hydrogenLabel,
 } from './MoleculeLabels';
@@ -17,12 +20,26 @@ const containerStyles = {
   marginTop: '1em',
 };
 
+const hydrogenBoxStyles = {
+  display: 'flex',
+  justifyContent: 'center',
+  width: '100%',
+  background: SEA_FILL,
+  padding: '5% 0',
+  borderRadius: '2.5px',
+};
+
 const MoleculeCountTable = (): JSX.Element => (
   <Box sx={containerStyles}>
     <Heading labelLeft="Molecule or Ion" labelRight="Count" />
     <Row
-      label={carbonDioxideLabel}
-      molecule={<SideMenuCarbonDioxide />}
+      label={carbonDioxideGasLabel}
+      molecule={<SideMenuCarbonDioxide isSky />}
+      count={10}
+    />
+    <Row
+      label={carbonDioxideWaterLabel}
+      molecule={<SideMenuCarbonDioxide isSky={false} />}
       count={10}
     />
     <Row
@@ -30,7 +47,15 @@ const MoleculeCountTable = (): JSX.Element => (
       molecule={<SideMenuCarbonicAcid />}
       count={20}
     />
-    <Row label={hydrogenLabel} molecule={<SideMenuHydrogen />} count={1} />
+    <Row
+      label={hydrogenLabel}
+      molecule={
+        <Box sx={hydrogenBoxStyles}>
+          <SideMenuHydrogen />
+        </Box>
+      }
+      count={1}
+    />
   </Box>
 );
 

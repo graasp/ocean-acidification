@@ -6,7 +6,8 @@ export const SKY_HEIGHT = 0.35;
 export const SEA_HEIGHT = 0.53;
 export const REEF_BLOCKER_HEIGHT = 1 - (SKY_HEIGHT + SEA_HEIGHT) + 0.001;
 
-export const SKY_GRADIENT = [0, '#a4c8ea', 1, '#c8def2'];
+export const SKY_GRADIENT_LIGHT_END = '#c8def2';
+export const SKY_GRADIENT = [0, '#a4c8ea', 1, SKY_GRADIENT_LIGHT_END];
 export const SEA_FILL = '#6ba5c9';
 export const REEF_BLOCKER_GRADIENT = [0, '#6ba5c9', 1, '#6b91a0'];
 
