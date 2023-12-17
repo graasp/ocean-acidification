@@ -37,7 +37,7 @@ export const PH_SCALE_BEGINS_X = 0.2;
 export const PH_SCALE_BEGINS_Y = -0.11;
 export const PH_SCALE_WIDTH = 0.6;
 export const PH_SCALE_HEIGHT = 0.075;
-export const PH_SCALE_GRADIENT = [0, '#fAf9f6', 1, '#ff4040'];
+export const PH_SCALE_FILL = '#ffd8a4';
 export const MARKER_FILL = '#1a1a1b';
 export const MARKER_BORDER_WIDTH = 6;
 export const MARKER_WIDTH = 0.035;
@@ -46,6 +46,59 @@ export const PH_SCALE_AXIS_COLOR = 'black';
 export const PH_SCALE_AXIS_HEIGHT = 5;
 export const PH_SCALE_AXIS_STROKE_WIDTH = 1;
 export const PH_SCALE_AXIS_LABEL_MARGIN = 2;
+const LARGE_HOLE_RADIUS = 0.0075;
+const SMALL_HOLE_RADIUS = 0.004;
+export const PH_SCALE_HOLES = [
+  { x: 0.02, y: 0.5, radius: LARGE_HOLE_RADIUS },
+  { x: 0.03, y: 0.8, radius: LARGE_HOLE_RADIUS },
+  { x: 0.0325, y: 0.2, radius: LARGE_HOLE_RADIUS },
+  { x: 0.045, y: 0.5, radius: LARGE_HOLE_RADIUS },
+  { x: 0.055, y: 0.275, radius: SMALL_HOLE_RADIUS },
+  { x: 0.075, y: 0.35, radius: LARGE_HOLE_RADIUS },
+  { x: 0.065, y: 0.75, radius: LARGE_HOLE_RADIUS },
+  { x: 0.0825, y: 0.625, radius: SMALL_HOLE_RADIUS },
+  { x: 0.1, y: 0.6, radius: LARGE_HOLE_RADIUS },
+  { x: 0.1075, y: 0.25, radius: LARGE_HOLE_RADIUS },
+  { x: 0.115, y: 0.8, radius: LARGE_HOLE_RADIUS },
+  { x: 0.13, y: 0.4, radius: LARGE_HOLE_RADIUS },
+  { x: 0.14, y: 0.7, radius: LARGE_HOLE_RADIUS },
+  { x: 0.15, y: 0.25, radius: SMALL_HOLE_RADIUS },
+  { x: 0.16, y: 0.5, radius: LARGE_HOLE_RADIUS },
+  { x: 0.17, y: 0.8, radius: SMALL_HOLE_RADIUS },
+  { x: 0.18, y: 0.3, radius: LARGE_HOLE_RADIUS },
+  { x: 0.19, y: 0.6, radius: LARGE_HOLE_RADIUS },
+  { x: 0.205, y: 0.35, radius: SMALL_HOLE_RADIUS },
+  { x: 0.22, y: 0.7, radius: LARGE_HOLE_RADIUS },
+  { x: 0.225, y: 0.35, radius: LARGE_HOLE_RADIUS },
+  { x: 0.25, y: 0.55, radius: LARGE_HOLE_RADIUS },
+  { x: 0.265, y: 0.225, radius: LARGE_HOLE_RADIUS },
+  { x: 0.275, y: 0.775, radius: LARGE_HOLE_RADIUS },
+  { x: 0.29, y: 0.475, radius: LARGE_HOLE_RADIUS },
+  { x: 0.31, y: 0.225, radius: SMALL_HOLE_RADIUS },
+  { x: 0.32, y: 0.675, radius: LARGE_HOLE_RADIUS },
+  { x: 0.345, y: 0.45, radius: LARGE_HOLE_RADIUS },
+  { x: 0.37, y: 0.275, radius: LARGE_HOLE_RADIUS },
+  { x: 0.375, y: 0.75, radius: SMALL_HOLE_RADIUS },
+  { x: 0.395, y: 0.475, radius: LARGE_HOLE_RADIUS },
+  { x: 0.425, y: 0.7, radius: LARGE_HOLE_RADIUS },
+  { x: 0.425, y: 0.3, radius: SMALL_HOLE_RADIUS },
+  { x: 0.455, y: 0.55, radius: LARGE_HOLE_RADIUS },
+  { x: 0.47, y: 0.35, radius: SMALL_HOLE_RADIUS },
+  { x: 0.495, y: 0.3, radius: LARGE_HOLE_RADIUS },
+  { x: 0.505, y: 0.75, radius: LARGE_HOLE_RADIUS },
+  { x: 0.605, y: 0.8, radius: SMALL_HOLE_RADIUS },
+  { x: 0.53, y: 0.4, radius: LARGE_HOLE_RADIUS },
+  { x: 0.565, y: 0.6, radius: LARGE_HOLE_RADIUS },
+  { x: 0.6, y: 0.3, radius: LARGE_HOLE_RADIUS },
+  { x: 0.64, y: 0.5, radius: LARGE_HOLE_RADIUS },
+  { x: 0.68, y: 0.7, radius: LARGE_HOLE_RADIUS },
+  { x: 0.695, y: 0.3, radius: SMALL_HOLE_RADIUS },
+  { x: 0.73, y: 0.6, radius: LARGE_HOLE_RADIUS },
+  { x: 0.765, y: 0.325, radius: LARGE_HOLE_RADIUS },
+  { x: 0.805, y: 0.4, radius: SMALL_HOLE_RADIUS },
+  { x: 0.84, y: 0.5, radius: LARGE_HOLE_RADIUS },
+  { x: 0.88, y: 0.5, radius: SMALL_HOLE_RADIUS },
+];
 
 export const REEF_POINTS = [
   0, 0, 0.003, -0.029, -0.029, -0.059, -0.037, -0.074, -0.029, -0.088, -0.007,
@@ -59,7 +112,7 @@ export const REEF_POINTS = [
   0.096, 0,
 ];
 export const REEF_TENSION = 0.5;
-export const REEF_COLOR = 'white';
+export const REEF_COLOR = '#ffd8a4';
 export const REEF_GROUP = [
   { x: 0.285, y: 0.91, rotation: 0 },
   { x: 0.36, y: 0.91, rotation: 40 },
