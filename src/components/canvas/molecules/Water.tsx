@@ -10,12 +10,16 @@ import { createWater } from '@/utils/molecules/';
 import Hydrogen from './atoms/Hydrogen';
 import Oxygen from './atoms/Oxygen';
 
+const defaultProps = {
+  rotation: 0,
+};
 interface Props {
   x: number;
   y: number;
+  rotation?: number;
 }
 
-const Water = ({ x, y }: Props): JSX.Element => {
+const Water = ({ x, y, rotation }: Props): JSX.Element => {
   const { topLeft, center, topRight } = createWater(
     { x, y },
     OXYGEN_RADIUS,
@@ -24,12 +28,14 @@ const Water = ({ x, y }: Props): JSX.Element => {
   );
 
   return (
-    <Group>
-      <Hydrogen x={topLeft.x} y={topLeft.y} />
-      <Oxygen x={center.x} y={center.y} />
-      <Hydrogen x={topRight.x} y={topRight.y} />
+    <Group x={center.x} y={center.y} rotation={rotation}>
+      <Hydrogen x={topLeft.x - center.x} y={topLeft.y - center.y} />
+      <Oxygen />
+      <Hydrogen x={topRight.x - center.x} y={topRight.y - center.y} />
     </Group>
   );
 };
+
+Water.defaultProps = defaultProps;
 
 export default Water;
