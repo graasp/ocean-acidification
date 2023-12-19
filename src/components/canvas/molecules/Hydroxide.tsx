@@ -24,7 +24,7 @@ const Hydroxide = ({ x, y }: Props): JSX.Element => {
   );
 
   return (
-    <Group draggable>
+    <Group>
       <Hydrogen x={hydrogen.x} y={hydrogen.y} />
       <Oxygen x={oxygen.x} y={oxygen.y} />
     </Group>

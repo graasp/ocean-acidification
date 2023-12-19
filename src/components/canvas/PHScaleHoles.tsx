@@ -16,7 +16,6 @@ const PHScaleHoles = ({ scaleWidth, scaleHeight }: Props): JSX.Element => (
         fill={SEA_FILL}
         radius={radius * scaleWidth}
         key={index}
-        draggable
       />
     ))}
   </Group>
