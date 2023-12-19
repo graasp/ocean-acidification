@@ -5,16 +5,23 @@ import { IconButton, Tooltip } from '@mui/material';
 import { green } from '@mui/material/colors';
 
 import { togglePause } from '@/actions/app-settings';
+import { EMPTY_STRING } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
-const buttonStyles = { fontSize: '2em', color: green[800] };
+interface Props {
+  disabled: boolean;
+}
 
-const Play = (): JSX.Element => {
+const Play = ({ disabled }: Props): JSX.Element => {
   const { dispatch } = useContext(AppSettingsContext);
+  const buttonStyles = {
+    fontSize: '2em',
+    color: disabled ? EMPTY_STRING : green[800],
+  };
 
   return (
     <Tooltip title="Play">
-      <IconButton onClick={() => dispatch(togglePause())}>
+      <IconButton disabled={disabled} onClick={() => dispatch(togglePause())}>
         <PlayCircleOutline sx={buttonStyles} />
       </IconButton>
     </Tooltip>

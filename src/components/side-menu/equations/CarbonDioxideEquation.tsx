@@ -13,11 +13,11 @@ const containerStyles = {
 const CarbonDioxideEquation = (): JSX.Element => (
   <Box sx={containerStyles}>
     <Typography variant="body2">
-      CO<sub>2(aq)</sub>
+      CO<sub>2(g)</sub>
     </Typography>
     <Arrows />
     <Typography variant="body2">
-      CO<sub>2(g)</sub>
+      CO<sub>2(aq)</sub>
     </Typography>
   </Box>
 );
