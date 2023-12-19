@@ -1,6 +1,10 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useContext } from 'react';
 
 import { Box, Drawer } from '@mui/material';
+
+import { toggleMode } from '@/actions/app-settings';
+import { SEQUENTIAL } from '@/constants/strings';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import Controls from './Controls';
 import CustomDivider from './CustomDivider';
@@ -16,7 +20,9 @@ interface Props {
 const containerStyles = { height: '100%', width: '100%' };
 
 const SideMenu = ({ showSideMenu, setShowSideMenu }: Props): JSX.Element => {
-  const [modeSequential, setModeSequential] = useState(true);
+  const { state, dispatch } = useContext(AppSettingsContext);
+  const { mode } = state;
+  const modeSequential = mode === SEQUENTIAL;
 
   return (
     <Drawer
@@ -31,7 +37,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu }: Props): JSX.Element => {
           leftLabel="Sequential"
           rightLabel="Continuous"
           isChecked={!modeSequential}
-          setIsChecked={setModeSequential}
+          setIsChecked={() => dispatch(toggleMode())}
         />
         <CustomDivider />
         {modeSequential ? <SideMenuSequential /> : <SideMenuContinuous />}

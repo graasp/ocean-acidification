@@ -1,10 +1,12 @@
 import { PERCENT_HOLES_INCREMENT } from '@/constants/canvas';
+import { CONTINUOUS, SEQUENTIAL } from '@/constants/strings';
 
 import {
   DECREMENT_REEF_HOLES,
   INCREMENT_INTERVAL_COUNT,
   INCREMENT_REEF_HOLES,
   RESET_SETTINGS,
+  TOGGLE_MODE,
   TOGGLE_PAUSE,
 } from '../types/app-settings';
 
@@ -12,6 +14,7 @@ export interface appSettingsType {
   intervalCount: number;
   isPaused: boolean;
   reefHoles: number;
+  mode: string;
 }
 
 export interface appSettingsActionType {
@@ -22,6 +25,7 @@ export const initialAppSettings = {
   intervalCount: 0,
   isPaused: true,
   reefHoles: 0,
+  mode: SEQUENTIAL,
 };
 
 export const appSettingsReducer = (
@@ -49,6 +53,12 @@ export const appSettingsReducer = (
         1,
       );
       return { ...state, reefHoles: updatedHoles };
+    }
+    case TOGGLE_MODE: {
+      return {
+        ...state,
+        mode: state.mode === SEQUENTIAL ? CONTINUOUS : SEQUENTIAL,
+      };
     }
     default:
       return state;
