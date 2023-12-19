@@ -23,7 +23,7 @@ interface Props {
 const CARBON_DIOXIDE = { x: 0.4, y: 0.2 };
 const WATER = { x: 0.1, y: 0.6 };
 
-const Molecules = ({ width, height }: Props): JSX.Element => {
+const CarbonicAcidFormation = ({ width, height }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount } = state;
 
@@ -124,4 +124,4 @@ const Molecules = ({ width, height }: Props): JSX.Element => {
   );
 };
 
-export default Molecules;
+export default CarbonicAcidFormation;

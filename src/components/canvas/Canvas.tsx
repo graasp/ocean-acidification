@@ -1,7 +1,8 @@
 import { Layer, Stage } from 'react-konva';
 
+import CarbonicAcidDissociation from './CarbonicAcidDissociation';
+import CarbonicAcidFormation from './CarbonicAcidFormation';
 import ExchangeCircle from './ExchangeCircle';
-import Molecules from './Molecules';
 import PHScale from './PHScale';
 import ReefBlocker from './ReefBlocker';
 import ReefGroup from './ReefGroup';
@@ -22,7 +23,8 @@ const Canvas = ({ width, height }: Props): JSX.Element => (
       <ReefGroup width={width} height={height} />
       <ReefBlocker width={width} height={height} />
       <PHScale width={width} height={height} />
-      <Molecules width={width} height={height} />
+      <CarbonicAcidFormation width={width} height={height} />
+      <CarbonicAcidDissociation width={width} height={height} />
     </Layer>
   </Stage>
 );
