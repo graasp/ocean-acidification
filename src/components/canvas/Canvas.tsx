@@ -28,7 +28,7 @@ const Canvas = ({ width, height }: Props): JSX.Element => {
       <Layer>
         <Sea width={width} height={height} />
         <Sky width={width} height={height} />
-        <ExchangeCircle width={width} height={height} />
+        {!modeSequential && <ExchangeCircle width={width} height={height} />}
         {!modeSequential && <ReefGroup width={width} height={height} />}
         {!modeSequential && <ReefBlocker width={width} height={height} />}
         {!modeSequential && <PHScale width={width} height={height} />}
