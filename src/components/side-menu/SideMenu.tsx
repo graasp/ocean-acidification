@@ -1,17 +1,16 @@
-import { Dispatch, SetStateAction, useContext, useState } from 'react';
+import { Dispatch, SetStateAction, useContext } from 'react';
 
-import { AddCircleOutline, RemoveCircleOutline } from '@mui/icons-material';
-import { Box, Drawer, IconButton, Typography } from '@mui/material';
+import { Box, Drawer } from '@mui/material';
 
-import { decrementReefHoles, incrementReefHoles } from '@/actions/app-settings';
+import { toggleMode } from '@/actions/app-settings';
+import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
-import CarbonDioxideSlider from './CarbonDioxideSlider';
 import Controls from './Controls';
 import CustomDivider from './CustomDivider';
-import CustomSwitch from './CustomSwitch';
-import UnitsSwitch from './UnitsSwitch';
-import MoleculeCountTable from './molecule-count-table/MoleculeCountTable';
+import SideMenuContinuous from './SideMenuContinuous';
+import SideMenuSequential from './SideMenuSequential';
+import TwoSidedSwitch from './TwoSidedSwitch';
 
 interface Props {
   showSideMenu: boolean;
@@ -19,13 +18,11 @@ interface Props {
 }
 
 const containerStyles = { height: '100%', width: '100%' };
-const headingStyles = { width: '90%', margin: '1em auto' };
 
 const SideMenu = ({ showSideMenu, setShowSideMenu }: Props): JSX.Element => {
-  const { dispatch } = useContext(AppSettingsContext);
-  const [fluxesChecked, setFluxesChecked] = useState(false);
-  const [carbonicAcidChecked, setCarbonicAcidChecked] = useState(false);
-  const [dissociationChecked, setDissociationChecked] = useState(false);
+  const { state, dispatch } = useContext(AppSettingsContext);
+  const { mode } = state;
+  const modeSequential = mode === SEQUENTIAL;
 
   return (
     <Drawer
@@ -36,39 +33,14 @@ const SideMenu = ({ showSideMenu, setShowSideMenu }: Props): JSX.Element => {
     >
       <Box sx={containerStyles}>
         <Controls setShowSideMenu={setShowSideMenu} />
-        <CustomDivider />
-        <UnitsSwitch />
-        <CarbonDioxideSlider />
-        <CustomSwitch
-          label="Show Diffusion Arrows"
-          isChecked={fluxesChecked}
-          setIsChecked={setFluxesChecked}
+        <TwoSidedSwitch
+          leftLabel="Sequential"
+          rightLabel="Continuous"
+          isChecked={!modeSequential}
+          setIsChecked={() => dispatch(toggleMode())}
         />
         <CustomDivider />
-        <Typography variant="body2" fontWeight={600} sx={headingStyles}>
-          Equations
-        </Typography>
-        <CustomSwitch
-          label="Carbonic Acid Formation"
-          isChecked={carbonicAcidChecked}
-          setIsChecked={setCarbonicAcidChecked}
-        />
-        <CustomSwitch
-          label="Carbonic Acid Dissociation"
-          isChecked={dissociationChecked}
-          setIsChecked={setDissociationChecked}
-        />
-        <CustomDivider />
-        <MoleculeCountTable />
-        {/* For debugging/illustrative purposes; TODO: remove box and its contents below */}
-        <Box style={{ float: 'right', paddingTop: 25 }}>
-          <IconButton onClick={() => dispatch(incrementReefHoles())}>
-            <RemoveCircleOutline style={{ color: 'red', fontSize: 8 }} />
-          </IconButton>
-          <IconButton onClick={() => dispatch(decrementReefHoles())}>
-            <AddCircleOutline style={{ color: 'blue', fontSize: 8 }} />
-          </IconButton>
-        </Box>
+        {modeSequential ? <SideMenuSequential /> : <SideMenuContinuous />}
       </Box>
     </Drawer>
   );

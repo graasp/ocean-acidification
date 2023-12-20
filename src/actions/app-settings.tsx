@@ -4,6 +4,7 @@ import {
   INCREMENT_INTERVAL_COUNT,
   INCREMENT_REEF_HOLES,
   RESET_SETTINGS,
+  TOGGLE_MODE,
   TOGGLE_PAUSE,
 } from '@/types/app-settings';
 
@@ -25,4 +26,8 @@ export const incrementReefHoles = (): appSettingsActionType => ({
 
 export const decrementReefHoles = (): appSettingsActionType => ({
   type: DECREMENT_REEF_HOLES,
+});
+
+export const toggleMode = (): appSettingsActionType => ({
+  type: TOGGLE_MODE,
 });

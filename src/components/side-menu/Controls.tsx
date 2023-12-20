@@ -4,6 +4,7 @@ import { Box } from '@mui/material';
 
 import { incrementIntervalCount } from '@/actions/app-settings';
 import { INTERVAL_COUNT_INCREMENTED_EVERY } from '@/constants/canvas';
+import { SEQUENTIAL } from '@/constants/strings';
 
 import { AppSettingsContext } from '../../contexts/AppSettingsProvider';
 import CloseMenu from './controls/CloseMenu';
@@ -43,7 +44,8 @@ const centerContainerStyles = {
 const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
   const applicationInterval = useRef<ReturnType<typeof setInterval>>();
   const { dispatch, state } = useContext(AppSettingsContext);
-  const { isPaused } = state;
+  const { isPaused, mode } = state;
+  const modeSequential = mode === SEQUENTIAL;
 
   useEffect(() => {
     const startInterval = (): void => {
@@ -65,7 +67,7 @@ const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
       </Box>
       <Box sx={centerContainerStyles}>
         <SlowMotion />
-        {isPaused ? <Play /> : <Pause />}
+        {isPaused ? <Play disabled={modeSequential} /> : <Pause />}
         <ResetButton />
       </Box>
       <Box sx={rightContainerStyles}>
