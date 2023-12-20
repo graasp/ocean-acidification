@@ -51,15 +51,6 @@ const CarbonicAcidDissociation = ({ width, height }: Props): JSX.Element => {
         )
       : bicarbonate.beginsX;
 
-  const coordinates = createCarbonicAcid(
-    { x: bicarbonate.currentX, y: bicarbonate.beginsY },
-    CARBON_RADIUS,
-    OXYGEN_RADIUS,
-    HYDROGEN_RADIUS,
-    OXYGENS_ANGLE,
-    LEFT_OXYGEN_ANGLE,
-    HYDROGENS_ANGLE,
-  );
   const { leftHydrogen } = createCarbonicAcid(
     { x: carbonicAcidX, y: carbonicAcidY },
     CARBON_RADIUS,
@@ -88,11 +79,7 @@ const CarbonicAcidDissociation = ({ width, height }: Props): JSX.Element => {
         <CarbonicAcid x={carbonicAcidX} y={carbonicAcidY} />
       )}
       {intervalCount >= beginAfterInterval && (
-        <Bicarbonate
-          x={bicarbonate.currentX}
-          y={bicarbonate.beginsY}
-          coordinates={coordinates}
-        />
+        <Bicarbonate x={bicarbonate.currentX} y={bicarbonate.beginsY} />
       )}
       {intervalCount >= beginAfterInterval && (
         <Hydrogen x={hydrogen.currentX} y={hydrogen.beginsY} />

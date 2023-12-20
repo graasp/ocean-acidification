@@ -30,7 +30,7 @@ const Canvas = ({ width, height }: Props): JSX.Element => {
         <Sky width={width} height={height} />
         <ExchangeCircle width={width} height={height} />
         {!modeSequential && <ReefGroup width={width} height={height} />}
-        <ReefBlocker width={width} height={height} />
+        {!modeSequential && <ReefBlocker width={width} height={height} />}
         {!modeSequential && <PHScale width={width} height={height} />}
         <CarbonicAcidFormation width={width} height={height} />
         <CarbonicAcidDissociation width={width} height={height} />

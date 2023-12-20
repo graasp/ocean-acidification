@@ -1,6 +1,14 @@
 import { Group } from 'react-konva';
 
-import { MoleculeCenter } from '@/utils/molecules/types';
+import {
+  CARBON_RADIUS,
+  HYDROGENS_ANGLE,
+  HYDROGEN_RADIUS,
+  LEFT_OXYGEN_ANGLE,
+  OXYGENS_ANGLE,
+  OXYGEN_RADIUS,
+} from '@/constants/canvas';
+import { createCarbonicAcid } from '@/utils/molecules/';
 
 import Carbon from './atoms/Carbon';
 import Hydrogen from './atoms/Hydrogen';
@@ -9,22 +17,24 @@ import Oxygen from './atoms/Oxygen';
 const defaultProps = {
   rotation: 0,
 };
-interface Coordinates {
-  topOxygen: MoleculeCenter;
-  leftOxygen: MoleculeCenter;
-  bottomOxygen: MoleculeCenter;
-  topHydrogen: MoleculeCenter;
-}
 
 interface Props {
   x: number;
   y: number;
-  coordinates: Coordinates;
   rotation?: number;
 }
 
-const Bicarbonate = ({ x, y, coordinates, rotation }: Props): JSX.Element => {
-  const { topOxygen, leftOxygen, bottomOxygen, topHydrogen } = coordinates;
+const Bicarbonate = ({ x, y, rotation }: Props): JSX.Element => {
+  const { topOxygen, leftOxygen, bottomOxygen, topHydrogen } =
+    createCarbonicAcid(
+      { x, y },
+      CARBON_RADIUS,
+      OXYGEN_RADIUS,
+      HYDROGEN_RADIUS,
+      OXYGENS_ANGLE,
+      LEFT_OXYGEN_ANGLE,
+      HYDROGENS_ANGLE,
+    );
 
   return (
     <Group x={x} y={y} rotation={rotation}>

@@ -3,8 +3,8 @@ export const INTERVAL_COUNT_INCREMENTED_EVERY = 25;
 export const CANVAS_WIDTH = 0.75;
 
 export const SKY_HEIGHT = 0.35;
-export const SEA_HEIGHT = 0.53;
-export const REEF_BLOCKER_HEIGHT = 1 - (SKY_HEIGHT + SEA_HEIGHT) + 0.001;
+export const SEA_HEIGHT = 0.65;
+export const REEF_BLOCKER_HEIGHT = 0.121;
 
 export const SKY_GRADIENT_LIGHT_END = '#c8def2';
 export const SKY_GRADIENT = [0, '#a4c8ea', 1, SKY_GRADIENT_LIGHT_END];
@@ -140,3 +140,26 @@ export const PERCENT_HOLES_INCREMENT = 1 / (PH_SCALE_POINTS.length - 1);
 
 export const MOVEMENT_PER_INTERVAL = 0.0025;
 export const CARBONIC_ACID_DISSOCIATION_MOVEMENT_PER_INTERVAL = 0.001;
+
+export const STATIC_CARBON_DIOXIDES = [
+  { x: 0.1, y: 0.3, rotation: 315 },
+  { x: 0.25, y: 0.5, rotation: 30 },
+  { x: 0.4, y: 0.2, rotation: 5 },
+  { x: 0.55, y: 0.6, rotation: -5 },
+  { x: 0.7, y: 0.4, rotation: 75 },
+  { x: 0.85, y: 0.4, rotation: 15 },
+];
+
+export const STATIC_WATERS = [
+  { x: 0.55, y: 0.1, rotation: 180 },
+  { x: 0.6, y: 0.85, rotation: -5 },
+  { x: 0.85, y: 0.35, rotation: 5 },
+  { x: 0.9, y: 0.9, rotation: 15 },
+];
+
+export const STATIC_HYDROGENS = [
+  { x: 0.05, y: 0.35 },
+  { x: 0.425, y: 0.65 },
+];
+
+export const STATIC_BICARBONATES = [{ x: 0.425, y: 0.85, rotation: 45 }];
