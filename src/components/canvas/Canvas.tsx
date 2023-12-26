@@ -12,6 +12,7 @@ import ReefBlocker from './ReefBlocker';
 import ReefGroup from './ReefGroup';
 import Sea from './Sea';
 import Sky from './Sky';
+import CarbonDioxideMigration from './motion/CarbonDioxideMigration';
 
 interface Props {
   width: number;
@@ -34,6 +35,7 @@ const Canvas = ({ width, height }: Props): JSX.Element => {
         {!modeSequential && <PHScale width={width} height={height} />}
         <CarbonicAcidFormation width={width} height={height} />
         <CarbonicAcidDissociation width={width} height={height} />
+        <CarbonDioxideMigration width={width} height={height} />
       </Layer>
     </Stage>
   );
