@@ -5,7 +5,6 @@ import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import CarbonicAcidDissociation from './CarbonicAcidDissociation';
-import CarbonicAcidFormation from './CarbonicAcidFormation';
 import ExchangeCircle from './ExchangeCircle';
 import PHScale from './PHScale';
 import ReefBlocker from './ReefBlocker';
@@ -13,6 +12,7 @@ import ReefGroup from './ReefGroup';
 import Sea from './Sea';
 import Sky from './Sky';
 import CarbonDioxideMigration from './motion/CarbonDioxideMigration';
+import CarbonicAcidFormation from './motion/CarbonicAcidFormation';
 
 interface Props {
   width: number;

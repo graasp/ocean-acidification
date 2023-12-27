@@ -1,4 +1,11 @@
-import { Dispatch, SetStateAction, useContext, useEffect, useRef } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { Box } from '@mui/material';
 
@@ -10,7 +17,7 @@ import { AppSettingsContext } from '../../contexts/AppSettingsProvider';
 import CloseMenu from './controls/CloseMenu';
 import Pause from './controls/Pause';
 import Play from './controls/Play';
-import ResetButton from './controls/Reset';
+import Reset from './controls/Reset';
 import SlowMotion from './controls/SlowMotion';
 import StartTour from './controls/StartTour';
 
@@ -42,6 +49,7 @@ const centerContainerStyles = {
 };
 
 const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
+  const [currentLimitIndex, setCurrentLimitIndex] = useState(0);
   const applicationInterval = useRef<ReturnType<typeof setInterval>>();
   const { dispatch, state } = useContext(AppSettingsContext);
   const { isPaused, mode } = state;
@@ -66,9 +74,12 @@ const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
         <CloseMenu setShowSideMenu={setShowSideMenu} />
       </Box>
       <Box sx={centerContainerStyles}>
-        <SlowMotion />
+        <SlowMotion
+          currentLimitIndex={currentLimitIndex}
+          setCurrentLimitIndex={setCurrentLimitIndex}
+        />
         {isPaused ? <Play disabled={modeSequential} /> : <Pause />}
-        <ResetButton />
+        <Reset setCurrentLimitIndex={setCurrentLimitIndex} />
       </Box>
       <Box sx={rightContainerStyles}>
         <StartTour />

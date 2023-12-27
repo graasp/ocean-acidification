@@ -24,11 +24,15 @@ const CarbonDioxideMigration = ({ width, height }: Props): JSX.Element => {
     ? ends.y
     : begins.y + intervalCount * movesPerInterval.y;
 
+  const currentRotation = motionCompleted
+    ? ends.rotation
+    : begins.rotation + intervalCount * movesPerInterval.rotation;
+
   return (
     <CarbonDioxide
       x={currentX * width}
       y={currentY * height}
-      rotation={begins.rotation + intervalCount}
+      rotation={currentRotation}
     />
   );
 };
