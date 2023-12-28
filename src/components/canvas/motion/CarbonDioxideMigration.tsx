@@ -1,6 +1,9 @@
 import { useContext } from 'react';
 
-import { CO2_MIGRATION, CO2_MIGRATION_INTERVALS } from '@/constants/motion';
+import {
+  CO2_MIGRATION,
+  CO2_MIGRATION_INTERVALS,
+} from '@/constants/motion/carbon-dioxide-migration';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import CarbonDioxide from '../molecules/CarbonDioxide';

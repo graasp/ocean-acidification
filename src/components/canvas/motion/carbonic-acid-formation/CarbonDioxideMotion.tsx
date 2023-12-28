@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 
 import {
-  CARBONIC_ACID_FORMATION_BEGINS,
-  CARBONIC_ACID_FORMATION_INTERVALS,
-} from '@/constants/motion';
+  FORMATION_BEGINS,
+  FORMATION_INTERVALS,
+} from '@/constants/motion/carbonic-acid-formation';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createEmptyObject } from '@/utils/motion';
 
@@ -26,10 +26,9 @@ const CarbonDioxideMotion = ({
 }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount } = state;
-  const { intervalOne, intervalTwo } = CARBONIC_ACID_FORMATION_INTERVALS;
-  const netIntervalOne = intervalCount - CARBONIC_ACID_FORMATION_BEGINS;
-  const netIntervalTwo =
-    intervalCount - (intervalOne + CARBONIC_ACID_FORMATION_BEGINS);
+  const { intervalOne, intervalTwo } = FORMATION_INTERVALS;
+  const netIntervalOne = intervalCount - FORMATION_BEGINS;
+  const netIntervalTwo = intervalCount - (intervalOne + FORMATION_BEGINS);
 
   const { ends, current, movesPerInterval } = createEmptyObject();
 

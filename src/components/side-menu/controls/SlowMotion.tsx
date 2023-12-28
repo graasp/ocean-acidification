@@ -6,7 +6,7 @@ import { blue } from '@mui/material/colors';
 
 import { incrementIntervalCount } from '@/actions/app-settings';
 import { INTERVAL_COUNT_INCREMENTED_EVERY } from '@/constants/canvas';
-import { MOTION_LIMITS } from '@/constants/motion';
+import { MOTION_INTERVALS } from '@/constants/motion/intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 interface Props {
@@ -18,7 +18,7 @@ const SlowMotion = ({
   currentLimitIndex,
   setCurrentLimitIndex,
 }: Props): JSX.Element => {
-  const currentLimit = MOTION_LIMITS[currentLimitIndex];
+  const currentLimit = MOTION_INTERVALS[currentLimitIndex];
   const [inMotion, setInMotion] = useState(false);
   const { state, dispatch } = useContext(AppSettingsContext);
   const { intervalCount } = state;

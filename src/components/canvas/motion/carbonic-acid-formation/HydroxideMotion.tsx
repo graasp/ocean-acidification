@@ -2,9 +2,9 @@ import { useContext } from 'react';
 
 import { CARBON_RADIUS, OXYGEN_RADIUS } from '@/constants/canvas';
 import {
-  CARBONIC_ACID_FORMATION_BEGINS,
-  CARBONIC_ACID_FORMATION_INTERVALS,
-} from '@/constants/motion';
+  FORMATION_BEGINS,
+  FORMATION_INTERVALS,
+} from '@/constants/motion/carbonic-acid-formation';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createEmptyObject } from '@/utils/motion';
 
@@ -24,16 +24,12 @@ const HydroxideMotion = ({
   const { state } = useContext(AppSettingsContext);
   const { intervalCount } = state;
   const { intervalOne, intervalTwo, intervalThree, intervalFour } =
-    CARBONIC_ACID_FORMATION_INTERVALS;
+    FORMATION_INTERVALS;
   const netIntervalOne =
-    intervalCount -
-    (intervalOne + intervalTwo + CARBONIC_ACID_FORMATION_BEGINS);
+    intervalCount - (intervalOne + intervalTwo + FORMATION_BEGINS);
   const netIntervalTwo =
     intervalCount -
-    (intervalOne +
-      intervalTwo +
-      intervalThree +
-      CARBONIC_ACID_FORMATION_BEGINS);
+    (intervalOne + intervalTwo + intervalThree + FORMATION_BEGINS);
 
   const { ends, current, movesPerInterval } = createEmptyObject();
 
