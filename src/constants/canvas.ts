@@ -138,9 +138,6 @@ export const REEF_HOLES_RADII = [0.002, 0.004];
 export const TOTAL_NUM_HOLES = 600;
 export const PERCENT_HOLES_INCREMENT = 1 / (PH_SCALE_POINTS.length - 1);
 
-export const MOVEMENT_PER_INTERVAL = 0.0025;
-export const CARBONIC_ACID_DISSOCIATION_MOVEMENT_PER_INTERVAL = 0.001;
-
 export const STATIC_CARBON_DIOXIDES = [
   { x: 0.1, y: 0.3, rotation: 315 },
   { x: 0.25, y: 0.5, rotation: 30 },

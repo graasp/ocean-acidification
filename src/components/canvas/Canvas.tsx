@@ -4,14 +4,15 @@ import { Layer, Stage } from 'react-konva';
 import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
-import CarbonicAcidDissociation from './CarbonicAcidDissociation';
-import CarbonicAcidFormation from './CarbonicAcidFormation';
 import ExchangeCircle from './ExchangeCircle';
 import PHScale from './PHScale';
 import ReefBlocker from './ReefBlocker';
 import ReefGroup from './ReefGroup';
 import Sea from './Sea';
 import Sky from './Sky';
+import CarbonDioxideMigration from './motion/CarbonDioxideMigration';
+import CarbonicAcidDissociation from './motion/CarbonicAcidDissociation';
+import CarbonicAcidFormation from './motion/CarbonicAcidFormation';
 
 interface Props {
   width: number;
@@ -34,6 +35,7 @@ const Canvas = ({ width, height }: Props): JSX.Element => {
         {!modeSequential && <PHScale width={width} height={height} />}
         <CarbonicAcidFormation width={width} height={height} />
         <CarbonicAcidDissociation width={width} height={height} />
+        <CarbonDioxideMigration width={width} height={height} />
       </Layer>
     </Stage>
   );
