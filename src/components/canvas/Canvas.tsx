@@ -13,6 +13,7 @@ import Sky from './Sky';
 import CarbonDioxideMigration from './motion/CarbonDioxideMigration';
 import CarbonicAcidDissociation from './motion/CarbonicAcidDissociation';
 import CarbonicAcidFormation from './motion/CarbonicAcidFormation';
+import ReverseDissociation from './motion/ReverseDissociation';
 
 interface Props {
   width: number;
@@ -36,6 +37,7 @@ const Canvas = ({ width, height }: Props): JSX.Element => {
         <CarbonicAcidFormation width={width} height={height} />
         <CarbonicAcidDissociation width={width} height={height} />
         <CarbonDioxideMigration width={width} height={height} />
+        <ReverseDissociation width={width} height={height} />
       </Layer>
     </Stage>
   );
