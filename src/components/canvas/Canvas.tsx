@@ -13,6 +13,7 @@ import Sky from './Sky';
 import CarbonDioxideMigration from './motion/CarbonDioxideMigration';
 import CarbonicAcidDissociation from './motion/CarbonicAcidDissociation';
 import CarbonicAcidFormation from './motion/CarbonicAcidFormation';
+import ReverseCarbonDioxideMigration from './motion/ReverseCarbonDioxideMigration';
 import ReverseDissociation from './motion/ReverseDissociation';
 import ReverseFormation from './motion/ReverseFormation';
 
@@ -40,6 +41,7 @@ const Canvas = ({ width, height }: Props): JSX.Element => {
         <CarbonDioxideMigration width={width} height={height} />
         <ReverseDissociation width={width} height={height} />
         <ReverseFormation width={width} height={height} />
+        <ReverseCarbonDioxideMigration width={width} height={height} />
       </Layer>
     </Stage>
   );
