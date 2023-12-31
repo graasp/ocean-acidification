@@ -3,10 +3,15 @@ import { Box } from '@mui/material';
 import LeftArrow from './LeftArrow';
 import RightArrow from './RightArrow';
 
-const Arrows = (): JSX.Element => (
+interface Props {
+  rightArrowActive: boolean;
+  leftArrowActive: boolean;
+}
+
+const Arrows = ({ rightArrowActive, leftArrowActive }: Props): JSX.Element => (
   <Box>
-    <RightArrow />
-    <LeftArrow />
+    <RightArrow rightArrowActive={rightArrowActive} />
+    <LeftArrow leftArrowActive={leftArrowActive} />
   </Box>
 );
 

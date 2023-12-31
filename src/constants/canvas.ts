@@ -30,6 +30,8 @@ export const HYDROGEN_FILL = 'white';
 export const HYDROGENS_ANGLE = 104.5 * (Math.PI / 180);
 export const HYDROGEN_X_OFFSET =
   Math.sin(HYDROGENS_ANGLE / 2) * (OXYGEN_RADIUS + HYDROGEN_RADIUS);
+export const HYDROGEN_Y_OFFSET =
+  Math.cos(HYDROGENS_ANGLE / 2) * (OXYGEN_RADIUS + HYDROGEN_RADIUS);
 // Carbonic acid; angles derived from illustration by teachers
 export const OXYGENS_ANGLE = 125.5 * (Math.PI / 180);
 export const LEFT_OXYGEN_ANGLE = 8.25 * (Math.PI / 180);

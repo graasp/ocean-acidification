@@ -1,5 +1,10 @@
 import { Box } from '@mui/material';
 
+import {
+  ACTIVE_EQUATION_COLOR,
+  INACTIVE_EQUATION_COLOR,
+} from '@/constants/side-menu';
+
 const containerStyles = {
   display: 'flex',
   alignItems: 'center',
@@ -8,7 +13,6 @@ const containerStyles = {
 
 const horizontalLine = {
   height: '2px',
-  background: 'black',
   width: 20,
 };
 
@@ -17,14 +21,23 @@ const rightArrow = {
   height: 0,
   borderTop: '4px solid transparent',
   borderBottom: '4px solid transparent',
-  borderLeft: '4px solid black',
+  borderLeft: '4px solid',
 };
 
-const RightArrow = (): JSX.Element => (
-  <Box sx={containerStyles}>
-    <Box sx={horizontalLine} />
-    <Box sx={rightArrow} />
-  </Box>
-);
+interface Props {
+  rightArrowActive: boolean;
+}
+
+const RightArrow = ({ rightArrowActive }: Props): JSX.Element => {
+  const color = rightArrowActive
+    ? ACTIVE_EQUATION_COLOR
+    : INACTIVE_EQUATION_COLOR;
+  return (
+    <Box sx={containerStyles}>
+      <Box sx={horizontalLine} style={{ background: color }} />
+      <Box sx={rightArrow} style={{ borderLeftColor: color }} />
+    </Box>
+  );
+};
 
 export default RightArrow;

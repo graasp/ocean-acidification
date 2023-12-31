@@ -1,3 +1,5 @@
+import { HYDROGEN_X_OFFSET, HYDROGEN_Y_OFFSET } from '@/constants/canvas';
+
 import { MoleculeCenter } from './types';
 
 interface WaterCoordinates {
@@ -8,22 +10,24 @@ interface WaterCoordinates {
 
 export const createWater = (
   moleculeCenter: MoleculeCenter,
-  oxygenRadius: number,
-  hydrogenRadius: number,
-  angle: number,
 ): WaterCoordinates => {
   const { x: moleculeCenterX, y: moleculeCenterY } = moleculeCenter;
-  const xOffset = (oxygenRadius + hydrogenRadius) * Math.sin(angle / 2);
-  const yOffset = (oxygenRadius + hydrogenRadius) * Math.cos(angle / 2);
   return {
     topLeft: {
-      x: moleculeCenterX - xOffset,
-      y: moleculeCenterY - yOffset,
+      x: moleculeCenterX - HYDROGEN_X_OFFSET,
+      y: moleculeCenterY - HYDROGEN_Y_OFFSET,
     },
     center: { x: moleculeCenterX, y: moleculeCenterY },
     topRight: {
-      x: moleculeCenterX + xOffset,
-      y: moleculeCenterY - yOffset,
+      x: moleculeCenterX + HYDROGEN_X_OFFSET,
+      y: moleculeCenterY - HYDROGEN_Y_OFFSET,
     },
   };
 };
+
+export const findWaterCenter = (
+  topRightHydrogen: MoleculeCenter,
+): MoleculeCenter => ({
+  x: topRightHydrogen.x - HYDROGEN_X_OFFSET,
+  y: topRightHydrogen.y + HYDROGEN_Y_OFFSET,
+});

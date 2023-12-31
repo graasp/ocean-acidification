@@ -1,6 +1,12 @@
-import { Box, Typography } from '@mui/material';
+import { useContext } from 'react';
+
+import { Box } from '@mui/material';
+
+import { MOTION_INTERVALS } from '@/constants/motion/intervals';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import Arrows from './Arrows';
+import CustomTypography from './CustomTypography';
 
 const containerStyles = {
   display: 'flex',
@@ -10,20 +16,33 @@ const containerStyles = {
   margin: '1em auto',
 };
 
-const CarbonicAcidFormation = (): JSX.Element => (
-  <Box sx={containerStyles}>
-    <Typography variant="body2">
-      H<sub>2</sub>O<sub>(aq)</sub>
-    </Typography>
-    <Typography variant="body2">+</Typography>
-    <Typography variant="body2">
-      CO<sub>2(aq)</sub>
-    </Typography>
-    <Arrows />
-    <Typography variant="body2">
-      H<sub>2</sub>CO<sub>3(aq)</sub>
-    </Typography>
-  </Box>
-);
+const CarbonicAcidFormation = (): JSX.Element => {
+  const { state } = useContext(AppSettingsContext);
+  const { intervalCount } = state;
+  const rightArrowActive =
+    intervalCount > MOTION_INTERVALS[0] && intervalCount < MOTION_INTERVALS[1];
+  const leftArrowActive =
+    intervalCount > MOTION_INTERVALS[3] && intervalCount < MOTION_INTERVALS[4];
+  const isActive = rightArrowActive || leftArrowActive;
+
+  return (
+    <Box sx={containerStyles}>
+      <CustomTypography isActive={isActive}>
+        H<sub>2</sub>O<sub>(aq)</sub>
+      </CustomTypography>
+      <CustomTypography isActive={isActive}>+</CustomTypography>
+      <CustomTypography isActive={isActive}>
+        CO<sub>2(aq)</sub>
+      </CustomTypography>
+      <Arrows
+        rightArrowActive={rightArrowActive}
+        leftArrowActive={leftArrowActive}
+      />
+      <CustomTypography isActive={isActive}>
+        H<sub>2</sub>CO<sub>3(aq)</sub>
+      </CustomTypography>
+    </Box>
+  );
+};
 
 export default CarbonicAcidFormation;

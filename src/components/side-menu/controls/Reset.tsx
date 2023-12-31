@@ -7,14 +7,16 @@ import { orange } from '@mui/material/colors';
 import { resetSettings } from '@/actions/app-settings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
-const buttonStyles = { fontSize: '2em', color: orange[800] };
-
 interface Props {
   setCurrentLimitIndex: Dispatch<SetStateAction<number>>;
+  inMotion: boolean;
 }
 
-const Reset = ({ setCurrentLimitIndex }: Props): JSX.Element => {
+const Reset = ({ setCurrentLimitIndex, inMotion }: Props): JSX.Element => {
   const { dispatch } = useContext(AppSettingsContext);
+
+  const buttonStyles = { fontSize: '2em', color: inMotion ? '' : orange[800] };
+
   return (
     <Tooltip title="Reset">
       <IconButton
@@ -22,6 +24,7 @@ const Reset = ({ setCurrentLimitIndex }: Props): JSX.Element => {
           dispatch(resetSettings());
           setCurrentLimitIndex(0);
         }}
+        disabled={inMotion}
       >
         <RotateLeft sx={buttonStyles} />
       </IconButton>

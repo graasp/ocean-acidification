@@ -1,3 +1,12 @@
+import {
+  CARBON_RADIUS,
+  HYDROGENS_ANGLE,
+  HYDROGEN_RADIUS,
+  LEFT_OXYGEN_ANGLE,
+  OXYGENS_ANGLE,
+  OXYGEN_RADIUS,
+} from '@/constants/canvas';
+
 import { MoleculeCenter } from './types';
 
 interface CarbonicAcidCoordinates {
@@ -10,27 +19,21 @@ interface CarbonicAcidCoordinates {
 
 export const createCarbonicAcid = (
   carbon: MoleculeCenter,
-  carbonRadius: number,
-  oxygenRadius: number,
-  hydrogenRadius: number,
-  oxygenAngle: number,
-  leftOxygenAngle: number,
-  hydrogenAngle: number,
 ): CarbonicAcidCoordinates => {
   const { x: carbonX, y: carbonY } = carbon;
   const topBottomOxygenXOffset =
-    (carbonRadius + oxygenRadius) * Math.cos(oxygenAngle / 2);
+    (CARBON_RADIUS + OXYGEN_RADIUS) * Math.cos(OXYGENS_ANGLE / 2);
   const topBottomOxygenYOffset =
-    (carbonRadius + oxygenRadius) * Math.sin(oxygenAngle / 2);
+    (CARBON_RADIUS + OXYGEN_RADIUS) * Math.sin(OXYGENS_ANGLE / 2);
   const leftOxygenXOffset =
-    (carbonRadius + oxygenRadius) * Math.cos(leftOxygenAngle);
+    (CARBON_RADIUS + OXYGEN_RADIUS) * Math.cos(LEFT_OXYGEN_ANGLE);
   const leftOxygenYOffset =
-    (carbonRadius + oxygenRadius) * Math.sin(leftOxygenAngle);
+    (CARBON_RADIUS + OXYGEN_RADIUS) * Math.sin(LEFT_OXYGEN_ANGLE);
 
   const hydrogenXOffset =
-    (oxygenRadius + hydrogenRadius) * Math.sin(hydrogenAngle / 2);
+    (OXYGEN_RADIUS + HYDROGEN_RADIUS) * Math.sin(HYDROGENS_ANGLE / 2);
   const hydrogenYOffset =
-    (oxygenRadius + hydrogenRadius) * Math.cos(hydrogenAngle / 2);
+    (OXYGEN_RADIUS + HYDROGEN_RADIUS) * Math.cos(HYDROGENS_ANGLE / 2);
 
   const topOxygen = {
     x: carbonX + topBottomOxygenXOffset,
