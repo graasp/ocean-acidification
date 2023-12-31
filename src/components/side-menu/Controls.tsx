@@ -50,6 +50,7 @@ const centerContainerStyles = {
 
 const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
   const [currentLimitIndex, setCurrentLimitIndex] = useState(0);
+  const [inMotion, setInMotion] = useState(false);
   const applicationInterval = useRef<ReturnType<typeof setInterval>>();
   const { dispatch, state } = useContext(AppSettingsContext);
   const { isPaused, mode } = state;
@@ -75,11 +76,16 @@ const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
       </Box>
       <Box sx={centerContainerStyles}>
         <SlowMotion
+          inMotion={inMotion}
+          setInMotion={setInMotion}
           currentLimitIndex={currentLimitIndex}
           setCurrentLimitIndex={setCurrentLimitIndex}
         />
         {isPaused ? <Play disabled={modeSequential} /> : <Pause />}
-        <Reset setCurrentLimitIndex={setCurrentLimitIndex} />
+        <Reset
+          setCurrentLimitIndex={setCurrentLimitIndex}
+          inMotion={inMotion}
+        />
       </Box>
       <Box sx={rightContainerStyles}>
         <StartTour />
