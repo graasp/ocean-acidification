@@ -1,0 +1,6 @@
+export const WATER_FORMATION_INTERVALS = 25;
+export const WATER_MOTION_INTERVALS = 175;
+export const REVERSE_FORMATION_INTERVALS =
+  WATER_FORMATION_INTERVALS + WATER_MOTION_INTERVALS;
+
+export const CARBONIC_ACID = { begins: { x: 0.7, y: 0.85, rotation: 0 } };

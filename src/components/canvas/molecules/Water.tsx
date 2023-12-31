@@ -1,10 +1,5 @@
 import { Group } from 'react-konva';
 
-import {
-  HYDROGENS_ANGLE,
-  HYDROGEN_RADIUS,
-  OXYGEN_RADIUS,
-} from '@/constants/canvas';
 import { createWater } from '@/utils/molecules/';
 
 import Hydrogen from './atoms/Hydrogen';
@@ -20,12 +15,7 @@ interface Props {
 }
 
 const Water = ({ x, y, rotation }: Props): JSX.Element => {
-  const { topLeft, center, topRight } = createWater(
-    { x, y },
-    OXYGEN_RADIUS,
-    HYDROGEN_RADIUS,
-    HYDROGENS_ANGLE,
-  );
+  const { topLeft, center, topRight } = createWater({ x, y });
 
   return (
     <Group x={center.x} y={center.y} rotation={rotation}>
