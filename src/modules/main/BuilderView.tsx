@@ -1,13 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 import { Tune } from '@mui/icons-material';
 import { Fab, Tooltip } from '@mui/material';
 
+import { setDimensions } from '@/actions/app-settings';
 import Canvas from '@/components/canvas/Canvas';
 import SideMenu from '@/components/side-menu/SideMenu';
 import { BUILDER_VIEW_CY } from '@/config/selectors';
 import { CANVAS_WIDTH } from '@/constants/canvas';
-import AppSettingsProvider from '@/contexts/AppSettingsProvider';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 const openSideMenuFabStyles = {
   right: 5,
@@ -17,21 +18,20 @@ const openSideMenuFabStyles = {
 };
 
 const BuilderView = (): JSX.Element => {
+  const { dispatch } = useContext(AppSettingsContext);
   const divRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
   const [showSideMenu, setShowSideMenu] = useState(true);
 
   useEffect(() => {
     const checkSize = (): void => {
       const stageWidth = divRef.current?.offsetWidth || 0;
       const stageHeight = divRef.current?.offsetHeight || 0;
-      setDimensions({
-        width: stageWidth,
-        height: stageHeight,
-      });
+      dispatch(
+        setDimensions({
+          width: showSideMenu ? stageWidth * CANVAS_WIDTH : stageWidth,
+          height: stageHeight,
+        }),
+      );
     };
     const resizeObserver = new ResizeObserver(() => {
       checkSize();
@@ -41,7 +41,7 @@ const BuilderView = (): JSX.Element => {
       resizeObserver.observe(mainContainer);
     }
     checkSize();
-  }, []);
+  }, [dispatch, showSideMenu]);
 
   return (
     <div
@@ -50,13 +50,8 @@ const BuilderView = (): JSX.Element => {
       id="container"
       style={{ height: '100vh', width: '100vw', display: 'flex' }}
     >
-      <AppSettingsProvider>
-        <Canvas
-          width={
-            showSideMenu ? dimensions.width * CANVAS_WIDTH : dimensions.width
-          }
-          height={dimensions.height}
-        />
+      <div>
+        <Canvas />
         {showSideMenu && (
           <SideMenu
             showSideMenu={showSideMenu}
@@ -74,7 +69,7 @@ const BuilderView = (): JSX.Element => {
             </Fab>
           </Tooltip>
         )}
-      </AppSettingsProvider>
+      </div>
     </div>
   );
 };

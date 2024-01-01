@@ -10,14 +10,11 @@ import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import CarbonicAcid from '../../molecules/CarbonicAcid';
 
-interface Props {
-  width: number;
-  height: number;
-}
-
-const CarbonicAcidMotion = ({ width, height }: Props): JSX.Element => {
+const CarbonicAcidMotion = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
+  const { intervalCount, dimensions } = state;
+  const { width, height } = dimensions;
+
   const { movesPerInterval, ends } = BICARBONATE;
   const beginsAfter = MOTION_INTERVALS[2];
   const netIntervals = intervalCount - (beginsAfter + IONS_COMBINE_AT);

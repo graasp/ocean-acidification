@@ -1,26 +1,28 @@
+import { useContext } from 'react';
 import { Group, Rect } from 'react-konva';
 
 import { SEA_FILL, SEA_HEIGHT, SKY_HEIGHT } from '@/constants/canvas';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import StaticBicarbonate from './static-molecules/StaticBicarbonates';
 import StaticHydrogen from './static-molecules/StaticHydrogens';
-import StaticWater from './static-molecules/StaticWaters';
+import StaticWaters from './static-molecules/StaticWaters';
 
-interface Props {
-  width: number;
-  height: number;
-}
+const Sea = (): JSX.Element => {
+  const { state } = useContext(AppSettingsContext);
+  const { dimensions } = state;
+  const { width, height } = dimensions;
 
-const Sea = ({ width, height }: Props): JSX.Element => {
+  const seaWidth = width;
   const seaHeight = height * SEA_HEIGHT;
   const skyHeight = height * SKY_HEIGHT;
 
   return (
     <Group y={skyHeight}>
       <Rect width={width} height={seaHeight} fill={SEA_FILL} />
-      <StaticWater width={width} height={seaHeight} />
-      <StaticHydrogen width={width} height={seaHeight} />
-      <StaticBicarbonate width={width} height={seaHeight} />
+      <StaticWaters width={seaWidth} height={seaHeight} />
+      <StaticHydrogen width={seaWidth} height={seaHeight} />
+      <StaticBicarbonate width={seaWidth} height={seaHeight} />
     </Group>
   );
 };

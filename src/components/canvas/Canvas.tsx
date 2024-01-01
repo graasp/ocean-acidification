@@ -17,31 +17,27 @@ import ReverseCarbonDioxideMigration from './motion/ReverseCarbonDioxideMigratio
 import ReverseDissociation from './motion/ReverseDissociation';
 import ReverseFormation from './motion/ReverseFormation';
 
-interface Props {
-  width: number;
-  height: number;
-}
-
-const Canvas = ({ width, height }: Props): JSX.Element => {
+const Canvas = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { mode } = state;
+  const { mode, dimensions } = state;
+  const { width, height } = dimensions;
   const modeSequential = mode === SEQUENTIAL;
 
   return (
     <Stage width={width} height={height}>
       <Layer>
-        <Sea width={width} height={height} />
-        <Sky width={width} height={height} />
-        {!modeSequential && <ExchangeCircle width={width} height={height} />}
-        {!modeSequential && <ReefGroup width={width} height={height} />}
-        {!modeSequential && <ReefBlocker width={width} height={height} />}
-        {!modeSequential && <PHScale width={width} height={height} />}
-        <CarbonicAcidFormation width={width} height={height} />
-        <CarbonicAcidDissociation width={width} height={height} />
-        <CarbonDioxideMigration width={width} height={height} />
-        <ReverseDissociation width={width} height={height} />
-        <ReverseFormation width={width} height={height} />
-        <ReverseCarbonDioxideMigration width={width} height={height} />
+        <Sea />
+        <Sky />
+        {!modeSequential && <ExchangeCircle />}
+        {!modeSequential && <ReefGroup />}
+        {!modeSequential && <ReefBlocker />}
+        {!modeSequential && <PHScale />}
+        <CarbonicAcidFormation />
+        <CarbonicAcidDissociation />
+        <CarbonDioxideMigration />
+        <ReverseDissociation />
+        <ReverseFormation />
+        <ReverseCarbonDioxideMigration />
       </Layer>
     </Stage>
   );

@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Circle, Group } from 'react-konva';
 
 import {
@@ -7,16 +8,17 @@ import {
   EXCHANGE_CIRCLE_RADIUS,
   SKY_HEIGHT,
 } from '@/constants/canvas';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import ExchangeArrow from './ExchangeArrow';
 
-interface Props {
-  width: number;
-  height: number;
-}
+const ExchangeCircle = (): JSX.Element => {
+  const { state } = useContext(AppSettingsContext);
+  const { dimensions } = state;
+  const { width, height } = dimensions;
 
-const ExchangeCircle = ({ width, height }: Props): JSX.Element => {
   const circleRadius = EXCHANGE_CIRCLE_RADIUS * width;
+
   return (
     <Group x={width / 2} y={SKY_HEIGHT * height}>
       <Circle

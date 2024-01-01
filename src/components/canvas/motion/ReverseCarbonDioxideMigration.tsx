@@ -6,17 +6,10 @@ import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import CarbonDioxide from '../molecules/CarbonDioxide';
 
-interface Props {
-  width: number;
-  height: number;
-}
-
-const ReverseCarbonDioxideMigration = ({
-  width,
-  height,
-}: Props): JSX.Element => {
+const ReverseCarbonDioxideMigration = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
+  const { intervalCount, dimensions } = state;
+  const { width, height } = dimensions;
   const { begins, ends, movesPerInterval } = CO2_REVERSE_MIGRATION;
   const netIntervals = intervalCount - MOTION_INTERVALS[4];
 

@@ -1,21 +1,23 @@
+import { useContext } from 'react';
 import { Group, Rect } from 'react-konva';
 
 import { SKY_GRADIENT, SKY_HEIGHT } from '@/constants/canvas';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import StaticCarbonDioxide from './static-molecules/StaticCarbonDioxides';
 
-interface Props {
-  width: number;
-  height: number;
-}
+const Sky = (): JSX.Element => {
+  const { state } = useContext(AppSettingsContext);
+  const { dimensions } = state;
+  const { width, height } = dimensions;
 
-const Sky = ({ width, height }: Props): JSX.Element => {
+  const skyWidth = width;
   const skyHeight = height * SKY_HEIGHT;
 
   return (
     <Group>
       <Rect
-        width={width}
+        width={skyWidth}
         height={skyHeight}
         fillLinearGradientEndPoint={{
           x: 0,
@@ -23,7 +25,7 @@ const Sky = ({ width, height }: Props): JSX.Element => {
         }}
         fillLinearGradientColorStops={SKY_GRADIENT}
       />
-      <StaticCarbonDioxide width={width} height={skyHeight} />
+      <StaticCarbonDioxide width={skyWidth} height={skyHeight} />
     </Group>
   );
 };

@@ -9,14 +9,10 @@ import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import DetachedHydrogen from '../../molecules/DetachedHydrogen';
 
-interface Props {
-  width: number;
-  height: number;
-}
-
-const HydrogenMotion = ({ width, height }: Props): JSX.Element => {
+const HydrogenMotion = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
+  const { intervalCount, dimensions } = state;
+  const { width, height } = dimensions;
   const beginsAfter = MOTION_INTERVALS[1];
   const { begins, ends, movesPerInterval } = DISSOCIATION_HYDROGEN;
 
