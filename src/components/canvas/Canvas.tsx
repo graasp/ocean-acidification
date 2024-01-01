@@ -10,12 +10,7 @@ import ReefBlocker from './ReefBlocker';
 import ReefGroup from './ReefGroup';
 import Sea from './Sea';
 import Sky from './Sky';
-import CarbonDioxideMigration from './motion/CarbonDioxideMigration';
-import CarbonicAcidDissociation from './motion/CarbonicAcidDissociation';
-import CarbonicAcidFormation from './motion/CarbonicAcidFormation';
-import ReverseCarbonDioxideMigration from './motion/ReverseCarbonDioxideMigration';
-import ReverseDissociation from './motion/ReverseDissociation';
-import ReverseFormation from './motion/ReverseFormation';
+import SequentialModeAnimations from './motion/SequentialModeAnimations';
 
 const Canvas = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
@@ -32,12 +27,7 @@ const Canvas = (): JSX.Element => {
         {!modeSequential && <ReefGroup />}
         {!modeSequential && <ReefBlocker />}
         {!modeSequential && <PHScale />}
-        <CarbonicAcidFormation />
-        <CarbonicAcidDissociation />
-        <CarbonDioxideMigration />
-        <ReverseDissociation />
-        <ReverseFormation />
-        <ReverseCarbonDioxideMigration />
+        {modeSequential && <SequentialModeAnimations />}
       </Layer>
     </Stage>
   );
