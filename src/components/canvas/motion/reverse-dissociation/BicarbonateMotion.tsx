@@ -6,14 +6,11 @@ import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import Bicarbonate from '../../molecules/Bicarbonate';
 
-interface Props {
-  width: number;
-  height: number;
-}
-
-const BicarbonateMotion = ({ width, height }: Props): JSX.Element => {
+const BicarbonateMotion = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
+  const { intervalCount, dimensions } = state;
+  const { width, height } = dimensions;
+
   const beginsAfter = MOTION_INTERVALS[2];
   const netIntervals = intervalCount - beginsAfter;
   const { begins, movesPerInterval } = BICARBONATE;

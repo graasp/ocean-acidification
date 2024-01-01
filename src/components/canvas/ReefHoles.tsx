@@ -5,14 +5,10 @@ import { SEA_FILL } from '@/constants/canvas';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { ALL_HOLES, switchOnReefHoles } from '@/utils/canvas';
 
-interface Props {
-  width: number;
-  height: number;
-}
-
-const ReefHoles = ({ width, height }: Props): JSX.Element => {
+const ReefHoles = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { reefHoles } = state;
+  const { reefHoles, dimensions } = state;
+  const { width, height } = dimensions;
 
   return (
     <Group>

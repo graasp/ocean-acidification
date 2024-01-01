@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Group, Rect } from 'react-konva';
 
 import {
@@ -7,17 +8,17 @@ import {
   PH_SCALE_HEIGHT,
   PH_SCALE_WIDTH,
 } from '@/constants/canvas';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import PHScaleHoles from './PHScaleHoles';
 import PHScaleMarker from './PHScaleMarker';
 import PHScaleUnits from './PHScaleUnits';
 
-interface Props {
-  width: number;
-  height: number;
-}
+const PHScale = (): JSX.Element => {
+  const { state } = useContext(AppSettingsContext);
+  const { dimensions } = state;
+  const { width, height } = dimensions;
 
-const PHScale = ({ width, height }: Props): JSX.Element => {
   const scaleBeginsX = width * PH_SCALE_BEGINS_X;
   const scaleBeginsY = height + height * PH_SCALE_BEGINS_Y;
   const scaleWidth = width * PH_SCALE_WIDTH;

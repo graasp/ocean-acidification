@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useLocalContext } from '@graasp/apps-query-client';
 import { Context, DEFAULT_LANG } from '@graasp/sdk';
 
+import AppSettingsProvider from '@/contexts/AppSettingsProvider';
+
 import i18n from '../../config/i18n';
 // import { AppDataProvider } from '../context/AppDataContext';
 // import { MembersProvider } from '../context/MembersContext';
@@ -25,7 +27,11 @@ const App = (): JSX.Element => {
   const renderContent = (): JSX.Element => {
     switch (context.context) {
       case Context.Builder:
-        return <BuilderView />;
+        return (
+          <AppSettingsProvider>
+            <BuilderView />
+          </AppSettingsProvider>
+        );
 
       case Context.Analytics:
         return <AnalyticsView />;

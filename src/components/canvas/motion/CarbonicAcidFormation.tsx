@@ -21,14 +21,10 @@ import CarbonDioxideMotion from './carbonic-acid-formation/CarbonDioxideMotion';
 import HydroxideMotion from './carbonic-acid-formation/HydroxideMotion';
 import WaterMotion from './carbonic-acid-formation/WaterMotion';
 
-interface Props {
-  width: number;
-  height: number;
-}
-
-const CarbonicAcidFormation = ({ width, height }: Props): JSX.Element => {
+const CarbonicAcidFormation = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
+  const { intervalCount, dimensions } = state;
+  const { width, height } = dimensions;
 
   const { begins: carbonDioxideBegins } = FORMATION_CO2;
   const { begins: waterBegins } = FORMATION_WATER;

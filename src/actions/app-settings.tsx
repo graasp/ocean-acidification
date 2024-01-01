@@ -4,9 +4,20 @@ import {
   INCREMENT_INTERVAL_COUNT,
   INCREMENT_REEF_HOLES,
   RESET_SETTINGS,
+  SET_DIMENSIONS,
   TOGGLE_MODE,
   TOGGLE_PAUSE,
 } from '@/types/app-settings';
+
+interface Dimensions {
+  width: number;
+  height: number;
+}
+
+export const setDimensions = (payload: Dimensions): appSettingsActionType => ({
+  type: SET_DIMENSIONS,
+  payload,
+});
 
 export const togglePause = (): appSettingsActionType => ({
   type: TOGGLE_PAUSE,

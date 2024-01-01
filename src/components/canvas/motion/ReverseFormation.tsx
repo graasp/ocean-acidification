@@ -14,14 +14,11 @@ import AdjustingCarbonDioxide from './reverse-formation/AdjustingCarbonDioxide';
 import HydroxideMotion from './reverse-formation/HydroxideMotion';
 import WaterMotion from './reverse-formation/WaterMotion';
 
-interface Props {
-  width: number;
-  height: number;
-}
-
-const ReverseFormation = ({ width, height }: Props): JSX.Element => {
+const ReverseFormation = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
+  const { intervalCount, dimensions } = state;
+  const { width, height } = dimensions;
+
   const beginsAfter = MOTION_INTERVALS[3];
 
   const { begins } = CARBONIC_ACID;

@@ -8,14 +8,10 @@ import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import CarbonDioxide from '../molecules/CarbonDioxide';
 
-interface Props {
-  width: number;
-  height: number;
-}
-
-const CarbonDioxideMigration = ({ width, height }: Props): JSX.Element => {
+const CarbonDioxideMigration = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
+  const { intervalCount, dimensions } = state;
+  const { width, height } = dimensions;
   const { begins, ends, movesPerInterval } = CO2_MIGRATION;
   const motionCompleted = intervalCount >= CO2_MIGRATION_INTERVALS;
 
