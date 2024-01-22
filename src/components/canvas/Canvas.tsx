@@ -10,6 +10,7 @@ import ReefBlocker from './ReefBlocker';
 import ReefGroup from './ReefGroup';
 import Sea from './Sea';
 import Sky from './Sky';
+import Spotlight from './Spotlight';
 import SequentialModeAnimations from './motion/SequentialModeAnimations';
 
 const Canvas = (): JSX.Element => {
@@ -28,6 +29,7 @@ const Canvas = (): JSX.Element => {
         {!modeSequential && <ReefBlocker />}
         {!modeSequential && <PHScale />}
         {modeSequential && <SequentialModeAnimations />}
+        {modeSequential && <Spotlight />}
       </Layer>
     </Stage>
   );

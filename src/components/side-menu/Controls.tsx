@@ -1,11 +1,4 @@
-import {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { Dispatch, SetStateAction, useContext, useEffect, useRef } from 'react';
 
 import { Box } from '@mui/material';
 
@@ -49,8 +42,6 @@ const centerContainerStyles = {
 };
 
 const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
-  const [currentLimitIndex, setCurrentLimitIndex] = useState(0);
-  const [inMotion, setInMotion] = useState(false);
   const applicationInterval = useRef<ReturnType<typeof setInterval>>();
   const { dispatch, state } = useContext(AppSettingsContext);
   const { isPaused, mode } = state;
@@ -75,17 +66,9 @@ const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
         <CloseMenu setShowSideMenu={setShowSideMenu} />
       </Box>
       <Box sx={centerContainerStyles}>
-        <SlowMotion
-          inMotion={inMotion}
-          setInMotion={setInMotion}
-          currentLimitIndex={currentLimitIndex}
-          setCurrentLimitIndex={setCurrentLimitIndex}
-        />
+        <SlowMotion />
         {isPaused ? <Play disabled={modeSequential} /> : <Pause />}
-        <Reset
-          setCurrentLimitIndex={setCurrentLimitIndex}
-          inMotion={inMotion}
-        />
+        <Reset />
       </Box>
       <Box sx={rightContainerStyles}>
         <StartTour />
