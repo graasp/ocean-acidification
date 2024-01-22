@@ -1,3 +1,5 @@
+import { Context } from 'konva/lib/Context';
+
 import {
   REEF_HOLES_BEGIN_X,
   REEF_HOLES_BEGIN_Y,
@@ -43,4 +45,26 @@ export const switchOnReefHoles = (
     allHolesCopy[i].switchedOn = i < numHolesOn;
   }
   return allHolesCopy;
+};
+
+export const createRectangle = (
+  ctx: Context,
+  startX: number,
+  startY: number,
+  width: number,
+  height: number,
+  direction: number,
+): void => {
+  ctx.moveTo(startX, startY);
+  ctx.lineTo(
+    direction === 1 ? startX + width : startX,
+    direction === 1 ? startY : startY + height,
+  );
+  ctx.lineTo(startX + width, startY + height);
+  ctx.lineTo(
+    direction === 1 ? startX : startX + width,
+    direction === 1 ? startY + height : startY,
+  );
+  ctx.lineTo(startX, startY);
+  ctx.closePath();
 };

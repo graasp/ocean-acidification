@@ -1,37 +1,29 @@
-import { Dispatch, SetStateAction, useContext } from 'react';
+import { useContext } from 'react';
 
 import { SlowMotionVideo } from '@mui/icons-material';
 import { IconButton, Tooltip } from '@mui/material';
 import { blue } from '@mui/material/colors';
 
-import { incrementIntervalCount } from '@/actions/app-settings';
+import {
+  incrementIntervalCount,
+  setAnimationIndex,
+  toggleAnimationInMotion,
+} from '@/actions/app-settings';
 import { INTERVAL_COUNT_INCREMENTED_EVERY } from '@/constants/canvas';
 import { MOTION_INTERVALS } from '@/constants/motion/intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
-interface Props {
-  inMotion: boolean;
-  setInMotion: Dispatch<SetStateAction<boolean>>;
-  currentLimitIndex: number;
-  setCurrentLimitIndex: Dispatch<SetStateAction<number>>;
-}
-
-const SlowMotion = ({
-  inMotion,
-  setInMotion,
-  currentLimitIndex,
-  setCurrentLimitIndex,
-}: Props): JSX.Element => {
-  const currentLimit = MOTION_INTERVALS[currentLimitIndex];
+const SlowMotion = (): JSX.Element => {
   const { state, dispatch } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
+  const { intervalCount, animationIndex, animationInMotion } = state;
+  const currentLimit = MOTION_INTERVALS[animationIndex];
 
-  const allStepsPlayed = currentLimitIndex === MOTION_INTERVALS.length;
-  const disabled = inMotion || allStepsPlayed;
+  const allStepsPlayed = animationIndex === MOTION_INTERVALS.length;
+  const disabled = animationInMotion || allStepsPlayed;
   const buttonStyles = { fontSize: '2em', color: disabled ? '' : blue[800] };
 
   const handleClick = (): void => {
-    setInMotion(true);
+    dispatch(toggleAnimationInMotion());
     let count = intervalCount;
     const motionInterval = setInterval(() => {
       if (count < currentLimit) {
@@ -39,8 +31,8 @@ const SlowMotion = ({
         count += 1;
       } else {
         clearInterval(motionInterval);
-        setCurrentLimitIndex((prevLimit) => prevLimit + 1);
-        setInMotion(false);
+        dispatch(setAnimationIndex(animationIndex + 1));
+        dispatch(toggleAnimationInMotion());
       }
     }, INTERVAL_COUNT_INCREMENTED_EVERY);
   };

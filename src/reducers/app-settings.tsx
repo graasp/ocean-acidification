@@ -6,7 +6,9 @@ import {
   INCREMENT_INTERVAL_COUNT,
   INCREMENT_REEF_HOLES,
   RESET_SETTINGS,
+  SET_ANIMATION_INDEX,
   SET_DIMENSIONS,
+  TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PAUSE,
 } from '../types/app-settings';
@@ -21,6 +23,8 @@ export interface appSettingsType {
   isPaused: boolean;
   reefHoles: number;
   mode: string;
+  animationIndex: number;
+  animationInMotion: boolean;
 }
 
 export interface appSettingsActionType {
@@ -35,6 +39,8 @@ export const initialAppSettings = {
   isPaused: true,
   reefHoles: 0,
   mode: SEQUENTIAL,
+  animationIndex: 0,
+  animationInMotion: false,
 };
 
 export const appSettingsReducer = (
@@ -70,6 +76,12 @@ export const appSettingsReducer = (
         ...state,
         mode: state.mode === SEQUENTIAL ? CONTINUOUS : SEQUENTIAL,
       };
+    }
+    case SET_ANIMATION_INDEX: {
+      return { ...state, animationIndex: payload };
+    }
+    case TOGGLE_ANIMATION_IN_MOTION: {
+      return { ...state, animationInMotion: !state.animationInMotion };
     }
     default:
       return state;
