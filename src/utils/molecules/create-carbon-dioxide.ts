@@ -1,3 +1,5 @@
+import { CARBON_RADIUS, OXYGEN_RADIUS } from '@/constants/canvas';
+
 import { MoleculeCenter } from './types';
 
 interface CarbonDioxideCoordinates {
@@ -8,19 +10,20 @@ interface CarbonDioxideCoordinates {
 
 export const createCarbonDioxide = (
   moleculeCenter: MoleculeCenter,
-  carbonRadius: number,
-  oxygenRadius: number,
+  height: number,
 ): CarbonDioxideCoordinates => {
   const { x: moleculeCenterX, y: moleculeCenterY } = moleculeCenter;
+  const carbonOxygen = (CARBON_RADIUS + OXYGEN_RADIUS) * height;
+
   return {
     top: {
       x: moleculeCenterX,
-      y: moleculeCenterY - carbonRadius - oxygenRadius,
+      y: moleculeCenterY - carbonOxygen,
     },
     center: { x: moleculeCenterX, y: moleculeCenterY },
     bottom: {
       x: moleculeCenterX,
-      y: moleculeCenterY + carbonRadius + oxygenRadius,
+      y: moleculeCenterY + carbonOxygen,
     },
   };
 };

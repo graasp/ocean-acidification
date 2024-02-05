@@ -1,10 +1,7 @@
+import { useContext } from 'react';
 import { Group } from 'react-konva';
 
-import {
-  HYDROGENS_ANGLE,
-  HYDROGEN_RADIUS,
-  OXYGEN_RADIUS,
-} from '@/constants/canvas';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createHydroxide } from '@/utils/molecules/';
 
 import Hydrogen from './atoms/Hydrogen';
@@ -16,12 +13,10 @@ interface Props {
 }
 
 const Hydroxide = ({ x, y }: Props): JSX.Element => {
-  const { oxygen, hydrogen } = createHydroxide(
-    { x, y },
-    OXYGEN_RADIUS,
-    HYDROGEN_RADIUS,
-    HYDROGENS_ANGLE,
-  );
+  const { state } = useContext(AppSettingsContext);
+  const { dimensions } = state;
+  const { height } = dimensions;
+  const { oxygen, hydrogen } = createHydroxide({ x, y }, height);
 
   return (
     <Group>

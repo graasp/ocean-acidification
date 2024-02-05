@@ -19,19 +19,24 @@ const AdjustingCarbonDioxide = ({
   carbonicAcidY,
 }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
+  const { intervalCount, dimensions } = state;
+  const { height } = dimensions;
 
-  const { leftOxygen, topHydrogen } = createCarbonicAcid({
-    x: carbonicAcidX,
-    y: carbonicAcidY,
-  });
-  const { y: waterCenterY } = findWaterCenter(topHydrogen);
+  const { leftOxygen, topHydrogen } = createCarbonicAcid(
+    {
+      x: carbonicAcidX,
+      y: carbonicAcidY,
+    },
+    height,
+  );
+  const { y: waterCenterY } = findWaterCenter(topHydrogen, height);
   const beginsAfter = MOTION_INTERVALS[3];
 
   const waterMovesPerIntervalY =
     (waterCenterY - leftOxygen.y) / WATER_FORMATION_INTERVALS;
 
-  const yAboveCarbonDioxide = carbonicAcidY - CARBON_RADIUS - OXYGEN_RADIUS * 3;
+  const yAboveCarbonDioxide =
+    carbonicAcidY - (CARBON_RADIUS + OXYGEN_RADIUS * 3) * height;
   const waterToPassCarbonDioxide =
     (yAboveCarbonDioxide - waterCenterY) / waterMovesPerIntervalY;
 

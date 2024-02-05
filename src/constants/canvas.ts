@@ -21,7 +21,7 @@ export const EXCHANGE_ARROW_BORDER_WIDTH = 6;
 export const EXCHANGE_ARROW_X_INDENT = 0.25;
 export const EXCHANGE_ARROW_Y_INDENT = 0.55;
 
-export const CARBON_RADIUS = 8;
+export const CARBON_RADIUS = 0.0105;
 export const OXYGEN_RADIUS = (15 / 17) * CARBON_RADIUS;
 export const HYDROGEN_RADIUS = (10 / 13) * OXYGEN_RADIUS;
 export const CARBON_FILL = 'black';

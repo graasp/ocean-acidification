@@ -19,21 +19,19 @@ interface CarbonicAcidCoordinates {
 
 export const createCarbonicAcid = (
   carbon: MoleculeCenter,
+  height: number,
 ): CarbonicAcidCoordinates => {
   const { x: carbonX, y: carbonY } = carbon;
-  const topBottomOxygenXOffset =
-    (CARBON_RADIUS + OXYGEN_RADIUS) * Math.cos(OXYGENS_ANGLE / 2);
-  const topBottomOxygenYOffset =
-    (CARBON_RADIUS + OXYGEN_RADIUS) * Math.sin(OXYGENS_ANGLE / 2);
-  const leftOxygenXOffset =
-    (CARBON_RADIUS + OXYGEN_RADIUS) * Math.cos(LEFT_OXYGEN_ANGLE);
-  const leftOxygenYOffset =
-    (CARBON_RADIUS + OXYGEN_RADIUS) * Math.sin(LEFT_OXYGEN_ANGLE);
+  const carbonOxygen = (CARBON_RADIUS + OXYGEN_RADIUS) * height;
+  const oxygenHydrogen = (OXYGEN_RADIUS + HYDROGEN_RADIUS) * height;
 
-  const hydrogenXOffset =
-    (OXYGEN_RADIUS + HYDROGEN_RADIUS) * Math.sin(HYDROGENS_ANGLE / 2);
-  const hydrogenYOffset =
-    (OXYGEN_RADIUS + HYDROGEN_RADIUS) * Math.cos(HYDROGENS_ANGLE / 2);
+  const topBottomOxygenXOffset = carbonOxygen * Math.cos(OXYGENS_ANGLE / 2);
+  const topBottomOxygenYOffset = carbonOxygen * Math.sin(OXYGENS_ANGLE / 2);
+  const leftOxygenXOffset = carbonOxygen * Math.cos(LEFT_OXYGEN_ANGLE);
+  const leftOxygenYOffset = carbonOxygen * Math.sin(LEFT_OXYGEN_ANGLE);
+
+  const hydrogenXOffset = oxygenHydrogen * Math.sin(HYDROGENS_ANGLE / 2);
+  const hydrogenYOffset = oxygenHydrogen * Math.cos(HYDROGENS_ANGLE / 2);
 
   const topOxygen = {
     x: carbonX + topBottomOxygenXOffset,

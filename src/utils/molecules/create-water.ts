@@ -10,24 +10,23 @@ interface WaterCoordinates {
 
 export const createWater = (
   moleculeCenter: MoleculeCenter,
+  height: number,
 ): WaterCoordinates => {
-  const { x: moleculeCenterX, y: moleculeCenterY } = moleculeCenter;
+  const { x, y } = moleculeCenter;
+  const xOffset = HYDROGEN_X_OFFSET * height;
+  const yOffset = HYDROGEN_Y_OFFSET * height;
+
   return {
-    topLeft: {
-      x: moleculeCenterX - HYDROGEN_X_OFFSET,
-      y: moleculeCenterY - HYDROGEN_Y_OFFSET,
-    },
-    center: { x: moleculeCenterX, y: moleculeCenterY },
-    topRight: {
-      x: moleculeCenterX + HYDROGEN_X_OFFSET,
-      y: moleculeCenterY - HYDROGEN_Y_OFFSET,
-    },
+    topLeft: { x: x - xOffset, y: y - yOffset },
+    center: { x, y },
+    topRight: { x: x + xOffset, y: y - yOffset },
   };
 };
 
 export const findWaterCenter = (
   topRightHydrogen: MoleculeCenter,
+  height: number,
 ): MoleculeCenter => ({
-  x: topRightHydrogen.x - HYDROGEN_X_OFFSET,
-  y: topRightHydrogen.y + HYDROGEN_Y_OFFSET,
+  x: topRightHydrogen.x - HYDROGEN_X_OFFSET * height,
+  y: topRightHydrogen.y + HYDROGEN_Y_OFFSET * height,
 });

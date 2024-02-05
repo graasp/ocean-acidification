@@ -20,10 +20,13 @@ const HydrogenMotion = (): JSX.Element => {
   const netIntervals = intervalCount - beginsAfter;
   const { begins, ends, movesPerInterval } = HYDROGEN;
 
-  const { leftHydrogen } = createCarbonicAcid({
-    x: CARBONIC_ACID.begins.x * width,
-    y: CARBONIC_ACID.begins.y * height,
-  });
+  const { leftHydrogen } = createCarbonicAcid(
+    {
+      x: CARBONIC_ACID.begins.x * width,
+      y: CARBONIC_ACID.begins.y * height,
+    },
+    height,
+  );
 
   ends.x = leftHydrogen.x;
   ends.y = leftHydrogen.y;

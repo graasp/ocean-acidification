@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { Group } from 'react-konva';
 
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createWater } from '@/utils/molecules/';
 
 import Hydrogen from './atoms/Hydrogen';
@@ -15,7 +17,10 @@ interface Props {
 }
 
 const Water = ({ x, y, rotation }: Props): JSX.Element => {
-  const { topLeft, center, topRight } = createWater({ x, y });
+  const { state } = useContext(AppSettingsContext);
+  const { dimensions } = state;
+  const { height } = dimensions;
+  const { topLeft, center, topRight } = createWater({ x, y }, height);
 
   return (
     <Group x={center.x} y={center.y} rotation={rotation}>

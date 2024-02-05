@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { Group } from 'react-konva';
 
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createCarbonicAcid } from '@/utils/molecules/';
 
 import Hydrogen from './atoms/Hydrogen';
@@ -15,7 +17,10 @@ interface Props {
 }
 
 const DetachedHydrogen = ({ x, y, rotation }: Props): JSX.Element => {
-  const { leftHydrogen } = createCarbonicAcid({ x, y });
+  const { state } = useContext(AppSettingsContext);
+  const { dimensions } = state;
+  const { height } = dimensions;
+  const { leftHydrogen } = createCarbonicAcid({ x, y }, height);
 
   return (
     <Group x={x} y={y} rotation={rotation}>
