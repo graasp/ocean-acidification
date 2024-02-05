@@ -45,10 +45,12 @@ const CarbonicAcidFormation = (): JSX.Element => {
   const waterBeginsY = waterBegins.y * height;
   const waterBeginsRotation = waterBegins.rotation;
   const horizontalMotion =
-    (carbonDioxideBeginsX - (waterBeginsX + HYDROGEN_X_OFFSET)) / 2;
+    (carbonDioxideBeginsX - (waterBeginsX + HYDROGEN_X_OFFSET * height)) / 2;
   const carbonDioxideEndsX = carbonDioxideBeginsX - horizontalMotion;
-  const carbonDioxideEndsY = waterBeginsY + CARBON_RADIUS + OXYGEN_RADIUS;
-  const waterEndsX = waterBeginsX - HYDROGEN_X_OFFSET + horizontalMotion;
+  const carbonDioxideEndsY =
+    waterBeginsY + (CARBON_RADIUS + OXYGEN_RADIUS) * height;
+  const waterEndsX =
+    waterBeginsX - HYDROGEN_X_OFFSET * height + horizontalMotion;
   const waterEndsY = waterBeginsY;
 
   return (

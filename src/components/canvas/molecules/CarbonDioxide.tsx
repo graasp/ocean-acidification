@@ -1,6 +1,7 @@
+import { useContext } from 'react';
 import { Group } from 'react-konva';
 
-import { CARBON_RADIUS, OXYGEN_RADIUS } from '@/constants/canvas';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createCarbonDioxide } from '@/utils/molecules/';
 
 import Carbon from './atoms/Carbon';
@@ -16,11 +17,10 @@ interface Props {
 }
 
 const CarbonDioxide = ({ x, y, rotation }: Props): JSX.Element => {
-  const { top, center, bottom } = createCarbonDioxide(
-    { x, y },
-    OXYGEN_RADIUS,
-    CARBON_RADIUS,
-  );
+  const { state } = useContext(AppSettingsContext);
+  const { dimensions } = state;
+  const { height } = dimensions;
+  const { top, center, bottom } = createCarbonDioxide({ x, y }, height);
 
   return (
     <Group rotation={rotation} x={center.x} y={center.y}>

@@ -1,3 +1,9 @@
+import {
+  HYDROGENS_ANGLE,
+  HYDROGEN_RADIUS,
+  OXYGEN_RADIUS,
+} from '@/constants/canvas';
+
 import { createCarbonDioxide } from './create-carbon-dioxide';
 import { MoleculeCenter } from './types';
 
@@ -7,20 +13,12 @@ interface CarboxylCoordinates {
 
 export const createCarboxyl = (
   moleculeCenter: MoleculeCenter,
-  carbonRadius: number,
-  oxygenRadius: number,
-  hydrogenRadius: number,
-  hydrogenAngle: number,
+  height: number,
 ): CarboxylCoordinates => {
-  const { top: topOxygen } = createCarbonDioxide(
-    moleculeCenter,
-    carbonRadius,
-    oxygenRadius,
-  );
-  const hydrogenXOffset =
-    (oxygenRadius + hydrogenRadius) * Math.sin(hydrogenAngle / 2);
-  const hydrogenYOffset =
-    (oxygenRadius + hydrogenRadius) * Math.cos(hydrogenAngle / 2);
+  const { top: topOxygen } = createCarbonDioxide(moleculeCenter, height);
+  const oxygenHydrogen = (OXYGEN_RADIUS + HYDROGEN_RADIUS) * height;
+  const hydrogenXOffset = oxygenHydrogen * Math.sin(HYDROGENS_ANGLE / 2);
+  const hydrogenYOffset = oxygenHydrogen * Math.cos(HYDROGENS_ANGLE / 2);
 
   return {
     hydrogen: {

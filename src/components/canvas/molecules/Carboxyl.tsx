@@ -1,11 +1,7 @@
+import { useContext } from 'react';
 import { Group } from 'react-konva';
 
-import {
-  CARBON_RADIUS,
-  HYDROGENS_ANGLE,
-  HYDROGEN_RADIUS,
-  OXYGEN_RADIUS,
-} from '@/constants/canvas';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createCarboxyl } from '@/utils/molecules/';
 
 import CarbonDioxide from './CarbonDioxide';
@@ -17,13 +13,11 @@ interface Props {
 }
 
 const Carboxyl = ({ x, y }: Props): JSX.Element | null => {
-  const { hydrogen } = createCarboxyl(
-    { x, y },
-    CARBON_RADIUS,
-    OXYGEN_RADIUS,
-    HYDROGEN_RADIUS,
-    HYDROGENS_ANGLE,
-  );
+  const { state } = useContext(AppSettingsContext);
+  const { dimensions } = state;
+  const { height } = dimensions;
+  const { hydrogen } = createCarboxyl({ x, y }, height);
+
   return (
     <Group>
       <Hydrogen x={hydrogen.x} y={hydrogen.y} />

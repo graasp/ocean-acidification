@@ -17,15 +17,19 @@ const HydroxideMotion = ({
   carbonicAcidY,
 }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
+  const { intervalCount, dimensions } = state;
+  const { height } = dimensions;
   const beginsAfter = MOTION_INTERVALS[3];
 
-  const { leftOxygen, topHydrogen } = createCarbonicAcid({
-    x: carbonicAcidX,
-    y: carbonicAcidY,
-  });
+  const { leftOxygen, topHydrogen } = createCarbonicAcid(
+    {
+      x: carbonicAcidX,
+      y: carbonicAcidY,
+    },
+    height,
+  );
 
-  const { x: centerX, y: centerY } = findWaterCenter(topHydrogen);
+  const { x: centerX, y: centerY } = findWaterCenter(topHydrogen, height);
   const movesPerIntervalX =
     (centerX - leftOxygen.x) / WATER_FORMATION_INTERVALS;
   const movesPerIntervalY =

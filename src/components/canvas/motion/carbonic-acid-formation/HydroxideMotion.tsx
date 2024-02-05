@@ -22,7 +22,8 @@ const HydroxideMotion = ({
   carbonDioxideEndsX,
 }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
+  const { intervalCount, dimensions } = state;
+  const { height } = dimensions;
   const { intervalOne, intervalTwo, intervalThree, intervalFour } =
     FORMATION_INTERVALS;
   const netIntervalOne =
@@ -30,11 +31,12 @@ const HydroxideMotion = ({
   const netIntervalTwo =
     intervalCount -
     (intervalOne + intervalTwo + intervalThree + FORMATION_BEGINS);
+  const carbonOxygen = (CARBON_RADIUS + OXYGEN_RADIUS) * height;
 
   const { ends, current, movesPerInterval } = createEmptyObject();
 
-  ends.x = carbonDioxideEndsX - CARBON_RADIUS - OXYGEN_RADIUS;
-  ends.y = beginsY + OXYGEN_RADIUS + CARBON_RADIUS;
+  ends.x = carbonDioxideEndsX - carbonOxygen;
+  ends.y = beginsY + carbonOxygen;
   movesPerInterval.y = (ends.y - beginsY) / intervalThree;
   movesPerInterval.x = (ends.x - beginsX) / intervalFour;
 

@@ -17,14 +17,18 @@ interface Props {
 
 const WaterMotion = ({ carbonicAcidX, carbonicAcidY }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
+  const { intervalCount, dimensions } = state;
+  const { height } = dimensions;
   const beginsAfter = MOTION_INTERVALS[3];
   const netIntervals = intervalCount - beginsAfter - WATER_FORMATION_INTERVALS;
-  const { leftOxygen, topHydrogen } = createCarbonicAcid({
-    x: carbonicAcidX,
-    y: carbonicAcidY,
-  });
-  const { x: centerX, y: centerY } = findWaterCenter(topHydrogen);
+  const { leftOxygen, topHydrogen } = createCarbonicAcid(
+    {
+      x: carbonicAcidX,
+      y: carbonicAcidY,
+    },
+    height,
+  );
+  const { x: centerX, y: centerY } = findWaterCenter(topHydrogen, height);
 
   const movesPerIntervalX =
     (centerX - leftOxygen.x) / WATER_FORMATION_INTERVALS;

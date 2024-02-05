@@ -1,3 +1,9 @@
+import {
+  HYDROGENS_ANGLE,
+  HYDROGEN_RADIUS,
+  OXYGEN_RADIUS,
+} from '@/constants/canvas';
+
 import { MoleculeCenter } from './types';
 
 interface HydroxideCoordinates {
@@ -7,15 +13,13 @@ interface HydroxideCoordinates {
 
 export const createHydroxide = (
   moleculeCenter: MoleculeCenter,
-  oxygenRadius: number,
-  hydrogenRadius: number,
-  hydrogenAngle: number,
+  height: number,
 ): HydroxideCoordinates => {
   const { x, y } = moleculeCenter;
-  const hydrogenXOffset =
-    (oxygenRadius + hydrogenRadius) * Math.sin(hydrogenAngle / 2);
-  const hydrogenYOffset =
-    (oxygenRadius + hydrogenRadius) * Math.cos(hydrogenAngle / 2);
+  const oxygenHydrogen = (OXYGEN_RADIUS + HYDROGEN_RADIUS) * height;
+
+  const hydrogenXOffset = oxygenHydrogen * Math.sin(HYDROGENS_ANGLE / 2);
+  const hydrogenYOffset = oxygenHydrogen * Math.cos(HYDROGENS_ANGLE / 2);
 
   return {
     oxygen: { x, y },
