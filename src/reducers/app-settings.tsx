@@ -11,6 +11,7 @@ import {
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PAUSE,
+  TOGGLE_SHOW_SHELLS,
 } from '../types/app-settings';
 
 type Dimensions = {
@@ -25,6 +26,7 @@ export interface appSettingsType {
   mode: string;
   animationIndex: number;
   animationInMotion: boolean;
+  showShells: boolean;
 }
 
 export interface appSettingsActionType {
@@ -41,6 +43,7 @@ export const initialAppSettings = {
   mode: SEQUENTIAL,
   animationIndex: 0,
   animationInMotion: false,
+  showShells: false,
 };
 
 export const appSettingsReducer = (
@@ -84,6 +87,9 @@ export const appSettingsReducer = (
     }
     case TOGGLE_ANIMATION_IN_MOTION: {
       return { ...state, animationInMotion: !state.animationInMotion };
+    }
+    case TOGGLE_SHOW_SHELLS: {
+      return { ...state, showShells: !state.showShells };
     }
     default:
       return state;

@@ -1,32 +1,22 @@
-import { useState } from 'react';
-
 import { Box, Typography } from '@mui/material';
 
 import CustomDivider from './common/CustomDivider';
-import CustomSwitch from './common/CustomSwitch';
 import CarbonDioxideSlider from './continuous-mode/CarbonDioxideSlider';
 import Period from './continuous-mode/Period';
+import ShellsToggle from './continuous-mode/ShellsToggle';
 import MoleculeCountTable from './molecule-count-table/MoleculeCountTable';
 
-const SideMenuContinuous = (): JSX.Element => {
-  const [showShells, setShowShells] = useState(false);
-
-  return (
-    <Box>
-      <Typography />
-      <CarbonDioxideSlider />
-      <CustomDivider />
-      <Period />
-      <CustomDivider />
-      <MoleculeCountTable />
-      <CustomDivider />
-      <CustomSwitch
-        label="Show shells"
-        isChecked={showShells}
-        setIsChecked={setShowShells}
-      />
-    </Box>
-  );
-};
+const SideMenuContinuous = (): JSX.Element => (
+  <Box>
+    <Typography />
+    <CarbonDioxideSlider />
+    <CustomDivider />
+    <Period />
+    <CustomDivider />
+    <MoleculeCountTable />
+    <CustomDivider />
+    <ShellsToggle />
+  </Box>
+);
 
 export default SideMenuContinuous;
