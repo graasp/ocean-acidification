@@ -6,10 +6,10 @@ import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import Controls from './Controls';
-import CustomDivider from './CustomDivider';
 import ModeSwitch from './ModeSwitch';
 import SideMenuContinuous from './SideMenuContinuous';
 import SideMenuSequential from './SideMenuSequential';
+import CustomDivider from './common/CustomDivider';
 
 interface Props {
   showSideMenu: boolean;

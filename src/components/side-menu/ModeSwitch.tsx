@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { toggleMode } from '@/actions/app-settings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
-import TwoSidedSwitch from './TwoSidedSwitch';
+import TwoSidedSwitch from './common/TwoSidedSwitch';
 
 interface Props {
   modeSequential: boolean;
