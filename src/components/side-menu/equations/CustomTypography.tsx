@@ -15,13 +15,13 @@ interface Props {
 }
 
 const CustomTypography = ({ isActive, children }: Props): JSX.Element => {
-  const typographyStyles = {
+  const styles = {
     color: isActive ? ACTIVE_EQUATION_COLOR : INACTIVE_EQUATION_COLOR,
     fontWeight: isActive ? ACTIVE_EQUATION_WEIGHT : INACTIVE_EQUATION_WEIGHT,
   };
 
   return (
-    <Typography variant="body2" sx={typographyStyles}>
+    <Typography variant="body2" sx={styles}>
       {children}
     </Typography>
   );

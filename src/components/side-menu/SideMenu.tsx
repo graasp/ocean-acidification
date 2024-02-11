@@ -16,7 +16,7 @@ interface Props {
   setShowSideMenu: Dispatch<SetStateAction<boolean>>;
 }
 
-const containerStyles = { height: '100%', width: '100%' };
+const container = { height: '100%', width: '100%' };
 
 const SideMenu = ({ showSideMenu, setShowSideMenu }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
@@ -30,7 +30,7 @@ const SideMenu = ({ showSideMenu, setShowSideMenu }: Props): JSX.Element => {
       variant="persistent"
       PaperProps={{ style: { width: '25vw' } }}
     >
-      <Box sx={containerStyles}>
+      <Box sx={container}>
         <Controls setShowSideMenu={setShowSideMenu} />
         <ModeSwitch modeSequential={modeSequential} />
         <CustomDivider />

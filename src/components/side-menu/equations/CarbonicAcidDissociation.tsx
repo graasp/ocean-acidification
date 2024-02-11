@@ -8,7 +8,7 @@ import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import Arrows from './Arrows';
 import CustomTypography from './CustomTypography';
 
-const containerStyles = {
+const container = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -26,7 +26,7 @@ const CarbonicAcidDissociation = (): JSX.Element => {
   const isActive = rightArrowActive || leftArrowActive;
 
   return (
-    <Box sx={containerStyles}>
+    <Box sx={container}>
       <CustomTypography isActive={isActive}>
         H<sub>2</sub>CO<sub>3(aq)</sub>
       </CustomTypography>

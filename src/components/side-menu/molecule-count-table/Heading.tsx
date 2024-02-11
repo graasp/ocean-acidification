@@ -5,14 +5,14 @@ interface Props {
   labelRight: string;
 }
 
-const containerStyles = {
+const styles = {
   display: 'flex',
   justifyContent: 'space-between',
   width: '100%',
 };
 
 const Heading = ({ labelLeft, labelRight }: Props): JSX.Element => (
-  <Box sx={containerStyles}>
+  <Box sx={styles}>
     <Typography variant="body2" fontWeight={600}>
       {labelLeft}
     </Typography>

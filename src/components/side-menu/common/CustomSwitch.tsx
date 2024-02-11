@@ -8,7 +8,7 @@ interface Props {
   setIsChecked: Dispatch<SetStateAction<boolean>>;
 }
 
-const containerStyles = {
+const styles = {
   display: 'flex',
   width: '90%',
   alignItems: 'center',
@@ -22,7 +22,7 @@ const CustomSwitch = ({
   isChecked,
   setIsChecked,
 }: Props): JSX.Element => (
-  <Box sx={containerStyles}>
+  <Box sx={styles}>
     <Typography variant="body2">{label}</Typography>
     <Switch checked={isChecked} onChange={() => setIsChecked(!isChecked)} />
   </Box>

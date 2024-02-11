@@ -20,7 +20,7 @@ const SlowMotion = (): JSX.Element => {
 
   const allStepsPlayed = animationIndex === MOTION_INTERVALS.length;
   const disabled = animationInMotion || allStepsPlayed;
-  const buttonStyles = { fontSize: '2em', color: disabled ? '' : blue[800] };
+  const styles = { fontSize: '2em', color: disabled ? '' : blue[800] };
 
   const handleClick = (): void => {
     dispatch(toggleAnimationInMotion());
@@ -40,7 +40,7 @@ const SlowMotion = (): JSX.Element => {
   return (
     <Tooltip title="Play next step">
       <IconButton onClick={handleClick} disabled={disabled}>
-        <SlowMotionVideo sx={buttonStyles} />
+        <SlowMotionVideo sx={styles} />
       </IconButton>
     </Tooltip>
   );

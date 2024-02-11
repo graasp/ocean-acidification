@@ -18,23 +18,23 @@ interface Props {
   setShowSideMenu: Dispatch<SetStateAction<boolean>>;
 }
 
-const containerStyles = {
+const container = {
   display: 'flex',
   justifyContent: 'space-between',
   marginTop: '1em',
 };
-const leftContainerStyles = {
+const leftContainer = {
   width: '20%',
   display: 'flex',
   alignItems: 'center',
 };
-const rightContainerStyles = {
+const rightContainer = {
   width: '20%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'flex-end',
 };
-const centerContainerStyles = {
+const centerContainer = {
   width: '60%',
   display: 'flex',
   alignItems: 'center',
@@ -61,16 +61,16 @@ const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
   }, [isPaused, dispatch]);
 
   return (
-    <Box sx={containerStyles}>
-      <Box sx={leftContainerStyles}>
+    <Box sx={container}>
+      <Box sx={leftContainer}>
         <CloseMenu setShowSideMenu={setShowSideMenu} />
       </Box>
-      <Box sx={centerContainerStyles}>
+      <Box sx={centerContainer}>
         <SlowMotion />
         {isPaused ? <Play disabled={modeSequential} /> : <Pause />}
         <Reset />
       </Box>
-      <Box sx={rightContainerStyles}>
+      <Box sx={rightContainer}>
         <StartTour />
       </Box>
     </Box>

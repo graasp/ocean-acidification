@@ -7,12 +7,12 @@ interface Props {
   setShowSideMenu: Dispatch<SetStateAction<boolean>>;
 }
 
-const buttonStyles = { fontSize: '1em' };
+const styles = { fontSize: '1em' };
 
 const CloseMenu = ({ setShowSideMenu }: Props): JSX.Element => (
   <Tooltip title="Close side menu" placement="right">
     <IconButton onClick={() => setShowSideMenu(false)}>
-      <ChevronRight sx={buttonStyles} />
+      <ChevronRight sx={styles} />
     </IconButton>
   </Tooltip>
 );
