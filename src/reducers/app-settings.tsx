@@ -75,6 +75,8 @@ export const appSettingsReducer = (
       return {
         ...state,
         mode: state.mode === SEQUENTIAL ? CONTINUOUS : SEQUENTIAL,
+        intervalCount: 0,
+        animationIndex: 0,
       };
     }
     case SET_ANIMATION_INDEX: {

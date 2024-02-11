@@ -28,6 +28,7 @@ interface Props {
   rightLabel: string;
   isChecked: boolean;
   setIsChecked: Dispatch<SetStateAction<boolean>>;
+  disabled: boolean;
 }
 
 const TwoSidedSwitch = ({
@@ -35,13 +36,18 @@ const TwoSidedSwitch = ({
   rightLabel,
   isChecked,
   setIsChecked,
+  disabled,
 }: Props): JSX.Element => (
   <Box sx={containerStyles}>
     <Typography variant="body2" sx={leftLabelStyles}>
       {leftLabel}
     </Typography>
     <Box sx={centerContainerStyles}>
-      <Switch checked={isChecked} onChange={() => setIsChecked(isChecked)} />
+      <Switch
+        checked={isChecked}
+        onChange={() => setIsChecked(isChecked)}
+        disabled={disabled}
+      />
     </Box>
     <Typography variant="body2" sx={rightLabelStyles}>
       {rightLabel}

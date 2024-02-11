@@ -28,6 +28,7 @@ const SideMenuContinuous = (): JSX.Element => {
         rightLabel="Concentration"
         isChecked={!unitsPh}
         setIsChecked={setUnitsPh}
+        disabled={false}
       />
       <CarbonDioxideSlider />
       <CustomSwitch
