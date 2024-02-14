@@ -12,7 +12,7 @@ const intervalFour = intervalThree + REVERSE_DISSOCIATION_INTERVALS;
 const intervalFive = intervalFour + REVERSE_FORMATION_INTERVALS;
 const intervalSix = intervalFive + CO2_REVERSE_MIGRATION_INTERVALS;
 
-export const MOTION_INTERVALS = [
+export const SEQUENTIAL_MODE_INTERVALS = [
   intervalOne,
   intervalTwo,
   intervalThree,

@@ -5,20 +5,22 @@ import {
   DISSOCIATION_CARBONIC_ACID,
   HYDROGEN_SPLITS_AT,
 } from '@/constants/motion/carbonic-acid-dissociation';
-import { MOTION_INTERVALS } from '@/constants/motion/intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import Bicarbonate from '../molecules/Bicarbonate';
 import CarbonicAcid from '../molecules/CarbonicAcid';
 import HydrogenMotion from './carbonic-acid-dissociation/HydrogenMotion';
 
-const CarbonicAcidDissociation = (): JSX.Element => {
+interface Props {
+  beginsAfter: number;
+}
+
+const CarbonicAcidDissociation = ({ beginsAfter }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
 
   const { begins, ends, movesPerInterval } = DISSOCIATION_CARBONIC_ACID;
-  const beginsAfter = MOTION_INTERVALS[1];
   const netInterval = intervalCount - beginsAfter;
   const hydrogenHasSplit = intervalCount > HYDROGEN_SPLITS_AT + beginsAfter;
 
@@ -51,7 +53,7 @@ const CarbonicAcidDissociation = (): JSX.Element => {
           rotation={currentRotation}
         />
       )}
-      {hydrogenHasSplit && <HydrogenMotion />}
+      {hydrogenHasSplit && <HydrogenMotion beginsAfter={beginsAfter} />}
     </Group>
   );
 };

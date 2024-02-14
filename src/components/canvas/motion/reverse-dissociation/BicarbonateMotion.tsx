@@ -1,17 +1,19 @@
 import { useContext } from 'react';
 
-import { MOTION_INTERVALS } from '@/constants/motion/intervals';
 import { BICARBONATE } from '@/constants/motion/reverse-dissociation';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import Bicarbonate from '../../molecules/Bicarbonate';
 
-const BicarbonateMotion = (): JSX.Element => {
+interface Props {
+  beginsAfter: number;
+}
+
+const BicarbonateMotion = ({ beginsAfter }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
 
-  const beginsAfter = MOTION_INTERVALS[2];
   const netIntervals = intervalCount - beginsAfter;
   const { begins, movesPerInterval } = BICARBONATE;
 

@@ -1,4 +1,4 @@
-export const CO2_REVERSE_MIGRATION_INTERVALS = 200;
+export const CO2_REVERSE_MIGRATION_INTERVALS = 225;
 
 export const CO2_REVERSE_MIGRATION = {
   begins: { x: 0.9, y: 0.5, rotation: 110 },

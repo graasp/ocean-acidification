@@ -1,4 +1,4 @@
-export const REVERSE_DISSOCIATION_INTERVALS = 200;
+export const REVERSE_DISSOCIATION_INTERVALS = 225;
 export const IONS_COMBINE_AT = 100;
 
 export const BICARBONATE = {

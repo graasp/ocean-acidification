@@ -1,9 +1,6 @@
 import { useContext } from 'react';
 
-import {
-  FORMATION_BEGINS,
-  FORMATION_INTERVALS,
-} from '@/constants/motion/carbonic-acid-formation';
+import { FORMATION_INTERVALS } from '@/constants/motion/carbonic-acid-formation';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createEmptyObject } from '@/utils/motion';
 
@@ -14,6 +11,7 @@ interface Props {
   beginsY: number;
   beginsRotation: number;
   endsX: number;
+  beginsAfter: number;
 }
 
 const WaterMotion = ({
@@ -21,11 +19,12 @@ const WaterMotion = ({
   beginsY,
   beginsRotation,
   endsX,
+  beginsAfter,
 }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount } = state;
   const { intervalOne, intervalTwo } = FORMATION_INTERVALS;
-  const netInterval = intervalCount - (intervalOne + FORMATION_BEGINS);
+  const netInterval = intervalCount - (intervalOne + beginsAfter);
 
   const { ends, current, movesPerInterval } = createEmptyObject();
 

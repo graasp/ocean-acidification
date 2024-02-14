@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { Group } from 'react-konva';
 
-import { MOTION_INTERVALS } from '@/constants/motion/intervals';
 import {
   CARBONIC_ACID,
   WATER_FORMATION_INTERVALS,
@@ -14,12 +13,14 @@ import AdjustingCarbonDioxide from './reverse-formation/AdjustingCarbonDioxide';
 import HydroxideMotion from './reverse-formation/HydroxideMotion';
 import WaterMotion from './reverse-formation/WaterMotion';
 
-const ReverseFormation = (): JSX.Element => {
+interface Props {
+  beginsAfter: number;
+}
+
+const ReverseFormation = ({ beginsAfter }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
-
-  const beginsAfter = MOTION_INTERVALS[3];
 
   const { begins } = CARBONIC_ACID;
   const x = begins.x * width;
@@ -35,10 +36,26 @@ const ReverseFormation = (): JSX.Element => {
     <Group>
       {intervalCount <= beginsAfter && <CarbonicAcid x={x} y={y} />}
       {waterForming && <AngledCarboxyl x={x} y={y} />}
-      {waterForming && <HydroxideMotion carbonicAcidX={x} carbonicAcidY={y} />}
-      {waterHasFormed && <WaterMotion carbonicAcidX={x} carbonicAcidY={y} />}
+      {waterForming && (
+        <HydroxideMotion
+          carbonicAcidX={x}
+          carbonicAcidY={y}
+          beginsAfter={beginsAfter}
+        />
+      )}
       {waterHasFormed && (
-        <AdjustingCarbonDioxide carbonicAcidX={x} carbonicAcidY={y} />
+        <WaterMotion
+          carbonicAcidX={x}
+          carbonicAcidY={y}
+          beginsAfter={beginsAfter}
+        />
+      )}
+      {waterHasFormed && (
+        <AdjustingCarbonDioxide
+          carbonicAcidX={x}
+          carbonicAcidY={y}
+          beginsAfter={beginsAfter}
+        />
       )}
     </Group>
   );

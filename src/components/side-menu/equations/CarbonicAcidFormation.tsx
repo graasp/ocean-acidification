@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { Box } from '@mui/material';
 
-import { MOTION_INTERVALS } from '@/constants/motion/intervals';
+import { SEQUENTIAL_MODE_INTERVALS } from '@/constants/motion/intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import Arrows from './Arrows';
@@ -20,9 +20,11 @@ const CarbonicAcidFormation = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount } = state;
   const rightArrowActive =
-    intervalCount > MOTION_INTERVALS[0] && intervalCount < MOTION_INTERVALS[1];
+    intervalCount > SEQUENTIAL_MODE_INTERVALS[0] &&
+    intervalCount < SEQUENTIAL_MODE_INTERVALS[1];
   const leftArrowActive =
-    intervalCount > MOTION_INTERVALS[3] && intervalCount < MOTION_INTERVALS[4];
+    intervalCount > SEQUENTIAL_MODE_INTERVALS[3] &&
+    intervalCount < SEQUENTIAL_MODE_INTERVALS[4];
   const isActive = rightArrowActive || leftArrowActive;
 
   return (

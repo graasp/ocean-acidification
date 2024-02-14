@@ -1,4 +1,4 @@
-export const DISSOCIAION_INTERVALS = 200;
+export const DISSOCIAION_INTERVALS = 225;
 
 // carbonic acid in dissociation
 export const DISSOCIATION_CARBONIC_ACID = {

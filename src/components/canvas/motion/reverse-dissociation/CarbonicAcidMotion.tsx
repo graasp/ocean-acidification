@@ -1,24 +1,28 @@
 import { useContext } from 'react';
 
-import { MOTION_INTERVALS } from '@/constants/motion/intervals';
 import {
   BICARBONATE,
   CARBONIC_ACID,
   IONS_COMBINE_AT,
+  REVERSE_DISSOCIATION_INTERVALS,
 } from '@/constants/motion/reverse-dissociation';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import CarbonicAcid from '../../molecules/CarbonicAcid';
 
-const CarbonicAcidMotion = (): JSX.Element => {
+interface Props {
+  beginsAfter: number;
+}
+
+const CarbonicAcidMotion = ({ beginsAfter }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
 
   const { movesPerInterval, ends } = BICARBONATE;
-  const beginsAfter = MOTION_INTERVALS[2];
   const netIntervals = intervalCount - (beginsAfter + IONS_COMBINE_AT);
   const { begins } = CARBONIC_ACID;
+  const endsAfter = beginsAfter + REVERSE_DISSOCIATION_INTERVALS;
 
   const currentX = Math.min(
     begins.x + movesPerInterval.x * netIntervals,
@@ -29,7 +33,7 @@ const CarbonicAcidMotion = (): JSX.Element => {
     ends.y,
   );
   const currentRotation =
-    intervalCount > MOTION_INTERVALS[3]
+    intervalCount > endsAfter
       ? ends.rotation
       : begins.rotation + netIntervals * movesPerInterval.rotation;
 

@@ -1,4 +1,4 @@
-export const CO2_MIGRATION_INTERVALS = 200;
+export const CO2_MIGRATION_INTERVALS = 225;
 
 export const CO2_MIGRATION = {
   begins: { x: 0.2, y: 0.1, rotation: -80 },

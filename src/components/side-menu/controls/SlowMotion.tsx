@@ -10,15 +10,15 @@ import {
   toggleAnimationInMotion,
 } from '@/actions/app-settings';
 import { INTERVAL_COUNT_INCREMENTED_EVERY } from '@/constants/canvas';
-import { MOTION_INTERVALS } from '@/constants/motion/intervals';
+import { SEQUENTIAL_MODE_INTERVALS } from '@/constants/motion/intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 const SlowMotion = (): JSX.Element => {
   const { state, dispatch } = useContext(AppSettingsContext);
   const { intervalCount, animationIndex, animationInMotion } = state;
-  const currentLimit = MOTION_INTERVALS[animationIndex];
+  const currentLimit = SEQUENTIAL_MODE_INTERVALS[animationIndex];
 
-  const allStepsPlayed = animationIndex === MOTION_INTERVALS.length;
+  const allStepsPlayed = animationIndex === SEQUENTIAL_MODE_INTERVALS.length;
   const disabled = animationInMotion || allStepsPlayed;
   const styles = { fontSize: '2em', color: disabled ? '' : blue[800] };
 

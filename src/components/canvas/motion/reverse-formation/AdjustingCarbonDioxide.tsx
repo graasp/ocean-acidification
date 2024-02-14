@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 
 import { CARBON_RADIUS, OXYGEN_RADIUS } from '@/constants/canvas';
-import { MOTION_INTERVALS } from '@/constants/motion/intervals';
 import { WATER_FORMATION_INTERVALS } from '@/constants/motion/reverse-formation';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createCarbonicAcid, findWaterCenter } from '@/utils/molecules/';
@@ -12,11 +11,13 @@ import CarbonDioxide from '../../molecules/CarbonDioxide';
 interface Props {
   carbonicAcidX: number;
   carbonicAcidY: number;
+  beginsAfter: number;
 }
 
 const AdjustingCarbonDioxide = ({
   carbonicAcidX,
   carbonicAcidY,
+  beginsAfter,
 }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
@@ -30,7 +31,6 @@ const AdjustingCarbonDioxide = ({
     height,
   );
   const { y: waterCenterY } = findWaterCenter(topHydrogen, height);
-  const beginsAfter = MOTION_INTERVALS[3];
 
   const waterMovesPerIntervalY =
     (waterCenterY - leftOxygen.y) / WATER_FORMATION_INTERVALS;

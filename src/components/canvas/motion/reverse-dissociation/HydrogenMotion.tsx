@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 
-import { MOTION_INTERVALS } from '@/constants/motion/intervals';
 import {
   CARBONIC_ACID,
   HYDROGEN,
@@ -11,12 +10,15 @@ import { createCarbonicAcid } from '@/utils/molecules/';
 
 import Hydrogen from '../../molecules/atoms/Hydrogen';
 
-const HydrogenMotion = (): JSX.Element => {
+interface Props {
+  beginsAfter: number;
+}
+
+const HydrogenMotion = ({ beginsAfter }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
 
-  const beginsAfter = MOTION_INTERVALS[2];
   const netIntervals = intervalCount - beginsAfter;
   const { begins, ends, movesPerInterval } = HYDROGEN;
 

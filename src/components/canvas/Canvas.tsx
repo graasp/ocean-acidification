@@ -4,12 +4,12 @@ import { Layer, Stage } from 'react-konva';
 import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
+import ContinuousModeAnimations from './ContinuousModeAnimations';
 import Sea from './Sea';
+import SequentialModeAnimations from './SequentialModeAnimations';
 import Shells from './Shells';
 import Sky from './Sky';
-import Spotlight from './Spotlight';
 import ExchangeCircle from './exchange-circle/ExchangeCircle';
-import SequentialModeAnimations from './motion/SequentialModeAnimations';
 
 const Canvas = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
@@ -24,8 +24,11 @@ const Canvas = (): JSX.Element => {
         <Sky />
         {!modeSequential && <ExchangeCircle />}
         {!modeSequential && showShells && <Shells />}
-        {modeSequential && <SequentialModeAnimations />}
-        {modeSequential && <Spotlight />}
+        {modeSequential ? (
+          <SequentialModeAnimations />
+        ) : (
+          <ContinuousModeAnimations />
+        )}
       </Layer>
     </Stage>
   );

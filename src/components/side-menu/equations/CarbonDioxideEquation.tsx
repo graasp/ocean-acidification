@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { Box } from '@mui/material';
 
-import { MOTION_INTERVALS } from '@/constants/motion/intervals';
+import { SEQUENTIAL_MODE_INTERVALS } from '@/constants/motion/intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import Arrows from './Arrows';
@@ -20,9 +20,10 @@ const CarbonDioxideEquation = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount } = state;
   const rightArrowActive =
-    intervalCount > 0 && intervalCount < MOTION_INTERVALS[0];
+    intervalCount > 0 && intervalCount < SEQUENTIAL_MODE_INTERVALS[0];
   const leftArrowActive =
-    intervalCount > MOTION_INTERVALS[4] && intervalCount < MOTION_INTERVALS[5];
+    intervalCount > SEQUENTIAL_MODE_INTERVALS[4] &&
+    intervalCount < SEQUENTIAL_MODE_INTERVALS[5];
   const isActive = rightArrowActive || leftArrowActive;
 
   return (
