@@ -1,6 +1,6 @@
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 
-import { CompleteCoordinates, Point } from './molecules/types';
+import { CompleteCoordinates, Coordinate, Point } from './molecules/types';
 
 export const computeMovesPerInterval = (
   coordinates: CompleteCoordinates,
@@ -11,4 +11,18 @@ export const computeMovesPerInterval = (
   const y = (ends.y - begins.y) / intervals;
   const rotation = (ends.rotation - begins.rotation) / intervals;
   return { x, y, rotation };
+};
+
+export const computePosition = (
+  co2: CompleteCoordinates,
+  coordinate: Coordinate,
+  netIntervals: number,
+  motionDuration = MOTION_INTERVAL,
+): number => {
+  const { begins, ends } = co2;
+  const movesPerInterval = computeMovesPerInterval(co2);
+
+  if (netIntervals > motionDuration) return ends[coordinate];
+  if (netIntervals <= 0) return begins[coordinate];
+  return begins[coordinate] + netIntervals * movesPerInterval[coordinate];
 };
