@@ -19,9 +19,7 @@ const Reset = (): JSX.Element => {
   return (
     <Tooltip title="Reset">
       <IconButton
-        onClick={() => {
-          dispatch(resetSettings());
-        }}
+        onClick={() => dispatch(resetSettings())}
         disabled={animationInMotion}
       >
         <RotateLeft sx={styles} />
