@@ -11,16 +11,18 @@ import {
 } from '@/actions/app-settings';
 import { INTERVAL_COUNT_INCREMENTED_EVERY } from '@/constants/canvas';
 import { SEQUENTIAL_MODE_INTERVALS } from '@/constants/motion/sequential-mode-intervals';
+import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 const SlowMotion = (): JSX.Element => {
   const { state, dispatch } = useContext(AppSettingsContext);
-  const { intervalCount, animationIndex, animationInMotion } = state;
+  const { intervalCount, animationIndex, animationInMotion, mode } = state;
   const currentLimit = SEQUENTIAL_MODE_INTERVALS[animationIndex + 1];
+  const modeContinuous = mode !== SEQUENTIAL;
 
   const allStepsPlayed =
     animationIndex === SEQUENTIAL_MODE_INTERVALS.length - 1;
-  const disabled = animationInMotion || allStepsPlayed;
+  const disabled = animationInMotion || allStepsPlayed || modeContinuous;
   const styles = { fontSize: '2em', color: disabled ? '' : blue[800] };
 
   const handleClick = (): void => {
