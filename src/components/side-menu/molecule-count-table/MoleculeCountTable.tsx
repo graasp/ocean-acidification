@@ -14,13 +14,13 @@ import SideMenuCarbonDioxide from './side-menu-molecules/SideMenuCarbonDioxide';
 import SideMenuCarbonicAcid from './side-menu-molecules/SideMenuCarbonicAcid';
 import SideMenuHydrogen from './side-menu-molecules/SideMenuHydrogen';
 
-const containerStyles = {
+const container = {
   width: '90%',
   margin: '0 auto',
   marginTop: '1em',
 };
 
-const hydrogenBoxStyles = {
+const hydrogenBox = {
   display: 'flex',
   justifyContent: 'center',
   width: '100%',
@@ -30,7 +30,7 @@ const hydrogenBoxStyles = {
 };
 
 const MoleculeCountTable = (): JSX.Element => (
-  <Box sx={containerStyles}>
+  <Box sx={container}>
     <Heading labelLeft="Molecule or Ion" labelRight="Count" />
     <Row
       label={carbonDioxideGasLabel}
@@ -50,7 +50,7 @@ const MoleculeCountTable = (): JSX.Element => (
     <Row
       label={hydrogenLabel}
       molecule={
-        <Box sx={hydrogenBoxStyles}>
+        <Box sx={hydrogenBox}>
           <SideMenuHydrogen />
         </Box>
       }

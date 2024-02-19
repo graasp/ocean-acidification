@@ -11,3 +11,5 @@ export const ACTIVE_EQUATION_COLOR = 'green';
 export const INACTIVE_EQUATION_COLOR = 'black';
 export const ACTIVE_EQUATION_WEIGHT = '900';
 export const INACTIVE_EQUATION_WEIGHT = '400';
+export const PERIODS = ['1850', '1910', '2020', '2050'];
+export const DEFAULT_PERIOD = '2020';

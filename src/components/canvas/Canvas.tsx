@@ -4,18 +4,16 @@ import { Layer, Stage } from 'react-konva';
 import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
-import ExchangeCircle from './ExchangeCircle';
-import PHScale from './PHScale';
-import ReefBlocker from './ReefBlocker';
-import ReefGroup from './ReefGroup';
+import ContinuousModeAnimations from './ContinuousModeAnimations';
 import Sea from './Sea';
+import SequentialModeAnimations from './SequentialModeAnimations';
+import Shells from './Shells';
 import Sky from './Sky';
-import Spotlight from './Spotlight';
-import SequentialModeAnimations from './motion/SequentialModeAnimations';
+import ExchangeCircle from './exchange-circle/ExchangeCircle';
 
 const Canvas = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { mode, dimensions } = state;
+  const { mode, dimensions, showShells } = state;
   const { width, height } = dimensions;
   const modeSequential = mode === SEQUENTIAL;
 
@@ -25,11 +23,12 @@ const Canvas = (): JSX.Element => {
         <Sea />
         <Sky />
         {!modeSequential && <ExchangeCircle />}
-        {!modeSequential && <ReefGroup />}
-        {!modeSequential && <ReefBlocker />}
-        {!modeSequential && <PHScale />}
-        {modeSequential && <SequentialModeAnimations />}
-        {modeSequential && <Spotlight />}
+        {!modeSequential && showShells && <Shells />}
+        {modeSequential ? (
+          <SequentialModeAnimations />
+        ) : (
+          <ContinuousModeAnimations />
+        )}
       </Layer>
     </Stage>
   );

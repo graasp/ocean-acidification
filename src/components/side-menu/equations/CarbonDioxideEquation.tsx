@@ -2,13 +2,13 @@ import { useContext } from 'react';
 
 import { Box } from '@mui/material';
 
-import { MOTION_INTERVALS } from '@/constants/motion/intervals';
+import { SEQUENTIAL_MODE_INTERVALS } from '@/constants/motion/sequential-mode-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import Arrows from './Arrows';
 import CustomTypography from './CustomTypography';
 
-const containerStyles = {
+const container = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -20,13 +20,14 @@ const CarbonDioxideEquation = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount } = state;
   const rightArrowActive =
-    intervalCount > 0 && intervalCount < MOTION_INTERVALS[0];
+    intervalCount > 0 && intervalCount < SEQUENTIAL_MODE_INTERVALS[1];
   const leftArrowActive =
-    intervalCount > MOTION_INTERVALS[4] && intervalCount < MOTION_INTERVALS[5];
+    intervalCount > SEQUENTIAL_MODE_INTERVALS[5] &&
+    intervalCount < SEQUENTIAL_MODE_INTERVALS[6];
   const isActive = rightArrowActive || leftArrowActive;
 
   return (
-    <Box sx={containerStyles}>
+    <Box sx={container}>
       <CustomTypography isActive={isActive}>
         CO<sub>2(g)</sub>
       </CustomTypography>

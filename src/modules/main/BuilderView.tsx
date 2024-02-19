@@ -10,7 +10,7 @@ import { BUILDER_VIEW_CY } from '@/config/selectors';
 import { CANVAS_WIDTH } from '@/constants/canvas';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
-const openSideMenuFabStyles = {
+const openSideMenuFab = {
   right: 5,
   top: 5,
   position: 'absolute',
@@ -61,7 +61,7 @@ const BuilderView = (): JSX.Element => {
         {!showSideMenu && (
           <Tooltip title="Open side menu" placement="left">
             <Fab
-              sx={openSideMenuFabStyles}
+              sx={openSideMenuFab}
               color="primary"
               onClick={() => setShowSideMenu(true)}
             >

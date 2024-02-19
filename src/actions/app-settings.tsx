@@ -9,6 +9,7 @@ import {
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PAUSE,
+  TOGGLE_SHOW_SHELLS,
 } from '@/types/app-settings';
 
 interface Dimensions {
@@ -52,4 +53,8 @@ export const setAnimationIndex = (payload: number): appSettingsActionType => ({
 
 export const toggleAnimationInMotion = (): appSettingsActionType => ({
   type: TOGGLE_ANIMATION_IN_MOTION,
+});
+
+export const toggleShowShells = (): appSettingsActionType => ({
+  type: TOGGLE_SHOW_SHELLS,
 });

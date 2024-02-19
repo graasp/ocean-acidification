@@ -14,7 +14,7 @@ interface Props {
 
 const Play = ({ disabled }: Props): JSX.Element => {
   const { dispatch } = useContext(AppSettingsContext);
-  const buttonStyles = {
+  const styles = {
     fontSize: '2em',
     color: disabled ? EMPTY_STRING : green[800],
   };
@@ -22,7 +22,7 @@ const Play = ({ disabled }: Props): JSX.Element => {
   return (
     <Tooltip title="Play">
       <IconButton disabled={disabled} onClick={() => dispatch(togglePause())}>
-        <PlayCircleOutline sx={buttonStyles} />
+        <PlayCircleOutline sx={styles} />
       </IconButton>
     </Tooltip>
   );

@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 import { Box, Switch, Typography } from '@mui/material';
 
-const containerStyles = {
+const container = {
   width: '90%',
   margin: '0 auto',
   marginTop: '1em',
@@ -11,7 +11,7 @@ const containerStyles = {
   justifyContent: 'space-between',
   alignItems: 'center',
 };
-const centerContainerStyles = {
+const centerContainer = {
   width: '30%',
   display: 'flex',
   justifyContent: 'center',
@@ -28,6 +28,7 @@ interface Props {
   rightLabel: string;
   isChecked: boolean;
   setIsChecked: Dispatch<SetStateAction<boolean>>;
+  disabled: boolean;
 }
 
 const TwoSidedSwitch = ({
@@ -35,13 +36,18 @@ const TwoSidedSwitch = ({
   rightLabel,
   isChecked,
   setIsChecked,
+  disabled,
 }: Props): JSX.Element => (
-  <Box sx={containerStyles}>
+  <Box sx={container}>
     <Typography variant="body2" sx={leftLabelStyles}>
       {leftLabel}
     </Typography>
-    <Box sx={centerContainerStyles}>
-      <Switch checked={isChecked} onChange={() => setIsChecked(isChecked)} />
+    <Box sx={centerContainer}>
+      <Switch
+        checked={isChecked}
+        onChange={() => setIsChecked(isChecked)}
+        disabled={disabled}
+      />
     </Box>
     <Typography variant="body2" sx={rightLabelStyles}>
       {rightLabel}

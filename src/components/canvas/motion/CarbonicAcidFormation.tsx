@@ -7,13 +7,11 @@ import {
   OXYGEN_RADIUS,
 } from '@/constants/canvas';
 import {
-  FORMATION_BEGINS,
-  FORMATION_CO2,
   FORMATION_INTERVALS,
-  FORMATION_WATER,
-  TOTAL_FORMATION_INTERVALS,
-} from '@/constants/motion/carbonic-acid-formation';
+  MOTION_INTERVAL,
+} from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
+import { Formation } from '@/utils/molecules/types';
 
 import CarbonicAcid from '../molecules/CarbonicAcid';
 import Carboxyl from '../molecules/Carboxyl';
@@ -21,17 +19,26 @@ import CarbonDioxideMotion from './carbonic-acid-formation/CarbonDioxideMotion';
 import HydroxideMotion from './carbonic-acid-formation/HydroxideMotion';
 import WaterMotion from './carbonic-acid-formation/WaterMotion';
 
-const CarbonicAcidFormation = (): JSX.Element => {
+interface Props {
+  beginsAfter: number;
+  molecules: Formation;
+}
+
+const CarbonicAcidFormation = ({
+  beginsAfter,
+  molecules,
+}: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
 
-  const { begins: carbonDioxideBegins } = FORMATION_CO2;
-  const { begins: waterBegins } = FORMATION_WATER;
+  const { co2, water } = molecules;
+  const { begins: carbonDioxideBegins } = co2;
+  const { begins: waterBegins } = water;
   const { intervalOne, intervalTwo } = FORMATION_INTERVALS;
 
-  const moleculesMoving = FORMATION_BEGINS + intervalOne + intervalTwo;
-  const bondingComplete = FORMATION_BEGINS + TOTAL_FORMATION_INTERVALS;
+  const moleculesMoving = beginsAfter + intervalOne + intervalTwo;
+  const bondingComplete = beginsAfter + MOTION_INTERVAL;
 
   const showMolecules = intervalCount <= moleculesMoving;
   const showIons =
@@ -62,6 +69,7 @@ const CarbonicAcidFormation = (): JSX.Element => {
           beginsRotation={carbonDioxideBeginsRotation}
           endsX={carbonDioxideEndsX}
           endsY={carbonDioxideEndsY}
+          beginsAfter={beginsAfter}
         />
       )}
       {showMolecules && (
@@ -70,6 +78,7 @@ const CarbonicAcidFormation = (): JSX.Element => {
           beginsY={waterBeginsY}
           beginsRotation={waterBeginsRotation}
           endsX={waterEndsX}
+          beginsAfter={beginsAfter}
         />
       )}
       {showIons && (
@@ -77,6 +86,7 @@ const CarbonicAcidFormation = (): JSX.Element => {
           beginsX={waterEndsX}
           beginsY={waterEndsY}
           carbonDioxideEndsX={carbonDioxideEndsX}
+          beginsAfter={beginsAfter}
         />
       )}
       {showIons && <Carboxyl x={carbonDioxideEndsX} y={carbonDioxideEndsY} />}

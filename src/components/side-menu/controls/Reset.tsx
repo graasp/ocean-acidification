@@ -11,7 +11,7 @@ const Reset = (): JSX.Element => {
   const { state, dispatch } = useContext(AppSettingsContext);
   const { animationInMotion } = state;
 
-  const buttonStyles = {
+  const styles = {
     fontSize: '2em',
     color: animationInMotion ? '' : orange[800],
   };
@@ -24,7 +24,7 @@ const Reset = (): JSX.Element => {
         }}
         disabled={animationInMotion}
       >
-        <RotateLeft sx={buttonStyles} />
+        <RotateLeft sx={styles} />
       </IconButton>
     </Tooltip>
   );

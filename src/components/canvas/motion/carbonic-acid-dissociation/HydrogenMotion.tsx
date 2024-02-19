@@ -1,24 +1,33 @@
 import { useContext } from 'react';
 
 import {
-  DISSOCIATION_HYDROGEN,
-  HYDROGEN_SPLITS_AT,
-} from '@/constants/motion/carbonic-acid-dissociation';
-import { MOTION_INTERVALS } from '@/constants/motion/intervals';
+  HYDROGEN_SPLITS,
+  MOTION_INTERVAL,
+} from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
+import { computeMovesPerInterval } from '@/utils/continuous-mode-motion';
+import { CompleteCoordinates } from '@/utils/molecules/types';
 
 import DetachedHydrogen from '../../molecules/DetachedHydrogen';
 
-const HydrogenMotion = (): JSX.Element => {
+interface Props {
+  beginsAfter: number;
+  coordinates: CompleteCoordinates;
+}
+
+const HydrogenMotion = ({ beginsAfter, coordinates }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
-  const beginsAfter = MOTION_INTERVALS[1];
-  const { begins, ends, movesPerInterval } = DISSOCIATION_HYDROGEN;
+  const { begins, ends } = coordinates;
+  const movesPerInterval = computeMovesPerInterval(
+    coordinates,
+    MOTION_INTERVAL - HYDROGEN_SPLITS,
+  );
 
   const projectedY =
     begins.y +
-    (intervalCount - (HYDROGEN_SPLITS_AT + beginsAfter)) * movesPerInterval.y;
+    (intervalCount - (HYDROGEN_SPLITS + beginsAfter)) * movesPerInterval.y;
   const currentY = Math.max(projectedY, ends.y);
 
   return (

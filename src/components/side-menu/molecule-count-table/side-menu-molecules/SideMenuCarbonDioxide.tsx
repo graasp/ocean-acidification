@@ -5,7 +5,7 @@ import { SEA_FILL, SKY_GRADIENT_LIGHT_END } from '@/constants/canvas';
 import SideMenuCarbon from './SideMenuCarbon';
 import SideMenuOxygen from './SideMenuOxygen';
 
-const containerStyles = {
+const styles = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -20,7 +20,7 @@ interface Props {
 
 const SideMenuCarbonDioxide = ({ isSky }: Props): JSX.Element => (
   <Box
-    sx={containerStyles}
+    sx={styles}
     style={{ background: isSky ? SKY_GRADIENT_LIGHT_END : SEA_FILL }}
   >
     <SideMenuOxygen />

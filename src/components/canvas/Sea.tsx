@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { Group, Rect } from 'react-konva';
 
 import { SEA_FILL, SEA_HEIGHT, SKY_HEIGHT } from '@/constants/canvas';
+import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import StaticBicarbonate from './static-molecules/StaticBicarbonates';
@@ -10,8 +11,9 @@ import StaticWaters from './static-molecules/StaticWaters';
 
 const Sea = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { dimensions } = state;
+  const { dimensions, mode } = state;
   const { width, height } = dimensions;
+  const modeSequential = mode === SEQUENTIAL;
 
   const seaWidth = width;
   const seaHeight = height * SEA_HEIGHT;
@@ -20,9 +22,11 @@ const Sea = (): JSX.Element => {
   return (
     <Group y={skyHeight}>
       <Rect width={width} height={seaHeight} fill={SEA_FILL} />
-      <StaticWaters width={seaWidth} height={seaHeight} />
-      <StaticHydrogen width={seaWidth} height={seaHeight} />
-      <StaticBicarbonate width={seaWidth} height={seaHeight} />
+      {modeSequential && <StaticWaters width={seaWidth} height={seaHeight} />}
+      {modeSequential && <StaticHydrogen width={seaWidth} height={seaHeight} />}
+      {modeSequential && (
+        <StaticBicarbonate width={seaWidth} height={seaHeight} />
+      )}
     </Group>
   );
 };

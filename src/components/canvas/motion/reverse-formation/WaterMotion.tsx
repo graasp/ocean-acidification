@@ -1,10 +1,9 @@
 import { useContext } from 'react';
 
-import { MOTION_INTERVALS } from '@/constants/motion/intervals';
 import {
   WATER_FORMATION_INTERVALS,
   WATER_MOTION_INTERVALS,
-} from '@/constants/motion/reverse-formation';
+} from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createCarbonicAcid, findWaterCenter } from '@/utils/molecules/';
 
@@ -13,13 +12,18 @@ import Water from '../../molecules/Water';
 interface Props {
   carbonicAcidX: number;
   carbonicAcidY: number;
+  beginsAfter: number;
 }
 
-const WaterMotion = ({ carbonicAcidX, carbonicAcidY }: Props): JSX.Element => {
+const WaterMotion = ({
+  carbonicAcidX,
+  carbonicAcidY,
+  beginsAfter,
+}: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { height } = dimensions;
-  const beginsAfter = MOTION_INTERVALS[3];
+
   const netIntervals = intervalCount - beginsAfter - WATER_FORMATION_INTERVALS;
   const { leftOxygen, topHydrogen } = createCarbonicAcid(
     {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Box } from '@mui/material';
 
-import CustomSwitch from './CustomSwitch';
+import CustomSwitch from './common/CustomSwitch';
 import AllEquations from './equations/AllEquations';
 
 const SideMenuSequential = (): JSX.Element => {

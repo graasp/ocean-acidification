@@ -6,7 +6,7 @@ import SideMenuCarbon from './SideMenuCarbon';
 import SideMenuHydrogen from './SideMenuHydrogen';
 import SideMenuOxygen from './SideMenuOxygen';
 
-const containerStyles = {
+const container = {
   display: 'flex',
   alignItems: 'center',
   width: '100%',
@@ -16,7 +16,7 @@ const containerStyles = {
   borderRadius: '2.5px',
 };
 
-const leftMoleculesStyles = {
+const leftMolecules = {
   width: '100%',
   display: 'flex',
   justifyContent: 'flex-end',
@@ -25,7 +25,7 @@ const leftMoleculesStyles = {
   marginLeft: '6px',
 };
 
-const firstHydrogenStyles = {
+const firstHydrogen = {
   marginTop: '-5px',
 };
 
@@ -36,39 +36,39 @@ const centerContainerStyls = {
   alignItems: 'center',
 };
 
-const oxygenHydrogenStyles = {
+const oxygenHydrogen = {
   display: 'flex',
   marginRight: '5px',
 };
 
-const secondHydrogenStyles = {
+const secondHydrogen = {
   marginTop: '-2.5px',
 };
 
-const bottomOxygenStyles = {
+const bottomOxygen = {
   marginRight: '-15px',
   marginTop: '-3px',
 };
 
 const SideMenuCarbonicAcid = (): JSX.Element => (
-  <Box sx={containerStyles}>
+  <Box sx={container}>
     <Box>
-      <Box sx={leftMoleculesStyles}>
-        <Box sx={firstHydrogenStyles}>
+      <Box sx={leftMolecules}>
+        <Box sx={firstHydrogen}>
           <SideMenuHydrogen />
         </Box>
         <SideMenuOxygen />
       </Box>
     </Box>
     <Box sx={centerContainerStyls}>
-      <Box sx={oxygenHydrogenStyles}>
-        <Box sx={secondHydrogenStyles}>
+      <Box sx={oxygenHydrogen}>
+        <Box sx={secondHydrogen}>
           <SideMenuHydrogen />
         </Box>
         <SideMenuOxygen />
       </Box>
       <SideMenuCarbon />
-      <Box sx={bottomOxygenStyles}>
+      <Box sx={bottomOxygen}>
         <SideMenuOxygen />
       </Box>
     </Box>

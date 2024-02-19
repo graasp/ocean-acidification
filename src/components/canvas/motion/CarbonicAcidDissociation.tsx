@@ -1,39 +1,61 @@
 import { useContext } from 'react';
 import { Group } from 'react-konva';
 
-import {
-  DISSOCIATION_CARBONIC_ACID,
-  HYDROGEN_SPLITS_AT,
-} from '@/constants/motion/carbonic-acid-dissociation';
-import { MOTION_INTERVALS } from '@/constants/motion/intervals';
+import { HYDROGEN_SPLITS } from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
+import { computeMovesPerInterval } from '@/utils/continuous-mode-motion';
+import { Dissociation } from '@/utils/molecules/types';
 
 import Bicarbonate from '../molecules/Bicarbonate';
 import CarbonicAcid from '../molecules/CarbonicAcid';
 import HydrogenMotion from './carbonic-acid-dissociation/HydrogenMotion';
 
-const CarbonicAcidDissociation = (): JSX.Element => {
+interface Props {
+  beginsAfter: number;
+  molecules: Dissociation;
+}
+
+// TODO: Simplify these files
+const CarbonicAcidDissociation = ({
+  beginsAfter,
+  molecules,
+}: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
 
-  const { begins, ends, movesPerInterval } = DISSOCIATION_CARBONIC_ACID;
-  const beginsAfter = MOTION_INTERVALS[1];
-  const netInterval = intervalCount - beginsAfter;
-  const hydrogenHasSplit = intervalCount > HYDROGEN_SPLITS_AT + beginsAfter;
+  const { carbonicAcid, hydrogenEndsY } = molecules;
+  const { begins, ends } = carbonicAcid;
+  const movesPerInterval = computeMovesPerInterval(carbonicAcid);
+  const netIntervals = intervalCount - beginsAfter;
+  const hydrogenHasSplit = intervalCount > HYDROGEN_SPLITS + beginsAfter;
 
-  const projectedX = begins.x + netInterval * movesPerInterval.x;
-  const currentX = netInterval > 0 ? Math.min(projectedX, ends.x) : begins.x;
+  const projectedX = begins.x + netIntervals * movesPerInterval.x;
+  const currentX = netIntervals > 0 ? Math.min(projectedX, ends.x) : begins.x;
 
-  const projectedY = begins.y + netInterval * movesPerInterval.y;
-  const currentY = netInterval > 0 ? Math.max(projectedY, ends.y) : begins.y;
+  const projectedY = begins.y + netIntervals * movesPerInterval.y;
+  const currentY = netIntervals > 0 ? Math.max(projectedY, ends.y) : begins.y;
 
   const projectedRotation =
-    begins.rotation + netInterval * movesPerInterval.rotation;
+    begins.rotation + netIntervals * movesPerInterval.rotation;
   const currentRotation =
-    netInterval > 0
+    netIntervals > 0
       ? Math.max(projectedRotation, ends.rotation)
       : begins.rotation;
+
+  const hydrogenBeginsX = begins.x + movesPerInterval.x * HYDROGEN_SPLITS;
+  const hydrogen = {
+    begins: {
+      x: hydrogenBeginsX,
+      y: begins.y + movesPerInterval.y * HYDROGEN_SPLITS,
+      rotation: begins.rotation + movesPerInterval.rotation * HYDROGEN_SPLITS,
+    },
+    ends: {
+      x: hydrogenBeginsX,
+      y: hydrogenEndsY,
+      rotation: 0,
+    },
+  };
 
   return (
     <Group>
@@ -51,7 +73,9 @@ const CarbonicAcidDissociation = (): JSX.Element => {
           rotation={currentRotation}
         />
       )}
-      {hydrogenHasSplit && <HydrogenMotion />}
+      {hydrogenHasSplit && (
+        <HydrogenMotion beginsAfter={beginsAfter} coordinates={hydrogen} />
+      )}
     </Group>
   );
 };

@@ -5,7 +5,7 @@ import {
   INACTIVE_EQUATION_COLOR,
 } from '@/constants/side-menu';
 
-const containerStyles = {
+const container = {
   display: 'flex',
   alignItems: 'center',
   width: 'max-content',
@@ -33,7 +33,7 @@ const RightArrow = ({ rightArrowActive }: Props): JSX.Element => {
     ? ACTIVE_EQUATION_COLOR
     : INACTIVE_EQUATION_COLOR;
   return (
-    <Box sx={containerStyles}>
+    <Box sx={container}>
       <Box sx={horizontalLine} style={{ background: color }} />
       <Box sx={rightArrow} style={{ borderLeftColor: color }} />
     </Box>
