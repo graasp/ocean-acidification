@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { FORMATION_INTERVALS } from '@/constants/motion/carbonic-acid-formation';
+import { FORMATION_INTERVALS } from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createEmptyObject } from '@/utils/motion';
 
@@ -24,7 +24,7 @@ const WaterMotion = ({
   const { state } = useContext(AppSettingsContext);
   const { intervalCount } = state;
   const { intervalOne, intervalTwo } = FORMATION_INTERVALS;
-  const netInterval = intervalCount - (intervalOne + beginsAfter);
+  const netIntervals = intervalCount - (intervalOne + beginsAfter);
 
   const { ends, current, movesPerInterval } = createEmptyObject();
 
@@ -32,12 +32,12 @@ const WaterMotion = ({
   movesPerInterval.x = (endsX - beginsX) / intervalTwo;
   movesPerInterval.rotation = (ends.rotation - beginsRotation) / intervalTwo;
 
-  const projectedX = beginsX + netInterval * movesPerInterval.x;
+  const projectedX = beginsX + netIntervals * movesPerInterval.x;
   const projectedRotation =
-    beginsRotation + movesPerInterval.rotation * netInterval;
-  current.x = netInterval > 0 ? Math.min(endsX, projectedX) : beginsX;
+    beginsRotation + movesPerInterval.rotation * netIntervals;
+  current.x = netIntervals > 0 ? Math.min(endsX, projectedX) : beginsX;
   current.rotation =
-    netInterval > 0
+    netIntervals > 0
       ? Math.max(ends.rotation, projectedRotation)
       : beginsRotation;
 

@@ -26,7 +26,7 @@ const Row = ({ label, molecule, count }: Props): JSX.Element => (
     <Typography variant="body2" sx={leftLabel}>
       {label}
     </Typography>
-    <Typography sx={centerItem}>{molecule}</Typography>
+    <Box sx={centerItem}>{molecule}</Box>
     <Typography variant="body2" sx={rightLabel}>
       {count}
     </Typography>

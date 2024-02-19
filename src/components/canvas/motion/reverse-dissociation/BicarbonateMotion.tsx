@@ -1,21 +1,27 @@
 import { useContext } from 'react';
 
-import { BICARBONATE } from '@/constants/motion/reverse-dissociation';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
+import { computeMovesPerInterval } from '@/utils/continuous-mode-motion';
+import { CompleteCoordinates } from '@/utils/molecules/types';
 
 import Bicarbonate from '../../molecules/Bicarbonate';
 
 interface Props {
   beginsAfter: number;
+  coordinates: CompleteCoordinates;
 }
 
-const BicarbonateMotion = ({ beginsAfter }: Props): JSX.Element => {
+const BicarbonateMotion = ({
+  beginsAfter,
+  coordinates,
+}: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
 
   const netIntervals = intervalCount - beginsAfter;
-  const { begins, movesPerInterval } = BICARBONATE;
+  const { begins } = coordinates;
+  const movesPerInterval = computeMovesPerInterval(coordinates);
 
   const currentX =
     netIntervals > 0 ? begins.x + movesPerInterval.x * netIntervals : begins.x;

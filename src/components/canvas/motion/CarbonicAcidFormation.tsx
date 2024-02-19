@@ -7,12 +7,11 @@ import {
   OXYGEN_RADIUS,
 } from '@/constants/canvas';
 import {
-  FORMATION_CO2,
   FORMATION_INTERVALS,
-  FORMATION_WATER,
-  TOTAL_FORMATION_INTERVALS,
-} from '@/constants/motion/carbonic-acid-formation';
+  MOTION_INTERVAL,
+} from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
+import { Formation } from '@/utils/molecules/types';
 
 import CarbonicAcid from '../molecules/CarbonicAcid';
 import Carboxyl from '../molecules/Carboxyl';
@@ -22,19 +21,24 @@ import WaterMotion from './carbonic-acid-formation/WaterMotion';
 
 interface Props {
   beginsAfter: number;
+  molecules: Formation;
 }
 
-const CarbonicAcidFormation = ({ beginsAfter }: Props): JSX.Element => {
+const CarbonicAcidFormation = ({
+  beginsAfter,
+  molecules,
+}: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
 
-  const { begins: carbonDioxideBegins } = FORMATION_CO2;
-  const { begins: waterBegins } = FORMATION_WATER;
+  const { co2, water } = molecules;
+  const { begins: carbonDioxideBegins } = co2;
+  const { begins: waterBegins } = water;
   const { intervalOne, intervalTwo } = FORMATION_INTERVALS;
 
   const moleculesMoving = beginsAfter + intervalOne + intervalTwo;
-  const bondingComplete = beginsAfter + TOTAL_FORMATION_INTERVALS;
+  const bondingComplete = beginsAfter + MOTION_INTERVAL;
 
   const showMolecules = intervalCount <= moleculesMoving;
   const showIons =

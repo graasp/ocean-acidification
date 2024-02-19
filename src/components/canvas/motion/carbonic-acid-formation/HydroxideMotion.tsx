@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import { CARBON_RADIUS, OXYGEN_RADIUS } from '@/constants/canvas';
-import { FORMATION_INTERVALS } from '@/constants/motion/carbonic-acid-formation';
+import { FORMATION_INTERVALS } from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createEmptyObject } from '@/utils/motion';
 

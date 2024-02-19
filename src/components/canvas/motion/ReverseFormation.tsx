@@ -1,11 +1,9 @@
 import { useContext } from 'react';
 import { Group } from 'react-konva';
 
-import {
-  CARBONIC_ACID,
-  WATER_FORMATION_INTERVALS,
-} from '@/constants/motion/reverse-formation';
+import { WATER_FORMATION_INTERVALS } from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
+import { ReversedFormation } from '@/utils/molecules/types';
 
 import AngledCarboxyl from '../molecules/AngledCarboxyl';
 import CarbonicAcid from '../molecules/CarbonicAcid';
@@ -15,14 +13,16 @@ import WaterMotion from './reverse-formation/WaterMotion';
 
 interface Props {
   beginsAfter: number;
+  molecules: ReversedFormation;
 }
 
-const ReverseFormation = ({ beginsAfter }: Props): JSX.Element => {
+const ReverseFormation = ({ beginsAfter, molecules }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
 
-  const { begins } = CARBONIC_ACID;
+  const { carbonicAcid } = molecules;
+  const { begins } = carbonicAcid;
   const x = begins.x * width;
   const y = begins.y * height;
 

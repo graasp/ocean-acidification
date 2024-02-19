@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { Box } from '@mui/material';
 
-import { SEQUENTIAL_MODE_INTERVALS } from '@/constants/motion/intervals';
+import { SEQUENTIAL_MODE_INTERVALS } from '@/constants/motion/sequential-mode-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import Arrows from './Arrows';
@@ -20,11 +20,11 @@ const CarbonicAcidDissociation = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount } = state;
   const rightArrowActive =
-    intervalCount > SEQUENTIAL_MODE_INTERVALS[1] &&
-    intervalCount < SEQUENTIAL_MODE_INTERVALS[2];
-  const leftArrowActive =
     intervalCount > SEQUENTIAL_MODE_INTERVALS[2] &&
     intervalCount < SEQUENTIAL_MODE_INTERVALS[3];
+  const leftArrowActive =
+    intervalCount > SEQUENTIAL_MODE_INTERVALS[3] &&
+    intervalCount < SEQUENTIAL_MODE_INTERVALS[4];
   const isActive = rightArrowActive || leftArrowActive;
 
   return (

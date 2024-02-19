@@ -1,28 +1,55 @@
 import { Group } from 'react-konva';
 
+import { Cycle } from '@/utils/molecules/types';
+
 import CarbonDioxideMigration from './CarbonDioxideMigration';
 import CarbonicAcidDissociation from './CarbonicAcidDissociation';
 import CarbonicAcidFormation from './CarbonicAcidFormation';
-import ReverseCarbonDioxideMigration from './ReverseCarbonDioxideMigration';
 import ReverseDissociation from './ReverseDissociation';
 import ReverseFormation from './ReverseFormation';
+import ReverseMigration from './ReverseMigration';
 
 interface Props {
   intervals: number[];
+  cycle: Cycle;
 }
 
-const MoleculesMovementCycle = ({ intervals }: Props): JSX.Element => {
-  const [intervalOne, intervalTwo, intervalThree, intervalFour, intervalFive] =
-    intervals;
+const MoleculesMovementCycle = ({ intervals, cycle }: Props): JSX.Element => {
+  const {
+    co2Migration,
+    carbonicAcidFormation,
+    carbonicAcidDissociation,
+    reverseDissociation,
+    reverseFormation,
+    reverseMigration,
+  } = cycle;
 
   return (
     <Group>
-      <CarbonDioxideMigration />
-      <CarbonicAcidFormation beginsAfter={intervalOne} />
-      <CarbonicAcidDissociation beginsAfter={intervalTwo} />
-      <ReverseDissociation beginsAfter={intervalThree} />
-      <ReverseFormation beginsAfter={intervalFour} />
-      <ReverseCarbonDioxideMigration beginsAfter={intervalFive} />
+      <CarbonDioxideMigration
+        beginsAfter={intervals[0]}
+        molecules={co2Migration}
+      />
+      <CarbonicAcidFormation
+        beginsAfter={intervals[1]}
+        molecules={carbonicAcidFormation}
+      />
+      <CarbonicAcidDissociation
+        beginsAfter={intervals[2]}
+        molecules={carbonicAcidDissociation}
+      />
+      <ReverseDissociation
+        beginsAfter={intervals[3]}
+        molecules={reverseDissociation}
+      />
+      <ReverseFormation
+        beginsAfter={intervals[4]}
+        molecules={reverseFormation}
+      />
+      <ReverseMigration
+        beginsAfter={intervals[5]}
+        molecules={reverseMigration}
+      />
     </Group>
   );
 };

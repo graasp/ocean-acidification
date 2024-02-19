@@ -1,19 +1,23 @@
 import { useContext } from 'react';
 
-import { CO2_REVERSE_MIGRATION } from '@/constants/motion/reverse-carbon-dioxide-migration';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
+import { computeMovesPerInterval } from '@/utils/continuous-mode-motion';
+import { Migration } from '@/utils/molecules/types';
 
 import CarbonDioxide from '../molecules/CarbonDioxide';
 
 interface Props {
   beginsAfter: number;
+  molecules: Migration;
 }
 
-const ReverseCarbonDioxideMigration = ({ beginsAfter }: Props): JSX.Element => {
+const ReverseMigration = ({ beginsAfter, molecules }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
-  const { begins, ends, movesPerInterval } = CO2_REVERSE_MIGRATION;
+  const { co2 } = molecules;
+  const { begins, ends } = co2;
+  const movesPerInterval = computeMovesPerInterval(co2);
   const netIntervals = intervalCount - beginsAfter;
 
   const currentX =
@@ -43,4 +47,4 @@ const ReverseCarbonDioxideMigration = ({ beginsAfter }: Props): JSX.Element => {
   );
 };
 
-export default ReverseCarbonDioxideMigration;
+export default ReverseMigration;

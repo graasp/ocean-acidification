@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import {
   WATER_FORMATION_INTERVALS,
   WATER_MOTION_INTERVALS,
-} from '@/constants/motion/reverse-formation';
+} from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createCarbonicAcid, findWaterCenter } from '@/utils/molecules/';
 

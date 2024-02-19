@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 
 import CustomDivider from './common/CustomDivider';
 import CarbonDioxideSlider from './continuous-mode/CarbonDioxideSlider';
@@ -8,7 +8,6 @@ import MoleculeCountTable from './molecule-count-table/MoleculeCountTable';
 
 const SideMenuContinuous = (): JSX.Element => (
   <Box>
-    <Typography />
     <CarbonDioxideSlider />
     <CustomDivider />
     <Period />

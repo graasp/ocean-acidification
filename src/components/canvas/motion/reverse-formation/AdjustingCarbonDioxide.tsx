@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 
 import { CARBON_RADIUS, OXYGEN_RADIUS } from '@/constants/canvas';
-import { WATER_FORMATION_INTERVALS } from '@/constants/motion/reverse-formation';
+import { WATER_FORMATION_INTERVALS } from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { createCarbonicAcid, findWaterCenter } from '@/utils/molecules/';
 
