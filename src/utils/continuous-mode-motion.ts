@@ -14,13 +14,13 @@ export const computeMovesPerInterval = (
 };
 
 export const computePosition = (
-  co2: CompleteCoordinates,
+  molecule: CompleteCoordinates,
   coordinate: Coordinate,
   netIntervals: number,
   motionDuration = MOTION_INTERVAL,
 ): number => {
-  const { begins, ends } = co2;
-  const movesPerInterval = computeMovesPerInterval(co2);
+  const { begins, ends } = molecule;
+  const movesPerInterval = computeMovesPerInterval(molecule, motionDuration);
 
   if (netIntervals > motionDuration) return ends[coordinate];
   if (netIntervals <= 0) return begins[coordinate];

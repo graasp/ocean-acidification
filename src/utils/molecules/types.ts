@@ -32,7 +32,7 @@ export interface Formation {
 
 export interface Dissociation {
   carbonicAcid: CompleteCoordinates;
-  hydrogenEndsY: number;
+  hydrogen: CompleteCoordinates;
 }
 
 export interface ReversedDissociation {

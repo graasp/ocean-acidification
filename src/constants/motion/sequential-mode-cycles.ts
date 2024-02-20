@@ -12,10 +12,13 @@ const CARBONIC_ACID_FORMATION = {
 
 const CARBONIC_ACID_DISSOCIATION = {
   carbonicAcid: {
-    begins: { x: 0.2, y: 0.85, rotation: 150 },
-    ends: { x: 0.4, y: 0.65, rotation: 30 },
+    begins: { x: 0.2, y: 0.85, rotation: 100 },
+    ends: { x: 0.4, y: 0.65, rotation: -100 },
   },
-  hydrogenEndsY: 0.625,
+  hydrogen: {
+    begins: { x: 0, y: 0, rotation: 0 },
+    ends: { x: 0.275, y: 0.6, rotation: 0 },
+  },
 };
 
 const REVERSE_DISSOCIATION = {

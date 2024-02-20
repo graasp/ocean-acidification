@@ -1,34 +1,32 @@
 import { useContext } from 'react';
-import { Group } from 'react-konva';
 
+import {
+  HYDROGEN_SPLITS,
+  MOTION_INTERVAL,
+} from '@/constants/motion/motion-intervals';
+import { X, Y } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
-import { createCarbonicAcid } from '@/utils/molecules/';
+import { computePosition } from '@/utils/continuous-mode-motion';
+import { CompleteCoordinates } from '@/utils/molecules/types';
 
 import Hydrogen from './atoms/Hydrogen';
 
-const defaultProps = {
-  rotation: 0,
-};
-
 interface Props {
-  x: number;
-  y: number;
-  rotation?: number;
+  hydrogen: CompleteCoordinates;
+  beginsAfter: number;
 }
 
-const DetachedHydrogen = ({ x, y, rotation }: Props): JSX.Element => {
+const DetachedHydrogen = ({ hydrogen, beginsAfter }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { dimensions } = state;
-  const { height } = dimensions;
-  const { leftHydrogen } = createCarbonicAcid({ x, y }, height);
+  const { dimensions, intervalCount } = state;
+  const { width, height } = dimensions;
+  const motionDuration = MOTION_INTERVAL - HYDROGEN_SPLITS;
+  const netIntervals = intervalCount - beginsAfter - HYDROGEN_SPLITS;
 
-  return (
-    <Group x={x} y={y} rotation={rotation}>
-      <Hydrogen x={leftHydrogen.x - x} y={leftHydrogen.y - y} />
-    </Group>
-  );
+  const currentX = computePosition(hydrogen, X, netIntervals, motionDuration);
+  const currentY = computePosition(hydrogen, Y, netIntervals, motionDuration);
+
+  return <Hydrogen x={currentX * width} y={currentY * height} />;
 };
-
-DetachedHydrogen.defaultProps = defaultProps;
 
 export default DetachedHydrogen;
