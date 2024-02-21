@@ -84,6 +84,7 @@ export const appSettingsReducer = (
         mode: state.mode === SEQUENTIAL ? CONTINUOUS : SEQUENTIAL,
         intervalCount: 0,
         animationIndex: 0,
+        isPaused: true,
       };
     }
     case SET_ANIMATION_INDEX: {
