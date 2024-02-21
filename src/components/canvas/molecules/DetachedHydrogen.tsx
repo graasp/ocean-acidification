@@ -1,9 +1,5 @@
 import { useContext } from 'react';
 
-import {
-  HYDROGEN_SPLITS,
-  MOTION_INTERVAL,
-} from '@/constants/motion/motion-intervals';
 import { X, Y } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { computePosition } from '@/utils/continuous-mode-motion';
@@ -13,15 +9,18 @@ import Hydrogen from './atoms/Hydrogen';
 
 interface Props {
   hydrogen: CompleteCoordinates;
-  beginsAfter: number;
+  motionDuration: number;
+  netIntervals: number;
 }
 
-const DetachedHydrogen = ({ hydrogen, beginsAfter }: Props): JSX.Element => {
+const DetachedHydrogen = ({
+  hydrogen,
+  motionDuration,
+  netIntervals,
+}: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { dimensions, intervalCount } = state;
+  const { dimensions } = state;
   const { width, height } = dimensions;
-  const motionDuration = MOTION_INTERVAL - HYDROGEN_SPLITS;
-  const netIntervals = intervalCount - beginsAfter - HYDROGEN_SPLITS;
 
   const currentX = computePosition(hydrogen, X, netIntervals, motionDuration);
   const currentY = computePosition(hydrogen, Y, netIntervals, motionDuration);

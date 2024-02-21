@@ -1,4 +1,3 @@
-// TODO: DETECT ENDS/BEGINS SO THAT CORRECTLY PARAMTERIZED
 const CO2_MIGRATION = {
   co2: {
     begins: { x: 0.2, y: 0.1, rotation: -80 },
@@ -22,7 +21,6 @@ const CARBONIC_ACID_DISSOCIATION = {
   },
 };
 
-// TODO: solve the rotation issue here: Right now it works only with 100 and -100
 const REVERSE_DISSOCIATION = {
   bicarbonate: {
     begins: { x: 0.7, y: 0.6, rotation: 100 },

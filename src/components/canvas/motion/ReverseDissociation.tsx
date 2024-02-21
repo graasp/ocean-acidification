@@ -2,13 +2,15 @@ import { useContext } from 'react';
 import { Group } from 'react-konva';
 
 import { IONS_COMBINE } from '@/constants/motion/motion-intervals';
+import { ROTATION, X, Y } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
-import { computeMovesPerInterval } from '@/utils/continuous-mode-motion';
+import { computePosition } from '@/utils/continuous-mode-motion';
+import { createCarbonicAcid } from '@/utils/molecules/';
 import { ReversedDissociation } from '@/utils/molecules/types';
 
-import BicarbonateMotion from './reverse-dissociation/BicarbonateMotion';
-import CarbonicAcidMotion from './reverse-dissociation/CarbonicAcidMotion';
-import HydrogenMotion from './reverse-dissociation/HydrogenMotion';
+import Bicarbonate from '../molecules/Bicarbonate';
+import CarbonicAcid from '../molecules/CarbonicAcid';
+import DetachedHydrogen from '../molecules/DetachedHydrogen';
 
 interface Props {
   beginsAfter: number;
@@ -20,41 +22,41 @@ const ReverseDissociation = ({
   molecules,
 }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
-
-  const ionsCombine = intervalCount >= beginsAfter + IONS_COMBINE;
-
+  const { dimensions, intervalCount } = state;
+  const { width, height } = dimensions;
   const { bicarbonate, hydrogen } = molecules;
-  const movesPerInterval = computeMovesPerInterval(bicarbonate);
-  const carbonicAcidBegins = { x: 0, y: 0, rotation: 0 };
-  carbonicAcidBegins.x =
-    bicarbonate.begins.x + movesPerInterval.x * IONS_COMBINE;
-  carbonicAcidBegins.y =
-    bicarbonate.begins.y + movesPerInterval.y * IONS_COMBINE;
-  carbonicAcidBegins.rotation =
-    bicarbonate.begins.rotation + movesPerInterval.rotation * IONS_COMBINE;
+
+  const ionsHaveCombined = intervalCount >= beginsAfter + IONS_COMBINE;
+  const netIntervals = intervalCount - beginsAfter;
+
+  const currentX = computePosition(bicarbonate, X, netIntervals) * width;
+  const currentY = computePosition(bicarbonate, Y, netIntervals) * height;
+  const currentRotation = computePosition(bicarbonate, ROTATION, netIntervals);
+
+  // position of bicarbonate and hydrogen when combination happens
+  const x = computePosition(bicarbonate, X, IONS_COMBINE) * width;
+  const y = computePosition(bicarbonate, Y, IONS_COMBINE) * height;
+  const { leftHydrogen } = createCarbonicAcid({ x, y }, height);
+  hydrogen.ends = {
+    x: leftHydrogen.x / width,
+    y: leftHydrogen.y / height,
+    rotation: 0,
+  };
 
   return (
     <Group>
-      {!ionsCombine && (
-        <BicarbonateMotion
-          beginsAfter={beginsAfter}
-          coordinates={bicarbonate}
+      {!ionsHaveCombined && (
+        <Bicarbonate x={currentX} y={currentY} rotation={currentRotation} />
+      )}
+      {!ionsHaveCombined && (
+        <DetachedHydrogen
+          hydrogen={hydrogen}
+          motionDuration={IONS_COMBINE}
+          netIntervals={netIntervals}
         />
       )}
-      {!ionsCombine && (
-        <HydrogenMotion
-          beginsAfter={beginsAfter}
-          coordinates={hydrogen}
-          carbonicAcidBegins={carbonicAcidBegins}
-        />
-      )}
-      {ionsCombine && (
-        <CarbonicAcidMotion
-          beginsAfter={beginsAfter}
-          coordinates={bicarbonate}
-          carbonicAcidBegins={carbonicAcidBegins}
-        />
+      {ionsHaveCombined && (
+        <CarbonicAcid x={currentX} y={currentY} rotation={currentRotation} />
       )}
     </Group>
   );

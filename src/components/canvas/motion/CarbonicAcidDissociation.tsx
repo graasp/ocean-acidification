@@ -1,7 +1,10 @@
 import { useContext } from 'react';
 import { Group } from 'react-konva';
 
-import { HYDROGEN_SPLITS } from '@/constants/motion/motion-intervals';
+import {
+  HYDROGEN_SPLITS,
+  MOTION_INTERVAL,
+} from '@/constants/motion/motion-intervals';
 import { ROTATION, X, Y } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { computePosition } from '@/utils/continuous-mode-motion';
@@ -42,6 +45,8 @@ const CarbonicAcidDissociation = ({
     y: leftHydrogen.y / height,
     rotation: 0,
   };
+  const hydrogenMotionDuration = MOTION_INTERVAL - HYDROGEN_SPLITS;
+  const hydrogenNetIntervals = intervalCount - beginsAfter - HYDROGEN_SPLITS;
 
   return (
     <Group>
@@ -52,7 +57,11 @@ const CarbonicAcidDissociation = ({
         <Bicarbonate x={currentX} y={currentY} rotation={currentRotation} />
       )}
       {hydrogenHasSplit && (
-        <DetachedHydrogen hydrogen={hydrogen} beginsAfter={beginsAfter} />
+        <DetachedHydrogen
+          hydrogen={hydrogen}
+          motionDuration={hydrogenMotionDuration}
+          netIntervals={hydrogenNetIntervals}
+        />
       )}
     </Group>
   );
