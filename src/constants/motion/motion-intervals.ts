@@ -1,10 +1,8 @@
 export const MOTION_INTERVAL = 200;
 
 export const FORMATION_INTERVALS = {
-  intervalOne: MOTION_INTERVAL * 0.5,
-  intervalTwo: MOTION_INTERVAL * 0.2,
-  intervalThree: MOTION_INTERVAL * 0.2,
-  intervalFour: MOTION_INTERVAL * 0.1,
+  intervalOne: MOTION_INTERVAL * 0.6,
+  intervalTwo: MOTION_INTERVAL * 0.4,
 };
 
 export const HYDROGEN_SPLITS = 100;

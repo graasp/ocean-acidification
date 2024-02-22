@@ -1,55 +1,45 @@
 import { useContext } from 'react';
 
+import {
+  CARBON_RADIUS,
+  HYDROGEN_X_OFFSET,
+  OXYGEN_RADIUS,
+} from '@/constants/canvas';
 import { FORMATION_INTERVALS } from '@/constants/motion/motion-intervals';
+import { ROTATION, X, Y } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
-import { createEmptyObject } from '@/utils/motion';
+import { computePosition } from '@/utils/continuous-mode-motion';
+import { Formation } from '@/utils/molecules/types';
 
 import CarbonDioxide from '../../molecules/CarbonDioxide';
 
 interface Props {
-  beginsX: number;
-  beginsY: number;
-  beginsRotation: number;
-  endsX: number;
-  endsY: number;
+  molecules: Formation;
   beginsAfter: number;
 }
 
 const CarbonDioxideMotion = ({
-  beginsX,
-  beginsY,
-  beginsRotation,
-  endsX,
-  endsY,
+  molecules,
   beginsAfter,
 }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
-  const { intervalOne, intervalTwo } = FORMATION_INTERVALS;
-  const netIntervalOne = intervalCount - beginsAfter;
-  const netIntervalTwo = intervalCount - (intervalOne + beginsAfter);
+  const { intervalCount, dimensions } = state;
+  const { width, height } = dimensions;
+  const { co2, water } = molecules;
 
-  const { ends, current, movesPerInterval } = createEmptyObject();
+  const { intervalOne } = FORMATION_INTERVALS;
+  const netIntervals = intervalCount - beginsAfter;
 
-  movesPerInterval.y = (endsY - beginsY) / intervalOne;
-  movesPerInterval.x = (endsX - beginsX) / intervalTwo;
-  movesPerInterval.rotation = (ends.rotation - beginsRotation) / intervalOne;
+  const xOffset = HYDROGEN_X_OFFSET * (height / width);
+  const horizontalMotion = (co2.begins.x - (water.begins.x + xOffset)) / 2;
+  co2.ends.x = co2.begins.x - horizontalMotion;
+  co2.ends.y = water.begins.y + CARBON_RADIUS + OXYGEN_RADIUS;
 
-  const projectedY = beginsY + movesPerInterval.y * netIntervalOne;
-  const projectedRotation =
-    beginsRotation + movesPerInterval.rotation * netIntervalOne;
-  current.y = netIntervalOne >= 0 ? Math.min(endsY, projectedY) : beginsY;
-  current.rotation =
-    netIntervalOne >= 0
-      ? Math.max(ends.rotation, projectedRotation)
-      : beginsRotation;
+  const x = computePosition(co2, X, netIntervals, intervalOne);
+  const y = computePosition(co2, Y, netIntervals, intervalOne);
+  const rotation = computePosition(co2, ROTATION, netIntervals, intervalOne);
 
-  const projectedX = beginsX + netIntervalTwo * movesPerInterval.x;
-  current.x = netIntervalTwo > 0 ? Math.max(endsX, projectedX) : beginsX;
-
-  return (
-    <CarbonDioxide x={current.x} y={current.y} rotation={current.rotation} />
-  );
+  return <CarbonDioxide x={x * width} y={y * height} rotation={rotation} />;
 };
 
 export default CarbonDioxideMotion;

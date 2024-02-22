@@ -26,8 +26,9 @@ export interface Migration {
 }
 
 export interface Formation {
-  co2: BeginningCoordinates;
-  water: BeginningCoordinates;
+  co2: CompleteCoordinates;
+  water: CompleteCoordinates;
+  hydroxide: CompleteCoordinates;
 }
 
 export interface Dissociation {

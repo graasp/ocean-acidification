@@ -6,8 +6,18 @@ const CO2_MIGRATION = {
 };
 
 const CARBONIC_ACID_FORMATION = {
-  co2: { begins: { x: 0.25, y: 0.5, rotation: 80 } },
-  water: { begins: { x: 0.2, y: 0.6, rotation: 30 } },
+  co2: {
+    begins: { x: 0.25, y: 0.5, rotation: 80 },
+    ends: { x: 0, y: 0, rotation: 0 },
+  },
+  water: {
+    begins: { x: 0.2, y: 0.6, rotation: 30 },
+    ends: { x: 0, y: 0, rotation: 0 },
+  },
+  hydroxide: {
+    begins: { x: 0, y: 0, rotation: 0 },
+    ends: { x: 0, y: 0, rotation: 0 },
+  },
 };
 
 const CARBONIC_ACID_DISSOCIATION = {

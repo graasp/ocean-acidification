@@ -1,47 +1,38 @@
 import { useContext } from 'react';
 
+import { HYDROGEN_X_OFFSET } from '@/constants/canvas';
 import { FORMATION_INTERVALS } from '@/constants/motion/motion-intervals';
+import { ROTATION, X, Y } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
-import { createEmptyObject } from '@/utils/motion';
+import { computePosition } from '@/utils/continuous-mode-motion';
+import { Formation } from '@/utils/molecules/types';
 
 import Water from '../../molecules/Water';
 
 interface Props {
-  beginsX: number;
-  beginsY: number;
-  beginsRotation: number;
-  endsX: number;
+  molecules: Formation;
   beginsAfter: number;
 }
 
-const WaterMotion = ({
-  beginsX,
-  beginsY,
-  beginsRotation,
-  endsX,
-  beginsAfter,
-}: Props): JSX.Element => {
+const WaterMotion = ({ molecules, beginsAfter }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount } = state;
-  const { intervalOne, intervalTwo } = FORMATION_INTERVALS;
-  const netIntervals = intervalCount - (intervalOne + beginsAfter);
+  const { intervalCount, dimensions } = state;
+  const { width, height } = dimensions;
+  const { water, co2 } = molecules;
 
-  const { ends, current, movesPerInterval } = createEmptyObject();
+  const { intervalOne } = FORMATION_INTERVALS;
+  const netIntervals = intervalCount - beginsAfter;
 
-  const endsY = beginsY;
-  movesPerInterval.x = (endsX - beginsX) / intervalTwo;
-  movesPerInterval.rotation = (ends.rotation - beginsRotation) / intervalTwo;
+  const xOffset = HYDROGEN_X_OFFSET * (height / width);
+  const horizontalMotion = (co2.begins.x - (water.begins.x + xOffset)) / 2;
+  water.ends.x = water.begins.x - xOffset + horizontalMotion;
+  water.ends.y = water.begins.y;
 
-  const projectedX = beginsX + netIntervals * movesPerInterval.x;
-  const projectedRotation =
-    beginsRotation + movesPerInterval.rotation * netIntervals;
-  current.x = netIntervals > 0 ? Math.min(endsX, projectedX) : beginsX;
-  current.rotation =
-    netIntervals > 0
-      ? Math.max(ends.rotation, projectedRotation)
-      : beginsRotation;
+  const x = computePosition(water, X, netIntervals, intervalOne);
+  const y = computePosition(water, Y, netIntervals, intervalOne);
+  const rotation = computePosition(water, ROTATION, netIntervals, intervalOne);
 
-  return <Water x={current.x} y={endsY} rotation={current.rotation} />;
+  return <Water x={x * width} y={y * height} rotation={rotation} />;
 };
 
 export default WaterMotion;
