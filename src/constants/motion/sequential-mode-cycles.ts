@@ -43,7 +43,18 @@ const REVERSE_DISSOCIATION = {
 };
 
 const REVERSE_FORMATION = {
-  carbonicAcid: { begins: { x: 0.7, y: 0.85, rotation: 50 } },
+  co2: {
+    begins: { x: 0.7, y: 0.7, rotation: 80 },
+    ends: { x: 0, y: 0, rotation: 0 },
+  },
+  water: {
+    begins: { x: 0.6, y: 0.8, rotation: -40 },
+    ends: { x: 0, y: 0, rotation: 0 },
+  },
+  hydroxide: {
+    begins: { x: 0, y: 0, rotation: 0 },
+    ends: { x: 0, y: 0, rotation: 0 },
+  },
 };
 
 const REVERSE_MIGRATION = {

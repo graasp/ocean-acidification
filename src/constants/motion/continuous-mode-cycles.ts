@@ -42,9 +42,19 @@ const REVERSE_DISSOCIATION = {
   },
 };
 
-// TODO: APPLY PROVIDED ROTATION (right now the carbonicacid doesn't read this rotation)
 const REVERSE_FORMATION = {
-  carbonicAcid: { begins: { x: 0.7, y: 0.85, rotation: 50 } },
+  co2: {
+    begins: { x: 0.7, y: 0.725, rotation: 80 },
+    ends: { x: 0, y: 0, rotation: 0 },
+  },
+  water: {
+    begins: { x: 0.6, y: 0.8, rotation: -40 },
+    ends: { x: 0, y: 0, rotation: 0 },
+  },
+  hydroxide: {
+    begins: { x: 0, y: 0, rotation: 0 },
+    ends: { x: 0, y: 0, rotation: 0 },
+  },
 };
 
 const REVERSE_MIGRATION = {
@@ -110,7 +120,18 @@ const REVERSE_DISSOCIATION_2 = {
 };
 
 const REVERSE_FORMATION_2 = {
-  carbonicAcid: { begins: { x: 0.6, y: 0.7, rotation: 50 } },
+  co2: {
+    begins: { x: 0.6, y: 0.6, rotation: 90 },
+    ends: { x: 0, y: 0, rotation: 0 },
+  },
+  water: {
+    begins: { x: 0.5, y: 0.7, rotation: -20 },
+    ends: { x: 0, y: 0, rotation: 0 },
+  },
+  hydroxide: {
+    begins: { x: 0, y: 0, rotation: 0 },
+    ends: { x: 0, y: 0, rotation: 0 },
+  },
 };
 
 const REVERSE_MIGRATION_2 = {

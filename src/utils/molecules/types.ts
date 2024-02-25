@@ -41,15 +41,11 @@ export interface ReversedDissociation {
   hydrogen: CompleteCoordinates;
 }
 
-export interface ReversedFormation {
-  carbonicAcid: BeginningCoordinates;
-}
-
 export interface Cycle {
   co2Migration: Migration;
   carbonicAcidFormation: Formation;
   carbonicAcidDissociation: Dissociation;
   reverseDissociation: ReversedDissociation;
-  reverseFormation: ReversedFormation;
+  reverseFormation: Formation;
   reverseMigration: Migration;
 }
