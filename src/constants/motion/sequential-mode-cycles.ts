@@ -32,13 +32,13 @@ const CARBONIC_ACID_DISSOCIATION = {
 };
 
 const REVERSE_DISSOCIATION = {
-  bicarbonate: {
+  carbonicAcid: {
     begins: { x: 0.7, y: 0.6, rotation: 100 },
     ends: { x: 0.8, y: 0.75, rotation: -100 },
   },
   hydrogen: {
-    begins: { x: 0.65, y: 0.55, rotation: 0 },
-    ends: { x: 0, y: 0, rotation: 0 },
+    begins: { x: 0, y: 0, rotation: 0 },
+    ends: { x: 0.7, y: 0.6, rotation: 0 },
   },
 };
 

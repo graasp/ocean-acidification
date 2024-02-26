@@ -5,7 +5,6 @@ import { Cycle } from '@/utils/molecules/types';
 import CarbonDioxideMigration from './CarbonDioxideMigration';
 import CarbonicAcidDissociation from './CarbonicAcidDissociation';
 import CarbonicAcidFormation from './CarbonicAcidFormation';
-import ReverseDissociation from './ReverseDissociation';
 
 interface Props {
   intervals: number[];
@@ -36,10 +35,12 @@ const MoleculesMovementCycle = ({ intervals, cycle }: Props): JSX.Element => {
       <CarbonicAcidDissociation
         beginsAfter={intervals[2]}
         molecules={carbonicAcidDissociation}
+        reverse={false}
       />
-      <ReverseDissociation
+      <CarbonicAcidDissociation
         beginsAfter={intervals[3]}
         molecules={reverseDissociation}
+        reverse
       />
       <CarbonicAcidFormation
         beginsAfter={intervals[4]}

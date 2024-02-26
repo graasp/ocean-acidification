@@ -18,19 +18,27 @@ import DetachedHydrogen from '../molecules/DetachedHydrogen';
 interface Props {
   beginsAfter: number;
   molecules: Dissociation;
+  reverse: boolean;
 }
 
 const CarbonicAcidDissociation = ({
   beginsAfter,
   molecules,
+  reverse,
 }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
 
+  const componentCount = reverse
+    ? beginsAfter + MOTION_INTERVAL - intervalCount
+    : intervalCount;
+
   const { carbonicAcid, hydrogen } = molecules;
-  const netIntervals = intervalCount - beginsAfter;
-  const hydrogenHasSplit = intervalCount > HYDROGEN_SPLITS + beginsAfter;
+  const netIntervals = reverse ? componentCount : intervalCount - beginsAfter;
+  const hydrogenHasSplit = reverse
+    ? componentCount > HYDROGEN_SPLITS
+    : componentCount > HYDROGEN_SPLITS + beginsAfter;
 
   const currentX = computePosition(carbonicAcid, X, netIntervals) * width;
   const currentY = computePosition(carbonicAcid, Y, netIntervals) * height;
@@ -46,7 +54,9 @@ const CarbonicAcidDissociation = ({
     rotation: 0,
   };
   const hydrogenMotionDuration = MOTION_INTERVAL - HYDROGEN_SPLITS;
-  const hydrogenNetIntervals = intervalCount - beginsAfter - HYDROGEN_SPLITS;
+  const hydrogenNetIntervals = reverse
+    ? componentCount - HYDROGEN_SPLITS
+    : componentCount - beginsAfter - HYDROGEN_SPLITS;
 
   return (
     <Group>

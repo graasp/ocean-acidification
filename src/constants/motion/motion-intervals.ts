@@ -6,4 +6,3 @@ export const FORMATION_INTERVALS = {
 };
 
 export const HYDROGEN_SPLITS = 100;
-export const IONS_COMBINE = 100;
