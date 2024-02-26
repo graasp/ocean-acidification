@@ -1,34 +1,31 @@
 import { useContext } from 'react';
-import { Group } from 'react-konva';
 
+import { X, Y } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
-import { createCarbonicAcid } from '@/utils/molecules/';
+import { computePosition } from '@/utils/continuous-mode-motion';
+import { CompleteCoordinates } from '@/utils/molecules/types';
 
 import Hydrogen from './atoms/Hydrogen';
 
-const defaultProps = {
-  rotation: 0,
-};
-
 interface Props {
-  x: number;
-  y: number;
-  rotation?: number;
+  hydrogen: CompleteCoordinates;
+  motionDuration: number;
+  netIntervals: number;
 }
 
-const DetachedHydrogen = ({ x, y, rotation }: Props): JSX.Element => {
+const DetachedHydrogen = ({
+  hydrogen,
+  motionDuration,
+  netIntervals,
+}: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { dimensions } = state;
-  const { height } = dimensions;
-  const { leftHydrogen } = createCarbonicAcid({ x, y }, height);
+  const { width, height } = dimensions;
 
-  return (
-    <Group x={x} y={y} rotation={rotation}>
-      <Hydrogen x={leftHydrogen.x - x} y={leftHydrogen.y - y} />
-    </Group>
-  );
+  const currentX = computePosition(hydrogen, X, netIntervals, motionDuration);
+  const currentY = computePosition(hydrogen, Y, netIntervals, motionDuration);
+
+  return <Hydrogen x={currentX * width} y={currentY * height} />;
 };
-
-DetachedHydrogen.defaultProps = defaultProps;
 
 export default DetachedHydrogen;

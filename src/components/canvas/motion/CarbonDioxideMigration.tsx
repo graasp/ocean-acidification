@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 
+import { ROTATION, X, Y } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
-import { computeMovesPerInterval } from '@/utils/continuous-mode-motion';
+import { computePosition } from '@/utils/continuous-mode-motion';
 import { Migration } from '@/utils/molecules/types';
 
 import CarbonDioxide from '../molecules/CarbonDioxide';
@@ -9,37 +10,25 @@ import CarbonDioxide from '../molecules/CarbonDioxide';
 interface Props {
   beginsAfter: number;
   molecules: Migration;
+  reverse: boolean;
 }
 
 const CarbonDioxideMigration = ({
   beginsAfter,
   molecules,
+  reverse,
 }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
   const { co2 } = molecules;
-  const { begins, ends } = co2;
-  const movesPerInterval = computeMovesPerInterval(co2);
   const netIntervals = intervalCount - beginsAfter;
+  const reversedCo2 = { begins: { ...co2.ends }, ends: { ...co2.begins } };
+  const activeCo2 = reverse ? reversedCo2 : co2;
 
-  const currentX =
-    netIntervals > 0
-      ? Math.max(begins.x + netIntervals * movesPerInterval.x, ends.x)
-      : begins.x;
-
-  const currentY =
-    netIntervals > 0
-      ? Math.min(begins.y + netIntervals * movesPerInterval.y, ends.y)
-      : begins.y;
-
-  const currentRotation =
-    netIntervals > 0
-      ? Math.min(
-          begins.rotation + netIntervals * movesPerInterval.rotation,
-          ends.rotation,
-        )
-      : begins.rotation;
+  const currentX = computePosition(activeCo2, X, netIntervals);
+  const currentY = computePosition(activeCo2, Y, netIntervals);
+  const currentRotation = computePosition(activeCo2, ROTATION, netIntervals);
 
   return (
     <CarbonDioxide

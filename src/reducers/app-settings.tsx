@@ -59,7 +59,11 @@ export const appSettingsReducer = (
     case INCREMENT_INTERVAL_COUNT:
       return { ...state, intervalCount: state.intervalCount + 1 };
     case RESET_SETTINGS:
-      return { ...initialAppSettings, dimensions: { ...state.dimensions } };
+      return {
+        ...initialAppSettings,
+        dimensions: { ...state.dimensions },
+        mode: state.mode,
+      };
     case DECREMENT_REEF_HOLES: {
       const updatedHoles = Math.max(
         state.reefHoles - PERCENT_HOLES_INCREMENT,
@@ -80,6 +84,7 @@ export const appSettingsReducer = (
         mode: state.mode === SEQUENTIAL ? CONTINUOUS : SEQUENTIAL,
         intervalCount: 0,
         animationIndex: 0,
+        isPaused: true,
       };
     }
     case SET_ANIMATION_INDEX: {

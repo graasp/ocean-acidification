@@ -1,19 +1,14 @@
-interface Coordinates {
-  x: number;
-  y: number;
-  rotation: number;
-}
+import { CYCLES } from '@/constants/motion/continuous-mode-cycles';
+import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 
-interface EmptyObject {
-  begins: Coordinates;
-  ends: Coordinates;
-  current: Coordinates;
-  movesPerInterval: Coordinates;
-}
+const generateCycleIntervals = (interval: number): number[] =>
+  new Array(6).fill(interval);
 
-export const createEmptyObject = (): EmptyObject => ({
-  begins: { x: 0, y: 0, rotation: 0 },
-  ends: { x: 0, y: 0, rotation: 0 },
-  current: { x: 0, y: 0, rotation: 0 },
-  movesPerInterval: { x: 0, y: 0, rotation: 0 },
-});
+export const generateAllIntervals = (intervalCount: number): number[][] =>
+  new Array(CYCLES.length)
+    .fill(null)
+    .map((emptyElement, index) =>
+      generateCycleIntervals(intervalCount + index * MOTION_INTERVAL),
+    );
+
+export const INITIAL_INTERVALS = generateAllIntervals(0);

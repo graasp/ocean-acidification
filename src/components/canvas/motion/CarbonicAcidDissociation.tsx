@@ -1,80 +1,77 @@
 import { useContext } from 'react';
 import { Group } from 'react-konva';
 
-import { HYDROGEN_SPLITS } from '@/constants/motion/motion-intervals';
+import {
+  HYDROGEN_SPLITS,
+  MOTION_INTERVAL,
+} from '@/constants/motion/motion-intervals';
+import { ROTATION, X, Y } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
-import { computeMovesPerInterval } from '@/utils/continuous-mode-motion';
+import { computePosition } from '@/utils/continuous-mode-motion';
+import { createCarbonicAcid } from '@/utils/molecules/';
 import { Dissociation } from '@/utils/molecules/types';
 
 import Bicarbonate from '../molecules/Bicarbonate';
 import CarbonicAcid from '../molecules/CarbonicAcid';
-import HydrogenMotion from './carbonic-acid-dissociation/HydrogenMotion';
+import DetachedHydrogen from '../molecules/DetachedHydrogen';
 
 interface Props {
   beginsAfter: number;
   molecules: Dissociation;
+  reverse: boolean;
 }
 
-// TODO: Simplify these files
 const CarbonicAcidDissociation = ({
   beginsAfter,
   molecules,
+  reverse,
 }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
 
-  const { carbonicAcid, hydrogenEndsY } = molecules;
-  const { begins, ends } = carbonicAcid;
-  const movesPerInterval = computeMovesPerInterval(carbonicAcid);
-  const netIntervals = intervalCount - beginsAfter;
-  const hydrogenHasSplit = intervalCount > HYDROGEN_SPLITS + beginsAfter;
+  const componentCount = reverse
+    ? beginsAfter + MOTION_INTERVAL - intervalCount
+    : intervalCount;
 
-  const projectedX = begins.x + netIntervals * movesPerInterval.x;
-  const currentX = netIntervals > 0 ? Math.min(projectedX, ends.x) : begins.x;
+  const { carbonicAcid, hydrogen } = molecules;
+  const netIntervals = reverse ? componentCount : intervalCount - beginsAfter;
+  const hydrogenHasSplit = reverse
+    ? componentCount > HYDROGEN_SPLITS
+    : componentCount > HYDROGEN_SPLITS + beginsAfter;
 
-  const projectedY = begins.y + netIntervals * movesPerInterval.y;
-  const currentY = netIntervals > 0 ? Math.max(projectedY, ends.y) : begins.y;
+  const currentX = computePosition(carbonicAcid, X, netIntervals) * width;
+  const currentY = computePosition(carbonicAcid, Y, netIntervals) * height;
+  const currentRotation = computePosition(carbonicAcid, ROTATION, netIntervals);
 
-  const projectedRotation =
-    begins.rotation + netIntervals * movesPerInterval.rotation;
-  const currentRotation =
-    netIntervals > 0
-      ? Math.max(projectedRotation, ends.rotation)
-      : begins.rotation;
-
-  const hydrogenBeginsX = begins.x + movesPerInterval.x * HYDROGEN_SPLITS;
-  const hydrogen = {
-    begins: {
-      x: hydrogenBeginsX,
-      y: begins.y + movesPerInterval.y * HYDROGEN_SPLITS,
-      rotation: begins.rotation + movesPerInterval.rotation * HYDROGEN_SPLITS,
-    },
-    ends: {
-      x: hydrogenBeginsX,
-      y: hydrogenEndsY,
-      rotation: 0,
-    },
+  // x and y when hydrogen splits
+  const x = computePosition(carbonicAcid, X, HYDROGEN_SPLITS) * width;
+  const y = computePosition(carbonicAcid, Y, HYDROGEN_SPLITS) * height;
+  const { leftHydrogen } = createCarbonicAcid({ x, y }, height);
+  hydrogen.begins = {
+    x: leftHydrogen.x / width,
+    y: leftHydrogen.y / height,
+    rotation: 0,
   };
+  const hydrogenMotionDuration = MOTION_INTERVAL - HYDROGEN_SPLITS;
+  const hydrogenNetIntervals = reverse
+    ? componentCount - HYDROGEN_SPLITS
+    : componentCount - beginsAfter - HYDROGEN_SPLITS;
 
   return (
     <Group>
       {!hydrogenHasSplit && (
-        <CarbonicAcid
-          x={currentX * width}
-          y={currentY * height}
-          rotation={currentRotation}
-        />
+        <CarbonicAcid x={currentX} y={currentY} rotation={currentRotation} />
       )}
       {hydrogenHasSplit && (
-        <Bicarbonate
-          x={currentX * width}
-          y={currentY * height}
-          rotation={currentRotation}
-        />
+        <Bicarbonate x={currentX} y={currentY} rotation={currentRotation} />
       )}
       {hydrogenHasSplit && (
-        <HydrogenMotion beginsAfter={beginsAfter} coordinates={hydrogen} />
+        <DetachedHydrogen
+          hydrogen={hydrogen}
+          motionDuration={hydrogenMotionDuration}
+          netIntervals={hydrogenNetIntervals}
+        />
       )}
     </Group>
   );

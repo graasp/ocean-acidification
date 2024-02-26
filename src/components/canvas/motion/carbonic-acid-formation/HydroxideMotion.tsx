@@ -1,50 +1,39 @@
 import { useContext } from 'react';
 
-import { CARBON_RADIUS, OXYGEN_RADIUS } from '@/constants/canvas';
 import { FORMATION_INTERVALS } from '@/constants/motion/motion-intervals';
+import { X, Y } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
-import { createEmptyObject } from '@/utils/motion';
+import { computePosition } from '@/utils/continuous-mode-motion';
+import { CompleteCoordinates } from '@/utils/molecules/types';
 
 import Hydroxide from '../../molecules/Hydroxide';
 
 interface Props {
-  beginsX: number;
-  beginsY: number;
-  carbonDioxideEndsX: number;
+  hydroxide: CompleteCoordinates;
   beginsAfter: number;
+  componentCount: number;
+  reverse: boolean;
 }
 
 const HydroxideMotion = ({
-  beginsX,
-  beginsY,
-  carbonDioxideEndsX,
+  hydroxide,
   beginsAfter,
+  componentCount,
+  reverse,
 }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount, dimensions } = state;
-  const { height } = dimensions;
-  const { intervalOne, intervalTwo, intervalThree, intervalFour } =
-    FORMATION_INTERVALS;
-  const netIntervalOne =
-    intervalCount - (intervalOne + intervalTwo + beginsAfter);
-  const netIntervalTwo =
-    intervalCount - (intervalOne + intervalTwo + intervalThree + beginsAfter);
-  const carbonOxygen = (CARBON_RADIUS + OXYGEN_RADIUS) * height;
+  const { dimensions } = state;
+  const { width, height } = dimensions;
 
-  const { ends, current, movesPerInterval } = createEmptyObject();
+  const { intervalOne, intervalTwo } = FORMATION_INTERVALS;
+  const netIntervals = reverse
+    ? componentCount - intervalOne
+    : componentCount - (beginsAfter + intervalOne);
 
-  ends.x = carbonDioxideEndsX - carbonOxygen;
-  ends.y = beginsY + carbonOxygen;
-  movesPerInterval.y = (ends.y - beginsY) / intervalThree;
-  movesPerInterval.x = (ends.x - beginsX) / intervalFour;
+  const x = computePosition(hydroxide, X, netIntervals, intervalTwo);
+  const y = computePosition(hydroxide, Y, netIntervals, intervalTwo);
 
-  const projectedY = beginsY + movesPerInterval.y * netIntervalOne;
-  current.y = netIntervalOne > 0 ? Math.min(projectedY, ends.y) : beginsY;
-
-  const projectedX = beginsX + movesPerInterval.x * netIntervalTwo;
-  current.x = netIntervalTwo > 0 ? Math.min(projectedX, ends.x) : beginsX;
-
-  return <Hydroxide x={current.x} y={current.y} />;
+  return <Hydroxide x={x * width} y={y * height} />;
 };
 
 export default HydroxideMotion;

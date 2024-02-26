@@ -13,6 +13,7 @@ const SequentialModeAnimations = (): JSX.Element => {
       <MoleculesMovementCycle
         intervals={intervals}
         cycle={SEQUENTIAL_MODE_CYCLE}
+        reverse={false}
       />
       <Spotlight />
     </Group>

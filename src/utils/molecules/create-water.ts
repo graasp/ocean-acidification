@@ -22,11 +22,3 @@ export const createWater = (
     topRight: { x: x + xOffset, y: y - yOffset },
   };
 };
-
-export const findWaterCenter = (
-  topRightHydrogen: MoleculeCenter,
-  height: number,
-): MoleculeCenter => ({
-  x: topRightHydrogen.x - HYDROGEN_X_OFFSET * height,
-  y: topRightHydrogen.y + HYDROGEN_Y_OFFSET * height,
-});

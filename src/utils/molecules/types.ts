@@ -3,6 +3,9 @@ export interface MoleculeCenter {
   y: number;
 }
 
+const coordinates = ['x', 'y', 'rotation'] as const;
+export type Coordinate = (typeof coordinates)[number];
+
 export interface Point {
   x: number;
   y: number;
@@ -23,29 +26,21 @@ export interface Migration {
 }
 
 export interface Formation {
-  co2: BeginningCoordinates;
-  water: BeginningCoordinates;
+  co2: CompleteCoordinates;
+  water: CompleteCoordinates;
+  hydroxide: CompleteCoordinates;
 }
 
 export interface Dissociation {
   carbonicAcid: CompleteCoordinates;
-  hydrogenEndsY: number;
-}
-
-export interface ReversedDissociation {
-  bicarbonate: CompleteCoordinates;
   hydrogen: CompleteCoordinates;
-}
-
-export interface ReversedFormation {
-  carbonicAcid: BeginningCoordinates;
 }
 
 export interface Cycle {
   co2Migration: Migration;
   carbonicAcidFormation: Formation;
   carbonicAcidDissociation: Dissociation;
-  reverseDissociation: ReversedDissociation;
-  reverseFormation: ReversedFormation;
+  reverseDissociation: Dissociation;
+  reverseFormation: Formation;
   reverseMigration: Migration;
 }
