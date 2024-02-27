@@ -6,6 +6,11 @@ export interface MoleculeCenter {
 const coordinates = ['x', 'y', 'rotation'] as const;
 export type Coordinate = (typeof coordinates)[number];
 
+export interface PointWithoutRotation {
+  x: number;
+  y: number;
+}
+
 export interface Point {
   x: number;
   y: number;

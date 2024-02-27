@@ -1,6 +1,6 @@
 import { Group } from 'react-konva';
 
-import { SEQUENTIAL_MODE_CYCLE } from '@/constants/motion/sequential-mode-cycles';
+import { CYCLE_1 } from '@/constants/motion/continuous-mode-cycles';
 import { SEQUENTIAL_MODE_INTERVALS } from '@/constants/motion/sequential-mode-intervals';
 
 import Spotlight from './Spotlight';
@@ -12,7 +12,7 @@ const SequentialModeAnimations = (): JSX.Element => {
     <Group>
       <MoleculesMovementCycle
         intervals={intervals}
-        cycle={SEQUENTIAL_MODE_CYCLE}
+        cycle={CYCLE_1}
         reverse={false}
       />
       <Spotlight />
