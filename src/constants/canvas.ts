@@ -11,16 +11,6 @@ export const SKY_GRADIENT = [0, '#a4c8ea', 1, SKY_GRADIENT_LIGHT_END];
 export const SEA_FILL = '#6ba5c9';
 export const REEF_BLOCKER_GRADIENT = [0, '#6ba5c9', 1, '#6b91a0'];
 
-export const EXCHANGE_CIRCLE_FILL = '';
-export const EXCHANGE_CIRCLE_BORDER = '';
-export const EXCHANGE_CIRCLE_BORDER_WIDTH = 1;
-export const EXCHANGE_CIRCLE_RADIUS = 0.05;
-export const EXCHANGE_ARROW_FILL = '#5a5a5a';
-export const EXCHANGE_ARROW_BORDER = '#5a5a5a';
-export const EXCHANGE_ARROW_BORDER_WIDTH = 6;
-export const EXCHANGE_ARROW_X_INDENT = 0.25;
-export const EXCHANGE_ARROW_Y_INDENT = 0.55;
-
 export const CARBON_RADIUS = 0.0105;
 export const OXYGEN_RADIUS = (15 / 17) * CARBON_RADIUS;
 export const HYDROGEN_RADIUS = (10 / 13) * OXYGEN_RADIUS;

@@ -50,13 +50,22 @@ const bottomOxygen = {
   marginTop: '-3px',
 };
 
-const SideMenuCarbonicAcid = (): JSX.Element => (
+const defaultProps = {
+  isBicarbonate: false,
+};
+
+interface Props {
+  isBicarbonate?: boolean;
+}
+
+const SideMenuCarbonicAcid = ({ isBicarbonate }: Props): JSX.Element => (
   <Box sx={container}>
     <Box>
       <Box sx={leftMolecules}>
         <Box sx={firstHydrogen}>
-          <SideMenuHydrogen />
+          <SideMenuHydrogen isBicarbonate={isBicarbonate} />
         </Box>
+
         <SideMenuOxygen />
       </Box>
     </Box>
@@ -74,5 +83,7 @@ const SideMenuCarbonicAcid = (): JSX.Element => (
     </Box>
   </Box>
 );
+
+SideMenuCarbonicAcid.defaultProps = defaultProps;
 
 export default SideMenuCarbonicAcid;

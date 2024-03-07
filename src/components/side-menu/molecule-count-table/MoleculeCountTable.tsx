@@ -4,6 +4,7 @@ import { SEA_FILL } from '@/constants/canvas';
 
 import Heading from './Heading';
 import {
+  bicarbonateLabel,
   carbonDioxideGasLabel,
   carbonDioxideWaterLabel,
   carbonicAcidLabel,
@@ -45,6 +46,11 @@ const MoleculeCountTable = (): JSX.Element => (
     <Row
       label={carbonicAcidLabel}
       molecule={<SideMenuCarbonicAcid />}
+      count={20}
+    />
+    <Row
+      label={bicarbonateLabel}
+      molecule={<SideMenuCarbonicAcid isBicarbonate />}
       count={20}
     />
     <Row
