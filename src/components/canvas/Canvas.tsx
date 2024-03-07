@@ -9,7 +9,6 @@ import Sea from './Sea';
 import SequentialModeAnimations from './SequentialModeAnimations';
 import Shells from './Shells';
 import Sky from './Sky';
-import ExchangeCircle from './exchange-circle/ExchangeCircle';
 
 const Canvas = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
@@ -22,7 +21,6 @@ const Canvas = (): JSX.Element => {
       <Layer>
         <Sea />
         <Sky />
-        {!modeSequential && <ExchangeCircle />}
         {!modeSequential && showShells && <Shells />}
         {modeSequential ? (
           <SequentialModeAnimations />
