@@ -16,6 +16,14 @@ export const carbonicAcidLabel = (
   </>
 );
 
+export const bicarbonateLabel = (
+  <>
+    HCO<sub>3</sub>
+    <sup>-</sup>
+    <sub>(aq)</sub>
+  </>
+);
+
 export const hydrogenLabel = (
   <>
     H<sup>+</sup>
