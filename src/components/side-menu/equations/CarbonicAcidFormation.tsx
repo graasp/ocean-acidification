@@ -2,8 +2,10 @@ import { useContext } from 'react';
 
 import { Box } from '@mui/material';
 
-import { SEQUENTIAL_MODE_INTERVALS } from '@/constants/motion/sequential-mode-intervals';
+import { ACTIVE_EQUATION_BACKGROUND } from '@/constants/side-menu';
+import { EMPTY_STRING } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
+import { determineEquationsState } from '@/utils/side-menu';
 
 import Arrows from './Arrows';
 import CustomTypography from './CustomTypography';
@@ -19,28 +21,36 @@ const container = {
 const CarbonicAcidFormation = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount } = state;
-  const rightArrowActive =
-    intervalCount > SEQUENTIAL_MODE_INTERVALS[1] &&
-    intervalCount < SEQUENTIAL_MODE_INTERVALS[2];
-  const leftArrowActive =
-    intervalCount > SEQUENTIAL_MODE_INTERVALS[4] &&
-    intervalCount < SEQUENTIAL_MODE_INTERVALS[5];
+  const equationsState = determineEquationsState(intervalCount);
+
+  const { migration, formation, dissociation } = equationsState;
+  const rightArrowActive = formation.rightArrow;
+  const leftArrowActive = formation.leftArrow;
   const isActive = rightArrowActive || leftArrowActive;
+  const isInactive =
+    migration.rightArrow ||
+    migration.leftArrow ||
+    dissociation.rightArrow ||
+    dissociation.leftArrow;
+  const backgroundColor = isActive ? ACTIVE_EQUATION_BACKGROUND : EMPTY_STRING;
 
   return (
-    <Box sx={container}>
-      <CustomTypography isActive={isActive}>
+    <Box sx={container} style={{ backgroundColor }}>
+      <CustomTypography isActive={isActive} isInactive={isInactive}>
         H<sub>2</sub>O<sub>(aq)</sub>
       </CustomTypography>
-      <CustomTypography isActive={isActive}>+</CustomTypography>
-      <CustomTypography isActive={isActive}>
+      <CustomTypography isActive={isActive} isInactive={isInactive}>
+        +
+      </CustomTypography>
+      <CustomTypography isActive={isActive} isInactive={isInactive}>
         CO<sub>2(aq)</sub>
       </CustomTypography>
       <Arrows
         rightArrowActive={rightArrowActive}
         leftArrowActive={leftArrowActive}
+        isInactive={isInactive}
       />
-      <CustomTypography isActive={isActive}>
+      <CustomTypography isActive={isActive} isInactive={isInactive}>
         H<sub>2</sub>CO<sub>3(aq)</sub>
       </CustomTypography>
     </Box>

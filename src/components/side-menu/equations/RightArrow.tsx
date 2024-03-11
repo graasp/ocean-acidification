@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 
 import {
   ACTIVE_EQUATION_COLOR,
+  DEFAULT_EQUATION_COLOR,
   INACTIVE_EQUATION_COLOR,
 } from '@/constants/side-menu';
 
@@ -26,12 +27,22 @@ const rightArrow = {
 
 interface Props {
   rightArrowActive: boolean;
+  leftArrowActive: boolean;
+  isInactive: boolean;
 }
 
-const RightArrow = ({ rightArrowActive }: Props): JSX.Element => {
-  const color = rightArrowActive
-    ? ACTIVE_EQUATION_COLOR
-    : INACTIVE_EQUATION_COLOR;
+const RightArrow = ({
+  rightArrowActive,
+  leftArrowActive,
+  isInactive,
+}: Props): JSX.Element => {
+  let color = DEFAULT_EQUATION_COLOR;
+  if (rightArrowActive) {
+    color = ACTIVE_EQUATION_COLOR;
+  } else if (leftArrowActive || isInactive) {
+    color = INACTIVE_EQUATION_COLOR;
+  }
+
   return (
     <Box sx={container}>
       <Box sx={horizontalLine} style={{ background: color }} />

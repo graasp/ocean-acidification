@@ -5,19 +5,32 @@ import { Typography } from '@mui/material';
 import {
   ACTIVE_EQUATION_COLOR,
   ACTIVE_EQUATION_WEIGHT,
+  DEFAULT_EQUATION_COLOR,
+  DEFAULT_EQUATION_WEIGHT,
   INACTIVE_EQUATION_COLOR,
-  INACTIVE_EQUATION_WEIGHT,
 } from '@/constants/side-menu';
 
 interface Props {
   isActive: boolean;
+  isInactive: boolean;
   children: string | ReactNode;
 }
 
-const CustomTypography = ({ isActive, children }: Props): JSX.Element => {
+const CustomTypography = ({
+  isActive,
+  isInactive,
+  children,
+}: Props): JSX.Element => {
+  let color = DEFAULT_EQUATION_COLOR;
+  if (isActive) {
+    color = ACTIVE_EQUATION_COLOR;
+  } else if (isInactive) {
+    color = INACTIVE_EQUATION_COLOR;
+  }
+
   const styles = {
-    color: isActive ? ACTIVE_EQUATION_COLOR : INACTIVE_EQUATION_COLOR,
-    fontWeight: isActive ? ACTIVE_EQUATION_WEIGHT : INACTIVE_EQUATION_WEIGHT,
+    color,
+    fontWeight: isActive ? ACTIVE_EQUATION_WEIGHT : DEFAULT_EQUATION_WEIGHT,
   };
 
   return (
