@@ -4,7 +4,7 @@ import { PlayCircleOutline } from '@mui/icons-material';
 import { IconButton, Tooltip } from '@mui/material';
 import { green } from '@mui/material/colors';
 
-import { togglePause } from '@/actions/app-settings';
+import { togglePlay } from '@/actions/app-settings';
 import { EMPTY_STRING } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
@@ -21,7 +21,7 @@ const Play = ({ disabled }: Props): JSX.Element => {
 
   return (
     <Tooltip title="Play">
-      <IconButton disabled={disabled} onClick={() => dispatch(togglePause())}>
+      <IconButton disabled={disabled} onClick={() => dispatch(togglePlay())}>
         <PlayCircleOutline sx={styles} />
       </IconButton>
     </Tooltip>

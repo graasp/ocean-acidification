@@ -8,11 +8,11 @@ import { SEQUENTIAL } from '@/constants/strings';
 
 import { AppSettingsContext } from '../../contexts/AppSettingsProvider';
 import CloseMenu from './controls/CloseMenu';
-import Pause from './controls/Pause';
 import Play from './controls/Play';
 import Reset from './controls/Reset';
 import SlowMotion from './controls/SlowMotion';
 import StartTour from './controls/StartTour';
+import Stop from './controls/Stop';
 
 interface Props {
   setShowSideMenu: Dispatch<SetStateAction<boolean>>;
@@ -44,7 +44,7 @@ const centerContainer = {
 const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
   const applicationInterval = useRef<ReturnType<typeof setInterval>>();
   const { dispatch, state } = useContext(AppSettingsContext);
-  const { isPaused, mode } = state;
+  const { isPlaying, mode } = state;
   const modeSequential = mode === SEQUENTIAL;
 
   useEffect(() => {
@@ -53,12 +53,12 @@ const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
         dispatch(incrementIntervalCount());
       }, INTERVAL_COUNT_INCREMENTED_EVERY);
     };
-    if (isPaused) {
+    if (!isPlaying) {
       clearInterval(applicationInterval.current);
-    } else if (!isPaused) {
+    } else if (isPlaying) {
       startInterval();
     }
-  }, [isPaused, dispatch]);
+  }, [isPlaying, dispatch]);
 
   return (
     <Box sx={container}>
@@ -67,7 +67,7 @@ const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
       </Box>
       <Box sx={centerContainer}>
         <SlowMotion />
-        {isPaused ? <Play disabled={modeSequential} /> : <Pause />}
+        {!isPlaying ? <Play disabled={modeSequential} /> : <Stop />}
         <Reset />
       </Box>
       <Box sx={rightContainer}>
