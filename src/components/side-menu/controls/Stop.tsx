@@ -1,13 +1,21 @@
 import { useContext, useEffect, useState } from 'react';
 
 import { StopCircleOutlined } from '@mui/icons-material';
-import { IconButton, Tooltip } from '@mui/material';
+import { Box, IconButton, Tooltip } from '@mui/material';
 import { red } from '@mui/material/colors';
 
 import { togglePlay } from '@/actions/app-settings';
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 import { EMPTY_STRING } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
+
+import ProgressBar from './ProgressBar';
+
+const container = {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+};
 
 const Stop = (): JSX.Element => {
   const [disabled, setDisabled] = useState(false);
@@ -35,11 +43,14 @@ const Stop = (): JSX.Element => {
   }, [intervalCount, stopAtInterval, dispatch]);
 
   return (
-    <Tooltip title="Stop">
-      <IconButton onClick={onStop} disabled={disabled}>
-        <StopCircleOutlined sx={styles} />
-      </IconButton>
-    </Tooltip>
+    <Box sx={container}>
+      <Tooltip title="Stop">
+        <IconButton onClick={onStop} disabled={disabled}>
+          <StopCircleOutlined sx={styles} />
+        </IconButton>
+      </Tooltip>
+      {disabled && <ProgressBar />}
+    </Box>
   );
 };
 
