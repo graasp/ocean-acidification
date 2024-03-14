@@ -13,7 +13,6 @@ const container = {
   background: SEA_FILL,
   paddingTop: '10%',
   paddingBottom: '5%',
-  borderRadius: '2.5px',
 };
 
 const leftMolecules = {

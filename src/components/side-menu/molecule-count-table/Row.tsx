@@ -1,36 +1,47 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+
+import TableCell from './TableCell';
 
 interface Props {
-  label: JSX.Element;
-  molecule: JSX.Element;
-  count: number;
+  leftContent: JSX.Element;
+  rightContent: number | JSX.Element;
+  isCustom?: boolean;
+  customCountLeft?: number;
+  customCountRight?: number;
 }
 
-const row = {
+const rowContainer = { display: 'flex' };
+const container = {
   display: 'flex',
-  justifyContent: 'space-between',
-  width: '100%',
-  marginTop: '1em',
-  alignItems: 'center',
+  width: '40%',
+  margin: '0 auto',
+  border: '0.5px solid white',
 };
-const leftLabel = { width: '30%' };
-const centerItem = {
-  width: '20%',
-  display: 'flex',
-  justifyContent: 'center',
-};
-const rightLabel = { width: '20%', textAlign: 'right' };
+const defaultCell = { width: '50%', justifyContent: 'center' };
+const leftCustomLabel = { width: '30%', justifyContent: 'flex-end' };
+const rightCustomLabel = { width: '30%' };
 
-const Row = ({ label, molecule, count }: Props): JSX.Element => (
-  <Box sx={row}>
-    <Typography variant="body2" sx={leftLabel}>
-      {label}
-    </Typography>
-    <Box sx={centerItem}>{molecule}</Box>
-    <Typography variant="body2" sx={rightLabel}>
-      {count}
-    </Typography>
+const Row = ({
+  leftContent,
+  rightContent,
+  isCustom,
+  customCountLeft,
+  customCountRight,
+}: Props): JSX.Element => (
+  <Box sx={rowContainer}>
+    {isCustom && (
+      <TableCell content={customCountLeft} customStyle={leftCustomLabel} />
+    )}
+    <Box sx={container}>
+      <TableCell content={leftContent} customStyle={defaultCell} />
+      <TableCell content={rightContent} customStyle={defaultCell} />
+    </Box>
+    {isCustom && (
+      <TableCell content={customCountRight} customStyle={rightCustomLabel} />
+    )}
   </Box>
 );
+
+Row.defaultProps = { isCustom: false, customCountLeft: 0, customCountRight: 0 };
 
 export default Row;

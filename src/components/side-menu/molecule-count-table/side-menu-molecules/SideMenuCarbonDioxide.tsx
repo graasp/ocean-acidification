@@ -11,7 +11,6 @@ const styles = {
   alignItems: 'center',
   width: '100%',
   padding: '5% 0',
-  borderRadius: '2.5px',
 };
 
 interface Props {
