@@ -1,6 +1,7 @@
 import { Box } from '@mui/material';
 
 import { SEA_FILL } from '@/constants/canvas';
+import { DEFAULT_OPACITY, FADED_OPACITY } from '@/constants/side-menu';
 
 import SideMenuHydrogen from './SideMenuHydrogen';
 
@@ -13,8 +14,12 @@ const styles = {
   background: SEA_FILL,
 };
 
-const HydrogenBox = (): JSX.Element => (
-  <Box sx={styles}>
+interface Props {
+  faded: boolean;
+}
+
+const HydrogenBox = ({ faded }: Props): JSX.Element => (
+  <Box sx={styles} style={{ opacity: faded ? FADED_OPACITY : DEFAULT_OPACITY }}>
     <SideMenuHydrogen />
   </Box>
 );

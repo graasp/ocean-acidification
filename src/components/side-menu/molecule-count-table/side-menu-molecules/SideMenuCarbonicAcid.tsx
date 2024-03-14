@@ -1,6 +1,7 @@
 import { Box } from '@mui/material';
 
 import { SEA_FILL } from '@/constants/canvas';
+import { DEFAULT_OPACITY, FADED_OPACITY } from '@/constants/side-menu';
 
 import SideMenuCarbon from './SideMenuCarbon';
 import SideMenuHydrogen from './SideMenuHydrogen';
@@ -55,10 +56,14 @@ const defaultProps = {
 
 interface Props {
   isBicarbonate?: boolean;
+  faded: boolean;
 }
 
-const SideMenuCarbonicAcid = ({ isBicarbonate }: Props): JSX.Element => (
-  <Box sx={container}>
+const SideMenuCarbonicAcid = ({ isBicarbonate, faded }: Props): JSX.Element => (
+  <Box
+    sx={container}
+    style={{ opacity: faded ? FADED_OPACITY : DEFAULT_OPACITY }}
+  >
     <Box>
       <Box sx={leftMolecules}>
         <Box sx={firstHydrogen}>

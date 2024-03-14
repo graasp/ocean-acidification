@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+
 import {
   Box,
   FormControlLabel,
@@ -7,6 +9,7 @@ import {
 } from '@mui/material';
 
 import { DEFAULT_PERIOD, PERIODS } from '@/constants/side-menu';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import SideMenuHeader from '../common/SideMenuHeader';
 
@@ -29,20 +32,26 @@ const radioText = {
   fontSize: '0.8em',
 };
 
-const Period = (): JSX.Element => (
-  <Box>
-    <SideMenuHeader label="Year" />
-    <RadioGroup sx={container} defaultValue={DEFAULT_PERIOD}>
-      {PERIODS.map((period) => (
-        <FormControlLabel
-          key={period}
-          value={period}
-          control={<Radio color="primary" size="small" sx={radioButton} />}
-          label={<Typography sx={radioText}>{period}</Typography>}
-        />
-      ))}
-    </RadioGroup>
-  </Box>
-);
+const Period = (): JSX.Element => {
+  const { state } = useContext(AppSettingsContext);
+  const { isPlaying } = state;
+
+  return (
+    <Box>
+      <SideMenuHeader label="Year" />
+      <RadioGroup sx={container} defaultValue={DEFAULT_PERIOD}>
+        {PERIODS.map((period) => (
+          <FormControlLabel
+            key={period}
+            value={period}
+            control={<Radio color="primary" size="small" sx={radioButton} />}
+            label={<Typography sx={radioText}>{period}</Typography>}
+            disabled={isPlaying}
+          />
+        ))}
+      </RadioGroup>
+    </Box>
+  );
+};
 
 export default Period;

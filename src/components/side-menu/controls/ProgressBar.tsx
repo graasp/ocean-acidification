@@ -5,7 +5,7 @@ const styles = {
   height: '2px',
   backgroundColor: 'white',
   '& .MuiLinearProgress-bar': {
-    backgroundColor: 'grey',
+    backgroundColor: '#CC5500',
   },
 };
 

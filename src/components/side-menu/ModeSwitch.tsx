@@ -11,7 +11,9 @@ interface Props {
 
 const ModeSwitch = ({ modeSequential }: Props): JSX.Element => {
   const { state, dispatch } = useContext(AppSettingsContext);
-  const { animationInMotion } = state;
+  const { animationInMotion, isPlaying } = state;
+
+  const disabled = animationInMotion || isPlaying;
 
   const handleToggle = (): void => {
     dispatch(toggleMode());
@@ -23,7 +25,7 @@ const ModeSwitch = ({ modeSequential }: Props): JSX.Element => {
       rightLabel="Continuous"
       isChecked={!modeSequential}
       setIsChecked={handleToggle}
-      disabled={animationInMotion}
+      disabled={disabled}
     />
   );
 };

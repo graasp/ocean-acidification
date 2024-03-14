@@ -47,6 +47,7 @@ const TwoSidedSwitch = ({
         checked={isChecked}
         onChange={() => setIsChecked(isChecked)}
         disabled={disabled}
+        color={disabled ? 'default' : 'primary'}
       />
     </Box>
     <Typography variant="body2" sx={rightLabelStyles}>

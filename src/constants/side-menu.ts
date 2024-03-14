@@ -15,3 +15,6 @@ export const DEFAULT_EQUATION_WEIGHT = '400';
 export const ACTIVE_EQUATION_BACKGROUND = '#d6fed2';
 export const PERIODS = ['1850', '1910', '2020', '2050'];
 export const DEFAULT_PERIOD = '2020';
+
+export const FADED_OPACITY = 0.5;
+export const DEFAULT_OPACITY = 1;
