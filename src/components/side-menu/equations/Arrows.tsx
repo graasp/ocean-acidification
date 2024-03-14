@@ -6,12 +6,25 @@ import RightArrow from './RightArrow';
 interface Props {
   rightArrowActive: boolean;
   leftArrowActive: boolean;
+  isInactive: boolean;
 }
 
-const Arrows = ({ rightArrowActive, leftArrowActive }: Props): JSX.Element => (
+const Arrows = ({
+  rightArrowActive,
+  leftArrowActive,
+  isInactive,
+}: Props): JSX.Element => (
   <Box>
-    <RightArrow rightArrowActive={rightArrowActive} />
-    <LeftArrow leftArrowActive={leftArrowActive} />
+    <RightArrow
+      rightArrowActive={rightArrowActive}
+      leftArrowActive={leftArrowActive}
+      isInactive={isInactive}
+    />
+    <LeftArrow
+      rightArrowActive={rightArrowActive}
+      leftArrowActive={leftArrowActive}
+      isInactive={isInactive}
+    />
   </Box>
 );
 

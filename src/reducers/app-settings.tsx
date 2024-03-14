@@ -10,7 +10,7 @@ import {
   SET_DIMENSIONS,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
-  TOGGLE_PAUSE,
+  TOGGLE_PLAY,
   TOGGLE_SHOW_SHELLS,
 } from '../types/app-settings';
 
@@ -21,7 +21,7 @@ type Dimensions = {
 export interface appSettingsType {
   dimensions: Dimensions;
   intervalCount: number;
-  isPaused: boolean;
+  isPlaying: boolean;
   reefHoles: number;
   mode: string;
   animationIndex: number;
@@ -38,7 +38,7 @@ export interface appSettingsActionType {
 export const initialAppSettings = {
   dimensions: { width: 0, height: 0 },
   intervalCount: 0,
-  isPaused: true,
+  isPlaying: false,
   reefHoles: 0,
   mode: SEQUENTIAL,
   animationIndex: 0,
@@ -54,8 +54,8 @@ export const appSettingsReducer = (
   switch (type) {
     case SET_DIMENSIONS:
       return { ...state, dimensions: payload };
-    case TOGGLE_PAUSE:
-      return { ...state, isPaused: !state.isPaused };
+    case TOGGLE_PLAY:
+      return { ...state, isPlaying: !state.isPlaying };
     case INCREMENT_INTERVAL_COUNT:
       return { ...state, intervalCount: state.intervalCount + 1 };
     case RESET_SETTINGS:
@@ -84,7 +84,7 @@ export const appSettingsReducer = (
         mode: state.mode === SEQUENTIAL ? CONTINUOUS : SEQUENTIAL,
         intervalCount: 0,
         animationIndex: 0,
-        isPaused: true,
+        isPlaying: false,
       };
     }
     case SET_ANIMATION_INDEX: {

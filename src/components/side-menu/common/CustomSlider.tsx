@@ -42,15 +42,17 @@ interface Props {
   max: number;
   min: number;
   marks: Marks[];
+  disabled: boolean;
 }
 
-const CustomSlider = ({ max, min, marks }: Props): JSX.Element => (
+const CustomSlider = ({ max, min, marks, disabled }: Props): JSX.Element => (
   <Slider
     min={min}
     max={max}
     marks={marks}
     sx={slider}
     valueLabelDisplay="auto"
+    disabled={disabled}
   />
 );
 

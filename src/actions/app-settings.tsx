@@ -8,7 +8,7 @@ import {
   SET_DIMENSIONS,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
-  TOGGLE_PAUSE,
+  TOGGLE_PLAY,
   TOGGLE_SHOW_SHELLS,
 } from '@/types/app-settings';
 
@@ -22,8 +22,8 @@ export const setDimensions = (payload: Dimensions): appSettingsActionType => ({
   payload,
 });
 
-export const togglePause = (): appSettingsActionType => ({
-  type: TOGGLE_PAUSE,
+export const togglePlay = (): appSettingsActionType => ({
+  type: TOGGLE_PLAY,
 });
 
 export const incrementIntervalCount = (): appSettingsActionType => ({
