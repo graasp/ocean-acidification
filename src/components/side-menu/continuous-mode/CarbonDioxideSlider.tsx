@@ -3,9 +3,10 @@ import { useContext } from 'react';
 import { Box } from '@mui/material';
 
 import {
-  CARBON_DIOXIDE_MARKS,
   CARBON_DIOXIDE_MAX,
   CARBON_DIOXIDE_MIN,
+  CARBON_DIOXIDE_NEW_MARKS,
+  CARBON_DIOXIDE_SLIDER_STEP,
 } from '@/constants/side-menu';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
@@ -36,8 +37,9 @@ const CarbonDioxideSlider = (): JSX.Element => {
         <CustomSlider
           min={CARBON_DIOXIDE_MIN}
           max={CARBON_DIOXIDE_MAX}
-          marks={CARBON_DIOXIDE_MARKS}
+          marks={CARBON_DIOXIDE_NEW_MARKS}
           disabled={isPlaying}
+          step={CARBON_DIOXIDE_SLIDER_STEP}
         />
       </Box>
     </Box>
