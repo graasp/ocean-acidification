@@ -49,3 +49,10 @@ export interface Cycle {
   reverseFormation: Formation;
   reverseMigration: Migration;
 }
+
+export interface DiseqCycle {
+  co2Migration: Migration;
+  waterBegins: Point;
+  carbonicAcidEnds: PointWithoutRotation;
+  hydrogenEnds: PointWithoutRotation;
+}

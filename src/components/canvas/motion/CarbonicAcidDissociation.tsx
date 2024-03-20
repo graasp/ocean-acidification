@@ -19,13 +19,15 @@ interface Props {
   beginsAfter: number;
   molecules: Dissociation;
   reverse: boolean;
+  hideAtStart?: boolean;
 }
 
 const CarbonicAcidDissociation = ({
   beginsAfter,
   molecules,
   reverse,
-}: Props): JSX.Element => {
+  hideAtStart,
+}: Props): JSX.Element | null => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
@@ -58,7 +60,9 @@ const CarbonicAcidDissociation = ({
     ? componentCount - HYDROGEN_SPLITS
     : componentCount - beginsAfter - HYDROGEN_SPLITS;
 
-  return (
+  const hideMolecules = hideAtStart && netIntervals < 0;
+
+  return hideMolecules ? null : (
     <Group>
       {!hydrogenHasSplit && (
         <CarbonicAcid x={currentX} y={currentY} rotation={currentRotation} />
