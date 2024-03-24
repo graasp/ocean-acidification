@@ -26,7 +26,7 @@ const MoleculeCountTable = (): JSX.Element => {
 
   return (
     <Box sx={container}>
-      <SideMenuHeader label="Molecule Counts" />
+      <SideMenuHeader label="Molecule Counts" showHelpIcon />
       <Box sx={{ ...table, opacity }}>
         <ArrowsGroup />
         <Row leftContent={<SideMenuCarbonDioxide isSky />} rightContent={20} />

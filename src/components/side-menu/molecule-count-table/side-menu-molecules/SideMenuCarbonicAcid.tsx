@@ -33,7 +33,7 @@ const firstHydrogen = {
   marginTop: '-5px',
 };
 
-const centerContainerStyls = {
+const centerContainerStyles = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -73,7 +73,7 @@ const SideMenuCarbonicAcid = ({ isBicarbonate }: Props): JSX.Element => (
         <SideMenuOxygen />
       </Box>
     </Box>
-    <Box sx={centerContainerStyls}>
+    <Box sx={centerContainerStyles}>
       <Box sx={oxygenHydrogen}>
         <Box sx={secondHydrogen}>
           <SideMenuHydrogen />

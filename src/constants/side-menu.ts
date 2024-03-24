@@ -19,6 +19,8 @@ export const CARBON_DIOXIDE_NEW_MARKS = new Array(NUM_STEPS)
   }));
 export const CARBON_RADIUS = 12;
 export const OXYGEN_RADIUS = 10;
+export const NITROGEN_RADIUS = 10;
+export const NITROGEN_FILL = '#7393B3';
 export const HYDROGEN_RADIUS = 8;
 export const ACTIVE_EQUATION_COLOR = 'green';
 export const INACTIVE_EQUATION_COLOR = '#D3D3D3';

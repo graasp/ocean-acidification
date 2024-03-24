@@ -3,8 +3,16 @@ import { OXYGEN_RADIUS } from '@/constants/side-menu';
 
 import SideMenuAtom from './SideMenuAtom';
 
-const SideMenuOxygen = (): JSX.Element => (
-  <SideMenuAtom radius={OXYGEN_RADIUS} color={OXYGEN_FILL} />
+interface Props {
+  addMarginLeft?: boolean;
+}
+
+const SideMenuOxygen = ({ addMarginLeft }: Props): JSX.Element => (
+  <SideMenuAtom
+    radius={OXYGEN_RADIUS}
+    color={OXYGEN_FILL}
+    addMarginLeft={addMarginLeft}
+  />
 );
 
 export default SideMenuOxygen;

@@ -5,3 +5,5 @@ export const EMPTY_STRING = '';
 export const X = 'x';
 export const Y = 'y';
 export const ROTATION = 'rotation';
+export const DISABLED = 'disabled';
+export const PRIMARY = 'primary';
