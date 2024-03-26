@@ -4,6 +4,7 @@ import { Layer, Stage } from 'react-konva';
 import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
+import CarbonDioxideCycles from './CarbonDioxideCycles';
 import ContinuousModeAnimations from './ContinuousModeAnimations';
 import Sea from './Sea';
 import SequentialModeAnimations from './SequentialModeAnimations';
@@ -27,6 +28,7 @@ const Canvas = (): JSX.Element => {
         ) : (
           <ContinuousModeAnimations />
         )}
+        {!modeSequential && <CarbonDioxideCycles />}
       </Layer>
     </Stage>
   );

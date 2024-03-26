@@ -41,7 +41,7 @@ export interface Dissociation {
   hydrogen: CompleteCoordinates;
 }
 
-export interface Cycle {
+export interface AllAnimationsCycleType {
   co2Migration: Migration;
   carbonicAcidFormation: Formation;
   carbonicAcidDissociation: Dissociation;
@@ -50,9 +50,10 @@ export interface Cycle {
   reverseMigration: Migration;
 }
 
-export interface DiseqCycle {
+export interface CarbonDioxideCycleType {
   co2Migration: Migration;
   waterBegins: Point;
   carbonicAcidEnds: PointWithoutRotation;
   hydrogenEnds: PointWithoutRotation;
+  deProtonates: boolean;
 }

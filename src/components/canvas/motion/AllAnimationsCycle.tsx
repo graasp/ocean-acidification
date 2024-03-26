@@ -1,6 +1,6 @@
 import { Group } from 'react-konva';
 
-import { Cycle } from '@/utils/molecules/types';
+import { AllAnimationsCycleType } from '@/utils/molecules/types';
 
 import CarbonDioxideMigration from './CarbonDioxideMigration';
 import CarbonicAcidDissociation from './CarbonicAcidDissociation';
@@ -8,11 +8,11 @@ import CarbonicAcidFormation from './CarbonicAcidFormation';
 
 interface Props {
   intervals: number[];
-  cycle: Cycle;
+  cycle: AllAnimationsCycleType;
   reverse: boolean;
 }
 
-const MoleculesMovementCycle = ({
+const AllAnimationsCycle = ({
   intervals,
   cycle,
   reverse,
@@ -62,4 +62,4 @@ const MoleculesMovementCycle = ({
   );
 };
 
-export default MoleculesMovementCycle;
+export default AllAnimationsCycle;
