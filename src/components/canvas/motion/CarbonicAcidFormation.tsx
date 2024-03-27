@@ -23,12 +23,16 @@ interface Props {
   beginsAfter: number;
   molecules: Formation;
   reverse: boolean;
+  hideCo2AtStart?: boolean;
+  hideAfterCompletion?: boolean;
 }
 
 const CarbonicAcidFormation = ({
   beginsAfter,
   molecules,
   reverse,
+  hideCo2AtStart,
+  hideAfterCompletion,
 }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
@@ -45,7 +49,7 @@ const CarbonicAcidFormation = ({
   const motionDone = reverse ? MOTION_INTERVAL : beginsAfter + MOTION_INTERVAL;
   const showMolecules = componentCount <= moleculesMoving;
   const showIons = !showMolecules && componentCount < motionDone;
-  const showCarbonicAcid = componentCount >= motionDone;
+  const showCarbonicAcid = componentCount >= motionDone && !hideAfterCompletion;
 
   const xOffset = HYDROGEN_X_OFFSET * (height / width);
   const horizontalMotion = (co2.begins.x - (water.begins.x + xOffset)) / 2;
@@ -65,6 +69,7 @@ const CarbonicAcidFormation = ({
           beginsAfter={beginsAfter}
           componentCount={componentCount}
           reverse={reverse}
+          hideAtStart={hideCo2AtStart}
         />
       )}
       {showMolecules && (
@@ -84,9 +89,9 @@ const CarbonicAcidFormation = ({
           reverse={reverse}
         />
       )}
-      {showCarbonicAcid && (
+      {showCarbonicAcid ? (
         <CarbonicAcid x={co2.ends.x * width} y={co2.ends.y * height} />
-      )}
+      ) : null}
     </Group>
   );
 };

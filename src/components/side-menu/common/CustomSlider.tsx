@@ -35,7 +35,7 @@ const slider = {
 
 interface Marks {
   value: number;
-  label: number;
+  label: number | null;
 }
 
 interface Props {
@@ -43,9 +43,18 @@ interface Props {
   min: number;
   marks: Marks[];
   disabled: boolean;
+  step: number;
+  onChange: (event: Event, value: number | number[]) => void;
 }
 
-const CustomSlider = ({ max, min, marks, disabled }: Props): JSX.Element => (
+const CustomSlider = ({
+  max,
+  min,
+  marks,
+  disabled,
+  step,
+  onChange,
+}: Props): JSX.Element => (
   <Slider
     min={min}
     max={max}
@@ -53,6 +62,8 @@ const CustomSlider = ({ max, min, marks, disabled }: Props): JSX.Element => (
     sx={slider}
     valueLabelDisplay="auto"
     disabled={disabled}
+    step={step}
+    onChange={onChange}
   />
 );
 

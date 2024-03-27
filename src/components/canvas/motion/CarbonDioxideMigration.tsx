@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 
+import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 import { ROTATION, X, Y } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { computePosition } from '@/utils/continuous-mode-motion';
@@ -11,13 +12,15 @@ interface Props {
   beginsAfter: number;
   molecules: Migration;
   reverse: boolean;
+  hideAfterCompletion?: boolean;
 }
 
 const CarbonDioxideMigration = ({
   beginsAfter,
   molecules,
   reverse,
-}: Props): JSX.Element => {
+  hideAfterCompletion,
+}: Props): JSX.Element | null => {
   const { state } = useContext(AppSettingsContext);
   const { intervalCount, dimensions } = state;
   const { width, height } = dimensions;
@@ -29,8 +32,9 @@ const CarbonDioxideMigration = ({
   const currentX = computePosition(activeCo2, X, netIntervals);
   const currentY = computePosition(activeCo2, Y, netIntervals);
   const currentRotation = computePosition(activeCo2, ROTATION, netIntervals);
+  const hideMolecule = hideAfterCompletion && netIntervals > MOTION_INTERVAL;
 
-  return (
+  return hideMolecule ? null : (
     <CarbonDioxide
       x={currentX * width}
       y={currentY * height}

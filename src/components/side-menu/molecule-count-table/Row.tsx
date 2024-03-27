@@ -15,7 +15,7 @@ const container = {
   display: 'flex',
   width: '40%',
   margin: '0 auto',
-  border: '0.5px solid white',
+  border: '1px solid white',
 };
 const defaultCell = { width: '50%', justifyContent: 'center' };
 const leftCustomLabel = { width: '30%', justifyContent: 'flex-end' };

@@ -17,7 +17,7 @@ export const createMigration = (
   co2Ends: Point,
 ): Migration => ({ co2: { begins: { ...co2Begins }, ends: { ...co2Ends } } });
 
-export const createCarbonicAcidFormation = (
+export const createFormation = (
   co2Begins: Point,
   waterBegins: Point,
 ): Formation => ({
@@ -30,10 +30,11 @@ export const createDissociation = (
   carbonicAcidBegins: PointWithoutRotation,
   carbonicAcidEnds: PointWithoutRotation,
   hydrogenEnds: PointWithoutRotation,
+  noRotation = false,
 ): Dissociation => ({
   carbonicAcid: {
-    begins: { ...carbonicAcidBegins, rotation: 100 },
-    ends: { ...carbonicAcidEnds, rotation: -100 },
+    begins: { ...carbonicAcidBegins, rotation: noRotation ? 0 : 100 },
+    ends: { ...carbonicAcidEnds, rotation: noRotation ? 0 : -100 },
   },
   hydrogen: {
     begins: createEmptyPoint(),

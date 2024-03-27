@@ -2,12 +2,15 @@ import { useContext } from 'react';
 
 import { Box } from '@mui/material';
 
+import { setSliderMolecules } from '@/actions/app-settings';
 import {
-  CARBON_DIOXIDE_MARKS,
-  CARBON_DIOXIDE_MAX,
-  CARBON_DIOXIDE_MIN,
+  CO2_SLIDER_MARKS,
+  CO2_SLIDER_MAX,
+  CO2_SLIDER_MIN,
+  CO2_SLIDER_STEP,
 } from '@/constants/side-menu';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
+import { activateCarbonDioxides } from '@/utils/molecules';
 
 import CustomSlider from '../common/CustomSlider';
 import SideMenuHeader from '../common/SideMenuHeader';
@@ -20,8 +23,8 @@ const container = {
 };
 
 const CarbonDioxideSlider = (): JSX.Element => {
-  const { state } = useContext(AppSettingsContext);
-  const { isPlaying } = state;
+  const { state, dispatch } = useContext(AppSettingsContext);
+  const { isPlaying, sliderMolecules } = state;
 
   const label = (
     <>
@@ -29,15 +32,22 @@ const CarbonDioxideSlider = (): JSX.Element => {
     </>
   );
 
+  const onChange = (event: Event, value: number | number[]): void => {
+    const updatedDistribution = activateCarbonDioxides(sliderMolecules, value);
+    dispatch(setSliderMolecules(updatedDistribution));
+  };
+
   return (
     <Box>
       <SideMenuHeader label={label} />
       <Box sx={container}>
         <CustomSlider
-          min={CARBON_DIOXIDE_MIN}
-          max={CARBON_DIOXIDE_MAX}
-          marks={CARBON_DIOXIDE_MARKS}
+          min={CO2_SLIDER_MIN}
+          max={CO2_SLIDER_MAX}
+          marks={CO2_SLIDER_MARKS}
           disabled={isPlaying}
+          step={CO2_SLIDER_STEP}
+          onChange={onChange}
         />
       </Box>
     </Box>

@@ -1,6 +1,6 @@
 import {
-  createCarbonicAcidFormation,
   createDissociation,
+  createFormation,
   createMigration,
 } from '@/utils/motion-objects';
 
@@ -9,7 +9,7 @@ const CO2_MIGRATION = createMigration(
   { x: 0.1, y: 0.4, rotation: 120 },
 );
 
-const CARBONIC_ACID_FORMATION = createCarbonicAcidFormation(
+const CARBONIC_ACID_FORMATION = createFormation(
   { x: 0.25, y: 0.5, rotation: 80 },
   { x: 0.15, y: 0.6, rotation: -40 },
 );
@@ -26,7 +26,7 @@ const REVERSE_DISSOCIATION = createDissociation(
   { x: 0.7, y: 0.6 },
 );
 
-const REVERSE_FORMATION = createCarbonicAcidFormation(
+const REVERSE_FORMATION = createFormation(
   { x: 0.7, y: 0.725, rotation: 80 },
   { x: 0.6, y: 0.8, rotation: -40 },
 );
@@ -50,7 +50,7 @@ const CO2_MIGRATION_2 = createMigration(
   { x: 0.35, y: 0.5, rotation: 190 },
 );
 
-const CARBONIC_ACID_FORMATION_2 = createCarbonicAcidFormation(
+const CARBONIC_ACID_FORMATION_2 = createFormation(
   { x: 0.15, y: 0.45, rotation: 80 },
   { x: 0.1, y: 0.5, rotation: 30 },
 );
@@ -67,7 +67,7 @@ const REVERSE_DISSOCIATION_2 = createDissociation(
   { x: 0.55, y: 0.475 },
 );
 
-const REVERSE_FORMATION_2 = createCarbonicAcidFormation(
+const REVERSE_FORMATION_2 = createFormation(
   { x: 0.6, y: 0.6, rotation: 90 },
   { x: 0.5, y: 0.7, rotation: -20 },
 );
@@ -91,7 +91,7 @@ const CO2_MIGRATION_3 = createMigration(
   { x: 0.3, y: 0.4, rotation: -10 },
 );
 
-const CARBONIC_ACID_FORMATION_3 = createCarbonicAcidFormation(
+const CARBONIC_ACID_FORMATION_3 = createFormation(
   { x: 0.85, y: 0.9, rotation: -40 },
   { x: 0.8, y: 0.85, rotation: 10 },
 );
@@ -108,7 +108,7 @@ const REVERSE_DISSOCIATION_3 = createDissociation(
   { x: 0.875, y: 0.6 },
 );
 
-const REVERSE_FORMATION_3 = createCarbonicAcidFormation(
+const REVERSE_FORMATION_3 = createFormation(
   { x: 0.3, y: 0.825, rotation: 120 },
   { x: 0.35, y: 0.9, rotation: 10 },
 );

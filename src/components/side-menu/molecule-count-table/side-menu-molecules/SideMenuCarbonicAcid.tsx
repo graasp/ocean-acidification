@@ -1,7 +1,10 @@
 import { Box } from '@mui/material';
 
 import { SEA_FILL } from '@/constants/canvas';
-import { DEFAULT_OPACITY, FADED_OPACITY } from '@/constants/side-menu';
+import {
+  MOLECULE_CONTAINER_HEIGHT,
+  MOLECULE_CONTAINER_PADDING,
+} from '@/constants/side-menu';
 
 import SideMenuCarbon from './SideMenuCarbon';
 import SideMenuHydrogen from './SideMenuHydrogen';
@@ -12,8 +15,9 @@ const container = {
   alignItems: 'center',
   width: '100%',
   background: SEA_FILL,
-  paddingTop: '10%',
-  paddingBottom: '5%',
+  height: MOLECULE_CONTAINER_HEIGHT,
+  paddingTop: MOLECULE_CONTAINER_PADDING,
+  paddingBottom: MOLECULE_CONTAINER_PADDING,
 };
 
 const leftMolecules = {
@@ -29,7 +33,7 @@ const firstHydrogen = {
   marginTop: '-5px',
 };
 
-const centerContainerStyls = {
+const centerContainerStyles = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -56,14 +60,10 @@ const defaultProps = {
 
 interface Props {
   isBicarbonate?: boolean;
-  faded: boolean;
 }
 
-const SideMenuCarbonicAcid = ({ isBicarbonate, faded }: Props): JSX.Element => (
-  <Box
-    sx={container}
-    style={{ opacity: faded ? FADED_OPACITY : DEFAULT_OPACITY }}
-  >
+const SideMenuCarbonicAcid = ({ isBicarbonate }: Props): JSX.Element => (
+  <Box sx={container}>
     <Box>
       <Box sx={leftMolecules}>
         <Box sx={firstHydrogen}>
@@ -73,7 +73,7 @@ const SideMenuCarbonicAcid = ({ isBicarbonate, faded }: Props): JSX.Element => (
         <SideMenuOxygen />
       </Box>
     </Box>
-    <Box sx={centerContainerStyls}>
+    <Box sx={centerContainerStyles}>
       <Box sx={oxygenHydrogen}>
         <Box sx={secondHydrogen}>
           <SideMenuHydrogen />

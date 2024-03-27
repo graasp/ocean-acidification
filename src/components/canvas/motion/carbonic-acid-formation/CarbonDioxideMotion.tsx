@@ -13,6 +13,7 @@ interface Props {
   beginsAfter: number;
   componentCount: number;
   reverse: boolean;
+  hideAtStart?: boolean;
 }
 
 const CarbonDioxideMotion = ({
@@ -20,7 +21,8 @@ const CarbonDioxideMotion = ({
   beginsAfter,
   componentCount,
   reverse,
-}: Props): JSX.Element => {
+  hideAtStart,
+}: Props): JSX.Element | null => {
   const { state } = useContext(AppSettingsContext);
   const { dimensions } = state;
   const { width, height } = dimensions;
@@ -32,7 +34,11 @@ const CarbonDioxideMotion = ({
   const y = computePosition(co2, Y, netIntervals, intervalOne);
   const rotation = computePosition(co2, ROTATION, netIntervals, intervalOne);
 
-  return <CarbonDioxide x={x * width} y={y * height} rotation={rotation} />;
+  const hideMolecule = hideAtStart && netIntervals < 0;
+
+  return hideMolecule ? null : (
+    <CarbonDioxide x={x * width} y={y * height} rotation={rotation} />
+  );
 };
 
 export default CarbonDioxideMotion;

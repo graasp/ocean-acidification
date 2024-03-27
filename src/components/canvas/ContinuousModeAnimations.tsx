@@ -6,7 +6,7 @@ import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { INITIAL_INTERVALS, generateAllIntervals } from '@/utils/motion';
 
-import MoleculesMovementCycle from './motion/MoleculesMovementCycle';
+import AllAnimationsCycle from './motion/AllAnimationsCycle';
 
 const ContinuousModeAnimations = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
@@ -28,7 +28,7 @@ const ContinuousModeAnimations = (): JSX.Element => {
   return (
     <Group>
       {CYCLES.map((cycle, index) => (
-        <MoleculesMovementCycle
+        <AllAnimationsCycle
           cycle={cycle}
           intervals={allIntervals[index]}
           reverse={reverse}
