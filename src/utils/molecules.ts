@@ -3,8 +3,17 @@ import {
   HYDROGEN_X_OFFSET,
   OXYGEN_RADIUS,
 } from '@/constants/canvas';
+import {
+  CO2_ADDED_PER_INCREMENT,
+  CO2_SLIDER_STEP,
+} from '@/constants/side-menu';
 
-import { MoleculeCenter, Point, PointWithoutRotation } from './molecules/types';
+import {
+  MoleculeCenter,
+  Point,
+  PointWithoutRotation,
+  SliderMoleculesType,
+} from './molecules/types';
 
 export const generateRandomNum = (min: number, max: number): number =>
   Math.random() * (max - min) + min;
@@ -66,4 +75,18 @@ export const determineXEnd = (xStart: number): number => {
   if (xStart <= 0.3) return xStart + distanceMoved;
   if (xStart <= 0.6) return xStart + generateRandomSign() * distanceMoved;
   return xStart - distanceMoved;
+};
+
+export const activateCarbonDioxides = (
+  sliderMolecules: SliderMoleculesType[],
+  sliderValue: number | number[],
+): SliderMoleculesType[] => {
+  const value = Array.isArray(sliderValue) ? sliderValue[0] : sliderValue;
+  const numMoleculesToActivate =
+    (value / CO2_SLIDER_STEP) * CO2_ADDED_PER_INCREMENT;
+  return sliderMolecules.map((sliderMolecule, index) =>
+    index < numMoleculesToActivate
+      ? { ...sliderMolecule, showCarbonDioxide: true }
+      : { ...sliderMolecule, showCarbonDioxide: false },
+  );
 };

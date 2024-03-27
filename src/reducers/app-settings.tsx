@@ -1,5 +1,7 @@
 import { PERCENT_HOLES_INCREMENT } from '@/constants/canvas';
+import { SLIDER_MOLECULES } from '@/constants/motion/slider-molecules';
 import { CONTINUOUS, SEQUENTIAL } from '@/constants/strings';
+import { SliderMoleculesType } from '@/utils/molecules/types';
 
 import {
   DECREMENT_REEF_HOLES,
@@ -8,6 +10,7 @@ import {
   RESET_SETTINGS,
   SET_ANIMATION_INDEX,
   SET_DIMENSIONS,
+  SET_SLIDER_MOLECULES,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PLAY,
@@ -27,6 +30,7 @@ export interface appSettingsType {
   animationIndex: number;
   animationInMotion: boolean;
   showShells: boolean;
+  sliderMolecules: SliderMoleculesType[];
 }
 
 export interface appSettingsActionType {
@@ -44,6 +48,7 @@ export const initialAppSettings = {
   animationIndex: 0,
   animationInMotion: false,
   showShells: false,
+  sliderMolecules: SLIDER_MOLECULES,
 };
 
 export const appSettingsReducer = (
@@ -95,6 +100,9 @@ export const appSettingsReducer = (
     }
     case TOGGLE_SHOW_SHELLS: {
       return { ...state, showShells: !state.showShells };
+    }
+    case SET_SLIDER_MOLECULES: {
+      return { ...state, sliderMolecules: payload };
     }
     default:
       return state;

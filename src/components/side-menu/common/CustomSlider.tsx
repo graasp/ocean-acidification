@@ -44,6 +44,7 @@ interface Props {
   marks: Marks[];
   disabled: boolean;
   step: number;
+  onChange: (event: Event, value: number | number[]) => void;
 }
 
 const CustomSlider = ({
@@ -52,6 +53,7 @@ const CustomSlider = ({
   marks,
   disabled,
   step,
+  onChange,
 }: Props): JSX.Element => (
   <Slider
     min={min}
@@ -61,6 +63,7 @@ const CustomSlider = ({
     valueLabelDisplay="auto"
     disabled={disabled}
     step={step}
+    onChange={onChange}
   />
 );
 

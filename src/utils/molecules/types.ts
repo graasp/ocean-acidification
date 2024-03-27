@@ -57,3 +57,10 @@ export interface CarbonDioxideCycleType {
   hydrogenEnds: PointWithoutRotation;
   deProtonates: boolean;
 }
+
+export interface SliderMoleculesType {
+  formsCarbonicAcid: boolean;
+  showCarbonDioxide: boolean;
+  carbonDioxide: CompleteCoordinates;
+  waterBegins: Point;
+}

@@ -6,7 +6,11 @@ import {
 } from '@/utils/molecules';
 import { createMigration } from '@/utils/motion-objects';
 
-import { CO2_SLIDER_MAX, CO2_SLIDER_STEP } from '../side-menu';
+import {
+  CO2_ADDED_PER_INCREMENT,
+  CO2_SLIDER_MAX,
+  CO2_SLIDER_STEP,
+} from '../side-menu';
 
 const CO2_MIGRATION = createMigration(
   { x: 0.5, y: 0.25, rotation: -80 },
@@ -24,9 +28,9 @@ export const FULL_CYCLE = {
   deProtonates: false,
 };
 
-const CO2_ADDED_PER_INCREMENET = 3;
+// const CO2_ADDED_PER_INCREMENT = 3;
 const MAX_NUM_CO2 =
-  (CO2_SLIDER_MAX / CO2_SLIDER_STEP) * CO2_ADDED_PER_INCREMENET;
+  (CO2_SLIDER_MAX / CO2_SLIDER_STEP) * CO2_ADDED_PER_INCREMENT;
 const CO2_NUM_ROWS = 5;
 const CO2_BEGINS_MIN_Y = 0.01;
 const CO2_BEGINS_MAX_Y = 0.325;
@@ -51,10 +55,11 @@ const CO2_RANDOM_DIST = new Array(CO2_NUM_ROWS)
   )
   .flat();
 
-export const ALL_MOLECULES = CO2_RANDOM_DIST.map((molecule, index) => {
-  const formsCarbonicAcid = index % CO2_ADDED_PER_INCREMENET === 0;
+export const SLIDER_MOLECULES = CO2_RANDOM_DIST.map((molecule, index) => {
+  const formsCarbonicAcid = index % CO2_ADDED_PER_INCREMENT === 0;
   return {
     formsCarbonicAcid,
+    showCarbonDioxide: false,
     carbonDioxide: {
       begins: { ...molecule },
       ends: {
@@ -63,12 +68,10 @@ export const ALL_MOLECULES = CO2_RANDOM_DIST.map((molecule, index) => {
         rotation: generateRandomRotation(),
       },
     },
-    water: {
-      begins: {
-        x: generateRandomNum(WATER_BEGINS_MIN_X, WATER_BEGINS_MAX_X),
-        y: generateRandomNum(WATER_BEGINS_MIN_Y, WATER_BEGINS_MAX_Y),
-        rotation: generateRandomRotation(),
-      },
+    waterBegins: {
+      x: generateRandomNum(WATER_BEGINS_MIN_X, WATER_BEGINS_MAX_X),
+      y: generateRandomNum(WATER_BEGINS_MIN_Y, WATER_BEGINS_MAX_Y),
+      rotation: generateRandomRotation(),
     },
   };
 });

@@ -6,11 +6,13 @@ import {
   RESET_SETTINGS,
   SET_ANIMATION_INDEX,
   SET_DIMENSIONS,
+  SET_SLIDER_MOLECULES,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PLAY,
   TOGGLE_SHOW_SHELLS,
 } from '@/types/app-settings';
+import { SliderMoleculesType } from '@/utils/molecules/types';
 
 interface Dimensions {
   width: number;
@@ -57,4 +59,11 @@ export const toggleAnimationInMotion = (): appSettingsActionType => ({
 
 export const toggleShowShells = (): appSettingsActionType => ({
   type: TOGGLE_SHOW_SHELLS,
+});
+
+export const setSliderMolecules = (
+  payload: SliderMoleculesType[],
+): appSettingsActionType => ({
+  type: SET_SLIDER_MOLECULES,
+  payload,
 });

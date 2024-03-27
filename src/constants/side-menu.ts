@@ -9,6 +9,7 @@ export const CO2_SLIDER_MARKS = new Array(NUM_STEPS)
     label:
       index === 0 || index === NUM_STEPS - 1 ? index * CO2_SLIDER_STEP : null,
   }));
+export const CO2_ADDED_PER_INCREMENT = 3;
 export const CARBON_RADIUS = 12;
 export const OXYGEN_RADIUS = 10;
 export const NITROGEN_RADIUS = 10;
