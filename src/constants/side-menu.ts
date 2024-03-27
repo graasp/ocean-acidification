@@ -1,21 +1,13 @@
-export const CARBON_DIOXIDE_MIN = 0;
-export const CARBON_DIOXIDE_MAX = 1000;
-export const CARBON_DIOXIDE_SLIDER_STEP = 50;
-export const CARBON_DIOXIDE_MARKS = [
-  { value: 0, label: 0 },
-  { value: 50, label: null },
-  { value: 1000, label: 1000 },
-];
-const NUM_STEPS =
-  (CARBON_DIOXIDE_MAX - CARBON_DIOXIDE_MIN) / CARBON_DIOXIDE_SLIDER_STEP + 1;
-export const CARBON_DIOXIDE_NEW_MARKS = new Array(NUM_STEPS)
+export const CO2_SLIDER_MIN = 0;
+export const CO2_SLIDER_MAX = 1000;
+export const CO2_SLIDER_STEP = 50;
+const NUM_STEPS = (CO2_SLIDER_MAX - CO2_SLIDER_MIN) / CO2_SLIDER_STEP + 1;
+export const CO2_SLIDER_MARKS = new Array(NUM_STEPS)
   .fill(null)
   .map((emptyElement, index) => ({
-    value: index * CARBON_DIOXIDE_SLIDER_STEP,
+    value: index * CO2_SLIDER_STEP,
     label:
-      index === 0 || index === NUM_STEPS - 1
-        ? index * CARBON_DIOXIDE_SLIDER_STEP
-        : null,
+      index === 0 || index === NUM_STEPS - 1 ? index * CO2_SLIDER_STEP : null,
   }));
 export const CARBON_RADIUS = 12;
 export const OXYGEN_RADIUS = 10;

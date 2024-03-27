@@ -11,7 +11,7 @@ export const SKY_GRADIENT = [0, '#a4c8ea', 1, SKY_GRADIENT_LIGHT_END];
 export const SEA_FILL = '#6ba5c9';
 export const REEF_BLOCKER_GRADIENT = [0, '#6ba5c9', 1, '#6b91a0'];
 
-export const CARBON_RADIUS = 0.0085;
+export const CARBON_RADIUS = 0.0075;
 export const OXYGEN_RADIUS = (15 / 17) * CARBON_RADIUS;
 export const HYDROGEN_RADIUS = (10 / 13) * OXYGEN_RADIUS;
 export const CARBON_FILL = 'black';

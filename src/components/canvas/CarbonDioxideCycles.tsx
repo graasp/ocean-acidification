@@ -1,4 +1,4 @@
-import { FULL_CYCLE } from '@/constants/motion/full-cycle';
+import { FULL_CYCLE } from '@/constants/motion/slider-molecules';
 
 import CarbonDioxideCycle from './motion/CarbonDioxideCycle';
 

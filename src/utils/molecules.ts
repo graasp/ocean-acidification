@@ -9,6 +9,10 @@ import { MoleculeCenter, Point, PointWithoutRotation } from './molecules/types';
 export const generateRandomNum = (min: number, max: number): number =>
   Math.random() * (max - min) + min;
 
+const generateRandomSign = (): number => (Math.random() < 0.5 ? -1 : 1);
+
+export const generateRandomRotation = (): number => generateRandomNum(0, 360);
+
 export const generateRandomCoordinates = (
   count: number,
   yStart: number,
@@ -36,4 +40,30 @@ export const findCarbonicAcidCoordinates = (
   const carbonOxygenRadii = CARBON_RADIUS + OXYGEN_RADIUS;
   const co2EndsY = waterBegins.y + carbonOxygenRadii;
   return { x: co2EndsX, y: co2EndsY };
+};
+
+export const distributeMoleculesOnRow = (
+  numMolecules: number,
+  numRows: number,
+  minY: number,
+  maxY: number,
+  rowIndex: number,
+): Point[] => {
+  const xIndent = generateRandomNum(0.02, 0.06);
+  const row = new Array(numMolecules).fill(null).map((emptyElement, index) => ({
+    x: xIndent + (1 / numMolecules) * index,
+    y: generateRandomNum(
+      minY + (maxY - minY) * (rowIndex / numRows),
+      minY + (maxY - minY) * ((rowIndex + 1) / numRows),
+    ),
+    rotation: generateRandomRotation(),
+  }));
+  return row;
+};
+
+export const determineXEnd = (xStart: number): number => {
+  const distanceMoved = generateRandomNum(0.2, 0.3);
+  if (xStart <= 0.3) return xStart + distanceMoved;
+  if (xStart <= 0.6) return xStart + generateRandomSign() * distanceMoved;
+  return xStart - distanceMoved;
 };
