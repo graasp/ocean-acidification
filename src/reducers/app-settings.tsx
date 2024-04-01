@@ -1,6 +1,6 @@
 import { PERCENT_HOLES_INCREMENT } from '@/constants/canvas';
 import { SLIDER_MOLECULES } from '@/constants/motion/slider-molecules';
-import { CO2_DEFAULT_VALUE } from '@/constants/side-menu';
+import { DEFAULT_CO2, DEFAULT_YEAR } from '@/constants/side-menu';
 import { CONTINUOUS, SEQUENTIAL } from '@/constants/strings';
 import { computeEquilibriumDistribution } from '@/utils/molecules';
 import { SliderMoleculesType } from '@/utils/molecules/types';
@@ -11,8 +11,10 @@ import {
   INCREMENT_REEF_HOLES,
   RESET_SETTINGS,
   SET_ANIMATION_INDEX,
+  SET_CARBON_DIOXIDE,
   SET_DIMENSIONS,
   SET_SLIDER_MOLECULES,
+  SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PLAY,
@@ -33,6 +35,8 @@ export interface appSettingsType {
   animationInMotion: boolean;
   showShells: boolean;
   sliderMolecules: SliderMoleculesType[];
+  year: string;
+  carbonDioxide: number;
 }
 
 export interface appSettingsActionType {
@@ -52,8 +56,10 @@ export const initialAppSettings = {
   showShells: false,
   sliderMolecules: computeEquilibriumDistribution(
     SLIDER_MOLECULES,
-    CO2_DEFAULT_VALUE,
+    DEFAULT_CO2,
   ),
+  year: DEFAULT_YEAR,
+  carbonDioxide: DEFAULT_CO2,
 };
 
 export const appSettingsReducer = (
@@ -108,6 +114,12 @@ export const appSettingsReducer = (
     }
     case SET_SLIDER_MOLECULES: {
       return { ...state, sliderMolecules: payload };
+    }
+    case SET_YEAR: {
+      return { ...state, year: payload };
+    }
+    case SET_CARBON_DIOXIDE: {
+      return { ...state, carbonDioxide: payload };
     }
     default:
       return state;

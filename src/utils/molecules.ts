@@ -79,11 +79,10 @@ export const determineXEnd = (xStart: number): number => {
 
 export const computeEquilibriumDistribution = (
   sliderMolecules: SliderMoleculesType[],
-  sliderValue: number | number[],
+  sliderValue: number,
 ): SliderMoleculesType[] => {
-  const value = Array.isArray(sliderValue) ? sliderValue[0] : sliderValue;
   const numMoleculesToActivate =
-    (value / CO2_SLIDER_STEP) * CO2_ADDED_PER_INCREMENT;
+    (sliderValue / CO2_SLIDER_STEP) * CO2_ADDED_PER_INCREMENT;
   return sliderMolecules.map((sliderMolecule, index) => {
     const newProperties = { ...sliderMolecule.properties };
     if (index < numMoleculesToActivate) {
@@ -98,11 +97,10 @@ export const computeEquilibriumDistribution = (
 
 export const updateDistribution = (
   currentDistribution: SliderMoleculesType[],
-  sliderValue: number | number[],
+  sliderValue: number,
   intervalCount: number,
 ): SliderMoleculesType[] => {
-  const value = Array.isArray(sliderValue) ? sliderValue[0] : sliderValue;
-  const newIndex = (value / CO2_SLIDER_STEP) * CO2_ADDED_PER_INCREMENT;
+  const newIndex = (sliderValue / CO2_SLIDER_STEP) * CO2_ADDED_PER_INCREMENT;
   return currentDistribution.map((sliderMolecule, index) => {
     const { formsCarbonicAcid, reverse } = sliderMolecule.properties;
     const newProperties = {

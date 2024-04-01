@@ -8,8 +8,14 @@ import {
   Typography,
 } from '@mui/material';
 
-import { DEFAULT_PERIOD, PERIODS } from '@/constants/side-menu';
+import {
+  setCarbonDioxide,
+  setSliderMolecules,
+  setYear,
+} from '@/actions/app-settings';
+import { DEFAULT_CO2, PERIODS } from '@/constants/side-menu';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
+import { updateDistribution } from '@/utils/molecules';
 
 import SideMenuHeader from '../common/SideMenuHeader';
 
@@ -33,19 +39,33 @@ const radioText = {
 };
 
 const Period = (): JSX.Element => {
-  const { state } = useContext(AppSettingsContext);
-  const { isPlaying } = state;
+  const { state, dispatch } = useContext(AppSettingsContext);
+  const { isPlaying, year, sliderMolecules } = state;
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const newYear = (event.target as HTMLInputElement).value;
+    dispatch(setYear(newYear));
+    const newCarbonDioxide =
+      PERIODS.find((period) => period.year === newYear)?.co2 || DEFAULT_CO2;
+    dispatch(setCarbonDioxide(newCarbonDioxide));
+    const newDistribution = updateDistribution(
+      sliderMolecules,
+      newCarbonDioxide,
+      0,
+    );
+    dispatch(setSliderMolecules(newDistribution));
+  };
 
   return (
     <Box>
       <SideMenuHeader label="Year" />
-      <RadioGroup sx={container} defaultValue={DEFAULT_PERIOD}>
+      <RadioGroup sx={container} value={year} onChange={onChange}>
         {PERIODS.map((period) => (
           <FormControlLabel
-            key={period}
-            value={period}
+            key={period.year}
+            value={period.year}
             control={<Radio color="primary" size="small" sx={radioButton} />}
-            label={<Typography sx={radioText}>{period}</Typography>}
+            label={<Typography sx={radioText}>{period.year}</Typography>}
             disabled={isPlaying}
           />
         ))}

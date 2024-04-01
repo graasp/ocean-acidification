@@ -1,10 +1,9 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 
 import { Box } from '@mui/material';
 
-import { setSliderMolecules } from '@/actions/app-settings';
+import { setCarbonDioxide, setSliderMolecules } from '@/actions/app-settings';
 import {
-  CO2_DEFAULT_VALUE,
   CO2_SLIDER_MARKS,
   CO2_SLIDER_MAX,
   CO2_SLIDER_MIN,
@@ -25,8 +24,7 @@ const container = {
 
 const CarbonDioxideSlider = (): JSX.Element => {
   const { state, dispatch } = useContext(AppSettingsContext);
-  const { isPlaying, sliderMolecules, intervalCount } = state;
-  const [sliderValue, setSliderValue] = useState(CO2_DEFAULT_VALUE);
+  const { isPlaying, sliderMolecules, intervalCount, carbonDioxide } = state;
 
   const label = (
     <>
@@ -35,14 +33,14 @@ const CarbonDioxideSlider = (): JSX.Element => {
   );
 
   const onChange = (event: Event, value: number | number[]): void => {
+    const sliderValue = value as number;
     const updatedDistribution = updateDistribution(
       sliderMolecules,
-      value,
+      sliderValue,
       intervalCount,
     );
     dispatch(setSliderMolecules(updatedDistribution));
-    const newValue = Array.isArray(value) ? value[0] : value;
-    setSliderValue(newValue);
+    dispatch(setCarbonDioxide(sliderValue));
   };
 
   return (
@@ -56,7 +54,7 @@ const CarbonDioxideSlider = (): JSX.Element => {
           disabled={isPlaying}
           step={CO2_SLIDER_STEP}
           onChange={onChange}
-          value={sliderValue}
+          value={carbonDioxide}
         />
       </Box>
     </Box>

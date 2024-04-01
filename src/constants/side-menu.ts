@@ -10,7 +10,6 @@ export const CO2_SLIDER_MARKS = new Array(NUM_STEPS)
       index === 0 || index === NUM_STEPS - 1 ? index * CO2_SLIDER_STEP : null,
   }));
 export const CO2_ADDED_PER_INCREMENT = 3;
-export const CO2_DEFAULT_VALUE = 450;
 export const CARBON_RADIUS = 12;
 export const OXYGEN_RADIUS = 10;
 export const NITROGEN_RADIUS = 10;
@@ -22,8 +21,15 @@ export const DEFAULT_EQUATION_COLOR = 'black';
 export const ACTIVE_EQUATION_WEIGHT = '900';
 export const DEFAULT_EQUATION_WEIGHT = '400';
 export const ACTIVE_EQUATION_BACKGROUND = '#d6fed2';
-export const PERIODS = ['1850', '1910', '2020', '2050'];
-export const DEFAULT_PERIOD = '2020';
+export const PERIODS = [
+  { year: '1850', co2: 300 },
+  { year: '1990', co2: 350 },
+  { year: '2015', co2: 400 },
+  { year: '2050', co2: 550 },
+];
+export const DEFAULT_PERIOD = PERIODS[2];
+export const DEFAULT_YEAR = DEFAULT_PERIOD.year;
+export const DEFAULT_CO2 = DEFAULT_PERIOD.co2;
 
 export const FADED_OPACITY = 0.5;
 export const DEFAULT_OPACITY = 1;

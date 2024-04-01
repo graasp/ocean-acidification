@@ -5,8 +5,10 @@ import {
   INCREMENT_REEF_HOLES,
   RESET_SETTINGS,
   SET_ANIMATION_INDEX,
+  SET_CARBON_DIOXIDE,
   SET_DIMENSIONS,
   SET_SLIDER_MOLECULES,
+  SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PLAY,
@@ -65,5 +67,15 @@ export const setSliderMolecules = (
   payload: SliderMoleculesType[],
 ): appSettingsActionType => ({
   type: SET_SLIDER_MOLECULES,
+  payload,
+});
+
+export const setYear = (payload: string): appSettingsActionType => ({
+  type: SET_YEAR,
+  payload,
+});
+
+export const setCarbonDioxide = (payload: number): appSettingsActionType => ({
+  type: SET_CARBON_DIOXIDE,
   payload,
 });
