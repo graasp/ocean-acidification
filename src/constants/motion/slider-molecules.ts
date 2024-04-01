@@ -4,7 +4,6 @@ import {
   generateRandomNum,
   generateRandomRotation,
 } from '@/utils/molecules';
-import { createMigration } from '@/utils/motion-objects';
 
 import {
   CO2_ADDED_PER_INCREMENT,
@@ -12,23 +11,6 @@ import {
   CO2_SLIDER_STEP,
 } from '../side-menu';
 
-const CO2_MIGRATION = createMigration(
-  { x: 0.5, y: 0.25, rotation: -80 },
-  { x: 0.4, y: 0.45, rotation: 120 },
-);
-const WATER_BEGINS = { x: 0.35, y: 0.5, rotation: 100 };
-const CARBONIC_ACID_ENDS = { x: 0.35, y: 0.75 };
-const HYDROGEN_ENDS = { x: 0.25, y: 0.8 };
-
-export const FULL_CYCLE = {
-  co2Migration: CO2_MIGRATION,
-  waterBegins: WATER_BEGINS,
-  carbonicAcidEnds: CARBONIC_ACID_ENDS,
-  hydrogenEnds: HYDROGEN_ENDS,
-  deProtonates: false,
-};
-
-// const CO2_ADDED_PER_INCREMENT = 3;
 const MAX_NUM_CO2 =
   (CO2_SLIDER_MAX / CO2_SLIDER_STEP) * CO2_ADDED_PER_INCREMENT;
 const CO2_NUM_ROWS = 5;
@@ -58,20 +40,30 @@ const CO2_RANDOM_DIST = new Array(CO2_NUM_ROWS)
 export const SLIDER_MOLECULES = CO2_RANDOM_DIST.map((molecule, index) => {
   const formsCarbonicAcid = index % CO2_ADDED_PER_INCREMENT === 0;
   return {
-    formsCarbonicAcid,
-    showCarbonDioxide: false,
-    carbonDioxide: {
-      begins: { ...molecule },
-      ends: {
-        x: determineXEnd(molecule.x),
-        y: generateRandomNum(CO2_ENDS_MIN_Y, CO2_ENDS_MAX_Y),
+    molecules: {
+      carbonDioxide: {
+        begins: { ...molecule },
+        ends: {
+          x: determineXEnd(molecule.x),
+          y: generateRandomNum(CO2_ENDS_MIN_Y, CO2_ENDS_MAX_Y),
+          rotation: generateRandomRotation(),
+        },
+      },
+      waterBegins: {
+        x: generateRandomNum(WATER_BEGINS_MIN_X, WATER_BEGINS_MAX_X),
+        y: generateRandomNum(WATER_BEGINS_MIN_Y, WATER_BEGINS_MAX_Y),
         rotation: generateRandomRotation(),
       },
+      carbonicAcidEnds: { x: Math.random(), y: 0.75 },
+      hydrogenEnds: { x: Math.random(), y: 0.8 },
     },
-    waterBegins: {
-      x: generateRandomNum(WATER_BEGINS_MIN_X, WATER_BEGINS_MAX_X),
-      y: generateRandomNum(WATER_BEGINS_MIN_Y, WATER_BEGINS_MAX_Y),
-      rotation: generateRandomRotation(),
+    properties: {
+      formsCarbonicAcid,
+      showInertCarbonDioxide: false,
+      showReactiveCarbonDioxide: false,
+      beginsAt: Infinity,
+      reverse: false,
+      deProtonates: true,
     },
   };
 });

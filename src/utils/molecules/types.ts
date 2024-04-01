@@ -50,17 +50,23 @@ export interface AllAnimationsCycleType {
   reverseMigration: Migration;
 }
 
-export interface CarbonDioxideCycleType {
-  co2Migration: Migration;
+interface SliderMolecules {
+  carbonDioxide: CompleteCoordinates;
   waterBegins: Point;
   carbonicAcidEnds: PointWithoutRotation;
   hydrogenEnds: PointWithoutRotation;
+}
+
+interface SliderMoleculesProperties {
+  formsCarbonicAcid: boolean;
+  showInertCarbonDioxide: boolean;
+  showReactiveCarbonDioxide: boolean;
+  beginsAt: number;
+  reverse: boolean;
   deProtonates: boolean;
 }
 
 export interface SliderMoleculesType {
-  formsCarbonicAcid: boolean;
-  showCarbonDioxide: boolean;
-  carbonDioxide: CompleteCoordinates;
-  waterBegins: Point;
+  molecules: SliderMolecules;
+  properties: SliderMoleculesProperties;
 }

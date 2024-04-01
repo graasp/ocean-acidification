@@ -1,6 +1,8 @@
 import { PERCENT_HOLES_INCREMENT } from '@/constants/canvas';
 import { SLIDER_MOLECULES } from '@/constants/motion/slider-molecules';
+import { CO2_DEFAULT_VALUE } from '@/constants/side-menu';
 import { CONTINUOUS, SEQUENTIAL } from '@/constants/strings';
+import { computeEquilibriumDistribution } from '@/utils/molecules';
 import { SliderMoleculesType } from '@/utils/molecules/types';
 
 import {
@@ -48,7 +50,10 @@ export const initialAppSettings = {
   animationIndex: 0,
   animationInMotion: false,
   showShells: false,
-  sliderMolecules: SLIDER_MOLECULES,
+  sliderMolecules: computeEquilibriumDistribution(
+    SLIDER_MOLECULES,
+    CO2_DEFAULT_VALUE,
+  ),
 };
 
 export const appSettingsReducer = (

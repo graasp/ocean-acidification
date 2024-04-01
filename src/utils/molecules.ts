@@ -77,16 +77,45 @@ export const determineXEnd = (xStart: number): number => {
   return xStart - distanceMoved;
 };
 
-export const activateCarbonDioxides = (
+export const computeEquilibriumDistribution = (
   sliderMolecules: SliderMoleculesType[],
   sliderValue: number | number[],
 ): SliderMoleculesType[] => {
   const value = Array.isArray(sliderValue) ? sliderValue[0] : sliderValue;
   const numMoleculesToActivate =
     (value / CO2_SLIDER_STEP) * CO2_ADDED_PER_INCREMENT;
-  return sliderMolecules.map((sliderMolecule, index) =>
-    index < numMoleculesToActivate
-      ? { ...sliderMolecule, showCarbonDioxide: true }
-      : { ...sliderMolecule, showCarbonDioxide: false },
-  );
+  return sliderMolecules.map((sliderMolecule, index) => {
+    const newProperties = { ...sliderMolecule.properties };
+    if (index < numMoleculesToActivate) {
+      newProperties.showInertCarbonDioxide = true;
+      newProperties.reverse = true;
+    } else {
+      newProperties.showInertCarbonDioxide = false;
+    }
+    return { ...sliderMolecule, properties: newProperties };
+  });
+};
+
+export const updateDistribution = (
+  currentDistribution: SliderMoleculesType[],
+  sliderValue: number | number[],
+  intervalCount: number,
+): SliderMoleculesType[] => {
+  const value = Array.isArray(sliderValue) ? sliderValue[0] : sliderValue;
+  const newIndex = (value / CO2_SLIDER_STEP) * CO2_ADDED_PER_INCREMENT;
+  return currentDistribution.map((sliderMolecule, index) => {
+    const { formsCarbonicAcid, reverse } = sliderMolecule.properties;
+    const newProperties = {
+      ...sliderMolecule.properties,
+      showInertCarbonDioxide: true,
+      showReactiveCarbonDioxide: false,
+    };
+    if (index >= newIndex) {
+      newProperties.showInertCarbonDioxide = false;
+    } else if (formsCarbonicAcid && !reverse) {
+      newProperties.showReactiveCarbonDioxide = true;
+      newProperties.beginsAt = intervalCount;
+    }
+    return { ...sliderMolecule, properties: newProperties };
+  });
 };

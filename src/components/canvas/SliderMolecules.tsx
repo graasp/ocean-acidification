@@ -4,7 +4,7 @@ import { Group } from 'react-konva';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import CarbonDioxide from './molecules/CarbonDioxide';
-import Water from './molecules/Water';
+import CarbonDioxideCycle from './motion/CarbonDioxideCycle';
 
 const SliderMolecules = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
@@ -13,29 +13,26 @@ const SliderMolecules = (): JSX.Element => {
 
   return (
     <Group>
-      {sliderMolecules.map(
-        (
-          { formsCarbonicAcid, showCarbonDioxide, carbonDioxide, waterBegins },
-          index,
-        ) => (
+      {sliderMolecules.map((sliderMolecule, index) => {
+        const { carbonDioxide } = sliderMolecule.molecules;
+        const { formsCarbonicAcid, showInertCarbonDioxide } =
+          sliderMolecule.properties;
+
+        return (
           <Group key={index}>
-            {formsCarbonicAcid ? (
-              <Water
-                x={waterBegins.x * width}
-                y={waterBegins.y * height}
-                rotation={waterBegins.rotation}
-              />
-            ) : null}
-            {showCarbonDioxide ? (
+            {showInertCarbonDioxide && !formsCarbonicAcid ? (
               <CarbonDioxide
                 x={carbonDioxide.begins.x * width}
                 y={carbonDioxide.begins.y * height}
                 rotation={carbonDioxide.begins.rotation}
               />
             ) : null}
+            {formsCarbonicAcid ? (
+              <CarbonDioxideCycle sliderMolecule={sliderMolecule} />
+            ) : null}
           </Group>
-        ),
-      )}
+        );
+      })}
     </Group>
   );
 };
