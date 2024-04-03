@@ -4,6 +4,7 @@ import {
   generateRandomNum,
   generateRandomRotation,
 } from '@/utils/molecules';
+import { determineCo2EndY } from '@/utils/motion-objects';
 
 import {
   CO2_ADDED_PER_INCREMENT,
@@ -17,8 +18,6 @@ const CO2_NUM_ROWS = 5;
 const CO2_BEGINS_MIN_Y = 0.01;
 const CO2_BEGINS_MAX_Y = 0.325;
 const CO2_PER_ROW = MAX_NUM_CO2 / CO2_NUM_ROWS;
-const CO2_ENDS_MIN_Y = 0.4;
-const CO2_ENDS_MAX_Y = 0.6;
 const WATER_BEGINS_MIN_X = 0.05;
 const WATER_BEGINS_MAX_X = 0.9;
 const WATER_BEGINS_MIN_Y = 0.4;
@@ -45,7 +44,7 @@ export const SLIDER_MOLECULES = CO2_RANDOM_DIST.map((molecule, index) => {
         begins: { ...molecule },
         ends: {
           x: determineXEnd(molecule.x),
-          y: generateRandomNum(CO2_ENDS_MIN_Y, CO2_ENDS_MAX_Y),
+          y: determineCo2EndY(molecule.y),
           rotation: generateRandomRotation(),
         },
       },

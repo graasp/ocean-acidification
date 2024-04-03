@@ -1,3 +1,5 @@
+import { CO2_RELATIVE_SPEED_IN_WATER, SKY_HEIGHT } from '@/constants/canvas';
+
 import {
   Dissociation,
   Formation,
@@ -41,3 +43,11 @@ export const createDissociation = (
     ends: { ...hydrogenEnds, rotation: 0 },
   },
 });
+
+export const determineCo2EndY = (
+  startY: number,
+  waterBeginsY = SKY_HEIGHT,
+): number => {
+  const airDistance = waterBeginsY - startY;
+  return waterBeginsY + airDistance * CO2_RELATIVE_SPEED_IN_WATER;
+};
