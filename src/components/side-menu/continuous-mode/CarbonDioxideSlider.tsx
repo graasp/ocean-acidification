@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { Box } from '@mui/material';
 
-import { setCarbonDioxide, setSliderMolecules } from '@/actions/app-settings';
+import { setCarbonDioxide, setDistribution } from '@/actions/app-settings';
 import {
   CO2_SLIDER_MARKS,
   CO2_SLIDER_MAX,
@@ -24,7 +24,12 @@ const container = {
 
 const CarbonDioxideSlider = (): JSX.Element => {
   const { state, dispatch } = useContext(AppSettingsContext);
-  const { isPlaying, sliderMolecules, intervalCount, carbonDioxide } = state;
+  const {
+    isPlaying,
+    carbonDioxide,
+    reactiveMoleculeDistribution,
+    intervalCount,
+  } = state;
 
   const label = (
     <>
@@ -35,11 +40,11 @@ const CarbonDioxideSlider = (): JSX.Element => {
   const onChange = (event: Event, value: number | number[]): void => {
     const sliderValue = value as number;
     const updatedDistribution = updateDistribution(
-      sliderMolecules,
+      reactiveMoleculeDistribution,
       sliderValue,
       intervalCount,
     );
-    dispatch(setSliderMolecules(updatedDistribution));
+    dispatch(setDistribution(updatedDistribution));
     dispatch(setCarbonDioxide(sliderValue));
   };
 

@@ -1,6 +1,7 @@
 export const CO2_SLIDER_MIN = 0;
 export const CO2_SLIDER_MAX = 1000;
 export const CO2_SLIDER_STEP = 50;
+export const CO2_SLIDER_NUM_STEPS = CO2_SLIDER_MAX / CO2_SLIDER_STEP;
 const NUM_STEPS = (CO2_SLIDER_MAX - CO2_SLIDER_MIN) / CO2_SLIDER_STEP + 1;
 export const CO2_SLIDER_MARKS = new Array(NUM_STEPS)
   .fill(null)
@@ -10,6 +11,8 @@ export const CO2_SLIDER_MARKS = new Array(NUM_STEPS)
       index === 0 || index === NUM_STEPS - 1 ? index * CO2_SLIDER_STEP : null,
   }));
 export const CO2_ADDED_PER_INCREMENT = 3;
+export const STATIC_CO2_ADDED_PER_INCREMENT = 2;
+export const REACTIVE_CO2_ADDED_PER_INCREMENT = 1;
 export const CARBON_RADIUS = 12;
 export const OXYGEN_RADIUS = 10;
 export const NITROGEN_RADIUS = 10;
@@ -24,7 +27,7 @@ export const ACTIVE_EQUATION_BACKGROUND = '#d6fed2';
 export const PERIODS = [
   { year: '1850', co2: 300 },
   { year: '1990', co2: 350 },
-  { year: '2015', co2: 400 },
+  { year: '2015', co2: 450 },
   { year: '2050', co2: 550 },
 ];
 export const DEFAULT_PERIOD = PERIODS[2];

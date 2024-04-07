@@ -1,8 +1,8 @@
+import { determineCo2EndY } from '@/utils/molecules';
 import {
   createDissociation,
   createFormation,
   createMigration,
-  determineCo2EndY,
 } from '@/utils/motion-objects';
 
 const CO2_MIGRATION = createMigration(

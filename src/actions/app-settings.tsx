@@ -7,14 +7,14 @@ import {
   SET_ANIMATION_INDEX,
   SET_CARBON_DIOXIDE,
   SET_DIMENSIONS,
-  SET_SLIDER_MOLECULES,
+  SET_DISTRIBUTION,
   SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PLAY,
   TOGGLE_SHOW_SHELLS,
 } from '@/types/app-settings';
-import { SliderMoleculesType } from '@/utils/molecules/types';
+import { ReactiveSliderMoleculesType } from '@/utils/molecules/types';
 
 interface Dimensions {
   width: number;
@@ -63,10 +63,10 @@ export const toggleShowShells = (): appSettingsActionType => ({
   type: TOGGLE_SHOW_SHELLS,
 });
 
-export const setSliderMolecules = (
-  payload: SliderMoleculesType[],
+export const setDistribution = (
+  payload: ReactiveSliderMoleculesType[],
 ): appSettingsActionType => ({
-  type: SET_SLIDER_MOLECULES,
+  type: SET_DISTRIBUTION,
   payload,
 });
 

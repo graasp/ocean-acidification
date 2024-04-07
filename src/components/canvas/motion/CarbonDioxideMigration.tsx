@@ -13,6 +13,7 @@ interface Props {
   molecules: Migration;
   reverse: boolean;
   hideAfterCompletion?: boolean;
+  hideAtStart?: boolean;
   backwards: boolean;
 }
 
@@ -21,6 +22,7 @@ const CarbonDioxideMigration = ({
   molecules,
   reverse,
   hideAfterCompletion,
+  hideAtStart,
   backwards,
 }: Props): JSX.Element | null => {
   const { state } = useContext(AppSettingsContext);
@@ -39,7 +41,9 @@ const CarbonDioxideMigration = ({
     netIntervals,
     backwards,
   );
-  const hideMolecule = hideAfterCompletion && netIntervals > MOTION_INTERVAL;
+  const hideMolecule =
+    (hideAfterCompletion && netIntervals > MOTION_INTERVAL) ||
+    (hideAtStart && netIntervals < 0);
 
   return hideMolecule ? null : (
     <CarbonDioxide

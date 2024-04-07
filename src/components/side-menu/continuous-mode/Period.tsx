@@ -10,12 +10,13 @@ import {
 
 import {
   setCarbonDioxide,
-  setSliderMolecules,
+  setDistribution,
   setYear,
 } from '@/actions/app-settings';
 import { DEFAULT_CO2, PERIODS } from '@/constants/side-menu';
+import { REACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/reactive-slider-molecules';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
-import { updateDistribution } from '@/utils/molecules';
+import { computeEquilibriumDistribution } from '@/utils/molecules';
 
 import SideMenuHeader from '../common/SideMenuHeader';
 
@@ -40,7 +41,7 @@ const radioText = {
 
 const Period = (): JSX.Element => {
   const { state, dispatch } = useContext(AppSettingsContext);
-  const { isPlaying, year, sliderMolecules } = state;
+  const { isPlaying, year } = state;
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const newYear = (event.target as HTMLInputElement).value;
@@ -48,12 +49,11 @@ const Period = (): JSX.Element => {
     const newCarbonDioxide =
       PERIODS.find((period) => period.year === newYear)?.co2 || DEFAULT_CO2;
     dispatch(setCarbonDioxide(newCarbonDioxide));
-    const newDistribution = updateDistribution(
-      sliderMolecules,
+    const equilibriumDistribution = computeEquilibriumDistribution(
+      REACTIVE_CO2_DISTRIBUTION,
       newCarbonDioxide,
-      0,
     );
-    dispatch(setSliderMolecules(newDistribution));
+    dispatch(setDistribution(equilibriumDistribution));
   };
 
   return (

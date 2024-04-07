@@ -4,7 +4,7 @@ import { Group } from 'react-konva';
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { findCarbonicAcidCoordinates } from '@/utils/molecules';
-import { SliderMoleculesType } from '@/utils/molecules/types';
+import { ReactiveSliderMoleculesType } from '@/utils/molecules/types';
 import {
   createDissociation,
   createFormation,
@@ -16,7 +16,7 @@ import CarbonicAcidDissociation from './CarbonicAcidDissociation';
 import CarbonicAcidFormation from './CarbonicAcidFormation';
 
 interface Props {
-  sliderMolecule: SliderMoleculesType;
+  sliderMolecule: ReactiveSliderMoleculesType;
 }
 
 const CarbonDioxideCycle = ({ sliderMolecule }: Props): JSX.Element => {
@@ -26,8 +26,7 @@ const CarbonDioxideCycle = ({ sliderMolecule }: Props): JSX.Element => {
   const { molecules, properties } = sliderMolecule;
   const { carbonDioxide, waterBegins, carbonicAcidEnds, hydrogenEnds } =
     molecules;
-  const { showReactiveCarbonDioxide, beginsAt, reverse, deProtonates } =
-    properties;
+  const { beginsAt, reverse } = properties;
 
   const formation = createFormation(carbonDioxide.ends, waterBegins);
   const carbonicAcidBegins = findCarbonicAcidCoordinates(
@@ -43,32 +42,33 @@ const CarbonDioxideCycle = ({ sliderMolecule }: Props): JSX.Element => {
     true,
   );
 
+  const co2migrationMolecules = reverse
+    ? createMigration(carbonDioxide.begins, carbonDioxide.ends)
+    : createMigration(carbonDioxide.begins, carbonDioxide.ends);
+
   return (
     <Group>
-      {showReactiveCarbonDioxide && (
-        <CarbonDioxideMigration
-          beginsAfter={beginsAt}
-          molecules={createMigration(carbonDioxide.begins, carbonDioxide.ends)}
-          reverse={reverse}
-          backwards={reverse}
-          hideAfterCompletion
-        />
-      )}
+      <CarbonDioxideMigration
+        beginsAfter={reverse ? beginsAt + MOTION_INTERVAL * 2 : beginsAt}
+        molecules={co2migrationMolecules}
+        reverse={reverse}
+        backwards={reverse}
+        hideAtStart={reverse}
+        hideAfterCompletion={!reverse}
+      />
       <CarbonicAcidFormation
         beginsAfter={beginsAt + MOTION_INTERVAL}
         molecules={formation}
         reverse={reverse}
         hideCo2AtStart
-        hideAfterCompletion={deProtonates}
+        hideAfterCompletion
       />
-      {deProtonates && (
-        <CarbonicAcidDissociation
-          beginsAfter={beginsAt + MOTION_INTERVAL * 2}
-          molecules={dissociation}
-          hideAtStart
-          reverse={reverse}
-        />
-      )}
+      <CarbonicAcidDissociation
+        beginsAfter={reverse ? beginsAt : beginsAt + MOTION_INTERVAL * 2}
+        molecules={dissociation}
+        hideAtStart
+        reverse={reverse}
+      />
     </Group>
   );
 };
