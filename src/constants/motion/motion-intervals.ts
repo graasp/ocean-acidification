@@ -1,4 +1,4 @@
-export const MOTION_INTERVAL = 150;
+export const MOTION_INTERVAL = 200;
 
 export const FORMATION_INTERVALS = {
   intervalOne: MOTION_INTERVAL * 0.6,
