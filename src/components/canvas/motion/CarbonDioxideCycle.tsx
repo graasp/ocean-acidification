@@ -4,35 +4,37 @@ import { Group } from 'react-konva';
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { findCarbonicAcidCoordinates } from '@/utils/molecules';
-import { CarbonDioxideCycleType } from '@/utils/molecules/types';
-import { createDissociation, createFormation } from '@/utils/motion-objects';
+import { ReactiveSliderMoleculesType } from '@/utils/molecules/types';
+import {
+  createDissociation,
+  createFormation,
+  createMigration,
+} from '@/utils/motion-objects';
 
 import CarbonDioxideMigration from './CarbonDioxideMigration';
 import CarbonicAcidDissociation from './CarbonicAcidDissociation';
 import CarbonicAcidFormation from './CarbonicAcidFormation';
 
 interface Props {
-  cycle: CarbonDioxideCycleType;
-  beginsAt: number;
+  sliderMolecule: ReactiveSliderMoleculesType;
 }
 
-const CarbonDioxideCycle = ({ cycle, beginsAt }: Props): JSX.Element => {
+const CarbonDioxideCycle = ({ sliderMolecule }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { dimensions } = state;
   const { width, height } = dimensions;
-  const { co2Migration, waterBegins, carbonicAcidEnds, hydrogenEnds } = cycle;
-  const { deProtonates } = cycle;
-  const { co2 } = co2Migration;
+  const { molecules, properties } = sliderMolecule;
+  const { carbonDioxide, waterBegins, carbonicAcidEnds, hydrogenEnds } =
+    molecules;
+  const { beginsAt, reverse } = properties;
 
-  const formation = createFormation(co2.ends, waterBegins);
-
+  const formation = createFormation(carbonDioxide.ends, waterBegins);
   const carbonicAcidBegins = findCarbonicAcidCoordinates(
-    co2.ends,
+    carbonDioxide.ends,
     waterBegins,
     height,
     width,
   );
-
   const dissociation = createDissociation(
     carbonicAcidBegins,
     carbonicAcidEnds,
@@ -40,29 +42,33 @@ const CarbonDioxideCycle = ({ cycle, beginsAt }: Props): JSX.Element => {
     true,
   );
 
+  const co2migrationMolecules = reverse
+    ? createMigration(carbonDioxide.begins, carbonDioxide.ends)
+    : createMigration(carbonDioxide.begins, carbonDioxide.ends);
+
   return (
     <Group>
       <CarbonDioxideMigration
-        beginsAfter={beginsAt}
-        molecules={co2Migration}
-        reverse={false}
-        hideAfterCompletion
+        beginsAfter={reverse ? beginsAt + MOTION_INTERVAL * 2 : beginsAt}
+        molecules={co2migrationMolecules}
+        reverse={reverse}
+        backwards={reverse}
+        hideAtStart={reverse}
+        hideAfterCompletion={!reverse}
       />
       <CarbonicAcidFormation
         beginsAfter={beginsAt + MOTION_INTERVAL}
         molecules={formation}
-        reverse={false}
+        reverse={reverse}
         hideCo2AtStart
-        hideAfterCompletion={deProtonates}
+        hideAfterCompletion
       />
-      {deProtonates && (
-        <CarbonicAcidDissociation
-          beginsAfter={beginsAt + MOTION_INTERVAL * 2}
-          molecules={dissociation}
-          hideAtStart
-          reverse={false}
-        />
-      )}
+      <CarbonicAcidDissociation
+        beginsAfter={reverse ? beginsAt : beginsAt + MOTION_INTERVAL * 2}
+        molecules={dissociation}
+        hideAtStart
+        reverse={reverse}
+      />
     </Group>
   );
 };

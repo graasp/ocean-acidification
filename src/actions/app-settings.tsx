@@ -6,13 +6,17 @@ import {
   RESET_SETTINGS,
   SET_ANIMATION_INDEX,
   SET_DIMENSIONS,
-  SET_SLIDER_MOLECULES,
+  SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT,
+  SET_DISTRIBUTION,
+  SET_EQUILIBRIUM_CARBON_DIOXIDE,
+  SET_SLIDER_CARBON_DIOXIDE,
+  SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PLAY,
   TOGGLE_SHOW_SHELLS,
 } from '@/types/app-settings';
-import { SliderMoleculesType } from '@/utils/molecules/types';
+import { ReactiveSliderMoleculesType } from '@/utils/molecules/types';
 
 interface Dimensions {
   width: number;
@@ -61,9 +65,35 @@ export const toggleShowShells = (): appSettingsActionType => ({
   type: TOGGLE_SHOW_SHELLS,
 });
 
-export const setSliderMolecules = (
-  payload: SliderMoleculesType[],
+export const setDistribution = (
+  payload: ReactiveSliderMoleculesType[],
 ): appSettingsActionType => ({
-  type: SET_SLIDER_MOLECULES,
+  type: SET_DISTRIBUTION,
+  payload,
+});
+
+export const setYear = (payload: string): appSettingsActionType => ({
+  type: SET_YEAR,
+  payload,
+});
+
+export const setSliderCarbonDioxide = (
+  payload: number,
+): appSettingsActionType => ({
+  type: SET_SLIDER_CARBON_DIOXIDE,
+  payload,
+});
+
+export const setEquilibriumCarbonDioxide = (
+  payload: number,
+): appSettingsActionType => ({
+  type: SET_EQUILIBRIUM_CARBON_DIOXIDE,
+  payload,
+});
+
+export const setDisequilibriumCyclesBeginAt = (
+  payload: number,
+): appSettingsActionType => ({
+  type: SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT,
   payload,
 });

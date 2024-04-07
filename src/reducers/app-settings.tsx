@@ -1,7 +1,9 @@
 import { PERCENT_HOLES_INCREMENT } from '@/constants/canvas';
-import { SLIDER_MOLECULES } from '@/constants/motion/slider-molecules';
+import { DEFAULT_CO2, DEFAULT_YEAR } from '@/constants/side-menu';
+import { REACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/reactive-slider-molecules';
 import { CONTINUOUS, SEQUENTIAL } from '@/constants/strings';
-import { SliderMoleculesType } from '@/utils/molecules/types';
+import { computeEquilibriumDistribution } from '@/utils/molecules';
+import { ReactiveSliderMoleculesType } from '@/utils/molecules/types';
 
 import {
   DECREMENT_REEF_HOLES,
@@ -10,7 +12,11 @@ import {
   RESET_SETTINGS,
   SET_ANIMATION_INDEX,
   SET_DIMENSIONS,
-  SET_SLIDER_MOLECULES,
+  SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT,
+  SET_DISTRIBUTION,
+  SET_EQUILIBRIUM_CARBON_DIOXIDE,
+  SET_SLIDER_CARBON_DIOXIDE,
+  SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PLAY,
@@ -30,7 +36,11 @@ export interface appSettingsType {
   animationIndex: number;
   animationInMotion: boolean;
   showShells: boolean;
-  sliderMolecules: SliderMoleculesType[];
+  reactiveMoleculeDistribution: ReactiveSliderMoleculesType[];
+  year: string;
+  sliderCarbonDioxide: number;
+  equilibriumCarbonDioxide: number;
+  disequilibriumCyclesBeginAt: number;
 }
 
 export interface appSettingsActionType {
@@ -48,7 +58,14 @@ export const initialAppSettings = {
   animationIndex: 0,
   animationInMotion: false,
   showShells: false,
-  sliderMolecules: SLIDER_MOLECULES,
+  reactiveMoleculeDistribution: computeEquilibriumDistribution(
+    REACTIVE_CO2_DISTRIBUTION,
+    DEFAULT_CO2,
+  ),
+  year: DEFAULT_YEAR,
+  sliderCarbonDioxide: DEFAULT_CO2,
+  equilibriumCarbonDioxide: DEFAULT_CO2,
+  disequilibriumCyclesBeginAt: 0,
 };
 
 export const appSettingsReducer = (
@@ -101,8 +118,20 @@ export const appSettingsReducer = (
     case TOGGLE_SHOW_SHELLS: {
       return { ...state, showShells: !state.showShells };
     }
-    case SET_SLIDER_MOLECULES: {
-      return { ...state, sliderMolecules: payload };
+    case SET_YEAR: {
+      return { ...state, year: payload };
+    }
+    case SET_SLIDER_CARBON_DIOXIDE: {
+      return { ...state, sliderCarbonDioxide: payload };
+    }
+    case SET_DISTRIBUTION: {
+      return { ...state, reactiveMoleculeDistribution: payload };
+    }
+    case SET_EQUILIBRIUM_CARBON_DIOXIDE: {
+      return { ...state, equilibriumCarbonDioxide: payload };
+    }
+    case SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT: {
+      return { ...state, disequilibriumCyclesBeginAt: payload };
     }
     default:
       return state;
