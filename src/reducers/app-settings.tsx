@@ -11,9 +11,11 @@ import {
   INCREMENT_REEF_HOLES,
   RESET_SETTINGS,
   SET_ANIMATION_INDEX,
-  SET_CARBON_DIOXIDE,
   SET_DIMENSIONS,
+  SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT,
   SET_DISTRIBUTION,
+  SET_EQUILIBRIUM_CARBON_DIOXIDE,
+  SET_SLIDER_CARBON_DIOXIDE,
   SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
@@ -36,7 +38,9 @@ export interface appSettingsType {
   showShells: boolean;
   reactiveMoleculeDistribution: ReactiveSliderMoleculesType[];
   year: string;
-  carbonDioxide: number;
+  sliderCarbonDioxide: number;
+  equilibriumCarbonDioxide: number;
+  disequilibriumCyclesBeginAt: number;
 }
 
 export interface appSettingsActionType {
@@ -59,7 +63,9 @@ export const initialAppSettings = {
     DEFAULT_CO2,
   ),
   year: DEFAULT_YEAR,
-  carbonDioxide: DEFAULT_CO2,
+  sliderCarbonDioxide: DEFAULT_CO2,
+  equilibriumCarbonDioxide: DEFAULT_CO2,
+  disequilibriumCyclesBeginAt: 0,
 };
 
 export const appSettingsReducer = (
@@ -115,11 +121,17 @@ export const appSettingsReducer = (
     case SET_YEAR: {
       return { ...state, year: payload };
     }
-    case SET_CARBON_DIOXIDE: {
-      return { ...state, carbonDioxide: payload };
+    case SET_SLIDER_CARBON_DIOXIDE: {
+      return { ...state, sliderCarbonDioxide: payload };
     }
     case SET_DISTRIBUTION: {
       return { ...state, reactiveMoleculeDistribution: payload };
+    }
+    case SET_EQUILIBRIUM_CARBON_DIOXIDE: {
+      return { ...state, equilibriumCarbonDioxide: payload };
+    }
+    case SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT: {
+      return { ...state, disequilibriumCyclesBeginAt: payload };
     }
     default:
       return state;

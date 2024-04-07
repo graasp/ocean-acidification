@@ -9,21 +9,23 @@ import CarbonDioxide from '../molecules/CarbonDioxide';
 
 const StaticSliderMolecules = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { dimensions, carbonDioxide } = state;
+  const { dimensions, sliderCarbonDioxide } = state;
   const { width, height } = dimensions;
 
   return (
     <Group>
-      {computeStaticDistribution(STATIC_CO2_DISTRIBUTION, carbonDioxide).map(
-        ({ coordinates, show }, index) =>
-          show ? (
-            <CarbonDioxide
-              x={coordinates.x * width}
-              y={coordinates.y * height}
-              rotation={coordinates.rotation}
-              key={index}
-            />
-          ) : null,
+      {computeStaticDistribution(
+        STATIC_CO2_DISTRIBUTION,
+        sliderCarbonDioxide,
+      ).map(({ coordinates, show }, index) =>
+        show ? (
+          <CarbonDioxide
+            x={coordinates.x * width}
+            y={coordinates.y * height}
+            rotation={coordinates.rotation}
+            key={index}
+          />
+        ) : null,
       )}
     </Group>
   );

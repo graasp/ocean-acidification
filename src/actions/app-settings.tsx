@@ -5,9 +5,11 @@ import {
   INCREMENT_REEF_HOLES,
   RESET_SETTINGS,
   SET_ANIMATION_INDEX,
-  SET_CARBON_DIOXIDE,
   SET_DIMENSIONS,
+  SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT,
   SET_DISTRIBUTION,
+  SET_EQUILIBRIUM_CARBON_DIOXIDE,
+  SET_SLIDER_CARBON_DIOXIDE,
   SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
@@ -75,7 +77,23 @@ export const setYear = (payload: string): appSettingsActionType => ({
   payload,
 });
 
-export const setCarbonDioxide = (payload: number): appSettingsActionType => ({
-  type: SET_CARBON_DIOXIDE,
+export const setSliderCarbonDioxide = (
+  payload: number,
+): appSettingsActionType => ({
+  type: SET_SLIDER_CARBON_DIOXIDE,
+  payload,
+});
+
+export const setEquilibriumCarbonDioxide = (
+  payload: number,
+): appSettingsActionType => ({
+  type: SET_EQUILIBRIUM_CARBON_DIOXIDE,
+  payload,
+});
+
+export const setDisequilibriumCyclesBeginAt = (
+  payload: number,
+): appSettingsActionType => ({
+  type: SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT,
   payload,
 });

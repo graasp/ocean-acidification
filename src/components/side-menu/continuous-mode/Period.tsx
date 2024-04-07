@@ -9,8 +9,9 @@ import {
 } from '@mui/material';
 
 import {
-  setCarbonDioxide,
   setDistribution,
+  setEquilibriumCarbonDioxide,
+  setSliderCarbonDioxide,
   setYear,
 } from '@/actions/app-settings';
 import { DEFAULT_CO2, PERIODS } from '@/constants/side-menu';
@@ -48,7 +49,8 @@ const Period = (): JSX.Element => {
     dispatch(setYear(newYear));
     const newCarbonDioxide =
       PERIODS.find((period) => period.year === newYear)?.co2 || DEFAULT_CO2;
-    dispatch(setCarbonDioxide(newCarbonDioxide));
+    dispatch(setSliderCarbonDioxide(newCarbonDioxide));
+    dispatch(setEquilibriumCarbonDioxide(newCarbonDioxide));
     const equilibriumDistribution = computeEquilibriumDistribution(
       REACTIVE_CO2_DISTRIBUTION,
       newCarbonDioxide,
