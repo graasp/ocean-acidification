@@ -72,3 +72,11 @@ export interface StaticSliderMoleculesType {
   coordinates: Point;
   show: boolean;
 }
+
+export interface MoleculeCounts {
+  co2Air: number;
+  co2Water: number;
+  carbonicAcid: number;
+  hydrogen: number;
+  bicarbonate: number;
+}
