@@ -1,14 +1,17 @@
-export const CO2_SLIDER_MIN = 0;
-export const CO2_SLIDER_MAX = 1000;
+export const CO2_SLIDER_MIN = 200;
+export const CO2_SLIDER_MAX = 600;
 export const CO2_SLIDER_STEP = 50;
-export const CO2_SLIDER_NUM_STEPS = CO2_SLIDER_MAX / CO2_SLIDER_STEP;
-const NUM_STEPS = (CO2_SLIDER_MAX - CO2_SLIDER_MIN) / CO2_SLIDER_STEP + 1;
-export const CO2_SLIDER_MARKS = new Array(NUM_STEPS)
+export const CO2_SLIDER_NUM_INCREMENTS =
+  (CO2_SLIDER_MAX - CO2_SLIDER_MIN) / CO2_SLIDER_STEP;
+const NUM_MARKS = (CO2_SLIDER_MAX - CO2_SLIDER_MIN) / CO2_SLIDER_STEP + 1;
+export const CO2_SLIDER_MARKS = new Array(NUM_MARKS)
   .fill(null)
   .map((emptyElement, index) => ({
-    value: index * CO2_SLIDER_STEP,
+    value: CO2_SLIDER_MIN + index * CO2_SLIDER_STEP,
     label:
-      index === 0 || index === NUM_STEPS - 1 ? index * CO2_SLIDER_STEP : null,
+      index === 0 || index === NUM_MARKS - 1
+        ? CO2_SLIDER_MIN + index * CO2_SLIDER_STEP
+        : null,
   }));
 export const CO2_ADDED_PER_INCREMENT = 3;
 export const STATIC_CO2_ADDED_PER_INCREMENT = 2;
