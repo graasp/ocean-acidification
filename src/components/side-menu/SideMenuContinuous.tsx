@@ -4,7 +4,7 @@ import CustomDivider from './common/CustomDivider';
 import CarbonDioxideSlider from './continuous-mode/CarbonDioxideSlider';
 import Period from './continuous-mode/Period';
 import ShellsToggle from './continuous-mode/ShellsToggle';
-import MoleculeCountTable from './molecule-count-table/MoleculeCountTable';
+import ArrowsStateManager from './molecule-count-table/ArrowsStateManager';
 
 const SideMenuContinuous = (): JSX.Element => (
   <Box>
@@ -12,7 +12,7 @@ const SideMenuContinuous = (): JSX.Element => (
     <CustomDivider />
     <Period />
     <CustomDivider />
-    <MoleculeCountTable />
+    <ArrowsStateManager />
     <CustomDivider />
     <ShellsToggle />
   </Box>

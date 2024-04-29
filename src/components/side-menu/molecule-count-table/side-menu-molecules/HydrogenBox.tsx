@@ -1,6 +1,7 @@
 import { Box } from '@mui/material';
 
 import { SEA_FILL } from '@/constants/canvas';
+import { TABLE_ACTIVE_ANIMATION } from '@/constants/side-menu';
 
 import SideMenuHydrogen from './SideMenuHydrogen';
 
@@ -13,10 +14,18 @@ const styles = {
   background: SEA_FILL,
 };
 
-const HydrogenBox = (): JSX.Element => (
-  <Box sx={styles}>
-    <SideMenuHydrogen />
-  </Box>
-);
+interface Props {
+  isActive: boolean;
+}
+
+const HydrogenBox = ({ isActive }: Props): JSX.Element => {
+  const blink = isActive ? TABLE_ACTIVE_ANIMATION : null;
+
+  return (
+    <Box sx={{ ...styles, ...blink }}>
+      <SideMenuHydrogen />
+    </Box>
+  );
+};
 
 export default HydrogenBox;
