@@ -80,3 +80,14 @@ export interface MoleculeCounts {
   hydrogen: number;
   bicarbonate: number;
 }
+
+interface ArrowsState {
+  down: boolean;
+  up: boolean;
+}
+
+export interface AllArrowsState {
+  top: ArrowsState;
+  middle: ArrowsState;
+  bottom: ArrowsState;
+}

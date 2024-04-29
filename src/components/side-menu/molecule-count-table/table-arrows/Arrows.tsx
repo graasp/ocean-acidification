@@ -12,10 +12,22 @@ const styles = {
   height: ARROWS_CONTAINER_HEIGHT,
 };
 
-const Arrows = (): JSX.Element => (
+interface Props {
+  downActive: boolean;
+  upActive: boolean;
+  downIsLarge?: boolean;
+  upIsLarge?: boolean;
+}
+
+const Arrows = ({
+  downActive,
+  upActive,
+  downIsLarge,
+  upIsLarge,
+}: Props): JSX.Element => (
   <Box sx={styles}>
-    <DownArrow />
-    <UpArrow />
+    <DownArrow isActive={downActive} isLarge={downIsLarge} />
+    <UpArrow isActive={upActive} isLarge={upIsLarge} />
   </Box>
 );
 

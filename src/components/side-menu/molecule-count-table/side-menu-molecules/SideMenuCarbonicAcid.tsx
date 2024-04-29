@@ -4,6 +4,7 @@ import { SEA_FILL } from '@/constants/canvas';
 import {
   MOLECULE_CONTAINER_HEIGHT,
   MOLECULE_CONTAINER_PADDING,
+  TABLE_ACTIVE_ANIMATION,
 } from '@/constants/side-menu';
 
 import SideMenuCarbon from './SideMenuCarbon';
@@ -60,33 +61,41 @@ const defaultProps = {
 
 interface Props {
   isBicarbonate?: boolean;
+  isActive?: boolean;
 }
 
-const SideMenuCarbonicAcid = ({ isBicarbonate }: Props): JSX.Element => (
-  <Box sx={container}>
-    <Box>
-      <Box sx={leftMolecules}>
-        <Box sx={firstHydrogen}>
-          <SideMenuHydrogen isBicarbonate={isBicarbonate} />
-        </Box>
+const SideMenuCarbonicAcid = ({
+  isBicarbonate,
+  isActive,
+}: Props): JSX.Element => {
+  const blink = isActive ? TABLE_ACTIVE_ANIMATION : null;
 
-        <SideMenuOxygen />
-      </Box>
-    </Box>
-    <Box sx={centerContainerStyles}>
-      <Box sx={oxygenHydrogen}>
-        <Box sx={secondHydrogen}>
-          <SideMenuHydrogen />
+  return (
+    <Box sx={{ ...container, ...blink }}>
+      <Box>
+        <Box sx={leftMolecules}>
+          <Box sx={firstHydrogen}>
+            <SideMenuHydrogen isBicarbonate={isBicarbonate} />
+          </Box>
+
+          <SideMenuOxygen />
         </Box>
-        <SideMenuOxygen />
       </Box>
-      <SideMenuCarbon />
-      <Box sx={bottomOxygen}>
-        <SideMenuOxygen />
+      <Box sx={centerContainerStyles}>
+        <Box sx={oxygenHydrogen}>
+          <Box sx={secondHydrogen}>
+            <SideMenuHydrogen />
+          </Box>
+          <SideMenuOxygen />
+        </Box>
+        <SideMenuCarbon />
+        <Box sx={bottomOxygen}>
+          <SideMenuOxygen />
+        </Box>
       </Box>
     </Box>
-  </Box>
-);
+  );
+};
 
 SideMenuCarbonicAcid.defaultProps = defaultProps;
 

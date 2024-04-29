@@ -34,9 +34,6 @@ export const DEFAULT_PERIOD = PERIODS[2];
 export const DEFAULT_YEAR = DEFAULT_PERIOD.year;
 export const DEFAULT_CO2 = DEFAULT_PERIOD.co2;
 
-export const FADED_OPACITY = 0.5;
-export const DEFAULT_OPACITY = 1;
-
 // these constants/calculations to center table arrows on top of table
 export const MOLECULE_CONTAINER_HEIGHT = '40px';
 export const MOLECULE_CONTAINER_PADDING = '4px';
@@ -48,3 +45,23 @@ export const ARROWS_CONTAINER_HEIGHT = '20px';
 // its height is 20px, container + its border is 42px, that minus half its height
 export const ALL_ARROWS_CONTAINER_HEIGHT = '104px';
 export const ALL_ARROWS_CONTAINER_MARGIN_TOP = '32px';
+
+export const TABLE_ARROW_ACTIVE_COLOR = '#0047AB';
+export const TABLE_ARROW_INACTIVE_COLOR = 'black';
+export const TABLE_ARROW_ACTIVE_SIZE = 'h5';
+export const TABLE_ARROW_INACTIVE_SIZE = 'body1';
+export const TABLE_ACTIVE_ANIMATION = {
+  animation: 'blinker 2s linear infinite',
+  '@keyframes blinker': { '50%': { opacity: 0.5 } },
+};
+export const DEFAULT_ARROWS_STATE = {
+  top: { up: false, down: false },
+  middle: { up: false, down: false },
+  bottom: { up: false, down: false },
+};
+export const CO2_AIR_MOVING = 100;
+export const H2CO3_FORMING = 400;
+export const DEPROTONATION = 600;
+export const H2CO3_FORMING_REVERSE = 100;
+export const H2CO3_MOVING = 280;
+export const CO2_WATER_MOVING = 600;
