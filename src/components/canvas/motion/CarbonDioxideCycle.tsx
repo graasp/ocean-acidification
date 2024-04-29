@@ -52,7 +52,6 @@ const CarbonDioxideCycle = ({ sliderMolecule }: Props): JSX.Element => {
         beginsAfter={reverse ? beginsAt + MOTION_INTERVAL * 2 : beginsAt}
         molecules={co2migrationMolecules}
         reverse={reverse}
-        backwards={reverse}
         hideAtStart={reverse}
         hideAfterCompletion
       />

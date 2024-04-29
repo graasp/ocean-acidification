@@ -1,9 +1,7 @@
 import {
   CARBON_RADIUS,
-  CO2_RELATIVE_SPEED_IN_WATER,
   HYDROGEN_X_OFFSET,
   OXYGEN_RADIUS,
-  SKY_HEIGHT,
 } from '@/constants/canvas';
 import {
   CO2_SLIDER_STEP,
@@ -83,12 +81,11 @@ export const determineCo2EndX = (xStart: number): number => {
   return xStart - distanceMoved;
 };
 
-export const determineCo2EndY = (
-  startY: number,
-  waterBeginsY = SKY_HEIGHT,
-): number => {
-  const airDistance = waterBeginsY - startY;
-  return waterBeginsY + airDistance * CO2_RELATIVE_SPEED_IN_WATER;
+const CO2_MIN_MOVE_Y = 0.3;
+const CO2_MAX_MOVE_Y = 0.4;
+export const determineCo2EndY = (startY: number): number => {
+  const distanceMoved = generateRandomNum(CO2_MIN_MOVE_Y, CO2_MAX_MOVE_Y);
+  return startY + distanceMoved;
 };
 
 export const computeStaticDistribution = (

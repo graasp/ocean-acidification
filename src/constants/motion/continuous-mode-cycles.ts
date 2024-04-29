@@ -1,4 +1,3 @@
-import { determineCo2EndY } from '@/utils/molecules';
 import {
   createDissociation,
   createFormation,
@@ -7,7 +6,7 @@ import {
 
 const CO2_MIGRATION = createMigration(
   { x: 0.2, y: 0.25, rotation: -80 },
-  { x: 0.1, y: determineCo2EndY(0.25), rotation: 120 },
+  { x: 0.1, y: 0.55, rotation: 120 },
 );
 
 const CARBONIC_ACID_FORMATION = createFormation(
@@ -33,7 +32,7 @@ const REVERSE_FORMATION = createFormation(
 );
 
 const REVERSE_MIGRATION = createMigration(
-  { x: 0.9, y: determineCo2EndY(0.225), rotation: 110 },
+  { x: 0.9, y: 0.6, rotation: 110 },
   { x: 0.8, y: 0.225, rotation: -90 },
 );
 
@@ -47,8 +46,8 @@ export const CYCLE_1 = {
 };
 
 const CO2_MIGRATION_2 = createMigration(
-  { x: 0.45, y: 0.155, rotation: 90 },
-  { x: 0.35, y: determineCo2EndY(0.155), rotation: 190 },
+  { x: 0.45, y: 0.2, rotation: 90 },
+  { x: 0.35, y: 0.6, rotation: 190 },
 );
 
 const CARBONIC_ACID_FORMATION_2 = createFormation(
@@ -74,8 +73,8 @@ const REVERSE_FORMATION_2 = createFormation(
 );
 
 const REVERSE_MIGRATION_2 = createMigration(
-  { x: 0.8, y: determineCo2EndY(0.17), rotation: 80 },
-  { x: 0.6, y: 0.17, rotation: 250 },
+  { x: 0.8, y: 0.62, rotation: 80 },
+  { x: 0.6, y: 0.21, rotation: 250 },
 );
 
 const CYCLE_2 = {
@@ -89,7 +88,7 @@ const CYCLE_2 = {
 
 const CO2_MIGRATION_3 = createMigration(
   { x: 0.4, y: 0.185, rotation: 50 },
-  { x: 0.3, y: determineCo2EndY(0.185), rotation: -10 },
+  { x: 0.3, y: 0.55, rotation: -10 },
 );
 
 const CARBONIC_ACID_FORMATION_3 = createFormation(
@@ -115,7 +114,7 @@ const REVERSE_FORMATION_3 = createFormation(
 );
 
 const REVERSE_MIGRATION_3 = createMigration(
-  { x: 0.6, y: determineCo2EndY(0.2), rotation: 10 },
+  { x: 0.6, y: 0.5, rotation: 10 },
   { x: 0.7, y: 0.2, rotation: 90 },
 );
 

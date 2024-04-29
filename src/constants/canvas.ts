@@ -152,5 +152,3 @@ export const STATIC_HYDROGENS = [
 ];
 
 export const STATIC_BICARBONATES = [{ x: 0.425, y: 0.85, rotation: 45 }];
-
-export const CO2_RELATIVE_SPEED_IN_WATER = 2;
