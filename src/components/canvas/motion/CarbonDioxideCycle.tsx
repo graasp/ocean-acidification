@@ -21,7 +21,7 @@ interface Props {
 
 const CarbonDioxideCycle = ({ sliderMolecule }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { dimensions } = state;
+  const { dimensions, mode } = state;
   const { width, height } = dimensions;
   const { molecules, properties } = sliderMolecule;
   const { carbonDioxide, waterBegins, carbonicAcidEnds, hydrogenEnds } =
@@ -34,6 +34,7 @@ const CarbonDioxideCycle = ({ sliderMolecule }: Props): JSX.Element => {
     waterBegins,
     height,
     width,
+    mode,
   );
   const dissociation = createDissociation(
     carbonicAcidBegins,

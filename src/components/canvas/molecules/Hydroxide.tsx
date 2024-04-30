@@ -14,9 +14,9 @@ interface Props {
 
 const Hydroxide = ({ x, y }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { dimensions } = state;
+  const { dimensions, mode } = state;
   const { height } = dimensions;
-  const { oxygen, hydrogen } = createHydroxide({ x, y }, height);
+  const { oxygen, hydrogen } = createHydroxide({ x, y }, height, mode);
 
   return (
     <Group>

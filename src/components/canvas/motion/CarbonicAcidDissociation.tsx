@@ -29,7 +29,7 @@ const CarbonicAcidDissociation = ({
   hideAtStart,
 }: Props): JSX.Element | null => {
   const { state } = useContext(AppSettingsContext);
-  const { intervalCount, dimensions } = state;
+  const { intervalCount, dimensions, mode } = state;
   const { width, height } = dimensions;
 
   const componentCount = reverse
@@ -49,7 +49,7 @@ const CarbonicAcidDissociation = ({
   // x and y when hydrogen splits
   const x = computePosition(carbonicAcid, X, HYDROGEN_SPLITS) * width;
   const y = computePosition(carbonicAcid, Y, HYDROGEN_SPLITS) * height;
-  const { leftHydrogen } = createCarbonicAcid({ x, y }, height);
+  const { leftHydrogen } = createCarbonicAcid({ x, y }, height, mode);
   hydrogen.begins = {
     x: leftHydrogen.x / width,
     y: leftHydrogen.y / height,

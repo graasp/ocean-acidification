@@ -1,7 +1,12 @@
 import { useContext } from 'react';
 import { Circle } from 'react-konva';
 
-import { CARBON_FILL, CARBON_RADIUS } from '@/constants/canvas';
+import {
+  CARBON_FILL,
+  CARBON_RADIUS_CONT,
+  CARBON_RADIUS_SEQ,
+} from '@/constants/canvas';
+import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 const defaultProps = {
@@ -16,12 +21,12 @@ interface Props {
 
 const Carbon = ({ x, y }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { dimensions } = state;
+  const { dimensions, mode } = state;
   const { height } = dimensions;
 
-  return (
-    <Circle fill={CARBON_FILL} radius={CARBON_RADIUS * height} x={x} y={y} />
-  );
+  const radius = mode === SEQUENTIAL ? CARBON_RADIUS_SEQ : CARBON_RADIUS_CONT;
+
+  return <Circle fill={CARBON_FILL} radius={radius * height} x={x} y={y} />;
 };
 
 Carbon.defaultProps = defaultProps;

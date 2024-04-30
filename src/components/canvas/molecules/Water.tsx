@@ -18,9 +18,9 @@ interface Props {
 
 const Water = ({ x, y, rotation }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { dimensions } = state;
+  const { dimensions, mode } = state;
   const { height } = dimensions;
-  const { topLeft, center, topRight } = createWater({ x, y }, height);
+  const { topLeft, center, topRight } = createWater({ x, y }, height, mode);
 
   return (
     <Group x={center.x} y={center.y} rotation={rotation}>

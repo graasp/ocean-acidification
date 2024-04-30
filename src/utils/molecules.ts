@@ -1,13 +1,14 @@
 import {
-  CARBON_RADIUS,
-  HYDROGEN_X_OFFSET,
-  OXYGEN_RADIUS,
+  CARBON_PLUS_OXYGEN_CONT,
+  CARBON_PLUS_OXYGEN_SEQ,
+  HYDROGEN_X_OFFSET_CONT,
 } from '@/constants/canvas';
 import {
   CO2_SLIDER_STEP,
   REACTIVE_CO2_ADDED_PER_INCREMENT,
   STATIC_CO2_ADDED_PER_INCREMENT,
 } from '@/constants/side-menu';
+import { SEQUENTIAL } from '@/constants/strings';
 
 import {
   MoleculeCenter,
@@ -44,11 +45,13 @@ export const findCarbonicAcidCoordinates = (
   waterBegins: Point,
   height: number,
   width: number,
+  mode: string,
 ): PointWithoutRotation => {
-  const xOffset = HYDROGEN_X_OFFSET * (height / width);
+  const xOffset = HYDROGEN_X_OFFSET_CONT * (height / width);
   const horizontalMotion = (co2Begins.x - (waterBegins.x + xOffset)) / 2;
   const co2EndsX = co2Begins.x - horizontalMotion;
-  const carbonOxygenRadii = CARBON_RADIUS + OXYGEN_RADIUS;
+  const carbonOxygenRadii =
+    mode === SEQUENTIAL ? CARBON_PLUS_OXYGEN_SEQ : CARBON_PLUS_OXYGEN_CONT;
   const co2EndsY = waterBegins.y + carbonOxygenRadii;
   return { x: co2EndsX, y: co2EndsY };
 };

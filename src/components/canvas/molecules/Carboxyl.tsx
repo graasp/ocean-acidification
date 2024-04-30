@@ -14,9 +14,9 @@ interface Props {
 
 const Carboxyl = ({ x, y }: Props): JSX.Element | null => {
   const { state } = useContext(AppSettingsContext);
-  const { dimensions } = state;
+  const { dimensions, mode } = state;
   const { height } = dimensions;
-  const { hydrogen } = createCarboxyl({ x, y }, height);
+  const { hydrogen } = createCarboxyl({ x, y }, height, mode);
 
   return (
     <Group>

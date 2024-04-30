@@ -1,4 +1,8 @@
-import { CARBON_RADIUS, OXYGEN_RADIUS } from '@/constants/canvas';
+import {
+  CARBON_PLUS_OXYGEN_CONT,
+  CARBON_PLUS_OXYGEN_SEQ,
+} from '@/constants/canvas';
+import { SEQUENTIAL } from '@/constants/strings';
 
 import { MoleculeCenter } from './types';
 
@@ -11,9 +15,12 @@ interface CarbonDioxideCoordinates {
 export const createCarbonDioxide = (
   moleculeCenter: MoleculeCenter,
   height: number,
+  mode: string,
 ): CarbonDioxideCoordinates => {
   const { x: moleculeCenterX, y: moleculeCenterY } = moleculeCenter;
-  const carbonOxygen = (CARBON_RADIUS + OXYGEN_RADIUS) * height;
+  const carbonOxygen =
+    (mode === SEQUENTIAL ? CARBON_PLUS_OXYGEN_SEQ : CARBON_PLUS_OXYGEN_CONT) *
+    height;
 
   return {
     top: {

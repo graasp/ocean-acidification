@@ -20,10 +20,10 @@ interface Props {
 
 const Bicarbonate = ({ x, y, rotation }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { dimensions } = state;
+  const { dimensions, mode } = state;
   const { height } = dimensions;
   const { topOxygen, leftOxygen, bottomOxygen, topHydrogen } =
-    createCarbonicAcid({ x, y }, height);
+    createCarbonicAcid({ x, y }, height, mode);
 
   return (
     <Group x={x} y={y} rotation={rotation}>
