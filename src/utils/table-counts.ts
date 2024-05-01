@@ -6,8 +6,8 @@ import {
 import { createEmptyCountsObject } from '@/constants/table-counts';
 
 import {
+  ActiveSliderMoleculesType,
   MoleculeCounts,
-  ReactiveSliderMoleculesType,
   StaticSliderMoleculesType,
 } from './molecules/types';
 
@@ -39,8 +39,8 @@ export const countStaticMolecules = (
   return counts;
 };
 
-export const countReactiveMolecules = (
-  reactiveMolecules: ReactiveSliderMoleculesType[],
+export const countActiveMolecules = (
+  activeMolecules: ActiveSliderMoleculesType[],
   intervalCount: number,
   beginsAfter: number,
 ): MoleculeCounts => {
@@ -70,7 +70,7 @@ export const countReactiveMolecules = (
     netIntervals >= MOTION_INTERVAL * 2 + MOTION_INTERVAL / 2 &&
     netIntervals <= MOTION_INTERVAL * 3;
 
-  reactiveMolecules.forEach(({ properties }) => {
+  activeMolecules.forEach(({ properties }) => {
     const { beginsAt, reverse, showCycle } = properties;
     if (!showCycle) return;
     if (!reverse) {

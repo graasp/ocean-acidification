@@ -86,45 +86,4 @@ const CYCLE_2 = {
   reverseMigration: REVERSE_MIGRATION_2,
 };
 
-const CO2_MIGRATION_3 = createMigration(
-  { x: 0.4, y: 0.185, rotation: 50 },
-  { x: 0.3, y: 0.55, rotation: -10 },
-);
-
-const CARBONIC_ACID_FORMATION_3 = createFormation(
-  { x: 0.85, y: 0.9, rotation: -40 },
-  { x: 0.8, y: 0.85, rotation: 10 },
-);
-
-const CARBONIC_ACID_DISSOCIATION_3 = createDissociation(
-  { x: 0.35, y: 0.6 },
-  { x: 0.5, y: 0.45 },
-  { x: 0.375, y: 0.425 },
-);
-
-const REVERSE_DISSOCIATION_3 = createDissociation(
-  { x: 0.876, y: 0.625 },
-  { x: 0.925, y: 0.7 },
-  { x: 0.875, y: 0.6 },
-);
-
-const REVERSE_FORMATION_3 = createFormation(
-  { x: 0.3, y: 0.825, rotation: 120 },
-  { x: 0.35, y: 0.9, rotation: 10 },
-);
-
-const REVERSE_MIGRATION_3 = createMigration(
-  { x: 0.6, y: 0.5, rotation: 10 },
-  { x: 0.7, y: 0.2, rotation: 90 },
-);
-
-const CYCLE_3 = {
-  co2Migration: CO2_MIGRATION_3,
-  carbonicAcidFormation: CARBONIC_ACID_FORMATION_3,
-  carbonicAcidDissociation: CARBONIC_ACID_DISSOCIATION_3,
-  reverseDissociation: REVERSE_DISSOCIATION_3,
-  reverseFormation: REVERSE_FORMATION_3,
-  reverseMigration: REVERSE_MIGRATION_3,
-};
-
-export const CYCLES = [CYCLE_1, CYCLE_2, CYCLE_3];
+export const CYCLES = [CYCLE_1, CYCLE_2];

@@ -9,8 +9,8 @@ import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { computeStaticDistribution } from '@/utils/molecules';
 import { AllArrowsState } from '@/utils/molecules/types';
 import {
+  countActiveMolecules,
   countAllMolecules,
-  countReactiveMolecules,
   countStaticMolecules,
 } from '@/utils/table-counts';
 
@@ -31,7 +31,7 @@ interface Props {
 const MoleculeCountTable = ({ arrowsState }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const {
-    reactiveMoleculeDistribution,
+    activeMoleculeDistribution,
     sliderCarbonDioxide,
     intervalCount,
     disequilibriumCyclesBeginAt,
@@ -44,15 +44,15 @@ const MoleculeCountTable = ({ arrowsState }: Props): JSX.Element => {
   const { top, middle, bottom } = arrowsState;
 
   const continuousCyclesCount = countAllMolecules(ALL_CONTINUOUS_CYCLES);
-  const reactiveMoleculesCount = countReactiveMolecules(
-    reactiveMoleculeDistribution,
+  const activeMoleculesCount = countActiveMolecules(
+    activeMoleculeDistribution,
     intervalCount,
     disequilibriumCyclesBeginAt,
   );
   const staticMoleculesCount = countStaticMolecules(staticDistribution);
 
   const allMoleculesCount = countAllMolecules([
-    reactiveMoleculesCount,
+    activeMoleculesCount,
     continuousCyclesCount,
     staticMoleculesCount,
   ]);

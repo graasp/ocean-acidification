@@ -50,22 +50,24 @@ export interface AllAnimationsCycleType {
   reverseMigration: Migration;
 }
 
-interface ReactiveSliderMolecules {
+interface ActiveSliderMolecules {
   carbonDioxide: CompleteCoordinates;
   waterBegins: Point;
   carbonicAcidEnds: PointWithoutRotation;
   hydrogenEnds: PointWithoutRotation;
 }
 
-interface ReactiveSliderMoleculesProperties {
+interface ActiveSliderMoleculesProperties {
   beginsAt: number;
   reverse: boolean;
   showCycle: boolean;
+  formsCarbonicAcid: boolean;
+  deprotonates: boolean;
 }
 
-export interface ReactiveSliderMoleculesType {
-  molecules: ReactiveSliderMolecules;
-  properties: ReactiveSliderMoleculesProperties;
+export interface ActiveSliderMoleculesType {
+  molecules: ActiveSliderMolecules;
+  properties: ActiveSliderMoleculesProperties;
 }
 
 export interface StaticSliderMoleculesType {

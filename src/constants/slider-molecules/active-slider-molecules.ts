@@ -11,25 +11,25 @@ import {
 } from '@/utils/molecules';
 
 import {
+  ACTIVE_CO2_ADDED_PER_INCREMENT,
   CO2_SLIDER_NUM_INCREMENTS,
-  REACTIVE_CO2_ADDED_PER_INCREMENT,
 } from '../side-menu';
 
-const MAX_REACTIVE_CO2 =
-  CO2_SLIDER_NUM_INCREMENTS * REACTIVE_CO2_ADDED_PER_INCREMENT;
-const REACTIVE_CO2_NUM_ROWS = 2;
-const REACTIVE_CO2_PER_ROW = MAX_REACTIVE_CO2 / REACTIVE_CO2_NUM_ROWS;
-const REACTIVE_CO2_MIN_Y = 0.125;
-const REACTIVE_CO2_MAX_Y = 0.3;
+const MAX_ACTIVE_CO2 =
+  CO2_SLIDER_NUM_INCREMENTS * ACTIVE_CO2_ADDED_PER_INCREMENT;
+const ACTIVE_CO2_NUM_ROWS = 2;
+const ACTIVE_CO2_PER_ROW = MAX_ACTIVE_CO2 / ACTIVE_CO2_NUM_ROWS;
+const ACTIVE_CO2_MIN_Y = 0.125;
+const ACTIVE_CO2_MAX_Y = 0.3;
 
-const INITIAL_DISTRIBUTION = new Array(REACTIVE_CO2_NUM_ROWS)
+const INITIAL_DISTRIBUTION = new Array(ACTIVE_CO2_NUM_ROWS)
   .fill(null)
   .map((emptyElement, index) =>
     distributeMoleculesOnRow(
-      REACTIVE_CO2_PER_ROW,
-      REACTIVE_CO2_NUM_ROWS,
-      REACTIVE_CO2_MIN_Y,
-      REACTIVE_CO2_MAX_Y,
+      ACTIVE_CO2_PER_ROW,
+      ACTIVE_CO2_NUM_ROWS,
+      ACTIVE_CO2_MIN_Y,
+      ACTIVE_CO2_MAX_Y,
       index,
     ),
   )
@@ -37,8 +37,8 @@ const INITIAL_DISTRIBUTION = new Array(REACTIVE_CO2_NUM_ROWS)
 
 const SHUFFLED_DISTRIBUTION = _.shuffle(INITIAL_DISTRIBUTION);
 
-export const REACTIVE_CO2_DISTRIBUTION = SHUFFLED_DISTRIBUTION.map(
-  (coordinates) => {
+export const ACTIVE_CO2_DISTRIBUTION = SHUFFLED_DISTRIBUTION.map(
+  (coordinates, index) => {
     const co2EndsX = determineCo2EndX(coordinates.x);
     const co2EndsY = determineCo2EndY(coordinates.y);
     const co2Ends = { x: co2EndsX, y: co2EndsY };
@@ -57,7 +57,16 @@ export const REACTIVE_CO2_DISTRIBUTION = SHUFFLED_DISTRIBUTION.map(
         carbonicAcidEnds,
         hydrogenEnds: determineHydrogenEnds(carbonicAcidEnds),
       },
-      properties: { beginsAt: Infinity, reverse: false, showCycle: false },
+      properties: {
+        beginsAt: Infinity,
+        reverse: false,
+        showCycle: false,
+        formsCarbonicAcid: !(
+          index % ACTIVE_CO2_ADDED_PER_INCREMENT === 0 ||
+          index % ACTIVE_CO2_ADDED_PER_INCREMENT === 1
+        ),
+        deprotonates: index % ACTIVE_CO2_ADDED_PER_INCREMENT === 3,
+      },
     };
   },
 );

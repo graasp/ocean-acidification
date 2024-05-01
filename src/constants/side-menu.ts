@@ -13,9 +13,8 @@ export const CO2_SLIDER_MARKS = new Array(NUM_MARKS)
         ? CO2_SLIDER_MIN + index * CO2_SLIDER_STEP
         : null,
   }));
-export const CO2_ADDED_PER_INCREMENT = 3;
 export const STATIC_CO2_ADDED_PER_INCREMENT = 2;
-export const REACTIVE_CO2_ADDED_PER_INCREMENT = 1;
+export const ACTIVE_CO2_ADDED_PER_INCREMENT = 4;
 export const CARBON_RADIUS = 12;
 export const OXYGEN_RADIUS = 10;
 export const NITROGEN_RADIUS = 10;

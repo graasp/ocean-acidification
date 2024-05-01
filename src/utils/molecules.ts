@@ -4,17 +4,18 @@ import {
   HYDROGEN_X_OFFSET_CONT,
 } from '@/constants/canvas';
 import {
+  ACTIVE_CO2_ADDED_PER_INCREMENT,
+  CO2_SLIDER_MIN,
   CO2_SLIDER_STEP,
-  REACTIVE_CO2_ADDED_PER_INCREMENT,
   STATIC_CO2_ADDED_PER_INCREMENT,
 } from '@/constants/side-menu';
 import { SEQUENTIAL } from '@/constants/strings';
 
 import {
+  ActiveSliderMoleculesType,
   MoleculeCenter,
   Point,
   PointWithoutRotation,
-  ReactiveSliderMoleculesType,
   StaticSliderMoleculesType,
 } from './molecules/types';
 
@@ -96,7 +97,8 @@ export const computeStaticDistribution = (
   sliderValue: number,
 ): StaticSliderMoleculesType[] => {
   const newIndex =
-    (sliderValue / CO2_SLIDER_STEP) * STATIC_CO2_ADDED_PER_INCREMENT;
+    ((sliderValue - CO2_SLIDER_MIN) / CO2_SLIDER_STEP) *
+    STATIC_CO2_ADDED_PER_INCREMENT;
   return distribution.map(({ coordinates }, index) => {
     if (index < newIndex) return { coordinates, show: true };
     return { coordinates, show: false };
@@ -104,11 +106,13 @@ export const computeStaticDistribution = (
 };
 
 export const computeEquilibriumDistribution = (
-  distribution: ReactiveSliderMoleculesType[],
+  distribution: ActiveSliderMoleculesType[],
   sliderValue: number,
-): ReactiveSliderMoleculesType[] => {
+): ActiveSliderMoleculesType[] => {
   const numMoleculesToActivate =
-    (sliderValue / CO2_SLIDER_STEP) * REACTIVE_CO2_ADDED_PER_INCREMENT;
+    ((sliderValue - CO2_SLIDER_MIN) / CO2_SLIDER_STEP) *
+    ACTIVE_CO2_ADDED_PER_INCREMENT;
+
   return distribution.map(({ molecules, properties }, index) => ({
     molecules,
     properties: {
@@ -120,12 +124,13 @@ export const computeEquilibriumDistribution = (
 };
 
 export const updateDistribution = (
-  distribution: ReactiveSliderMoleculesType[],
+  distribution: ActiveSliderMoleculesType[],
   sliderValue: number,
   intervalCount: number,
-): ReactiveSliderMoleculesType[] => {
+): ActiveSliderMoleculesType[] => {
   const numMoleculesToActivate =
-    (sliderValue / CO2_SLIDER_STEP) * REACTIVE_CO2_ADDED_PER_INCREMENT;
+    ((sliderValue - CO2_SLIDER_MIN) / CO2_SLIDER_STEP) *
+    ACTIVE_CO2_ADDED_PER_INCREMENT;
   return distribution.map(({ molecules, properties }, index) => {
     const newProperties = { ...properties };
     if (index < numMoleculesToActivate) {

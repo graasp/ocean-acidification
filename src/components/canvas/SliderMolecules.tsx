@@ -1,12 +1,12 @@
 import { Group } from 'react-konva';
 
-import ReactiveSliderMolecules from './slider-molecules/ReactiveSliderMolecules';
+import ActiveSliderMolecules from './slider-molecules/ActiveSliderMolecules';
 import StaticSliderMolecules from './slider-molecules/StaticSliderMolecules';
 
 const SliderMolecules = (): JSX.Element => (
   <Group>
     <StaticSliderMolecules />
-    <ReactiveSliderMolecules />
+    <ActiveSliderMolecules />
   </Group>
 );
 
