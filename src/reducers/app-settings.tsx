@@ -1,9 +1,9 @@
 import { PERCENT_HOLES_INCREMENT } from '@/constants/canvas';
 import { DEFAULT_CO2, DEFAULT_YEAR } from '@/constants/side-menu';
-import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-slider-molecules';
+import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
 import { CONTINUOUS, SEQUENTIAL } from '@/constants/strings';
 import { computeEquilibriumDistribution } from '@/utils/molecules';
-import { ActiveSliderMoleculesType } from '@/utils/molecules/types';
+import { ActiveMoleculesType } from '@/utils/molecules/types';
 
 import {
   DECREMENT_REEF_HOLES,
@@ -36,7 +36,7 @@ export interface appSettingsType {
   animationIndex: number;
   animationInMotion: boolean;
   showShells: boolean;
-  activeMoleculeDistribution: ActiveSliderMoleculesType[];
+  activeMoleculeDistribution: ActiveMoleculesType[];
   year: string;
   sliderCarbonDioxide: number;
   equilibriumCarbonDioxide: number;

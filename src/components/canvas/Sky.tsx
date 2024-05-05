@@ -5,7 +5,7 @@ import { SKY_GRADIENT, SKY_HEIGHT } from '@/constants/canvas';
 import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
-import StaticCarbonDioxide from './static-molecules/StaticCarbonDioxides';
+import StaticCarbonDioxide from './sequential-mode/StaticCarbonDioxides';
 
 const Sky = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);

@@ -6,7 +6,7 @@ import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import Water from '../molecules/Water';
 import CarbonDioxideCycle from '../motion/CarbonDioxideCycle';
 
-const ActiveSliderMolecules = (): JSX.Element => {
+const ActiveMolecules = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
   const { dimensions, activeMoleculeDistribution } = state;
   const { width, height } = dimensions;
@@ -36,4 +36,4 @@ const ActiveSliderMolecules = (): JSX.Element => {
   );
 };
 
-export default ActiveSliderMolecules;
+export default ActiveMolecules;

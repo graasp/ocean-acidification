@@ -4,7 +4,7 @@ import { Group } from 'react-konva';
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { findCarbonicAcidCoordinates } from '@/utils/molecules';
-import { ActiveSliderMoleculesType } from '@/utils/molecules/types';
+import { ActiveMoleculesType } from '@/utils/molecules/types';
 import {
   createDissociation,
   createFormation,
@@ -16,7 +16,7 @@ import CarbonicAcidDissociation from './CarbonicAcidDissociation';
 import CarbonicAcidFormation from './CarbonicAcidFormation';
 
 interface Props {
-  sliderMolecule: ActiveSliderMoleculesType;
+  sliderMolecule: ActiveMoleculesType;
 }
 
 const CarbonDioxideCycle = ({ sliderMolecule }: Props): JSX.Element => {

@@ -6,7 +6,7 @@ import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { INITIAL_INTERVALS, generateAllIntervals } from '@/utils/motion';
 
-import AllAnimationsCycle from './motion/AllAnimationsCycle';
+import AllAnimationsCycle from '../motion/AllAnimationsCycle';
 
 const ContinuousModeAnimations = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);

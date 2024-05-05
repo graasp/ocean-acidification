@@ -15,7 +15,7 @@ import {
   setYear,
 } from '@/actions/app-settings';
 import { DEFAULT_CO2, PERIODS } from '@/constants/side-menu';
-import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-slider-molecules';
+import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { computeEquilibriumDistribution } from '@/utils/molecules';
 

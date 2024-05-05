@@ -11,7 +11,7 @@ import {
   togglePlay,
 } from '@/actions/app-settings';
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
-import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-slider-molecules';
+import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
 import { EMPTY_STRING } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { computeEquilibriumDistribution } from '@/utils/molecules';

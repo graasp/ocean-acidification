@@ -1,20 +1,13 @@
 import { useContext, useEffect, useState } from 'react';
 
-import {
-  CO2_AIR_MOVING,
-  CO2_WATER_MOVING,
-  DEFAULT_ARROWS_STATE,
-  DEPROTONATION,
-  H2CO3_FORMING,
-  H2CO3_FORMING_REVERSE,
-  H2CO3_MOVING,
-} from '@/constants/side-menu';
+import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
+import { DEFAULT_ARROWS } from '@/constants/side-menu';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import MoleculeCountTable from './MoleculeCountTable';
 
 const ArrowsStateManager = (): JSX.Element => {
-  const [arrowsState, setArrowsState] = useState(DEFAULT_ARROWS_STATE);
+  const [arrows, setArrows] = useState(DEFAULT_ARROWS);
   const { state } = useContext(AppSettingsContext);
   const {
     sliderCarbonDioxide,
@@ -27,81 +20,45 @@ const ArrowsStateManager = (): JSX.Element => {
   const sliderIncreased = sliderCarbonDioxide > equilibriumCarbonDioxide;
   const sliderDecreased = sliderCarbonDioxide < equilibriumCarbonDioxide;
 
-  const resetArrows = (): void => setArrowsState({ ...DEFAULT_ARROWS_STATE });
+  const resetArrows = (): void => setArrows({ ...DEFAULT_ARROWS });
 
   useEffect(() => {
     const netIntervals = intervalCount - disequilibriumCyclesBeginAt;
+    const intervalOne = netIntervals <= MOTION_INTERVAL;
+    const resetIntervalOne =
+      netIntervals > MOTION_INTERVAL && netIntervals <= MOTION_INTERVAL + 1;
+    const intervalTwo =
+      netIntervals > MOTION_INTERVAL + 1 && netIntervals <= 2 * MOTION_INTERVAL;
+    const resetIntervalTwo =
+      netIntervals > 2 * MOTION_INTERVAL &&
+      netIntervals <= 2 * MOTION_INTERVAL + 1;
+    const intervalThree =
+      netIntervals > 2 * MOTION_INTERVAL + 1 &&
+      netIntervals < 3 * MOTION_INTERVAL;
 
-    if (sliderIncreased && isPlaying) {
-      if (netIntervals <= CO2_AIR_MOVING) {
-        setArrowsState({
-          ...DEFAULT_ARROWS_STATE,
-          top: { down: true, up: false },
-        });
-      } else if (
-        netIntervals > CO2_AIR_MOVING &&
-        netIntervals <= CO2_AIR_MOVING + 1
-      ) {
+    if (isPlaying) {
+      if (intervalOne) {
+        if (sliderIncreased) {
+          setArrows({ ...DEFAULT_ARROWS, top: { down: true, up: false } });
+        } else if (sliderDecreased) {
+          setArrows({ ...DEFAULT_ARROWS, bottom: { down: false, up: true } });
+        }
+      } else if (resetIntervalOne) {
         resetArrows();
-      } else if (
-        netIntervals > CO2_AIR_MOVING + 1 &&
-        netIntervals <= H2CO3_FORMING
-      ) {
-        setArrowsState({
-          ...DEFAULT_ARROWS_STATE,
-          middle: { down: true, up: false },
+      } else if (intervalTwo) {
+        setArrows({
+          ...DEFAULT_ARROWS,
+          middle: { down: sliderIncreased, up: sliderDecreased },
         });
-      } else if (
-        netIntervals > H2CO3_FORMING &&
-        netIntervals <= H2CO3_FORMING + 1
-      ) {
+      } else if (resetIntervalTwo) {
         resetArrows();
-      } else if (
-        netIntervals > H2CO3_FORMING + 1 &&
-        netIntervals < DEPROTONATION
-      ) {
-        setArrowsState({
-          ...DEFAULT_ARROWS_STATE,
-          bottom: { down: true, up: false },
-        });
-      } else if (netIntervals >= DEPROTONATION) {
-        resetArrows();
-      }
-    }
-
-    if (sliderDecreased && isPlaying) {
-      if (netIntervals <= H2CO3_FORMING_REVERSE) {
-        setArrowsState({
-          ...DEFAULT_ARROWS_STATE,
-          bottom: { down: false, up: true },
-        });
-      } else if (
-        netIntervals > H2CO3_FORMING_REVERSE &&
-        netIntervals <= H2CO3_FORMING_REVERSE + 1
-      ) {
-        resetArrows();
-      } else if (
-        netIntervals > H2CO3_FORMING_REVERSE + 1 &&
-        netIntervals <= H2CO3_MOVING
-      ) {
-        setArrowsState({
-          ...DEFAULT_ARROWS_STATE,
-          middle: { down: false, up: true },
-        });
-      } else if (
-        netIntervals > H2CO3_MOVING &&
-        netIntervals <= H2CO3_MOVING + 1
-      ) {
-        resetArrows();
-      } else if (
-        netIntervals > H2CO3_MOVING + 1 &&
-        netIntervals < CO2_WATER_MOVING
-      ) {
-        setArrowsState({
-          ...DEFAULT_ARROWS_STATE,
-          top: { down: false, up: true },
-        });
-      } else if (netIntervals >= CO2_WATER_MOVING) {
+      } else if (intervalThree) {
+        if (sliderIncreased) {
+          setArrows({ ...DEFAULT_ARROWS, bottom: { down: true, up: false } });
+        } else if (sliderDecreased) {
+          setArrows({ ...DEFAULT_ARROWS, top: { down: false, up: true } });
+        }
+      } else {
         resetArrows();
       }
     }
@@ -111,10 +68,10 @@ const ArrowsStateManager = (): JSX.Element => {
     isPlaying,
     intervalCount,
     disequilibriumCyclesBeginAt,
-    arrowsState,
+    arrows,
   ]);
 
-  return <MoleculeCountTable arrowsState={arrowsState} />;
+  return <MoleculeCountTable arrowsState={arrows} />;
 };
 
 export default ArrowsStateManager;

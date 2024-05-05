@@ -12,11 +12,11 @@ import {
 import { SEQUENTIAL } from '@/constants/strings';
 
 import {
-  ActiveSliderMoleculesType,
+  ActiveMoleculesType,
   MoleculeCenter,
   Point,
   PointWithoutRotation,
-  StaticSliderMoleculesType,
+  StaticCarbonDioxidesType,
 } from './molecules/types';
 
 export const generateRandomNum = (min: number, max: number): number =>
@@ -93,9 +93,9 @@ export const determineCo2EndY = (startY: number): number => {
 };
 
 export const computeStaticDistribution = (
-  distribution: StaticSliderMoleculesType[],
+  distribution: StaticCarbonDioxidesType[],
   sliderValue: number,
-): StaticSliderMoleculesType[] => {
+): StaticCarbonDioxidesType[] => {
   const newIndex =
     ((sliderValue - CO2_SLIDER_MIN) / CO2_SLIDER_STEP) *
     STATIC_CO2_ADDED_PER_INCREMENT;
@@ -106,9 +106,9 @@ export const computeStaticDistribution = (
 };
 
 export const computeEquilibriumDistribution = (
-  distribution: ActiveSliderMoleculesType[],
+  distribution: ActiveMoleculesType[],
   sliderValue: number,
-): ActiveSliderMoleculesType[] => {
+): ActiveMoleculesType[] => {
   const numMoleculesToActivate =
     ((sliderValue - CO2_SLIDER_MIN) / CO2_SLIDER_STEP) *
     ACTIVE_CO2_ADDED_PER_INCREMENT;
@@ -124,10 +124,10 @@ export const computeEquilibriumDistribution = (
 };
 
 export const updateDistribution = (
-  distribution: ActiveSliderMoleculesType[],
+  distribution: ActiveMoleculesType[],
   sliderValue: number,
   intervalCount: number,
-): ActiveSliderMoleculesType[] => {
+): ActiveMoleculesType[] => {
   const numMoleculesToActivate =
     ((sliderValue - CO2_SLIDER_MIN) / CO2_SLIDER_STEP) *
     ACTIVE_CO2_ADDED_PER_INCREMENT;

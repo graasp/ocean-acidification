@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 
-import TableCell from './TableCell';
+import TableCell from '../TableCell';
 
 interface Props {
   leftContent: JSX.Element;

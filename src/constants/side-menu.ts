@@ -56,14 +56,8 @@ export const TABLE_ACTIVE_ANIMATION = {
   animation: 'blinker 2s linear infinite',
   '@keyframes blinker': { '50%': { opacity: 0.5 } },
 };
-export const DEFAULT_ARROWS_STATE = {
+export const DEFAULT_ARROWS = {
   top: { up: false, down: false },
   middle: { up: false, down: false },
   bottom: { up: false, down: false },
 };
-export const CO2_AIR_MOVING = 100;
-export const H2CO3_FORMING = 400;
-export const DEPROTONATION = 600;
-export const H2CO3_FORMING_REVERSE = 100;
-export const H2CO3_MOVING = 280;
-export const CO2_WATER_MOVING = 600;
