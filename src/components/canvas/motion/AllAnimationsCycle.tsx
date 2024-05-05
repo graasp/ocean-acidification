@@ -32,7 +32,6 @@ const AllAnimationsCycle = ({
         beginsAfter={intervals[0]}
         molecules={co2Migration}
         reverse={reverse}
-        backwards={reverse}
       />
       <CarbonicAcidFormation
         beginsAfter={intervals[1]}
@@ -58,7 +57,6 @@ const AllAnimationsCycle = ({
         beginsAfter={intervals[5]}
         molecules={reverseMigration}
         reverse={reverse}
-        backwards={!reverse}
       />
     </Group>
   );

@@ -1,22 +1,22 @@
 import {
-  CARBON_RADIUS,
-  CO2_RELATIVE_SPEED_IN_WATER,
-  HYDROGEN_X_OFFSET,
-  OXYGEN_RADIUS,
-  SKY_HEIGHT,
+  CARBON_PLUS_OXYGEN_CONT,
+  CARBON_PLUS_OXYGEN_SEQ,
+  HYDROGEN_X_OFFSET_CONT,
 } from '@/constants/canvas';
 import {
+  ACTIVE_CO2_ADDED_PER_INCREMENT,
+  CO2_SLIDER_MIN,
   CO2_SLIDER_STEP,
-  REACTIVE_CO2_ADDED_PER_INCREMENT,
   STATIC_CO2_ADDED_PER_INCREMENT,
 } from '@/constants/side-menu';
+import { SEQUENTIAL } from '@/constants/strings';
 
 import {
+  ActiveMoleculesType,
   MoleculeCenter,
   Point,
   PointWithoutRotation,
-  ReactiveSliderMoleculesType,
-  StaticSliderMoleculesType,
+  StaticCarbonDioxidesType,
 } from './molecules/types';
 
 export const generateRandomNum = (min: number, max: number): number =>
@@ -46,11 +46,13 @@ export const findCarbonicAcidCoordinates = (
   waterBegins: Point,
   height: number,
   width: number,
+  mode: string,
 ): PointWithoutRotation => {
-  const xOffset = HYDROGEN_X_OFFSET * (height / width);
+  const xOffset = HYDROGEN_X_OFFSET_CONT * (height / width);
   const horizontalMotion = (co2Begins.x - (waterBegins.x + xOffset)) / 2;
   const co2EndsX = co2Begins.x - horizontalMotion;
-  const carbonOxygenRadii = CARBON_RADIUS + OXYGEN_RADIUS;
+  const carbonOxygenRadii =
+    mode === SEQUENTIAL ? CARBON_PLUS_OXYGEN_SEQ : CARBON_PLUS_OXYGEN_CONT;
   const co2EndsY = waterBegins.y + carbonOxygenRadii;
   return { x: co2EndsX, y: co2EndsY };
 };
@@ -83,20 +85,20 @@ export const determineCo2EndX = (xStart: number): number => {
   return xStart - distanceMoved;
 };
 
-export const determineCo2EndY = (
-  startY: number,
-  waterBeginsY = SKY_HEIGHT,
-): number => {
-  const airDistance = waterBeginsY - startY;
-  return waterBeginsY + airDistance * CO2_RELATIVE_SPEED_IN_WATER;
+const CO2_MIN_MOVE_Y = 0.3;
+const CO2_MAX_MOVE_Y = 0.4;
+export const determineCo2EndY = (startY: number): number => {
+  const distanceMoved = generateRandomNum(CO2_MIN_MOVE_Y, CO2_MAX_MOVE_Y);
+  return startY + distanceMoved;
 };
 
 export const computeStaticDistribution = (
-  distribution: StaticSliderMoleculesType[],
+  distribution: StaticCarbonDioxidesType[],
   sliderValue: number,
-): StaticSliderMoleculesType[] => {
+): StaticCarbonDioxidesType[] => {
   const newIndex =
-    (sliderValue / CO2_SLIDER_STEP) * STATIC_CO2_ADDED_PER_INCREMENT;
+    ((sliderValue - CO2_SLIDER_MIN) / CO2_SLIDER_STEP) *
+    STATIC_CO2_ADDED_PER_INCREMENT;
   return distribution.map(({ coordinates }, index) => {
     if (index < newIndex) return { coordinates, show: true };
     return { coordinates, show: false };
@@ -104,11 +106,13 @@ export const computeStaticDistribution = (
 };
 
 export const computeEquilibriumDistribution = (
-  distribution: ReactiveSliderMoleculesType[],
+  distribution: ActiveMoleculesType[],
   sliderValue: number,
-): ReactiveSliderMoleculesType[] => {
+): ActiveMoleculesType[] => {
   const numMoleculesToActivate =
-    (sliderValue / CO2_SLIDER_STEP) * REACTIVE_CO2_ADDED_PER_INCREMENT;
+    ((sliderValue - CO2_SLIDER_MIN) / CO2_SLIDER_STEP) *
+    ACTIVE_CO2_ADDED_PER_INCREMENT;
+
   return distribution.map(({ molecules, properties }, index) => ({
     molecules,
     properties: {
@@ -120,12 +124,13 @@ export const computeEquilibriumDistribution = (
 };
 
 export const updateDistribution = (
-  distribution: ReactiveSliderMoleculesType[],
+  distribution: ActiveMoleculesType[],
   sliderValue: number,
   intervalCount: number,
-): ReactiveSliderMoleculesType[] => {
+): ActiveMoleculesType[] => {
   const numMoleculesToActivate =
-    (sliderValue / CO2_SLIDER_STEP) * REACTIVE_CO2_ADDED_PER_INCREMENT;
+    ((sliderValue - CO2_SLIDER_MIN) / CO2_SLIDER_STEP) *
+    ACTIVE_CO2_ADDED_PER_INCREMENT;
   return distribution.map(({ molecules, properties }, index) => {
     const newProperties = { ...properties };
     if (index < numMoleculesToActivate) {

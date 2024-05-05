@@ -11,17 +11,29 @@ export const SKY_GRADIENT = [0, '#a4c8ea', 1, SKY_GRADIENT_LIGHT_END];
 export const SEA_FILL = '#6ba5c9';
 export const REEF_BLOCKER_GRADIENT = [0, '#6ba5c9', 1, '#6b91a0'];
 
-export const CARBON_RADIUS = 0.0065;
-export const OXYGEN_RADIUS = (15 / 17) * CARBON_RADIUS;
-export const HYDROGEN_RADIUS = (10 / 13) * OXYGEN_RADIUS;
+export const CARBON_RADIUS_CONT = 0.0065;
+export const OXYGEN_RADIUS_CONT = (15 / 17) * CARBON_RADIUS_CONT;
+export const HYDROGEN_RADIUS_CONT = (10 / 13) * OXYGEN_RADIUS_CONT;
+export const OXYGEN_PLUS_HYDROGEN_CONT =
+  OXYGEN_RADIUS_CONT + HYDROGEN_RADIUS_CONT;
+export const CARBON_PLUS_OXYGEN_CONT = CARBON_RADIUS_CONT + OXYGEN_RADIUS_CONT;
+export const CARBON_RADIUS_SEQ = CARBON_RADIUS_CONT * 1.5;
+export const OXYGEN_RADIUS_SEQ = (15 / 17) * CARBON_RADIUS_SEQ;
+export const HYDROGEN_RADIUS_SEQ = (10 / 13) * OXYGEN_RADIUS_SEQ;
+export const OXYGEN_PLUS_HYDROGEN_SEQ = OXYGEN_RADIUS_SEQ + HYDROGEN_RADIUS_SEQ;
+export const CARBON_PLUS_OXYGEN_SEQ = CARBON_RADIUS_SEQ + OXYGEN_RADIUS_SEQ;
 export const CARBON_FILL = 'black';
 export const OXYGEN_FILL = 'indianred';
 export const HYDROGEN_FILL = 'white';
 export const HYDROGENS_ANGLE = 104.5 * (Math.PI / 180);
-export const HYDROGEN_X_OFFSET =
-  Math.sin(HYDROGENS_ANGLE / 2) * (OXYGEN_RADIUS + HYDROGEN_RADIUS);
-export const HYDROGEN_Y_OFFSET =
-  Math.cos(HYDROGENS_ANGLE / 2) * (OXYGEN_RADIUS + HYDROGEN_RADIUS);
+export const HYDROGEN_X_OFFSET_CONT =
+  Math.sin(HYDROGENS_ANGLE / 2) * OXYGEN_PLUS_HYDROGEN_CONT;
+export const HYDROGEN_Y_OFFSET_CONT =
+  Math.cos(HYDROGENS_ANGLE / 2) * OXYGEN_PLUS_HYDROGEN_CONT;
+export const HYDROGEN_X_OFFSET_SEQ =
+  Math.sin(HYDROGENS_ANGLE / 2) * OXYGEN_PLUS_HYDROGEN_SEQ;
+export const HYDROGEN_Y_OFFSET_SEQ =
+  Math.cos(HYDROGENS_ANGLE / 2) * OXYGEN_PLUS_HYDROGEN_SEQ;
 // Carbonic acid; angles derived from illustration by teachers
 export const OXYGENS_ANGLE = 125.5 * (Math.PI / 180);
 export const LEFT_OXYGEN_ANGLE = 8.25 * (Math.PI / 180);
@@ -152,5 +164,3 @@ export const STATIC_HYDROGENS = [
 ];
 
 export const STATIC_BICARBONATES = [{ x: 0.425, y: 0.85, rotation: 45 }];
-
-export const CO2_RELATIVE_SPEED_IN_WATER = 2;

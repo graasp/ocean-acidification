@@ -16,7 +16,7 @@ import {
   TOGGLE_PLAY,
   TOGGLE_SHOW_SHELLS,
 } from '@/types/app-settings';
-import { ReactiveSliderMoleculesType } from '@/utils/molecules/types';
+import { ActiveMoleculesType } from '@/utils/molecules/types';
 
 interface Dimensions {
   width: number;
@@ -66,7 +66,7 @@ export const toggleShowShells = (): appSettingsActionType => ({
 });
 
 export const setDistribution = (
-  payload: ReactiveSliderMoleculesType[],
+  payload: ActiveMoleculesType[],
 ): appSettingsActionType => ({
   type: SET_DISTRIBUTION,
   payload,

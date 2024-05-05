@@ -6,23 +6,24 @@ import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import Water from '../molecules/Water';
 import CarbonDioxideCycle from '../motion/CarbonDioxideCycle';
 
-const ReactiveSliderMolecules = (): JSX.Element => {
+const ActiveMolecules = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { dimensions, reactiveMoleculeDistribution } = state;
+  const { dimensions, activeMoleculeDistribution } = state;
   const { width, height } = dimensions;
 
   return (
     <Group>
-      {reactiveMoleculeDistribution.map(
+      {activeMoleculeDistribution.map(
         (molecule, index) =>
           molecule.properties.showCycle && (
             <CarbonDioxideCycle sliderMolecule={molecule} key={index} />
           ),
       )}
-      {reactiveMoleculeDistribution.map(
+      {activeMoleculeDistribution.map(
         (molecule, index) =>
           !molecule.properties.showCycle &&
-          !molecule.properties.reverse && (
+          !molecule.properties.reverse &&
+          molecule.properties.formsCarbonicAcid && (
             <Water
               x={molecule.molecules.waterBegins.x * width}
               y={molecule.molecules.waterBegins.y * height}
@@ -35,4 +36,4 @@ const ReactiveSliderMolecules = (): JSX.Element => {
   );
 };
 
-export default ReactiveSliderMolecules;
+export default ActiveMolecules;

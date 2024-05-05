@@ -18,9 +18,9 @@ interface Props {
 
 const CarbonDioxide = ({ x, y, rotation }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { dimensions } = state;
+  const { dimensions, mode } = state;
   const { height } = dimensions;
-  const { top, center, bottom } = createCarbonDioxide({ x, y }, height);
+  const { top, center, bottom } = createCarbonDioxide({ x, y }, height, mode);
 
   return (
     <Group rotation={rotation} x={center.x} y={center.y}>

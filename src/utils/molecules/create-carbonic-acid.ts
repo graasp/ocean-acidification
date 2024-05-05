@@ -1,11 +1,13 @@
 import {
-  CARBON_RADIUS,
+  CARBON_PLUS_OXYGEN_CONT,
+  CARBON_PLUS_OXYGEN_SEQ,
   HYDROGENS_ANGLE,
-  HYDROGEN_RADIUS,
   LEFT_OXYGEN_ANGLE,
   OXYGENS_ANGLE,
-  OXYGEN_RADIUS,
+  OXYGEN_PLUS_HYDROGEN_CONT,
+  OXYGEN_PLUS_HYDROGEN_SEQ,
 } from '@/constants/canvas';
+import { SEQUENTIAL } from '@/constants/strings';
 
 import { MoleculeCenter } from './types';
 
@@ -20,10 +22,16 @@ interface CarbonicAcidCoordinates {
 export const createCarbonicAcid = (
   carbon: MoleculeCenter,
   height: number,
+  mode: string,
 ): CarbonicAcidCoordinates => {
   const { x: carbonX, y: carbonY } = carbon;
-  const carbonOxygen = (CARBON_RADIUS + OXYGEN_RADIUS) * height;
-  const oxygenHydrogen = (OXYGEN_RADIUS + HYDROGEN_RADIUS) * height;
+  const carbonOxygen =
+    (mode === SEQUENTIAL ? CARBON_PLUS_OXYGEN_SEQ : CARBON_PLUS_OXYGEN_CONT) *
+    height;
+  const oxygenHydrogen =
+    (mode === SEQUENTIAL
+      ? OXYGEN_PLUS_HYDROGEN_SEQ
+      : OXYGEN_PLUS_HYDROGEN_CONT) * height;
 
   const topBottomOxygenXOffset = carbonOxygen * Math.cos(OXYGENS_ANGLE / 2);
   const topBottomOxygenYOffset = carbonOxygen * Math.sin(OXYGENS_ANGLE / 2);

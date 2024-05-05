@@ -11,7 +11,7 @@ import {
   togglePlay,
 } from '@/actions/app-settings';
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
-import { REACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/reactive-slider-molecules';
+import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
 import { EMPTY_STRING } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { computeEquilibriumDistribution } from '@/utils/molecules';
@@ -60,7 +60,7 @@ const Stop = (): JSX.Element => {
       dispatch(setDisequilibriumCyclesBeginAt(stopAtInterval));
       dispatch(setEquilibriumCarbonDioxide(sliderCarbonDioxide));
       const equilibriumDistribution = computeEquilibriumDistribution(
-        REACTIVE_CO2_DISTRIBUTION,
+        ACTIVE_CO2_DISTRIBUTION,
         sliderCarbonDioxide,
       );
       dispatch(setDistribution(equilibriumDistribution));

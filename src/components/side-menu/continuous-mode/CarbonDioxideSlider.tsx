@@ -30,7 +30,7 @@ const CarbonDioxideSlider = (): JSX.Element => {
   const {
     isPlaying,
     sliderCarbonDioxide,
-    reactiveMoleculeDistribution,
+    activeMoleculeDistribution,
     intervalCount,
   } = state;
 
@@ -43,7 +43,7 @@ const CarbonDioxideSlider = (): JSX.Element => {
   const onChange = (event: Event, value: number | number[]): void => {
     const sliderValue = value as number;
     const updatedDistribution = updateDistribution(
-      reactiveMoleculeDistribution,
+      activeMoleculeDistribution,
       sliderValue,
       intervalCount,
     );

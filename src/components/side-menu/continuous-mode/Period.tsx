@@ -15,7 +15,7 @@ import {
   setYear,
 } from '@/actions/app-settings';
 import { DEFAULT_CO2, PERIODS } from '@/constants/side-menu';
-import { REACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/reactive-slider-molecules';
+import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { computeEquilibriumDistribution } from '@/utils/molecules';
 
@@ -52,7 +52,7 @@ const Period = (): JSX.Element => {
     dispatch(setSliderCarbonDioxide(newCarbonDioxide));
     dispatch(setEquilibriumCarbonDioxide(newCarbonDioxide));
     const equilibriumDistribution = computeEquilibriumDistribution(
-      REACTIVE_CO2_DISTRIBUTION,
+      ACTIVE_CO2_DISTRIBUTION,
       newCarbonDioxide,
     );
     dispatch(setDistribution(equilibriumDistribution));

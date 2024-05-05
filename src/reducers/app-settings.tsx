@@ -1,9 +1,9 @@
 import { PERCENT_HOLES_INCREMENT } from '@/constants/canvas';
 import { DEFAULT_CO2, DEFAULT_YEAR } from '@/constants/side-menu';
-import { REACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/reactive-slider-molecules';
+import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
 import { CONTINUOUS, SEQUENTIAL } from '@/constants/strings';
 import { computeEquilibriumDistribution } from '@/utils/molecules';
-import { ReactiveSliderMoleculesType } from '@/utils/molecules/types';
+import { ActiveMoleculesType } from '@/utils/molecules/types';
 
 import {
   DECREMENT_REEF_HOLES,
@@ -36,7 +36,7 @@ export interface appSettingsType {
   animationIndex: number;
   animationInMotion: boolean;
   showShells: boolean;
-  reactiveMoleculeDistribution: ReactiveSliderMoleculesType[];
+  activeMoleculeDistribution: ActiveMoleculesType[];
   year: string;
   sliderCarbonDioxide: number;
   equilibriumCarbonDioxide: number;
@@ -58,8 +58,8 @@ export const initialAppSettings = {
   animationIndex: 0,
   animationInMotion: false,
   showShells: false,
-  reactiveMoleculeDistribution: computeEquilibriumDistribution(
-    REACTIVE_CO2_DISTRIBUTION,
+  activeMoleculeDistribution: computeEquilibriumDistribution(
+    ACTIVE_CO2_DISTRIBUTION,
     DEFAULT_CO2,
   ),
   year: DEFAULT_YEAR,
@@ -123,7 +123,7 @@ export const appSettingsReducer = (
       return { ...state, sliderCarbonDioxide: payload };
     }
     case SET_DISTRIBUTION: {
-      return { ...state, reactiveMoleculeDistribution: payload };
+      return { ...state, activeMoleculeDistribution: payload };
     }
     case SET_EQUILIBRIUM_CARBON_DIOXIDE: {
       return { ...state, equilibriumCarbonDioxide: payload };

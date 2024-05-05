@@ -4,12 +4,12 @@ import { Layer, Stage } from 'react-konva';
 import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
-import ContinuousModeAnimations from './ContinuousModeAnimations';
 import Sea from './Sea';
-import SequentialModeAnimations from './SequentialModeAnimations';
 import Shells from './Shells';
 import Sky from './Sky';
-import SliderMolecules from './SliderMolecules';
+import ContinuousModeAnimations from './animations/ContinuousModeAnimations';
+import SequentialModeAnimations from './animations/SequentialModeAnimations';
+import SliderMolecules from './slider-molecules/SliderMolecules';
 
 const Canvas = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
