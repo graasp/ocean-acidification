@@ -20,7 +20,7 @@ const PHScaleUnits = ({ scaleHeight, scaleWidth }: Props): JSX.Element => {
   const gapBetweenPoints = scaleWidth / numPoints;
   return (
     <Group>
-      {PH_SCALE_POINTS.map((point, index) => {
+      {PH_SCALE_POINTS.map(({ pH }, index) => {
         const x = gapBetweenPoints * index;
         const y = PH_SCALE_BEGINS_Y + scaleHeight;
         return (
@@ -35,7 +35,7 @@ const PHScaleUnits = ({ scaleHeight, scaleWidth }: Props): JSX.Element => {
             <Text
               x={x - gapBetweenPoints / 2}
               y={y + PH_SCALE_AXIS_HEIGHT + PH_SCALE_AXIS_LABEL_MARGIN}
-              text={point.toString()}
+              text={pH.toString()}
               width={gapBetweenPoints}
               align={CENTER}
             />

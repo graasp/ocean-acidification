@@ -5,6 +5,7 @@ import {
   MARKER_BORDER_WIDTH,
   MARKER_FILL,
   MARKER_WIDTH,
+  PH_SCALE_POINTS,
 } from '@/constants/canvas';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
@@ -15,12 +16,18 @@ interface Props {
 
 const PHScaleMarker = ({ scaleWidth, scaleHeight }: Props): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { reefHoles } = state;
+  const { equilibriumCarbonDioxide } = state;
   const markerWidth = scaleWidth * MARKER_WIDTH;
+
+  const currentPHIndex = PH_SCALE_POINTS.findIndex(
+    ({ co2 }) => co2 === equilibriumCarbonDioxide,
+  );
+
+  const distancePerMove = scaleWidth / (PH_SCALE_POINTS.length - 1);
 
   return (
     <Rect
-      x={(1 - reefHoles) * scaleWidth - markerWidth / 2}
+      x={distancePerMove * currentPHIndex - markerWidth / 2}
       width={markerWidth}
       height={scaleHeight}
       stroke={MARKER_FILL}

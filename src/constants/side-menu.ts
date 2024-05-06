@@ -61,3 +61,6 @@ export const DEFAULT_ARROWS = {
   middle: { up: false, down: false },
   bottom: { up: false, down: false },
 };
+
+export const TABLE_EXTRA_LABEL_COLOR = '#D22B2B';
+export const HYDROGEN_BOX_BORDER = `2px solid ${TABLE_EXTRA_LABEL_COLOR}`;

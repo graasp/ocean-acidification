@@ -14,7 +14,7 @@ import {
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PLAY,
-  TOGGLE_SHOW_SHELLS,
+  TOGGLE_SHOW_SCALE,
 } from '@/types/app-settings';
 import { ActiveMoleculesType } from '@/utils/molecules/types';
 
@@ -61,8 +61,8 @@ export const toggleAnimationInMotion = (): appSettingsActionType => ({
   type: TOGGLE_ANIMATION_IN_MOTION,
 });
 
-export const toggleShowShells = (): appSettingsActionType => ({
-  type: TOGGLE_SHOW_SHELLS,
+export const toggleShowScale = (): appSettingsActionType => ({
+  type: TOGGLE_SHOW_SCALE,
 });
 
 export const setDistribution = (

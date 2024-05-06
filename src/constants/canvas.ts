@@ -46,7 +46,17 @@ export const PH_SCALE_FILL = '#ffd8a4';
 export const MARKER_FILL = '#1a1a1b';
 export const MARKER_BORDER_WIDTH = 6;
 export const MARKER_WIDTH = 0.035;
-export const PH_SCALE_POINTS = [7.8, 7.85, 7.9, 7.95, 8, 8.05, 8.1, 8.15, 8.2];
+export const PH_SCALE_POINTS = [
+  { pH: 7.87, co2: 600 },
+  { pH: 7.9225, co2: 550 },
+  { pH: 7.975, co2: 500 },
+  { pH: 8.0275, co2: 450 },
+  { pH: 8.08, co2: 400 },
+  { pH: 8.1325, co2: 350 },
+  { pH: 8.185, co2: 300 },
+  { pH: 8.2375, co2: 250 },
+  { pH: 8.29, co2: 200 },
+];
 export const PH_SCALE_AXIS_COLOR = 'black';
 export const PH_SCALE_AXIS_HEIGHT = 5;
 export const PH_SCALE_AXIS_STROKE_WIDTH = 1;

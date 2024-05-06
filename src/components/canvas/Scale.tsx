@@ -4,7 +4,7 @@ import PHScale from './ph-scale/PHScale';
 import ReefBlocker from './ph-scale/ReefBlocker';
 import ReefGroup from './ph-scale/ReefGroup';
 
-const Shells = (): JSX.Element => (
+const Scale = (): JSX.Element => (
   <Group>
     <ReefGroup />
     <ReefBlocker />
@@ -12,4 +12,4 @@ const Shells = (): JSX.Element => (
   </Group>
 );
 
-export default Shells;
+export default Scale;

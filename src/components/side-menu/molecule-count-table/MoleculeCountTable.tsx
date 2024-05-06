@@ -14,6 +14,7 @@ import { countContinuousCycles } from '@/utils/table-counts/continuous-cycles';
 import { countStaticCarbonDioxides } from '@/utils/table-counts/static-carbon-dioxides';
 
 import SideMenuHeader from '../common/SideMenuHeader';
+import ExtraLabel from './ExtraLabel';
 import ArrowsGroup from './table-arrows/ArrowsGroup';
 import AllRows from './table-rows/AllRows';
 
@@ -31,6 +32,7 @@ const MoleculeCountTable = ({ arrowsState }: Props): JSX.Element => {
     sliderCarbonDioxide,
     intervalCount,
     disequilibriumCyclesBeginAt,
+    showScale,
   } = state;
   const staticCarbonDioxides = computeStaticDistribution(
     STATIC_CO2_DISTRIBUTION,
@@ -58,6 +60,7 @@ const MoleculeCountTable = ({ arrowsState }: Props): JSX.Element => {
       <Box sx={table}>
         <ArrowsGroup arrowsState={arrowsState} />
         <AllRows arrowsState={arrowsState} moleculesCount={allMoleculesCount} />
+        {showScale && <ExtraLabel />}
       </Box>
     </Box>
   );
