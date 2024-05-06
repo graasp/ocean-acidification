@@ -8,13 +8,19 @@ import {
   PH_SCALE_HEIGHT,
   PH_SCALE_WIDTH,
 } from '@/constants/canvas';
-import { CRAB_BEGINS_X, CRAB_BEGINS_Y } from '@/constants/organisms';
+import {
+  CRAB_BEGINS_X,
+  CRAB_BEGINS_Y,
+  SHELL_BEGINS_X,
+  SHELL_BEGINS_Y,
+} from '@/constants/organisms';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import PHScaleHoles from './PHScaleHoles';
 import PHScaleMarker from './PHScaleMarker';
 import PHScaleUnits from './PHScaleUnits';
 import Crab from './organisms/Crab';
+import Shell from './organisms/Shell';
 
 const PHScale = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
@@ -32,6 +38,7 @@ const PHScale = (): JSX.Element => {
       <PHScaleHoles scaleWidth={scaleWidth} scaleHeight={scaleHeight} />
       <PHScaleMarker scaleWidth={scaleWidth} scaleHeight={scaleHeight} />
       <PHScaleUnits scaleHeight={scaleHeight} scaleWidth={scaleWidth} />
+      <Shell x={SHELL_BEGINS_X * scaleWidth} y={SHELL_BEGINS_Y * scaleHeight} />
       <Crab x={CRAB_BEGINS_X * scaleWidth} y={CRAB_BEGINS_Y * scaleHeight} />
     </Group>
   );
