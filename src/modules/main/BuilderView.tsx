@@ -52,12 +52,10 @@ const BuilderView = (): JSX.Element => {
     >
       <div>
         <Canvas />
-        {showSideMenu && (
-          <SideMenu
-            showSideMenu={showSideMenu}
-            setShowSideMenu={setShowSideMenu}
-          />
-        )}
+        <SideMenu
+          showSideMenu={showSideMenu}
+          setShowSideMenu={setShowSideMenu}
+        />
         {!showSideMenu && (
           <Tooltip title="Open side menu" placement="left">
             <Fab
