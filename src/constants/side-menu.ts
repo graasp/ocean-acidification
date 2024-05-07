@@ -27,12 +27,11 @@ export const ACTIVE_EQUATION_WEIGHT = '900';
 export const DEFAULT_EQUATION_WEIGHT = '400';
 export const ACTIVE_EQUATION_BACKGROUND = '#d6fed2';
 export const PERIODS = [
-  { year: '1850', co2: 300 },
-  { year: '1990', co2: 350 },
-  { year: '2015', co2: 450 },
+  { year: '1900', co2: 300 },
+  { year: '2015', co2: 400 },
   { year: '2050', co2: 550 },
 ];
-export const DEFAULT_PERIOD = PERIODS[2];
+export const DEFAULT_PERIOD = PERIODS[1];
 export const DEFAULT_YEAR = DEFAULT_PERIOD.year;
 export const DEFAULT_CO2 = DEFAULT_PERIOD.co2;
 
@@ -61,3 +60,6 @@ export const DEFAULT_ARROWS = {
   middle: { up: false, down: false },
   bottom: { up: false, down: false },
 };
+
+export const TABLE_EXTRA_LABEL_COLOR = '#D22B2B';
+export const HYDROGEN_BOX_BORDER = `2px solid ${TABLE_EXTRA_LABEL_COLOR}`;

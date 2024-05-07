@@ -20,7 +20,7 @@ import {
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PLAY,
-  TOGGLE_SHOW_SHELLS,
+  TOGGLE_SHOW_SCALE,
 } from '../types/app-settings';
 
 type Dimensions = {
@@ -35,7 +35,7 @@ export interface appSettingsType {
   mode: string;
   animationIndex: number;
   animationInMotion: boolean;
-  showShells: boolean;
+  showScale: boolean;
   activeMoleculeDistribution: ActiveMoleculesType[];
   year: string;
   sliderCarbonDioxide: number;
@@ -57,7 +57,7 @@ export const initialAppSettings = {
   mode: SEQUENTIAL,
   animationIndex: 0,
   animationInMotion: false,
-  showShells: false,
+  showScale: false,
   activeMoleculeDistribution: computeEquilibriumDistribution(
     ACTIVE_CO2_DISTRIBUTION,
     DEFAULT_CO2,
@@ -113,8 +113,8 @@ export const appSettingsReducer = (
     case TOGGLE_ANIMATION_IN_MOTION: {
       return { ...state, animationInMotion: !state.animationInMotion };
     }
-    case TOGGLE_SHOW_SHELLS: {
-      return { ...state, showShells: !state.showShells };
+    case TOGGLE_SHOW_SCALE: {
+      return { ...state, showScale: !state.showScale };
     }
     case SET_YEAR: {
       return { ...state, year: payload };

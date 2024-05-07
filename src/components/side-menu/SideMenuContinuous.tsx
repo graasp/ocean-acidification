@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import CustomDivider from './common/CustomDivider';
 import CarbonDioxideSlider from './continuous-mode/CarbonDioxideSlider';
 import Period from './continuous-mode/Period';
-import ShellsToggle from './continuous-mode/ShellsToggle';
+import ScaleToggle from './continuous-mode/ScaleToggle';
 import ArrowsStateManager from './molecule-count-table/ArrowsStateManager';
 
 const SideMenuContinuous = (): JSX.Element => (
@@ -14,7 +14,7 @@ const SideMenuContinuous = (): JSX.Element => (
     <CustomDivider />
     <ArrowsStateManager />
     <CustomDivider />
-    <ShellsToggle />
+    <ScaleToggle />
   </Box>
 );
 

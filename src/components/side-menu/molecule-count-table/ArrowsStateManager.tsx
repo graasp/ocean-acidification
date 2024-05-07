@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 
+import { setEquilibriumCarbonDioxide } from '@/actions/app-settings';
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 import { DEFAULT_ARROWS } from '@/constants/side-menu';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
@@ -8,7 +9,7 @@ import MoleculeCountTable from './MoleculeCountTable';
 
 const ArrowsStateManager = (): JSX.Element => {
   const [arrows, setArrows] = useState(DEFAULT_ARROWS);
-  const { state } = useContext(AppSettingsContext);
+  const { dispatch, state } = useContext(AppSettingsContext);
   const {
     sliderCarbonDioxide,
     intervalCount,
@@ -58,6 +59,9 @@ const ArrowsStateManager = (): JSX.Element => {
         } else if (sliderDecreased) {
           setArrows({ ...DEFAULT_ARROWS, top: { down: false, up: true } });
         }
+        if (netIntervals === MOTION_INTERVAL * 2 + MOTION_INTERVAL / 2) {
+          dispatch(setEquilibriumCarbonDioxide(sliderCarbonDioxide));
+        }
       } else {
         resetArrows();
       }
@@ -69,6 +73,8 @@ const ArrowsStateManager = (): JSX.Element => {
     intervalCount,
     disequilibriumCyclesBeginAt,
     arrows,
+    dispatch,
+    sliderCarbonDioxide,
   ]);
 
   return <MoleculeCountTable arrowsState={arrows} />;

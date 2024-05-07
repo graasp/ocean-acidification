@@ -8,6 +8,7 @@ import {
   PH_SCALE_HEIGHT,
   PH_SCALE_WIDTH,
 } from '@/constants/canvas';
+import '@/constants/organisms';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import PHScaleHoles from './PHScaleHoles';

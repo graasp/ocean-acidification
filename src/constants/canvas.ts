@@ -46,7 +46,17 @@ export const PH_SCALE_FILL = '#ffd8a4';
 export const MARKER_FILL = '#1a1a1b';
 export const MARKER_BORDER_WIDTH = 6;
 export const MARKER_WIDTH = 0.035;
-export const PH_SCALE_POINTS = [7.8, 7.85, 7.9, 7.95, 8, 8.05, 8.1, 8.15, 8.2];
+export const PH_SCALE_POINTS = [
+  { pH: 7.87, co2: 600 },
+  { pH: 7.9225, co2: 550 },
+  { pH: 7.975, co2: 500 },
+  { pH: 8.0275, co2: 450 },
+  { pH: 8.08, co2: 400 },
+  { pH: 8.1325, co2: 350 },
+  { pH: 8.185, co2: 300 },
+  { pH: 8.2375, co2: 250 },
+  { pH: 8.29, co2: 200 },
+];
 export const PH_SCALE_AXIS_COLOR = 'black';
 export const PH_SCALE_AXIS_HEIGHT = 5;
 export const PH_SCALE_AXIS_STROKE_WIDTH = 1;
@@ -127,20 +137,18 @@ export const REEF_GROUP = [
 const REEF_HEIGHT = Math.min(
   ...REEF_POINTS.filter((point, index) => index % 2 !== 0),
 );
-const REEF_WIDTH =
-  Math.max(...REEF_POINTS.filter((point, index) => index % 2 === 0)) -
-  Math.min(...REEF_POINTS.filter((point, index) => index % 2 === 0));
-export const REEF_HOLES_BEGIN_X =
-  Math.min(...REEF_GROUP.map(({ x }) => x)) +
-  Math.min(...REEF_POINTS.filter((point, index) => index % 2 === 0));
-export const REEF_HOLES_END_X =
-  Math.max(...REEF_GROUP.map(({ x }) => x)) + REEF_WIDTH;
+
+export const REEF_HOLES_BEGIN_X = PH_SCALE_BEGINS_X;
+export const REEF_HOLES_END_X = PH_SCALE_BEGINS_X + 0.875 * PH_SCALE_WIDTH;
 export const REEF_HOLES_BEGIN_Y =
   Math.max(...REEF_GROUP.map(({ y }) => y)) + REEF_HEIGHT;
 export const REEF_HOLES_END_Y = Math.max(...REEF_GROUP.map(({ y }) => y));
 export const REEF_HOLES_RADII = [0.002, 0.004];
 export const TOTAL_NUM_HOLES = 600;
 export const PERCENT_HOLES_INCREMENT = 1 / (PH_SCALE_POINTS.length - 1);
+export const REEF_HOLES_PERCENTAGES = PH_SCALE_POINTS.map(
+  (point, index) => 1 - index * (1 / (PH_SCALE_POINTS.length - 1)),
+);
 
 export const STATIC_CARBON_DIOXIDES = [
   { x: 0.1, y: 0.3, rotation: 315 },

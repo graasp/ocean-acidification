@@ -4,8 +4,8 @@ import { Layer, Stage } from 'react-konva';
 import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
+import Scale from './Scale';
 import Sea from './Sea';
-import Shells from './Shells';
 import Sky from './Sky';
 import ContinuousModeAnimations from './animations/ContinuousModeAnimations';
 import SequentialModeAnimations from './animations/SequentialModeAnimations';
@@ -13,7 +13,7 @@ import SliderMolecules from './slider-molecules/SliderMolecules';
 
 const Canvas = (): JSX.Element => {
   const { state } = useContext(AppSettingsContext);
-  const { mode, dimensions, showShells } = state;
+  const { mode, dimensions, showScale } = state;
   const { width, height } = dimensions;
   const modeSequential = mode === SEQUENTIAL;
 
@@ -22,7 +22,7 @@ const Canvas = (): JSX.Element => {
       <Layer>
         <Sea />
         <Sky />
-        {!modeSequential && showShells && <Shells />}
+        {!modeSequential && showScale && <Scale />}
         {modeSequential ? (
           <SequentialModeAnimations />
         ) : (
