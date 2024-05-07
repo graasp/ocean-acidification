@@ -137,20 +137,18 @@ export const REEF_GROUP = [
 const REEF_HEIGHT = Math.min(
   ...REEF_POINTS.filter((point, index) => index % 2 !== 0),
 );
-const REEF_WIDTH =
-  Math.max(...REEF_POINTS.filter((point, index) => index % 2 === 0)) -
-  Math.min(...REEF_POINTS.filter((point, index) => index % 2 === 0));
-export const REEF_HOLES_BEGIN_X =
-  Math.min(...REEF_GROUP.map(({ x }) => x)) +
-  Math.min(...REEF_POINTS.filter((point, index) => index % 2 === 0));
-export const REEF_HOLES_END_X =
-  Math.max(...REEF_GROUP.map(({ x }) => x)) + REEF_WIDTH;
+
+export const REEF_HOLES_BEGIN_X = PH_SCALE_BEGINS_X;
+export const REEF_HOLES_END_X = PH_SCALE_BEGINS_X + 0.875 * PH_SCALE_WIDTH;
 export const REEF_HOLES_BEGIN_Y =
   Math.max(...REEF_GROUP.map(({ y }) => y)) + REEF_HEIGHT;
 export const REEF_HOLES_END_Y = Math.max(...REEF_GROUP.map(({ y }) => y));
 export const REEF_HOLES_RADII = [0.002, 0.004];
 export const TOTAL_NUM_HOLES = 600;
 export const PERCENT_HOLES_INCREMENT = 1 / (PH_SCALE_POINTS.length - 1);
+export const REEF_HOLES_PERCENTAGES = PH_SCALE_POINTS.map(
+  (point, index) => 1 - index * (1 / (PH_SCALE_POINTS.length - 1)),
+);
 
 export const STATIC_CARBON_DIOXIDES = [
   { x: 0.1, y: 0.3, rotation: 315 },

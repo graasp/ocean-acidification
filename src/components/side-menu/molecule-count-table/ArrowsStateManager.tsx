@@ -43,9 +43,6 @@ const ArrowsStateManager = (): JSX.Element => {
           setArrows({ ...DEFAULT_ARROWS, top: { down: true, up: false } });
         } else if (sliderDecreased) {
           setArrows({ ...DEFAULT_ARROWS, bottom: { down: false, up: true } });
-          if (netIntervals === MOTION_INTERVAL / 2) {
-            dispatch(setEquilibriumCarbonDioxide(sliderCarbonDioxide));
-          }
         }
       } else if (resetIntervalOne) {
         resetArrows();
@@ -59,11 +56,11 @@ const ArrowsStateManager = (): JSX.Element => {
       } else if (intervalThree) {
         if (sliderIncreased) {
           setArrows({ ...DEFAULT_ARROWS, bottom: { down: true, up: false } });
-          if (netIntervals === MOTION_INTERVAL * 2 + MOTION_INTERVAL / 2) {
-            dispatch(setEquilibriumCarbonDioxide(sliderCarbonDioxide));
-          }
         } else if (sliderDecreased) {
           setArrows({ ...DEFAULT_ARROWS, top: { down: false, up: true } });
+        }
+        if (netIntervals === MOTION_INTERVAL * 2 + MOTION_INTERVAL / 2) {
+          dispatch(setEquilibriumCarbonDioxide(sliderCarbonDioxide));
         }
       } else {
         resetArrows();

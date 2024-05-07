@@ -88,7 +88,7 @@ const countReversedActiveCycle = (
       if (formsCarbonicAcid) return { ...counts, carbonicAcid: 1 };
       return { ...counts, co2Water: 1 };
     }
-    if (!carbonicAcidFormed && !formsCarbonicAcid) {
+    if (!carbonicAcidFormed && !formsCarbonicAcid && carbonDioxideInWater) {
       return { ...counts, co2Water: 1 };
     }
     if (co2InWater) return { ...counts, co2Water: 1 };
