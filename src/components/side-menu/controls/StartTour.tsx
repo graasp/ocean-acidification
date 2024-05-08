@@ -17,9 +17,11 @@ const StartTour = (): JSX.Element => {
 
   return (
     <Tooltip title="Start tour" placement="left">
-      <IconButton disabled={disabled}>
-        <Info color={color} sx={styles} />
-      </IconButton>
+      <span>
+        <IconButton disabled={disabled}>
+          <Info color={color} sx={styles} />
+        </IconButton>
+      </span>
     </Tooltip>
   );
 };

@@ -42,9 +42,11 @@ const SlowMotion = (): JSX.Element => {
 
   return (
     <Tooltip title="Play next step">
-      <IconButton onClick={handleClick} disabled={disabled}>
-        <SlowMotionVideo sx={styles} />
-      </IconButton>
+      <span>
+        <IconButton onClick={handleClick} disabled={disabled}>
+          <SlowMotionVideo sx={styles} />
+        </IconButton>
+      </span>
     </Tooltip>
   );
 };

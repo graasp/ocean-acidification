@@ -70,9 +70,11 @@ const Stop = (): JSX.Element => {
   return (
     <Box sx={container}>
       <Tooltip title="Stop">
-        <IconButton onClick={onStop} disabled={disabled}>
-          <StopCircleOutlined sx={styles} />
-        </IconButton>
+        <span>
+          <IconButton onClick={onStop} disabled={disabled}>
+            <StopCircleOutlined sx={styles} />
+          </IconButton>
+        </span>
       </Tooltip>
       {disabled && <ProgressBar />}
     </Box>
