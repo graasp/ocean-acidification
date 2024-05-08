@@ -21,9 +21,11 @@ const Play = ({ disabled }: Props): JSX.Element => {
 
   return (
     <Tooltip title="Play">
-      <IconButton disabled={disabled} onClick={() => dispatch(togglePlay())}>
-        <PlayCircleOutline sx={styles} />
-      </IconButton>
+      <span>
+        <IconButton disabled={disabled} onClick={() => dispatch(togglePlay())}>
+          <PlayCircleOutline sx={styles} />
+        </IconButton>
+      </span>
     </Tooltip>
   );
 };

@@ -1,4 +1,3 @@
-// import { CO2_RELATIVE_SPEED_IN_WATER } from '@/constants/canvas';
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 
 import { CompleteCoordinates, Coordinate, Point } from './molecules/types';
