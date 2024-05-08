@@ -1,8 +1,6 @@
 import { appSettingsActionType } from '@/reducers/app-settings';
 import {
-  DECREMENT_REEF_HOLES,
   INCREMENT_INTERVAL_COUNT,
-  INCREMENT_REEF_HOLES,
   RESET_SETTINGS,
   SET_ANIMATION_INDEX,
   SET_DIMENSIONS,
@@ -38,14 +36,6 @@ export const incrementIntervalCount = (): appSettingsActionType => ({
 
 export const resetSettings = (): appSettingsActionType => ({
   type: RESET_SETTINGS,
-});
-
-export const incrementReefHoles = (): appSettingsActionType => ({
-  type: INCREMENT_REEF_HOLES,
-});
-
-export const decrementReefHoles = (): appSettingsActionType => ({
-  type: DECREMENT_REEF_HOLES,
 });
 
 export const toggleMode = (): appSettingsActionType => ({

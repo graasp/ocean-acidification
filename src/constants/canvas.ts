@@ -145,7 +145,6 @@ export const REEF_HOLES_BEGIN_Y =
 export const REEF_HOLES_END_Y = Math.max(...REEF_GROUP.map(({ y }) => y));
 export const REEF_HOLES_RADII = [0.002, 0.004];
 export const TOTAL_NUM_HOLES = 600;
-export const PERCENT_HOLES_INCREMENT = 1 / (PH_SCALE_POINTS.length - 1);
 export const REEF_HOLES_PERCENTAGES = PH_SCALE_POINTS.map(
   (point, index) => 1 - index * (1 / (PH_SCALE_POINTS.length - 1)),
 );

@@ -1,4 +1,3 @@
-import { PERCENT_HOLES_INCREMENT } from '@/constants/canvas';
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 import { DEFAULT_CO2, DEFAULT_YEAR } from '@/constants/side-menu';
 import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
@@ -7,9 +6,7 @@ import { computeEquilibriumDistribution } from '@/utils/molecules';
 import { ActiveMoleculesType } from '@/utils/molecules/types';
 
 import {
-  DECREMENT_REEF_HOLES,
   INCREMENT_INTERVAL_COUNT,
-  INCREMENT_REEF_HOLES,
   RESET_SETTINGS,
   SET_ANIMATION_INDEX,
   SET_DIMENSIONS,
@@ -32,7 +29,6 @@ export interface appSettingsType {
   dimensions: Dimensions;
   intervalCount: number;
   isPlaying: boolean;
-  reefHoles: number;
   mode: string;
   animationIndex: number;
   animationInMotion: boolean;
@@ -54,7 +50,6 @@ export const initialAppSettings = {
   dimensions: { width: 0, height: 0 },
   intervalCount: 0,
   isPlaying: false,
-  reefHoles: 0,
   mode: SEQUENTIAL,
   animationIndex: 0,
   animationInMotion: false,
@@ -97,20 +92,6 @@ export const appSettingsReducer = (
         dimensions: { ...state.dimensions },
         mode: state.mode,
       };
-    case DECREMENT_REEF_HOLES: {
-      const updatedHoles = Math.max(
-        state.reefHoles - PERCENT_HOLES_INCREMENT,
-        0,
-      );
-      return { ...state, reefHoles: updatedHoles };
-    }
-    case INCREMENT_REEF_HOLES: {
-      const updatedHoles = Math.min(
-        state.reefHoles + PERCENT_HOLES_INCREMENT,
-        1,
-      );
-      return { ...state, reefHoles: updatedHoles };
-    }
     case TOGGLE_MODE: {
       return {
         ...initialAppSettings,
