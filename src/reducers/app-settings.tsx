@@ -1,4 +1,5 @@
 import { PERCENT_HOLES_INCREMENT } from '@/constants/canvas';
+import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 import { DEFAULT_CO2, DEFAULT_YEAR } from '@/constants/side-menu';
 import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
 import { CONTINUOUS, SEQUENTIAL } from '@/constants/strings';
@@ -76,8 +77,18 @@ export const appSettingsReducer = (
   switch (type) {
     case SET_DIMENSIONS:
       return { ...state, dimensions: payload };
-    case TOGGLE_PLAY:
-      return { ...state, isPlaying: !state.isPlaying };
+    case TOGGLE_PLAY: {
+      const { isPlaying, intervalCount } = state;
+      let excessIntervals = 0;
+      if (isPlaying && intervalCount % MOTION_INTERVAL !== 0) {
+        excessIntervals = intervalCount % MOTION_INTERVAL;
+      }
+      return {
+        ...state,
+        isPlaying: !state.isPlaying,
+        intervalCount: intervalCount - excessIntervals,
+      };
+    }
     case INCREMENT_INTERVAL_COUNT:
       return { ...state, intervalCount: state.intervalCount + 1 };
     case RESET_SETTINGS:
