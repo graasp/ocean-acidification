@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { Dispatch, SetStateAction, useContext } from 'react';
 
 import { SlowMotionVideo } from '@mui/icons-material';
 import { IconButton, Tooltip } from '@mui/material';
@@ -14,7 +14,11 @@ import { SEQUENTIAL_MODE_INTERVALS } from '@/constants/motion/sequential-mode-in
 import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
-const SlowMotion = (): JSX.Element => {
+interface Props {
+  setCanRewind: Dispatch<SetStateAction<boolean>>;
+}
+
+const SlowMotion = ({ setCanRewind }: Props): JSX.Element => {
   const { state, dispatch } = useContext(AppSettingsContext);
   const { intervalCount, animationIndex, animationInMotion, mode } = state;
   const currentLimit = SEQUENTIAL_MODE_INTERVALS[animationIndex + 1];
@@ -26,6 +30,7 @@ const SlowMotion = (): JSX.Element => {
   const styles = { fontSize: '2em', color: disabled ? '' : blue[800] };
 
   const handleClick = (): void => {
+    setCanRewind(true);
     dispatch(toggleAnimationInMotion());
     let count = intervalCount;
     const motionInterval = setInterval(() => {

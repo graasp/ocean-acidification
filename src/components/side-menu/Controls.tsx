@@ -1,4 +1,11 @@
-import { Dispatch, SetStateAction, useContext, useEffect, useRef } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import { Box } from '@mui/material';
 
@@ -10,6 +17,7 @@ import { AppSettingsContext } from '../../contexts/AppSettingsProvider';
 import CloseMenu from './controls/CloseMenu';
 import Play from './controls/Play';
 import Reset from './controls/Reset';
+import Rewind from './controls/Rewind';
 import SlowMotion from './controls/SlowMotion';
 import StartTour from './controls/StartTour';
 import Stop from './controls/Stop';
@@ -42,6 +50,7 @@ const centerContainer = {
 };
 
 const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
+  const [canRewind, setCanRewind] = useState(false);
   const applicationInterval = useRef<ReturnType<typeof setInterval>>();
   const { dispatch, state } = useContext(AppSettingsContext);
   const { isPlaying, mode } = state;
@@ -66,8 +75,11 @@ const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
         <CloseMenu setShowSideMenu={setShowSideMenu} />
       </Box>
       <Box sx={centerContainer}>
-        <SlowMotion />
-        {!isPlaying ? <Play disabled={modeSequential} /> : <Stop />}
+        {modeSequential && (
+          <Rewind canRewind={canRewind} setCanRewind={setCanRewind} />
+        )}
+        {modeSequential && <SlowMotion setCanRewind={setCanRewind} />}
+        {!modeSequential && (!isPlaying ? <Play /> : <Stop />)}
         <Reset />
       </Box>
       <Box sx={rightContainer}>

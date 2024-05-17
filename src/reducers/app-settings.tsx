@@ -13,6 +13,7 @@ import {
   SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT,
   SET_DISTRIBUTION,
   SET_EQUILIBRIUM_CARBON_DIOXIDE,
+  SET_INTERVAL_COUNT_DIRECTLY,
   SET_SLIDER_CARBON_DIOXIDE,
   SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
@@ -122,6 +123,9 @@ export const appSettingsReducer = (
     }
     case SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT: {
       return { ...state, disequilibriumCyclesBeginAt: payload };
+    }
+    case SET_INTERVAL_COUNT_DIRECTLY: {
+      return { ...state, intervalCount: payload };
     }
     default:
       return state;

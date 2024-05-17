@@ -7,6 +7,7 @@ import {
   SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT,
   SET_DISTRIBUTION,
   SET_EQUILIBRIUM_CARBON_DIOXIDE,
+  SET_INTERVAL_COUNT_DIRECTLY,
   SET_SLIDER_CARBON_DIOXIDE,
   SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
@@ -85,5 +86,12 @@ export const setDisequilibriumCyclesBeginAt = (
   payload: number,
 ): appSettingsActionType => ({
   type: SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT,
+  payload,
+});
+
+export const setIntervalCountDirectly = (
+  payload: number,
+): appSettingsActionType => ({
+  type: SET_INTERVAL_COUNT_DIRECTLY,
   payload,
 });
