@@ -37,7 +37,7 @@ const CarbonicAcidFormation = (): JSX.Element => {
   return (
     <Box sx={container} style={{ backgroundColor }}>
       <CustomTypography isActive={isActive} isInactive={isInactive}>
-        H<sub>2</sub>O<sub>(aq)</sub>
+        H<sub>2</sub>O<sub>(l)</sub>
       </CustomTypography>
       <CustomTypography isActive={isActive} isInactive={isInactive}>
         +
