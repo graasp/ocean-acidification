@@ -32,7 +32,6 @@ export const PERIODS = [
   { year: '2050', co2: 550 },
 ];
 export const DEFAULT_PERIOD = PERIODS[1];
-export const DEFAULT_YEAR = DEFAULT_PERIOD.year;
 export const DEFAULT_CO2 = DEFAULT_PERIOD.co2;
 
 // these constants/calculations to center table arrows on top of table

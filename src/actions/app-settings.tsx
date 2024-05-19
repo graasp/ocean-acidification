@@ -9,7 +9,6 @@ import {
   SET_EQUILIBRIUM_CARBON_DIOXIDE,
   SET_INTERVAL_COUNT_DIRECTLY,
   SET_SLIDER_CARBON_DIOXIDE,
-  SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PLAY,
@@ -60,11 +59,6 @@ export const setDistribution = (
   payload: ActiveMoleculesType[],
 ): appSettingsActionType => ({
   type: SET_DISTRIBUTION,
-  payload,
-});
-
-export const setYear = (payload: string): appSettingsActionType => ({
-  type: SET_YEAR,
   payload,
 });
 

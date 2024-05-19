@@ -1,5 +1,5 @@
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
-import { DEFAULT_CO2, DEFAULT_YEAR } from '@/constants/side-menu';
+import { DEFAULT_CO2 } from '@/constants/side-menu';
 import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
 import { CONTINUOUS, SEQUENTIAL } from '@/constants/strings';
 import { computeEquilibriumDistribution } from '@/utils/molecules';
@@ -15,7 +15,6 @@ import {
   SET_EQUILIBRIUM_CARBON_DIOXIDE,
   SET_INTERVAL_COUNT_DIRECTLY,
   SET_SLIDER_CARBON_DIOXIDE,
-  SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PLAY,
@@ -35,7 +34,6 @@ export interface appSettingsType {
   animationInMotion: boolean;
   showScale: boolean;
   activeMoleculeDistribution: ActiveMoleculesType[];
-  year: string;
   sliderCarbonDioxide: number;
   equilibriumCarbonDioxide: number;
   disequilibriumCyclesBeginAt: number;
@@ -59,7 +57,6 @@ export const initialAppSettings = {
     ACTIVE_CO2_DISTRIBUTION,
     DEFAULT_CO2,
   ),
-  year: DEFAULT_YEAR,
   sliderCarbonDioxide: DEFAULT_CO2,
   equilibriumCarbonDioxide: DEFAULT_CO2,
   disequilibriumCyclesBeginAt: 0,
@@ -108,9 +105,6 @@ export const appSettingsReducer = (
     }
     case TOGGLE_SHOW_SCALE: {
       return { ...state, showScale: !state.showScale };
-    }
-    case SET_YEAR: {
-      return { ...state, year: payload };
     }
     case SET_SLIDER_CARBON_DIOXIDE: {
       return { ...state, sliderCarbonDioxide: payload };
