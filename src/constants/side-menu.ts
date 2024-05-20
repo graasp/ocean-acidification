@@ -62,3 +62,10 @@ export const DEFAULT_ARROWS = {
 
 export const TABLE_EXTRA_LABEL_COLOR = '#D22B2B';
 export const HYDROGEN_BOX_BORDER = `2px solid ${TABLE_EXTRA_LABEL_COLOR}`;
+
+export const EQ_SCALE_COLOR_EQ = '#FFB302';
+export const EQ_SCALE_COLOR_DISEQ = '#AA4A44';
+export const EQ_SCALE_ROTATE_EQ = '0deg';
+export const EQ_SCALE_ROTATE_DISEQ = '-10deg';
+export const EQ_SCALE_EMOJI_EQ = '😎';
+export const EQ_SCALE_EMOJI_DISEQ = '⛔';

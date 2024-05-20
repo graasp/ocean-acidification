@@ -1,8 +1,9 @@
 import { Box, Typography } from '@mui/material';
 
+import EquilibriumScale from '../molecule-count-table/EquilibriumScale';
 import CustomHelpIcon from '../molecule-count-table/info-modal/HelpIcon';
 
-const styles = {
+const container = {
   width: '90%',
   margin: '10px auto',
   display: 'flex',
@@ -10,20 +11,31 @@ const styles = {
   alignItems: 'center',
 };
 
+const extraInfo = {
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+};
+
 interface Props {
   label: string | JSX.Element;
-  showHelpIcon?: boolean;
+  isCustomHeader?: boolean;
 }
 
-const SideMenuHeader = ({ label, showHelpIcon }: Props): JSX.Element => (
-  <Box sx={styles}>
+const SideMenuHeader = ({ label, isCustomHeader }: Props): JSX.Element => (
+  <Box sx={container}>
     <Typography variant="body2" fontWeight={600}>
       {label}
     </Typography>
-    {showHelpIcon && <CustomHelpIcon />}
+    {isCustomHeader && (
+      <Box sx={extraInfo}>
+        <EquilibriumScale />
+        <CustomHelpIcon />
+      </Box>
+    )}
   </Box>
 );
 
-SideMenuHeader.defaultProps = { showHelpIcon: false };
+SideMenuHeader.defaultProps = { isCustomHeader: false };
 
 export default SideMenuHeader;
