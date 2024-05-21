@@ -48,8 +48,15 @@ export const ALL_ARROWS_CONTAINER_MARGIN_TOP = '32px';
 
 export const TABLE_ARROW_ACTIVE_COLOR = '#0047AB';
 export const TABLE_ARROW_INACTIVE_COLOR = 'black';
-export const TABLE_ARROW_ACTIVE_SIZE = 'h5';
-export const TABLE_ARROW_INACTIVE_SIZE = 'body1';
+export const TABLE_ARROW_BODY_SIDE_LARGE = '4px';
+export const TABLE_ARROW_BODY_SIDE_SMALL = '3px';
+export const TABLE_ARROW_BODY_TOP_LARGE = '6px';
+export const TABLE_ARROW_BODY_TOP_SMALL = '5px';
+export const TABLE_ARROW_POINTER_LARGE = '10px';
+export const TABLE_ARROW_POINTER_SMALL = '8px';
+export const TABLE_ARROW_UP_ROTATION = '180deg';
+export const TABLE_ARROW_DOWN_ROTATION = '0deg';
+
 export const TABLE_ACTIVE_ANIMATION = {
   animation: 'blinker 2s linear infinite',
   '@keyframes blinker': { '50%': { opacity: 0.5 } },
