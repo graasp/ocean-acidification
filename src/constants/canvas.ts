@@ -57,6 +57,9 @@ export const PH_SCALE_POINTS = [
   { pH: 8.2375, co2: 250 },
   { pH: 8.29, co2: 200 },
 ];
+export const PH_SCALE_MIN = Math.min(...PH_SCALE_POINTS.map(({ pH }) => pH));
+export const PH_SCALE_MAX = Math.max(...PH_SCALE_POINTS.map(({ pH }) => pH));
+export const PH_SCALE_RANGE = PH_SCALE_MAX - PH_SCALE_MIN;
 export const PH_SCALE_AXIS_COLOR = 'black';
 export const PH_SCALE_AXIS_HEIGHT = 5;
 export const PH_SCALE_AXIS_STROKE_WIDTH = 1;
