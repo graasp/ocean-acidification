@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { Box } from '@mui/material';
 
 import {
+  setCarbonDioxideChange,
   setDistribution,
   setSliderCarbonDioxide,
 } from '@/actions/app-settings';
@@ -30,6 +31,7 @@ const CarbonDioxideSlider = (): JSX.Element => {
   const {
     isPlaying,
     sliderCarbonDioxide,
+    equilibriumCarbonDioxide,
     activeMoleculeDistribution,
     intervalCount,
   } = state;
@@ -49,6 +51,7 @@ const CarbonDioxideSlider = (): JSX.Element => {
     );
     dispatch(setDistribution(updatedDistribution));
     dispatch(setSliderCarbonDioxide(sliderValue));
+    dispatch(setCarbonDioxideChange(sliderValue - equilibriumCarbonDioxide));
   };
 
   return (

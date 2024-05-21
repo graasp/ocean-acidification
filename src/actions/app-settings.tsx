@@ -3,11 +3,13 @@ import {
   INCREMENT_INTERVAL_COUNT,
   RESET_SETTINGS,
   SET_ANIMATION_INDEX,
+  SET_CARBON_DIOXIDE_CHANGE,
   SET_DIMENSIONS,
   SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT,
   SET_DISTRIBUTION,
   SET_EQUILIBRIUM_CARBON_DIOXIDE,
   SET_INTERVAL_COUNT_DIRECTLY,
+  SET_PH_CARBON_DIOXIDE,
   SET_SLIDER_CARBON_DIOXIDE,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
@@ -87,5 +89,17 @@ export const setIntervalCountDirectly = (
   payload: number,
 ): appSettingsActionType => ({
   type: SET_INTERVAL_COUNT_DIRECTLY,
+  payload,
+});
+
+export const setPHCarbonDioxide = (payload: number): appSettingsActionType => ({
+  type: SET_PH_CARBON_DIOXIDE,
+  payload,
+});
+
+export const setCarbonDioxideChange = (
+  payload: number,
+): appSettingsActionType => ({
+  type: SET_CARBON_DIOXIDE_CHANGE,
   payload,
 });

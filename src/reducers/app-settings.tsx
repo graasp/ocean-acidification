@@ -9,11 +9,13 @@ import {
   INCREMENT_INTERVAL_COUNT,
   RESET_SETTINGS,
   SET_ANIMATION_INDEX,
+  SET_CARBON_DIOXIDE_CHANGE,
   SET_DIMENSIONS,
   SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT,
   SET_DISTRIBUTION,
   SET_EQUILIBRIUM_CARBON_DIOXIDE,
   SET_INTERVAL_COUNT_DIRECTLY,
+  SET_PH_CARBON_DIOXIDE,
   SET_SLIDER_CARBON_DIOXIDE,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
@@ -37,6 +39,8 @@ export interface appSettingsType {
   sliderCarbonDioxide: number;
   equilibriumCarbonDioxide: number;
   disequilibriumCyclesBeginAt: number;
+  pHCarbonDioxide: number;
+  carbonDioxideChange: number;
 }
 
 export interface appSettingsActionType {
@@ -60,6 +64,8 @@ export const initialAppSettings = {
   sliderCarbonDioxide: DEFAULT_CO2,
   equilibriumCarbonDioxide: DEFAULT_CO2,
   disequilibriumCyclesBeginAt: 0,
+  pHCarbonDioxide: DEFAULT_CO2,
+  carbonDioxideChange: 0,
 };
 
 export const appSettingsReducer = (
@@ -120,6 +126,12 @@ export const appSettingsReducer = (
     }
     case SET_INTERVAL_COUNT_DIRECTLY: {
       return { ...state, intervalCount: payload };
+    }
+    case SET_PH_CARBON_DIOXIDE: {
+      return { ...state, pHCarbonDioxide: payload };
+    }
+    case SET_CARBON_DIOXIDE_CHANGE: {
+      return { ...state, carbonDioxideChange: payload };
     }
     default:
       return state;
