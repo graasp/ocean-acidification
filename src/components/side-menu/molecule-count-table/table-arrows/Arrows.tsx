@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
 
 import { ARROWS_CONTAINER_HEIGHT } from '@/constants/side-menu';
+import { DOWN, UP } from '@/constants/strings';
 
-import DownArrow from './DownArrow';
-import UpArrow from './UpArrow';
+import Arrow from './Arrow';
 
 const styles = {
   display: 'flex',
@@ -26,8 +26,8 @@ const Arrows = ({
   upIsLarge,
 }: Props): JSX.Element => (
   <Box sx={styles}>
-    <DownArrow isActive={downActive} isLarge={downIsLarge} />
-    <UpArrow isActive={upActive} isLarge={upIsLarge} />
+    <Arrow type={DOWN} isActive={downActive} isLarge={downIsLarge} />
+    <Arrow type={UP} isActive={upActive} isLarge={upIsLarge} />
   </Box>
 );
 

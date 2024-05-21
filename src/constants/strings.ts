@@ -10,3 +10,5 @@ export const PRIMARY = 'primary';
 export const NOT_IN_EQ = 'System not in equilibrium';
 export const IN_EQ = 'System in equilibrium';
 export const TOP = 'top';
+export const UP = 'up';
+export const DOWN = 'down';
