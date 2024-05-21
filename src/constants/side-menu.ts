@@ -32,7 +32,6 @@ export const PERIODS = [
   { year: '2050', co2: 550 },
 ];
 export const DEFAULT_PERIOD = PERIODS[1];
-export const DEFAULT_YEAR = DEFAULT_PERIOD.year;
 export const DEFAULT_CO2 = DEFAULT_PERIOD.co2;
 
 // these constants/calculations to center table arrows on top of table
@@ -63,3 +62,10 @@ export const DEFAULT_ARROWS = {
 
 export const TABLE_EXTRA_LABEL_COLOR = '#D22B2B';
 export const HYDROGEN_BOX_BORDER = `2px solid ${TABLE_EXTRA_LABEL_COLOR}`;
+
+export const EQ_SCALE_COLOR_EQ = '#FFB302';
+export const EQ_SCALE_COLOR_DISEQ = '#AA4A44';
+export const EQ_SCALE_ROTATE_EQ = '0deg';
+export const EQ_SCALE_ROTATE_DISEQ = '-10deg';
+export const EQ_SCALE_EMOJI_EQ = '😎';
+export const EQ_SCALE_EMOJI_DISEQ = '⛔';

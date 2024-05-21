@@ -56,7 +56,7 @@ const MoleculeCountTable = ({ arrowsState }: Props): JSX.Element => {
 
   return (
     <Box sx={container}>
-      <SideMenuHeader label="Molecule Counts" showHelpIcon />
+      <SideMenuHeader label="Molecule Counts" isCustomHeader />
       <Box sx={table}>
         <ArrowsGroup arrowsState={arrowsState} />
         <AllRows arrowsState={arrowsState} moleculesCount={allMoleculesCount} />

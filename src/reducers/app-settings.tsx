@@ -1,5 +1,5 @@
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
-import { DEFAULT_CO2, DEFAULT_YEAR } from '@/constants/side-menu';
+import { DEFAULT_CO2 } from '@/constants/side-menu';
 import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
 import { CONTINUOUS, SEQUENTIAL } from '@/constants/strings';
 import { computeEquilibriumDistribution } from '@/utils/molecules';
@@ -9,12 +9,14 @@ import {
   INCREMENT_INTERVAL_COUNT,
   RESET_SETTINGS,
   SET_ANIMATION_INDEX,
+  SET_CARBON_DIOXIDE_CHANGE,
   SET_DIMENSIONS,
   SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT,
   SET_DISTRIBUTION,
   SET_EQUILIBRIUM_CARBON_DIOXIDE,
+  SET_INTERVAL_COUNT_DIRECTLY,
+  SET_PH_CARBON_DIOXIDE,
   SET_SLIDER_CARBON_DIOXIDE,
-  SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PLAY,
@@ -34,10 +36,11 @@ export interface appSettingsType {
   animationInMotion: boolean;
   showScale: boolean;
   activeMoleculeDistribution: ActiveMoleculesType[];
-  year: string;
   sliderCarbonDioxide: number;
   equilibriumCarbonDioxide: number;
   disequilibriumCyclesBeginAt: number;
+  pHCarbonDioxide: number;
+  carbonDioxideChange: number;
 }
 
 export interface appSettingsActionType {
@@ -58,10 +61,11 @@ export const initialAppSettings = {
     ACTIVE_CO2_DISTRIBUTION,
     DEFAULT_CO2,
   ),
-  year: DEFAULT_YEAR,
   sliderCarbonDioxide: DEFAULT_CO2,
   equilibriumCarbonDioxide: DEFAULT_CO2,
   disequilibriumCyclesBeginAt: 0,
+  pHCarbonDioxide: DEFAULT_CO2,
+  carbonDioxideChange: 0,
 };
 
 export const appSettingsReducer = (
@@ -108,9 +112,6 @@ export const appSettingsReducer = (
     case TOGGLE_SHOW_SCALE: {
       return { ...state, showScale: !state.showScale };
     }
-    case SET_YEAR: {
-      return { ...state, year: payload };
-    }
     case SET_SLIDER_CARBON_DIOXIDE: {
       return { ...state, sliderCarbonDioxide: payload };
     }
@@ -122,6 +123,15 @@ export const appSettingsReducer = (
     }
     case SET_DISEQUILIBRIUM_CYCLES_BEGIN_AT: {
       return { ...state, disequilibriumCyclesBeginAt: payload };
+    }
+    case SET_INTERVAL_COUNT_DIRECTLY: {
+      return { ...state, intervalCount: payload };
+    }
+    case SET_PH_CARBON_DIOXIDE: {
+      return { ...state, pHCarbonDioxide: payload };
+    }
+    case SET_CARBON_DIOXIDE_CHANGE: {
+      return { ...state, carbonDioxideChange: payload };
     }
     default:
       return state;

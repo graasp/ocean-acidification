@@ -1,6 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 
-import { setEquilibriumCarbonDioxide } from '@/actions/app-settings';
+import {
+  setEquilibriumCarbonDioxide,
+  setPHCarbonDioxide,
+} from '@/actions/app-settings';
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 import { DEFAULT_ARROWS } from '@/constants/side-menu';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
@@ -16,6 +19,7 @@ const ArrowsStateManager = (): JSX.Element => {
     disequilibriumCyclesBeginAt,
     equilibriumCarbonDioxide,
     isPlaying,
+    carbonDioxideChange,
   } = state;
 
   const sliderIncreased = sliderCarbonDioxide > equilibriumCarbonDioxide;
@@ -36,6 +40,8 @@ const ArrowsStateManager = (): JSX.Element => {
     const intervalThree =
       netIntervals > 2 * MOTION_INTERVAL + 1 &&
       netIntervals < 3 * MOTION_INTERVAL;
+
+    const deprotonationAt = MOTION_INTERVAL * 2 + MOTION_INTERVAL / 2;
 
     if (isPlaying) {
       if (intervalOne) {
@@ -59,8 +65,18 @@ const ArrowsStateManager = (): JSX.Element => {
         } else if (sliderDecreased) {
           setArrows({ ...DEFAULT_ARROWS, top: { down: false, up: true } });
         }
-        if (netIntervals === MOTION_INTERVAL * 2 + MOTION_INTERVAL / 2) {
-          dispatch(setEquilibriumCarbonDioxide(sliderCarbonDioxide));
+        if (netIntervals >= deprotonationAt) {
+          if (netIntervals === deprotonationAt) {
+            dispatch(setEquilibriumCarbonDioxide(sliderCarbonDioxide));
+          }
+          const movePerInterval = carbonDioxideChange / (MOTION_INTERVAL / 2);
+          dispatch(
+            setPHCarbonDioxide(
+              sliderCarbonDioxide -
+                carbonDioxideChange +
+                movePerInterval * (netIntervals + 1 - deprotonationAt),
+            ),
+          );
         }
       } else {
         resetArrows();
@@ -75,6 +91,7 @@ const ArrowsStateManager = (): JSX.Element => {
     arrows,
     dispatch,
     sliderCarbonDioxide,
+    carbonDioxideChange,
   ]);
 
   return <MoleculeCountTable arrowsState={arrows} />;
