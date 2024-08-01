@@ -3,12 +3,15 @@ import { useContext } from 'react';
 import { Box } from '@mui/material';
 
 import { ACTIVE_EQUATION_BACKGROUND } from '@/constants/side-menu';
-import { EMPTY_STRING } from '@/constants/strings';
+import { AQUEOUS, EMPTY_STRING } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { determineEquationsState } from '@/utils/side-menu';
 
 import Arrows from './Arrows';
-import CustomTypography from './CustomTypography';
+import EquationTypography from './EquationTypography';
+import Bicarbonate from './molecules/Bicarbonate';
+import CarbonicAcid from './molecules/CarbonicAcid';
+import HydrogenIon from './molecules/HydrogenIon';
 
 const container = {
   display: 'flex',
@@ -36,26 +39,34 @@ const CarbonicAcidDissociation = (): JSX.Element => {
 
   return (
     <Box sx={container} style={{ backgroundColor }}>
-      <CustomTypography isActive={isActive} isInactive={isInactive}>
-        H<sub>2</sub>CO<sub>3(aq)</sub>
-      </CustomTypography>
+      <EquationTypography
+        molecule={<CarbonicAcid />}
+        additionalText={AQUEOUS}
+        isActive={isActive}
+        isInactive={isInactive}
+      />
       <Arrows
         rightArrowActive={rightArrowActive}
         leftArrowActive={leftArrowActive}
         isInactive={isInactive}
       />
-      <CustomTypography isActive={isActive} isInactive={isInactive}>
-        H<sup>+</sup>
-        <sub>(aq)</sub>
-      </CustomTypography>
-      <CustomTypography isActive={isActive} isInactive={isInactive}>
-        +
-      </CustomTypography>
-      <CustomTypography isActive={isActive} isInactive={isInactive}>
-        HCO<sub>3</sub>
-        <sup>-</sup>
-        <sub>(aq)</sub>
-      </CustomTypography>
+      <EquationTypography
+        molecule={<HydrogenIon />}
+        additionalText={AQUEOUS}
+        isActive={isActive}
+        isInactive={isInactive}
+      />
+      <EquationTypography
+        additionalText="+"
+        isActive={isActive}
+        isInactive={isInactive}
+      />
+      <EquationTypography
+        molecule={<Bicarbonate />}
+        additionalText={AQUEOUS}
+        isActive={isActive}
+        isInactive={isInactive}
+      />
     </Box>
   );
 };

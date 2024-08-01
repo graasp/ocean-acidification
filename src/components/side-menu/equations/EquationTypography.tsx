@@ -1,25 +1,23 @@
-import { ReactNode } from 'react';
-
 import { Typography } from '@mui/material';
 
 import {
   ACTIVE_EQUATION_COLOR,
-  ACTIVE_EQUATION_WEIGHT,
   DEFAULT_EQUATION_COLOR,
-  DEFAULT_EQUATION_WEIGHT,
   INACTIVE_EQUATION_COLOR,
 } from '@/constants/side-menu';
 
 interface Props {
+  molecule?: React.ReactNode;
+  additionalText?: string;
   isActive: boolean;
   isInactive: boolean;
-  children: string | ReactNode;
 }
 
-const CustomTypography = ({
+const EquationTypography = ({
+  molecule,
+  additionalText,
   isActive,
   isInactive,
-  children,
 }: Props): JSX.Element => {
   let color = DEFAULT_EQUATION_COLOR;
   if (isActive) {
@@ -28,16 +26,13 @@ const CustomTypography = ({
     color = INACTIVE_EQUATION_COLOR;
   }
 
-  const styles = {
-    color,
-    fontWeight: isActive ? ACTIVE_EQUATION_WEIGHT : DEFAULT_EQUATION_WEIGHT,
-  };
+  const styles = { color };
 
   return (
     <Typography variant="body2" sx={styles}>
-      {children}
+      <strong>{molecule}</strong> {additionalText}
     </Typography>
   );
 };
 
-export default CustomTypography;
+export default EquationTypography;

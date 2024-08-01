@@ -12,3 +12,6 @@ export const IN_EQ = 'System in equilibrium';
 export const TOP = 'top';
 export const UP = 'up';
 export const DOWN = 'down';
+export const GAS = '(g)';
+export const AQUEOUS = '(aq)';
+export const LIQUID = '(l)';
