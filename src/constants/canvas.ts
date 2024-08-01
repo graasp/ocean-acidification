@@ -116,6 +116,7 @@ export const PH_SCALE_HOLES = [
   { x: 0.805, y: 0.4, radius: SMALL_HOLE_RADIUS },
   { x: 0.84, y: 0.5, radius: LARGE_HOLE_RADIUS },
   { x: 0.88, y: 0.5, radius: SMALL_HOLE_RADIUS },
+  { x: 0.94, y: 0.65, radius: SMALL_HOLE_RADIUS },
 ];
 
 export const REEF_POINTS = [
@@ -142,7 +143,7 @@ const REEF_HEIGHT = Math.min(
 );
 
 export const REEF_HOLES_BEGIN_X = PH_SCALE_BEGINS_X;
-export const REEF_HOLES_END_X = PH_SCALE_BEGINS_X + 0.875 * PH_SCALE_WIDTH;
+export const REEF_HOLES_END_X = PH_SCALE_BEGINS_X + PH_SCALE_WIDTH;
 export const REEF_HOLES_BEGIN_Y =
   Math.max(...REEF_GROUP.map(({ y }) => y)) + REEF_HEIGHT;
 export const REEF_HOLES_END_Y = Math.max(...REEF_GROUP.map(({ y }) => y));
