@@ -14,12 +14,12 @@ import { INTERVAL_COUNT_INCREMENTED_EVERY } from '@/constants/canvas';
 import { SEQUENTIAL } from '@/constants/strings';
 
 import { AppSettingsContext } from '../../contexts/AppSettingsProvider';
+import Tours from './Tours';
 import CloseMenu from './controls/CloseMenu';
 import Play from './controls/Play';
 import Reset from './controls/Reset';
 import Rewind from './controls/Rewind';
 import SlowMotion from './controls/SlowMotion';
-import StartTour from './controls/StartTour';
 import Stop from './controls/Stop';
 
 interface Props {
@@ -35,12 +35,6 @@ const leftContainer = {
   width: '20%',
   display: 'flex',
   alignItems: 'center',
-};
-const rightContainer = {
-  width: '20%',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
 };
 const centerContainer = {
   width: '60%',
@@ -82,9 +76,7 @@ const Controls = ({ setShowSideMenu }: Props): JSX.Element => {
         {!modeSequential && (!isPlaying ? <Play /> : <Stop />)}
         <Reset />
       </Box>
-      <Box sx={rightContainer}>
-        <StartTour />
-      </Box>
+      <Tours modeSequential={modeSequential} />
     </Box>
   );
 };

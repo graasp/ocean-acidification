@@ -3,6 +3,8 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { Tune } from '@mui/icons-material';
 import { Fab, Tooltip } from '@mui/material';
 
+import { t } from 'i18next';
+
 import { setDimensions } from '@/actions/app-settings';
 import Canvas from '@/components/canvas/Canvas';
 import SideMenu from '@/components/side-menu/SideMenu';
@@ -57,7 +59,7 @@ const BuilderView = (): JSX.Element => {
           setShowSideMenu={setShowSideMenu}
         />
         {!showSideMenu && (
-          <Tooltip title="Open side menu" placement="left">
+          <Tooltip title={t('Open side menu')} placement="left">
             <Fab
               sx={openSideMenuFab}
               color="primary"

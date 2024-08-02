@@ -1,5 +1,26 @@
 {
   "translations": {
-    "Welcome to the Graasp App Starter Kit": "Welcome to the Graasp App Starter Kit"
+    "Sequential": "Sequential",
+    "Continuous": "Continuous",
+    "Play": "Play",
+    "Reset": "Reset",
+    "Next": "Next",
+    "Back": "Back",
+    "Skip": "Skip",
+    "End tour": "End tour",
+    "Start tour": "Start tour",
+    "Open side menu": "Open side menu",
+    "Close side menu": "Close side menu",
+    "Sequential mode simulates the different reactions that occur in the air and in the water one step at a time": "Sequential mode simulates the different reactions that occur in the air and in the water one step at a time",
+    "Each time this button is pressed, one step of the reaction cycle occurs": "Each time this button is pressed, one step of the reaction cycle occurs",
+    "The chemical equations associated with each reaction can be displayed with this switch": "The chemical equations associated with each reaction can be displayed with this switch",
+    "Switch to Continuous mode to simulate all reactions occurring simultaneously": "Switch to Continuous mode to simulate all reactions occurring simultaneously",
+    "Continuous mode simulates all the chemical reactions seen in Sequential mode occuring simultaneously": "Continuous mode simulates all the chemical reactions seen in Sequential mode occuring simultaneously",
+    "Press Play to start the simulation and let the molecules interact": "Press Play to start the simulation and let the molecules interact",
+    "This table shows the number of molecules of each chemical species visible on the screen": "This table shows the number of molecules of each chemical species visible on the screen",
+    "This scale indicates whether the system is at equilibrium or not": "This scale indicates whether the system is at equilibrium or not",
+    "To alter the CO₂ concentration in the air, stop the simulation, adjust the the CO₂ level using this slider or by choosing a new concentration from the presets below, then click Play to see how it affects the reactions": "To alter the CO₂ concentration in the air, stop the simulation, adjust the the CO₂ level using this slider or by choosing a new concentration from the presets below, then click Play to see how it affects the reactions",
+    "There are three preset values for the CO₂ concentration in ppm; the first two correspond to the measured values of those years, while the third is a predicted future level": "There are three preset values for the CO₂ concentration in ppm; the first two correspond to the measured values of those years, while the third is a predicted future level",
+    "The water pH and its potential effects on corals, shells, and aquatic animals are shown when this switch is on": "The water pH and its potential effects on corals, shells, and aquatic animals are shown when this switch is on"
   }
 }

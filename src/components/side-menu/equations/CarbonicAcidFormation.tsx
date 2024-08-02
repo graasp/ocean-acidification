@@ -3,12 +3,15 @@ import { useContext } from 'react';
 import { Box } from '@mui/material';
 
 import { ACTIVE_EQUATION_BACKGROUND } from '@/constants/side-menu';
-import { EMPTY_STRING } from '@/constants/strings';
+import { AQUEOUS, EMPTY_STRING, LIQUID } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { determineEquationsState } from '@/utils/side-menu';
 
 import Arrows from './Arrows';
-import CustomTypography from './CustomTypography';
+import EquationTypography from './EquationTypography';
+import CarbonDioxide from './molecules/CarbonDioxide';
+import CarbonicAcid from './molecules/CarbonicAcid';
+import Water from './molecules/Water';
 
 const container = {
   display: 'flex',
@@ -36,23 +39,34 @@ const CarbonicAcidFormation = (): JSX.Element => {
 
   return (
     <Box sx={container} style={{ backgroundColor }}>
-      <CustomTypography isActive={isActive} isInactive={isInactive}>
-        H<sub>2</sub>O<sub>(l)</sub>
-      </CustomTypography>
-      <CustomTypography isActive={isActive} isInactive={isInactive}>
-        +
-      </CustomTypography>
-      <CustomTypography isActive={isActive} isInactive={isInactive}>
-        CO<sub>2(aq)</sub>
-      </CustomTypography>
+      <EquationTypography
+        molecule={<Water />}
+        additionalText={LIQUID}
+        isActive={isActive}
+        isInactive={isInactive}
+      />
+      <EquationTypography
+        additionalText="+"
+        isActive={isActive}
+        isInactive={isInactive}
+      />
+      <EquationTypography
+        molecule={<CarbonDioxide />}
+        additionalText={AQUEOUS}
+        isActive={isActive}
+        isInactive={isInactive}
+      />
       <Arrows
         rightArrowActive={rightArrowActive}
         leftArrowActive={leftArrowActive}
         isInactive={isInactive}
       />
-      <CustomTypography isActive={isActive} isInactive={isInactive}>
-        H<sub>2</sub>CO<sub>3(aq)</sub>
-      </CustomTypography>
+      <EquationTypography
+        molecule={<CarbonicAcid />}
+        additionalText={AQUEOUS}
+        isActive={isActive}
+        isInactive={isInactive}
+      />
     </Box>
   );
 };

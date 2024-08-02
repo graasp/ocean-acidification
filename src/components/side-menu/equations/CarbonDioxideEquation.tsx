@@ -3,12 +3,13 @@ import { useContext } from 'react';
 import { Box } from '@mui/material';
 
 import { ACTIVE_EQUATION_BACKGROUND } from '@/constants/side-menu';
-import { EMPTY_STRING } from '@/constants/strings';
+import { AQUEOUS, EMPTY_STRING, GAS } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { determineEquationsState } from '@/utils/side-menu';
 
 import Arrows from './Arrows';
-import CustomTypography from './CustomTypography';
+import EquationTypography from './EquationTypography';
+import CarbonDioxide from './molecules/CarbonDioxide';
 
 const container = {
   display: 'flex',
@@ -36,17 +37,23 @@ const CarbonDioxideEquation = (): JSX.Element => {
 
   return (
     <Box sx={container} style={{ backgroundColor }}>
-      <CustomTypography isActive={isActive} isInactive={isInactive}>
-        CO<sub>2(g)</sub>
-      </CustomTypography>
+      <EquationTypography
+        molecule={<CarbonDioxide />}
+        additionalText={GAS}
+        isActive={isActive}
+        isInactive={isInactive}
+      />
       <Arrows
         rightArrowActive={rightArrowActive}
         leftArrowActive={leftArrowActive}
         isInactive={isInactive}
       />
-      <CustomTypography isActive={isActive} isInactive={isInactive}>
-        CO<sub>2(aq)</sub>
-      </CustomTypography>
+      <EquationTypography
+        molecule={<CarbonDioxide />}
+        additionalText={AQUEOUS}
+        isActive={isActive}
+        isInactive={isInactive}
+      />
     </Box>
   );
 };

@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useLocalContext } from '@graasp/apps-query-client';
 import { Context, DEFAULT_LANG } from '@graasp/sdk';
 
+import Qs from 'qs';
+
 import AppSettingsProvider from '@/contexts/AppSettingsProvider';
 
 import i18n from '../../config/i18n';
@@ -18,7 +20,10 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     // handle a change of language
-    const lang = context?.lang ?? DEFAULT_LANG;
+    const lang =
+      Qs.parse(window.location.search, {
+        ignoreQueryPrefix: true,
+      }).lang?.toString() ?? DEFAULT_LANG;
     if (i18n.language !== lang) {
       i18n.changeLanguage(lang);
     }

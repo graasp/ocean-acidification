@@ -9,7 +9,7 @@ const SideMenuSequential = (): JSX.Element => {
   const [equationsChecked, setEquationsChecked] = useState(false);
 
   return (
-    <Box>
+    <Box className="sequential-mode-3">
       <CustomSwitch
         label="Show Equations"
         isChecked={equationsChecked}

@@ -48,7 +48,11 @@ const SlowMotion = ({ setCanRewind }: Props): JSX.Element => {
   return (
     <Tooltip title="Play next step">
       <span>
-        <IconButton onClick={handleClick} disabled={disabled}>
+        <IconButton
+          onClick={handleClick}
+          disabled={disabled}
+          className="sequential-mode-2"
+        >
           <SlowMotionVideo sx={styles} />
         </IconButton>
       </span>

@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 
+import { t } from 'i18next';
+
 import { toggleMode } from '@/actions/app-settings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
@@ -21,8 +23,8 @@ const ModeSwitch = ({ modeSequential }: Props): JSX.Element => {
 
   return (
     <TwoSidedSwitch
-      leftLabel="Sequential"
-      rightLabel="Continuous"
+      leftLabel={t('Sequential')}
+      rightLabel={t('Continuous')}
       isChecked={!modeSequential}
       setIsChecked={handleToggle}
       disabled={disabled}
