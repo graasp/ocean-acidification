@@ -39,7 +39,11 @@ const TwoSidedSwitch = ({
   disabled,
 }: Props): JSX.Element => (
   <Box sx={container}>
-    <Typography variant="body2" sx={leftLabelStyles}>
+    <Typography
+      variant="body2"
+      sx={leftLabelStyles}
+      className="sequential-mode-1"
+    >
       {leftLabel}
     </Typography>
     <Box sx={centerContainer}>
@@ -50,7 +54,11 @@ const TwoSidedSwitch = ({
         color={disabled ? 'default' : 'primary'}
       />
     </Box>
-    <Typography variant="body2" sx={rightLabelStyles}>
+    <Typography
+      variant="body2"
+      sx={rightLabelStyles}
+      className="sequential-mode-4 continuous-mode-1"
+    >
       {rightLabel}
     </Typography>
   </Box>

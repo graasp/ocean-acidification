@@ -55,7 +55,7 @@ const CarbonDioxideSlider = (): JSX.Element => {
   };
 
   return (
-    <Box>
+    <Box className="continuous-mode-5">
       <SideMenuHeader label={label} />
       <Box sx={container}>
         <CustomSlider

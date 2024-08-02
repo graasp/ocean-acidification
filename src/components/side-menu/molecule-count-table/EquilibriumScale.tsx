@@ -61,7 +61,7 @@ const EquilibriumScale = (): JSX.Element => {
 
   return (
     <Tooltip title={tooltipTitle} placement={TOP}>
-      <Box sx={container}>
+      <Box sx={container} className="continuous-mode-4">
         <Box sx={emojiStyle}>{emoji}</Box>
         <Box sx={{ ...horizontalStrip, rotate, borderColor: color }} />
         <Box sx={{ ...base, borderBottomColor: color }} />

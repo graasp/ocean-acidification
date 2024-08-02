@@ -4,6 +4,8 @@ import { RotateLeft } from '@mui/icons-material';
 import { IconButton, Tooltip } from '@mui/material';
 import { orange } from '@mui/material/colors';
 
+import { t } from 'i18next';
+
 import { resetSettings } from '@/actions/app-settings';
 import { EMPTY_STRING } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
@@ -20,7 +22,7 @@ const Reset = (): JSX.Element => {
   };
 
   return (
-    <Tooltip title="Reset">
+    <Tooltip title={t('Reset')}>
       <span>
         <IconButton
           onClick={() => dispatch(resetSettings())}

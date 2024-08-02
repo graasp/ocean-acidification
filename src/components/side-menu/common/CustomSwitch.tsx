@@ -22,7 +22,7 @@ const CustomSwitch = ({
   isChecked,
   setIsChecked,
 }: Props): JSX.Element => (
-  <Box sx={styles}>
+  <Box sx={styles} className="continuous-mode-7">
     <Typography variant="body2">{label}</Typography>
     <Switch checked={isChecked} onChange={() => setIsChecked(!isChecked)} />
   </Box>

@@ -15,3 +15,6 @@ export const DOWN = 'down';
 export const GAS = '(g)';
 export const AQUEOUS = '(aq)';
 export const LIQUID = '(l)';
+export const SEQUENTIAL_MODE_TOUR_TAKEN = 'SEQUENTIAL_MODE_TOUR_TAKEN';
+export const CONTINUOUS_MODE_TOUR_TAKEN = 'CONTINUOUS_MODE_TOUR_TAKEN';
+export const TRUE = 'true';

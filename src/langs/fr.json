@@ -1,5 +1,26 @@
 {
   "translations": {
-    "Welcome to the Graasp App Starter Kit": "Bienvenue dans le kit de démarrage de l'application Graasp"
+    "Sequential": "Séquentiel",
+    "Continuous": "Continu",
+    "Play": "Simuler",
+    "Reset": "Réinitialiser",
+    "Next": "Suivant",
+    "Back": "Précédent",
+    "Skip": "Passer",
+    "End tour": "Terminer la visite",
+    "Start tour": "Commencer la visite",
+    "Open side menu": "Ouvrir le menu latéral",
+    "Close side menu": "Fermer le menu latéral",
+    "Sequential mode simulates the different reactions that occur in the air and in the water one step at a time": "Ce mode Séquentiel simule une à une les réactions qui se produisent dans l'air et dans l'eau",
+    "Each time this button is pressed, one step of the reaction cycle occurs": "Chaque fois que vous pressez ce bouton, une étape du cycle des réactions se produit",
+    "The chemical equations associated with each reaction can be displayed with this switch": "Vous pouvez afficher les équations chimiques associées à chaque réaction",
+    "Switch to Continuous mode to simulate all reactions occurring simultaneously": "Passer au mode Continu pour simuler toutes les réactions simultanément",
+    "Continuous mode simulates all the chemical reactions seen in Sequential mode occuring simultaneously": "Le mode Continu simule toutes les réactions simultanément",
+    "Press Play to start the simulation and let the molecules interact": "Presser Play pour démarrer la simulation et faire interagir les molécules",
+    "This table shows the number of molecules of each chemical species visible on the screen": "Ce tableau dénombre les molécules de chaque espèce présente sur l'écran",
+    "This scale indicates whether the system is at equilibrium or not": "La balance indique si le système est à l'équilibre ou non",
+    "To alter the CO₂ concentration in the air, stop the simulation, adjust the the CO₂ level using this slider or by choosing a new concentration from the presets below, then click Play to see how it affects the reactions": "Pour modifier la concentration de CO₂ dans l'air, stopper la simulation, ensuite modifier ce curseur ou choisir une nouvelle concentration. Cliquer Play pour visualiser l'effet sur les réactions",
+    "There are three preset values for the CO₂ concentration in ppm; the first two correspond to the measured values of those years, while the third is a predicted future level": "Trois valeurs de concentration du CO₂ en ppm sont proposées. Les deux premières sont des mesures des années passées, la troisième est une prédiction pour le futur",
+    "The water pH and its potential effects on corals, shells, and aquatic animals are shown when this switch is on": "Ce bouton affiche le pH de l'eau ainsi que les effets potentiels sur les coraux, les coquillages et la faune aquatique"
   }
 }

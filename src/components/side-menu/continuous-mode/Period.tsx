@@ -68,7 +68,7 @@ const Period = (): JSX.Element => {
   };
 
   return (
-    <Box>
+    <Box className="continuous-mode-6">
       <SideMenuHeader label="Year" />
       <RadioGroup
         sx={container}
