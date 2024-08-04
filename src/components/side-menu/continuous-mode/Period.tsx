@@ -12,6 +12,7 @@ import {
   setDistribution,
   setEquilibriumCarbonDioxide,
   setSliderCarbonDioxide,
+  setYear,
 } from '@/actions/app-settings';
 import { DEFAULT_CO2, PERIODS } from '@/constants/side-menu';
 import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
@@ -47,17 +48,13 @@ const radioButtonContainer = { display: 'flex', flexDirection: 'column' };
 
 const Period = (): JSX.Element => {
   const { state, dispatch } = useContext(AppSettingsContext);
-  const { isPlaying, sliderCarbonDioxide, equilibriumCarbonDioxide } = state;
-  const atEquilibrium = sliderCarbonDioxide === equilibriumCarbonDioxide;
-
-  const currentYear = PERIODS.find(
-    (period) => period.co2 === equilibriumCarbonDioxide,
-  )?.year;
+  const { isPlaying, year: currentYear } = state;
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const newYear = (event.target as HTMLInputElement).value;
     const newCarbonDioxide =
       PERIODS.find((period) => period.year === newYear)?.co2 || DEFAULT_CO2;
+    dispatch(setYear(newYear));
     dispatch(setSliderCarbonDioxide(newCarbonDioxide));
     dispatch(setEquilibriumCarbonDioxide(newCarbonDioxide));
     const equilibriumDistribution = computeEquilibriumDistribution(
@@ -70,11 +67,7 @@ const Period = (): JSX.Element => {
   return (
     <Box className="continuous-mode-6">
       <SideMenuHeader label="Year" />
-      <RadioGroup
-        sx={container}
-        value={atEquilibrium && currentYear}
-        onChange={onChange}
-      >
+      <RadioGroup sx={container} value={currentYear} onChange={onChange}>
         {PERIODS.map(({ year, co2 }) => (
           <Box key={year} sx={radioButtonContainer}>
             <FormControlLabel
