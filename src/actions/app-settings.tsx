@@ -11,6 +11,7 @@ import {
   SET_INTERVAL_COUNT_DIRECTLY,
   SET_PH_CARBON_DIOXIDE,
   SET_SLIDER_CARBON_DIOXIDE,
+  SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
   TOGGLE_MODE,
   TOGGLE_PLAY,
@@ -101,5 +102,10 @@ export const setCarbonDioxideChange = (
   payload: number,
 ): appSettingsActionType => ({
   type: SET_CARBON_DIOXIDE_CHANGE,
+  payload,
+});
+
+export const setYear = (payload: string): appSettingsActionType => ({
+  type: SET_YEAR,
   payload,
 });

@@ -73,7 +73,7 @@ const countReversedActiveCycle = (
   const carbonDioxideInWater =
     netIntervals < MOTION_INTERVAL * 2 + intervalsToReachLine;
   const co2InWater = carbonDioxideFormed && carbonDioxideInWater;
-  const co2InAir = !carbonDioxideInWater && netIntervals <= MOTION_INTERVAL * 3;
+  const co2InAir = !carbonDioxideInWater;
 
   if (!isPlaying || (isPlaying && isDeprotonated)) {
     if (!formsCarbonicAcid) return { ...counts, co2Water: 1 };

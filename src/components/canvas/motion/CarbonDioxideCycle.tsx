@@ -54,7 +54,7 @@ const CarbonDioxideCycle = ({ sliderMolecule }: Props): JSX.Element => {
         molecules={co2migrationMolecules}
         reverse={reverse}
         hideAtStart={formsCarbonicAcid ? reverse : !reverse}
-        hideAfterCompletion={formsCarbonicAcid || reverse}
+        hideAfterCompletion={formsCarbonicAcid && !reverse}
       />
       {formsCarbonicAcid && (
         <CarbonicAcidFormation

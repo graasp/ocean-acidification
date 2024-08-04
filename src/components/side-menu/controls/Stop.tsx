@@ -8,9 +8,11 @@ import {
   setDisequilibriumCyclesBeginAt,
   setDistribution,
   setEquilibriumCarbonDioxide,
+  setSliderCarbonDioxide,
   togglePlay,
 } from '@/actions/app-settings';
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
+import { DEFAULT_CO2, PERIODS } from '@/constants/side-menu';
 import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
 import { EMPTY_STRING } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
@@ -33,6 +35,7 @@ const Stop = (): JSX.Element => {
     sliderCarbonDioxide,
     equilibriumCarbonDioxide,
     disequilibriumCyclesBeginAt,
+    year,
   } = state;
   const inEquilibrium = sliderCarbonDioxide === equilibriumCarbonDioxide;
 
@@ -55,17 +58,21 @@ const Stop = (): JSX.Element => {
 
   useEffect(() => {
     if (intervalCount === stopAtInterval && intervalCount > 0) {
+      const initialCarbonDioxide =
+        PERIODS.find((period) => period.year === year)?.co2 || DEFAULT_CO2;
+
       setDisabled(false);
       dispatch(togglePlay());
       dispatch(setDisequilibriumCyclesBeginAt(stopAtInterval));
-      dispatch(setEquilibriumCarbonDioxide(sliderCarbonDioxide));
+      dispatch(setEquilibriumCarbonDioxide(initialCarbonDioxide));
+      dispatch(setSliderCarbonDioxide(initialCarbonDioxide));
       const equilibriumDistribution = computeEquilibriumDistribution(
         ACTIVE_CO2_DISTRIBUTION,
-        sliderCarbonDioxide,
+        initialCarbonDioxide,
       );
       dispatch(setDistribution(equilibriumDistribution));
     }
-  }, [intervalCount, stopAtInterval, dispatch, sliderCarbonDioxide]);
+  }, [intervalCount, stopAtInterval, dispatch, sliderCarbonDioxide, year]);
 
   return (
     <Box sx={container}>
