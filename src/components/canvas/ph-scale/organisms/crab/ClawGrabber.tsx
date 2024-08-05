@@ -26,7 +26,7 @@ const ClawGrabber = ({ isLeft }: Props): JSX.Element => {
       outerRadius={CLAW_OUTER_RADIUS * height}
       fill={CRAB_COLOR}
       angle={CLAW_SEMI_CIRCLE_ANGLE}
-      rotationDeg={isLeft ? LEFT_CLAW_ROTATION : RIGHT_CLAW_ROTATION}
+      rotation={isLeft ? LEFT_CLAW_ROTATION : RIGHT_CLAW_ROTATION}
     />
   );
 };
