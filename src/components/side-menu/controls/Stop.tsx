@@ -8,6 +8,7 @@ import {
   setDisequilibriumCyclesBeginAt,
   setDistribution,
   setEquilibriumCarbonDioxide,
+  setPHCarbonDioxide,
   setSliderCarbonDioxide,
   togglePlay,
 } from '@/actions/app-settings';
@@ -66,6 +67,7 @@ const Stop = (): JSX.Element => {
       dispatch(setDisequilibriumCyclesBeginAt(stopAtInterval));
       dispatch(setEquilibriumCarbonDioxide(initialCarbonDioxide));
       dispatch(setSliderCarbonDioxide(initialCarbonDioxide));
+      dispatch(setPHCarbonDioxide(initialCarbonDioxide));
       const equilibriumDistribution = computeEquilibriumDistribution(
         ACTIVE_CO2_DISTRIBUTION,
         initialCarbonDioxide,
