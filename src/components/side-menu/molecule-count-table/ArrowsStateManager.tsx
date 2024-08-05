@@ -88,7 +88,6 @@ const ArrowsStateManager = (): JSX.Element => {
     isPlaying,
     intervalCount,
     disequilibriumCyclesBeginAt,
-    arrows,
     dispatch,
     sliderCarbonDioxide,
     carbonDioxideChange,
