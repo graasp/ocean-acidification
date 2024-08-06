@@ -29,7 +29,7 @@ export const ACTIVE_EQUATION_BACKGROUND = '#d6fed2';
 export const PERIODS = [
   { year: '1900', co2: 300 },
   { year: '2015', co2: 400 },
-  { year: '2050', co2: 550 },
+  { year: '2050', co2: 500 },
 ];
 export const DEFAULT_PERIOD = PERIODS[1];
 export const DEFAULT_YEAR = DEFAULT_PERIOD.year;
