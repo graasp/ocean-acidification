@@ -1,15 +1,15 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 
 import { Tune } from '@mui/icons-material';
 import { Fab, Tooltip } from '@mui/material';
 
 import { t } from 'i18next';
 
-import { setDimensions } from '@/actions/app-settings';
 import Canvas from '@/components/canvas/Canvas';
-import SideMenu from '@/components/side-menu/SideMenu';
+import SideMenuContinuous from '@/components/side-menu/SideMenuContinuous';
+import SideMenuSequential from '@/components/side-menu/SideMenuSequential';
 import { BUILDER_VIEW_CY } from '@/config/selectors';
-import { CANVAS_WIDTH } from '@/constants/canvas';
+import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 const openSideMenuFab = {
@@ -20,56 +20,38 @@ const openSideMenuFab = {
 };
 
 const BuilderView = (): JSX.Element => {
-  const { dispatch } = useContext(AppSettingsContext);
-  const divRef = useRef<HTMLDivElement>(null);
   const [showSideMenu, setShowSideMenu] = useState(true);
-
-  useEffect(() => {
-    const checkSize = (): void => {
-      const stageWidth = divRef.current?.offsetWidth || 0;
-      const stageHeight = divRef.current?.offsetHeight || 0;
-      dispatch(
-        setDimensions({
-          width: showSideMenu ? stageWidth * CANVAS_WIDTH : stageWidth,
-          height: stageHeight,
-        }),
-      );
-    };
-    const resizeObserver = new ResizeObserver(() => {
-      checkSize();
-    });
-    const mainContainer = document.querySelector('#container');
-    if (mainContainer) {
-      resizeObserver.observe(mainContainer);
-    }
-    checkSize();
-  }, [dispatch, showSideMenu]);
+  const { state } = useContext(AppSettingsContext);
+  const { mode } = state;
+  const modeSequential = mode === SEQUENTIAL;
 
   return (
-    <div
-      data-cy={BUILDER_VIEW_CY}
-      ref={divRef}
-      id="container"
-      style={{ height: '100vh', width: '100vw', display: 'flex' }}
-    >
-      <div>
-        <Canvas />
-        <SideMenu
+    <div data-cy={BUILDER_VIEW_CY} style={{ height: '100%', display: 'flex' }}>
+      {modeSequential ? (
+        <SideMenuSequential
           showSideMenu={showSideMenu}
           setShowSideMenu={setShowSideMenu}
+          modeSequential={modeSequential}
         />
-        {!showSideMenu && (
-          <Tooltip title={t('Open side menu')} placement="left">
-            <Fab
-              sx={openSideMenuFab}
-              color="primary"
-              onClick={() => setShowSideMenu(true)}
-            >
-              <Tune />
-            </Fab>
-          </Tooltip>
-        )}
-      </div>
+      ) : (
+        <SideMenuContinuous
+          showSideMenu={showSideMenu}
+          setShowSideMenu={setShowSideMenu}
+          modeSequential={modeSequential}
+        />
+      )}
+      <Canvas showSideMenu={showSideMenu} />
+      {!showSideMenu && (
+        <Tooltip title={t('Open side menu')} placement="left">
+          <Fab
+            sx={openSideMenuFab}
+            color="primary"
+            onClick={() => setShowSideMenu(true)}
+          >
+            <Tune />
+          </Fab>
+        </Tooltip>
+      )}
     </div>
   );
 };
