@@ -1,6 +1,9 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useContext } from 'react';
 
 import { Box, Switch, Typography } from '@mui/material';
+
+import { SEQUENTIAL } from '@/constants/strings';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 interface Props {
   label: string;
@@ -21,11 +24,21 @@ const CustomSwitch = ({
   label,
   isChecked,
   setIsChecked,
-}: Props): JSX.Element => (
-  <Box sx={styles} className="continuous-mode-7">
-    <Typography variant="body2">{label}</Typography>
-    <Switch checked={isChecked} onChange={() => setIsChecked(!isChecked)} />
-  </Box>
-);
+}: Props): JSX.Element => {
+  const { state } = useContext(AppSettingsContext);
+  const { mode } = state;
+  const isSequential = mode === SEQUENTIAL;
+
+  const quickTourClass = isSequential
+    ? 'sequential-mode-3'
+    : 'continuous-mode-7';
+
+  return (
+    <Box sx={styles} className={quickTourClass}>
+      <Typography variant="body2">{label}</Typography>
+      <Switch checked={isChecked} onChange={() => setIsChecked(!isChecked)} />
+    </Box>
+  );
+};
 
 export default CustomSwitch;

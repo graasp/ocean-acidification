@@ -1,6 +1,9 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useContext } from 'react';
 
 import { Box, Switch, Typography } from '@mui/material';
+
+import { SEQUENTIAL } from '@/constants/strings';
+import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 const container = {
   width: '90%',
@@ -37,31 +40,41 @@ const TwoSidedSwitch = ({
   isChecked,
   setIsChecked,
   disabled,
-}: Props): JSX.Element => (
-  <Box sx={container}>
-    <Typography
-      variant="body2"
-      sx={leftLabelStyles}
-      className="sequential-mode-1"
-    >
-      {leftLabel}
-    </Typography>
-    <Box sx={centerContainer}>
-      <Switch
-        checked={isChecked}
-        onChange={() => setIsChecked(isChecked)}
-        disabled={disabled}
-        color={disabled ? 'default' : 'primary'}
-      />
+}: Props): JSX.Element => {
+  const { state } = useContext(AppSettingsContext);
+  const { mode } = state;
+  const isSequential = mode === SEQUENTIAL;
+
+  const quickTourClass = isSequential
+    ? 'sequential-mode-4'
+    : 'continuous-mode-1';
+
+  return (
+    <Box sx={container}>
+      <Typography
+        variant="body2"
+        sx={leftLabelStyles}
+        className="sequential-mode-1"
+      >
+        {leftLabel}
+      </Typography>
+      <Box sx={centerContainer}>
+        <Switch
+          checked={isChecked}
+          onChange={() => setIsChecked(isChecked)}
+          disabled={disabled}
+          color={disabled ? 'default' : 'primary'}
+        />
+      </Box>
+      <Typography
+        variant="body2"
+        sx={rightLabelStyles}
+        className={quickTourClass}
+      >
+        {rightLabel}
+      </Typography>
     </Box>
-    <Typography
-      variant="body2"
-      sx={rightLabelStyles}
-      className="sequential-mode-4 continuous-mode-1"
-    >
-      {rightLabel}
-    </Typography>
-  </Box>
-);
+  );
+};
 
 export default TwoSidedSwitch;
