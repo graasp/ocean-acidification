@@ -2,6 +2,8 @@ import { useContext } from 'react';
 
 import { Box, Tooltip } from '@mui/material';
 
+import { t } from 'i18next';
+
 import { CYCLES } from '@/constants/motion/continuous-mode-cycles';
 import {
   EQ_SCALE_COLOR_DISEQ,
@@ -54,7 +56,7 @@ const EquilibriumScale = (): JSX.Element => {
   }
   const inDisequilibrium = !systemInEquilibrium || temporaryDisequilibrium;
 
-  const tooltipTitle = inDisequilibrium ? NOT_IN_EQ : IN_EQ;
+  const tooltipTitle = inDisequilibrium ? t(NOT_IN_EQ) : t(IN_EQ);
   const rotate = inDisequilibrium ? EQ_SCALE_ROTATE_DISEQ : EQ_SCALE_ROTATE_EQ;
   const emoji = inDisequilibrium ? EQ_SCALE_EMOJI_DISEQ : EQ_SCALE_EMOJI_EQ;
   const color = inDisequilibrium ? EQ_SCALE_COLOR_DISEQ : EQ_SCALE_COLOR_EQ;

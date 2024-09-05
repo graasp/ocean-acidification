@@ -8,6 +8,8 @@ import {
   Typography,
 } from '@mui/material';
 
+import { t } from 'i18next';
+
 import {
   setDistribution,
   setEquilibriumCarbonDioxide,
@@ -66,7 +68,7 @@ const Period = (): JSX.Element => {
 
   return (
     <Box className="continuous-mode-6">
-      <SideMenuHeader label="Year" />
+      <SideMenuHeader label={t('Year')} />
       <RadioGroup sx={container} value={currentYear} onChange={onChange}>
         {PERIODS.map(({ year, co2 }) => (
           <Box key={year} sx={radioButtonContainer}>

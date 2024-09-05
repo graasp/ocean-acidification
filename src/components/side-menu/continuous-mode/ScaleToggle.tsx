@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 
+import { t } from 'i18next';
+
 import { toggleShowScale } from '@/actions/app-settings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
@@ -11,7 +13,7 @@ const ScaleToggle = (): JSX.Element => {
 
   return (
     <CustomSwitch
-      label="Show pH scale and organisms"
+      label={t('Show pH scale and organisms')}
       isChecked={showScale}
       setIsChecked={() => dispatch(toggleShowScale())}
     />
