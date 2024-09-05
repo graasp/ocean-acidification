@@ -13,7 +13,7 @@ const HtmlTooltip = styled(
     color: 'rgba(0, 0, 0, 0.87)',
     fontSize: theme.typography.pxToRem(12),
     border: '1px solid #dadde9',
-    width: '250px',
+    width: '275px',
   },
 }));
 

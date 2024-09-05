@@ -2,6 +2,8 @@ import { useContext } from 'react';
 
 import { Box } from '@mui/material';
 
+import { t } from 'i18next';
+
 import { CYCLES } from '@/constants/motion/continuous-mode-cycles';
 import { TABLE_HEIGHT } from '@/constants/side-menu';
 import { STATIC_CO2_DISTRIBUTION } from '@/constants/slider-molecules/static-carbon-dioxides';
@@ -56,7 +58,7 @@ const MoleculeCountTable = ({ arrowsState }: Props): JSX.Element => {
 
   return (
     <Box sx={container}>
-      <SideMenuHeader label="Molecule Counts" isCustomHeader />
+      <SideMenuHeader label={t('Molecule Counts')} isCustomHeader />
       <Box sx={table} className="continuous-mode-3">
         <ArrowsGroup arrowsState={arrowsState} />
         <AllRows arrowsState={arrowsState} moleculesCount={allMoleculesCount} />

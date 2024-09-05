@@ -2,6 +2,8 @@ import { Dispatch, SetStateAction, useState } from 'react';
 
 import { Drawer } from '@mui/material';
 
+import { t } from 'i18next';
+
 import Controls from './Controls';
 import ModeSwitch from './ModeSwitch';
 import CustomDivider from './common/CustomDivider';
@@ -32,7 +34,7 @@ const SideMenuSequential = ({
       <ModeSwitch modeSequential={modeSequential} />
       <CustomDivider />
       <CustomSwitch
-        label="Show Equations"
+        label={t('Chemical Equations')}
         isChecked={equationsChecked}
         setIsChecked={setEquationsChecked}
       />
