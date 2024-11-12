@@ -19,23 +19,28 @@ const extraInfo = {
 
 interface Props {
   label: string | JSX.Element;
-  isCustomHeader?: boolean;
+  showScale?: boolean;
+  showTooltip?: boolean;
 }
 
-const SideMenuHeader = ({ label, isCustomHeader }: Props): JSX.Element => (
+const SideMenuHeader = ({
+  label,
+  showScale,
+  showTooltip,
+}: Props): JSX.Element => (
   <Box sx={container}>
     <Typography variant="body2" fontWeight={600}>
       {label}
     </Typography>
-    {isCustomHeader && (
+    {(showScale || showTooltip) && (
       <Box sx={extraInfo}>
-        <EquilibriumScale />
-        <CustomHelpIcon />
+        {showScale && <EquilibriumScale />}
+        {showTooltip && <CustomHelpIcon />}
       </Box>
     )}
   </Box>
 );
 
-SideMenuHeader.defaultProps = { isCustomHeader: false };
+SideMenuHeader.defaultProps = { showScale: false, showTooltip: false };
 
 export default SideMenuHeader;
