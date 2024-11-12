@@ -13,6 +13,7 @@ import { t } from 'i18next';
 import {
   setDistribution,
   setEquilibriumCarbonDioxide,
+  setPHCarbonDioxide,
   setSliderCarbonDioxide,
   setYear,
 } from '@/actions/app-settings';
@@ -59,6 +60,7 @@ const Period = (): JSX.Element => {
     dispatch(setYear(newYear));
     dispatch(setSliderCarbonDioxide(newCarbonDioxide));
     dispatch(setEquilibriumCarbonDioxide(newCarbonDioxide));
+    dispatch(setPHCarbonDioxide(newCarbonDioxide));
     const equilibriumDistribution = computeEquilibriumDistribution(
       ACTIVE_CO2_DISTRIBUTION,
       newCarbonDioxide,
