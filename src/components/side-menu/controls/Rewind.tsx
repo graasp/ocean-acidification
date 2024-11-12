@@ -4,6 +4,8 @@ import { FastRewind } from '@mui/icons-material';
 import { IconButton, Tooltip } from '@mui/material';
 import { yellow } from '@mui/material/colors';
 
+import { t } from 'i18next';
+
 import {
   setAnimationIndex,
   setIntervalCountDirectly,
@@ -36,7 +38,7 @@ const Rewind = ({ canRewind, setCanRewind }: Props): JSX.Element => {
   };
 
   return (
-    <Tooltip title="Rewind previous reaction">
+    <Tooltip title={t('Rewind previous reaction')}>
       <span>
         <IconButton onClick={handleClick} disabled={disabled}>
           <FastRewind sx={styles} />

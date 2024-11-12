@@ -4,6 +4,8 @@ import { SlowMotionVideo } from '@mui/icons-material';
 import { IconButton, Tooltip } from '@mui/material';
 import { blue } from '@mui/material/colors';
 
+import { t } from 'i18next';
+
 import {
   incrementIntervalCount,
   setAnimationIndex,
@@ -46,7 +48,7 @@ const SlowMotion = ({ setCanRewind }: Props): JSX.Element => {
   };
 
   return (
-    <Tooltip title="Play next step">
+    <Tooltip title={t('Play next step')}>
       <span>
         <IconButton
           onClick={handleClick}
