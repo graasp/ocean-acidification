@@ -7,11 +7,12 @@ import { green } from '@mui/material/colors';
 import { t } from 'i18next';
 
 import { togglePlay } from '@/actions/app-settings';
+import { RESPONSIVE_BUTTON_STYLES } from '@/constants/css';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 const Play = (): JSX.Element => {
   const { dispatch } = useContext(AppSettingsContext);
-  const styles = { fontSize: '2em', color: green[800] };
+  const styles = { color: green[800] };
 
   return (
     <Tooltip title={t('Play')}>
@@ -20,7 +21,7 @@ const Play = (): JSX.Element => {
           onClick={() => dispatch(togglePlay())}
           className="continuous-mode-2"
         >
-          <PlayCircleOutline sx={styles} />
+          <PlayCircleOutline sx={{ ...styles, ...RESPONSIVE_BUTTON_STYLES }} />
         </IconButton>
       </span>
     </Tooltip>

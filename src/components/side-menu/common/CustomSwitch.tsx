@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useContext } from 'react';
 
 import { Box, Switch, Typography } from '@mui/material';
 
+import { RESPONSIVE_HEADING_STYLES } from '@/constants/css';
 import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
@@ -35,7 +36,9 @@ const CustomSwitch = ({
 
   return (
     <Box sx={styles} className={quickTourClass}>
-      <Typography variant="body2">{label}</Typography>
+      <Typography variant="body2" sx={{ ...RESPONSIVE_HEADING_STYLES }}>
+        {label}
+      </Typography>
       <Switch checked={isChecked} onChange={() => setIsChecked(!isChecked)} />
     </Box>
   );

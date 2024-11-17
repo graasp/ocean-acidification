@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useContext } from 'react';
 
 import { Box, Switch, Typography } from '@mui/material';
 
+import { RESPONSIVE_HEADING_STYLES } from '@/constants/css';
 import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
@@ -53,7 +54,7 @@ const TwoSidedSwitch = ({
     <Box sx={container}>
       <Typography
         variant="body2"
-        sx={leftLabelStyles}
+        sx={{ ...leftLabelStyles, ...RESPONSIVE_HEADING_STYLES }}
         className="sequential-mode-1"
       >
         {leftLabel}
@@ -68,7 +69,7 @@ const TwoSidedSwitch = ({
       </Box>
       <Typography
         variant="body2"
-        sx={rightLabelStyles}
+        sx={{ ...rightLabelStyles, ...RESPONSIVE_HEADING_STYLES }}
         className={quickTourClass}
       >
         {rightLabel}

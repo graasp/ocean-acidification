@@ -7,6 +7,7 @@ import { orange } from '@mui/material/colors';
 import { t } from 'i18next';
 
 import { resetSettings } from '@/actions/app-settings';
+import { RESPONSIVE_BUTTON_STYLES } from '@/constants/css';
 import { EMPTY_STRING } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
@@ -16,10 +17,7 @@ const Reset = (): JSX.Element => {
 
   const disabled = animationInMotion || isPlaying;
 
-  const styles = {
-    fontSize: '2em',
-    color: disabled ? EMPTY_STRING : orange[800],
-  };
+  const styles = { color: disabled ? EMPTY_STRING : orange[800] };
 
   return (
     <Tooltip title={t('Reset')}>
@@ -28,7 +26,7 @@ const Reset = (): JSX.Element => {
           onClick={() => dispatch(resetSettings())}
           disabled={disabled}
         >
-          <RotateLeft sx={styles} />
+          <RotateLeft sx={{ ...styles, ...RESPONSIVE_BUTTON_STYLES }} />
         </IconButton>
       </span>
     </Tooltip>
