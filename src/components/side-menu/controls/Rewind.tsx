@@ -10,6 +10,7 @@ import {
   setAnimationIndex,
   setIntervalCountDirectly,
 } from '@/actions/app-settings';
+import { RESPONSIVE_BUTTON_STYLES } from '@/constants/css';
 import { SEQUENTIAL_MODE_INTERVALS } from '@/constants/motion/sequential-mode-intervals';
 import { EMPTY_STRING } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
@@ -25,10 +26,7 @@ const Rewind = ({ canRewind, setCanRewind }: Props): JSX.Element => {
 
   const disabled = animationIndex === 0 || animationInMotion || !canRewind;
 
-  const styles = {
-    fontSize: '2em',
-    color: disabled ? EMPTY_STRING : yellow[700],
-  };
+  const styles = { color: disabled ? EMPTY_STRING : yellow[700] };
 
   const handleClick = (): void => {
     setCanRewind(false);
@@ -41,7 +39,7 @@ const Rewind = ({ canRewind, setCanRewind }: Props): JSX.Element => {
     <Tooltip title={t('Rewind previous reaction')}>
       <span>
         <IconButton onClick={handleClick} disabled={disabled}>
-          <FastRewind sx={styles} />
+          <FastRewind sx={{ ...styles, ...RESPONSIVE_BUTTON_STYLES }} />
         </IconButton>
       </span>
     </Tooltip>

@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material';
 
+import { RESPONSIVE_FONT_STYLES } from '@/constants/css';
 import {
   ACTIVE_EQUATION_COLOR,
   DEFAULT_EQUATION_COLOR,
@@ -29,7 +30,7 @@ const EquationTypography = ({
   const styles = { color };
 
   return (
-    <Typography variant="body2" sx={styles}>
+    <Typography variant="body2" sx={{ ...styles, ...RESPONSIVE_FONT_STYLES }}>
       <strong>{molecule}</strong> {additionalText}
     </Typography>
   );

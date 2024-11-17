@@ -12,6 +12,7 @@ import {
   setSliderCarbonDioxide,
   togglePlay,
 } from '@/actions/app-settings';
+import { RESPONSIVE_BUTTON_STYLES } from '@/constants/css';
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 import { DEFAULT_CO2, PERIODS } from '@/constants/side-menu';
 import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
@@ -40,10 +41,7 @@ const Stop = (): JSX.Element => {
   } = state;
   const inEquilibrium = sliderCarbonDioxide === equilibriumCarbonDioxide;
 
-  const styles = {
-    fontSize: '2em',
-    color: disabled ? EMPTY_STRING : red[800],
-  };
+  const styles = { color: disabled ? EMPTY_STRING : red[800] };
 
   const onStop = (): void => {
     setDisabled(true);
@@ -81,7 +79,9 @@ const Stop = (): JSX.Element => {
       <Tooltip title="Stop">
         <span>
           <IconButton onClick={onStop} disabled={disabled}>
-            <StopCircleOutlined sx={styles} />
+            <StopCircleOutlined
+              sx={{ ...styles, ...RESPONSIVE_BUTTON_STYLES }}
+            />
           </IconButton>
         </span>
       </Tooltip>

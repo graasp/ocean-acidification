@@ -12,6 +12,7 @@ import {
   toggleAnimationInMotion,
 } from '@/actions/app-settings';
 import { INTERVAL_COUNT_INCREMENTED_EVERY } from '@/constants/canvas';
+import { RESPONSIVE_BUTTON_STYLES } from '@/constants/css';
 import { SEQUENTIAL_MODE_INTERVALS } from '@/constants/motion/sequential-mode-intervals';
 import { SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
@@ -29,7 +30,7 @@ const SlowMotion = ({ setCanRewind }: Props): JSX.Element => {
   const allStepsPlayed =
     animationIndex === SEQUENTIAL_MODE_INTERVALS.length - 1;
   const disabled = animationInMotion || allStepsPlayed || modeContinuous;
-  const styles = { fontSize: '2em', color: disabled ? '' : blue[800] };
+  const styles = { color: disabled ? '' : blue[800] };
 
   const handleClick = (): void => {
     setCanRewind(true);
@@ -55,7 +56,7 @@ const SlowMotion = ({ setCanRewind }: Props): JSX.Element => {
           disabled={disabled}
           className="sequential-mode-2"
         >
-          <SlowMotionVideo sx={styles} />
+          <SlowMotionVideo sx={{ ...styles, ...RESPONSIVE_BUTTON_STYLES }} />
         </IconButton>
       </span>
     </Tooltip>

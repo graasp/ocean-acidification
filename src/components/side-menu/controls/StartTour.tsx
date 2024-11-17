@@ -5,10 +5,9 @@ import { IconButton, Tooltip } from '@mui/material';
 
 import { t } from 'i18next';
 
+import { RESPONSIVE_SIDE_BUTTON_STYLES } from '@/constants/css';
 import { DISABLED, PRIMARY } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
-
-const styles = { fontSize: '0.9em' };
 
 interface Props {
   startTour: () => void;
@@ -25,7 +24,7 @@ const StartTour = ({ startTour }: Props): JSX.Element => {
     <Tooltip title={t('Start tour')} placement="left">
       <span>
         <IconButton disabled={disabled} onClick={startTour}>
-          <Info color={color} sx={styles} />
+          <Info color={color} sx={{ ...RESPONSIVE_SIDE_BUTTON_STYLES }} />
         </IconButton>
       </span>
     </Tooltip>
