@@ -54,7 +54,7 @@ const CustomRow = ({
     <Box sx={rowContainer}>
       <Box sx={leftContainer}>
         <Typography sx={count}>{leftCount}</Typography>
-        <img alt="hco3" src="/hco3.png" style={imgLeft} />
+        <img alt="hco3" src="hco3.png" style={imgLeft} />
       </Box>
       <Box
         sx={{
@@ -62,7 +62,7 @@ const CustomRow = ({
           border: showScale ? HYDROGEN_BOX_BORDER : '1px solid grey',
         }}
       >
-        <img alt="h" src="/h.png" style={imgRight} />
+        <img alt="h" src="h.png" style={imgRight} />
         <Typography sx={count}>{rightCount}</Typography>
       </Box>
     </Box>

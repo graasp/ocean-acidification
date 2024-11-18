@@ -47,11 +47,11 @@ export const determineImgSrc = (
 ): string => {
   let src = EMPTY_STRING;
   if (direction === UP) {
-    if (isActive || isLarge) src = '/uplg.png';
-    else src = '/up.png';
+    if (isActive || isLarge) src = 'uplg.png';
+    else src = 'up.png';
   } else if (direction === DOWN) {
-    if (isActive || isLarge) src = '/downlg.png';
-    else src = '/down.png';
+    if (isActive || isLarge) src = 'downlg.png';
+    else src = 'down.png';
   }
   return src;
 };
