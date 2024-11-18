@@ -2,6 +2,7 @@ import { useContext } from 'react';
 
 import { Box, Typography } from '@mui/material';
 
+import { RESPONSIVE_CAPTION_STYLES } from '@/constants/css';
 import {
   HYDROGEN_BOX_BORDER,
   TABLE_ACTIVE_ANIMATION,
@@ -33,6 +34,7 @@ const count = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  ...RESPONSIVE_CAPTION_STYLES,
 };
 
 const CustomRow = ({
@@ -51,9 +53,7 @@ const CustomRow = ({
   return (
     <Box sx={rowContainer}>
       <Box sx={leftContainer}>
-        <Typography variant="caption" sx={count}>
-          {leftCount}
-        </Typography>
+        <Typography sx={count}>{leftCount}</Typography>
         <img alt="hco3" src="/hco3.png" style={imgLeft} />
       </Box>
       <Box
@@ -63,9 +63,7 @@ const CustomRow = ({
         }}
       >
         <img alt="h" src="/h.png" style={imgRight} />
-        <Typography variant="caption" sx={count}>
-          {rightCount}
-        </Typography>
+        <Typography sx={count}>{rightCount}</Typography>
       </Box>
     </Box>
   );

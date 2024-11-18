@@ -17,6 +17,10 @@ import {
   setSliderCarbonDioxide,
   setYear,
 } from '@/actions/app-settings';
+import {
+  RESPONSIVE_CAPTION_STYLES,
+  RESPONSIVE_FONT_STYLES,
+} from '@/constants/css';
 import { DEFAULT_CO2, PERIODS } from '@/constants/side-menu';
 import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
@@ -37,10 +41,6 @@ const radioButton = {
     width: '0.8em',
     height: '0.8em',
   },
-};
-
-const radioText = {
-  fontSize: '0.8em',
 };
 
 const extraLabelText = {
@@ -77,10 +77,16 @@ const Period = (): JSX.Element => {
             <FormControlLabel
               value={year}
               control={<Radio color="primary" size="small" sx={radioButton} />}
-              label={<Typography sx={radioText}>{year}</Typography>}
+              label={
+                <Typography sx={{ ...RESPONSIVE_FONT_STYLES }}>
+                  {year}
+                </Typography>
+              }
               disabled={isPlaying}
             />
-            <Typography variant="caption" sx={extraLabelText}>
+            <Typography
+              sx={{ ...extraLabelText, ...RESPONSIVE_CAPTION_STYLES }}
+            >
               ({co2} ppm)
             </Typography>
           </Box>

@@ -1,5 +1,6 @@
 import { Box, Typography } from '@mui/material';
 
+import { RESPONSIVE_CAPTION_STYLES } from '@/constants/css';
 import { TABLE_ACTIVE_ANIMATION } from '@/constants/side-menu';
 
 interface Props {
@@ -27,7 +28,7 @@ const Row = ({ src, isActive, count }: Props): JSX.Element => {
         <img alt={src} src={src} style={img} />
       </Box>
       <Box sx={cell}>
-        <Typography variant="caption">{count}</Typography>
+        <Typography sx={{ ...RESPONSIVE_CAPTION_STYLES }}>{count}</Typography>
       </Box>
     </Box>
   );
