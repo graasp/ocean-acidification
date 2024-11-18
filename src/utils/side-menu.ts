@@ -1,4 +1,5 @@
 import { SEQUENTIAL_MODE_INTERVALS } from '@/constants/motion/sequential-mode-intervals';
+import { DOWN, EMPTY_STRING, UP } from '@/constants/strings';
 
 interface ArrowState {
   rightArrow: boolean;
@@ -38,3 +39,19 @@ export const determineEquationsState = (
       intervalCount < SEQUENTIAL_MODE_INTERVALS[4],
   },
 });
+
+export const determineImgSrc = (
+  direction: string,
+  isActive: boolean,
+  isLarge?: boolean,
+): string => {
+  let src = EMPTY_STRING;
+  if (direction === UP) {
+    if (isActive || isLarge) src = '/uplg.png';
+    else src = '/up.png';
+  } else if (direction === DOWN) {
+    if (isActive || isLarge) src = '/downlg.png';
+    else src = '/down.png';
+  }
+  return src;
+};

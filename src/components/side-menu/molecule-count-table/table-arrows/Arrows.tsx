@@ -1,6 +1,5 @@
 import { Box } from '@mui/material';
 
-import { ARROWS_CONTAINER_HEIGHT } from '@/constants/side-menu';
 import { DOWN, UP } from '@/constants/strings';
 
 import Arrow from './Arrow';
@@ -9,7 +8,7 @@ const styles = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  height: ARROWS_CONTAINER_HEIGHT,
+  height: '25%',
 };
 
 interface Props {
@@ -26,8 +25,8 @@ const Arrows = ({
   upIsLarge,
 }: Props): JSX.Element => (
   <Box sx={styles}>
-    <Arrow type={DOWN} isActive={downActive} isLarge={downIsLarge} />
-    <Arrow type={UP} isActive={upActive} isLarge={upIsLarge} />
+    <Arrow direction={DOWN} isActive={downActive} isLarge={downIsLarge} />
+    <Arrow direction={UP} isActive={upActive} isLarge={upIsLarge} />
   </Box>
 );
 

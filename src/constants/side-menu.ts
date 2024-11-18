@@ -35,28 +35,8 @@ export const DEFAULT_PERIOD = PERIODS[1];
 export const DEFAULT_YEAR = DEFAULT_PERIOD.year;
 export const DEFAULT_CO2 = DEFAULT_PERIOD.co2;
 
-// these constants/calculations to center table arrows on top of table
-export const MOLECULE_CONTAINER_HEIGHT = '40px';
-export const MOLECULE_CONTAINER_PADDING = '4px';
-// table height is four molecule containers + their borders
-export const TABLE_HEIGHT = '168px';
-export const ARROWS_CONTAINER_HEIGHT = '20px';
-// total height minus 32px * 2
-// 32px because first arrow group has to sit between molecule containers
-// its height is 20px, container + its border is 42px, that minus half its height
-export const ALL_ARROWS_CONTAINER_HEIGHT = '104px';
-export const ALL_ARROWS_CONTAINER_MARGIN_TOP = '32px';
-
-export const TABLE_ARROW_ACTIVE_COLOR = '#0047AB';
-export const TABLE_ARROW_INACTIVE_COLOR = 'black';
-export const TABLE_ARROW_BODY_SIDE_LARGE = '4px';
-export const TABLE_ARROW_BODY_SIDE_SMALL = '3px';
-export const TABLE_ARROW_BODY_TOP_LARGE = '6px';
-export const TABLE_ARROW_BODY_TOP_SMALL = '5px';
-export const TABLE_ARROW_POINTER_LARGE = '10px';
-export const TABLE_ARROW_POINTER_SMALL = '8px';
-export const TABLE_ARROW_UP_ROTATION = '180deg';
-export const TABLE_ARROW_DOWN_ROTATION = '0deg';
+export const REG_ARROW_WIDTH = '5%';
+export const LARGE_ARROW_WIDTH = '6%';
 
 export const TABLE_ACTIVE_ANIMATION = {
   animation: 'blinker 2s linear infinite',

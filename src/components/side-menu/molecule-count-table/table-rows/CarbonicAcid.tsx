@@ -1,6 +1,5 @@
 import { AllArrowsState } from '@/utils/molecules/types';
 
-import SideMenuCarbonicAcid from '../side-menu-molecules/SideMenuCarbonicAcid';
 import Row from './Row';
 
 interface Props {
@@ -12,12 +11,7 @@ const CarbonicAcid = ({ arrowsState, count }: Props): JSX.Element => {
   const { middle, bottom } = arrowsState;
   const isActive = middle.down || middle.up || bottom.down || bottom.up;
 
-  return (
-    <Row
-      leftContent={<SideMenuCarbonicAcid isActive={isActive} />}
-      rightContent={count}
-    />
-  );
+  return <Row src="/h2co3.png" isActive={isActive} count={count} />;
 };
 
 export default CarbonicAcid;

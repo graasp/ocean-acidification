@@ -1,47 +1,37 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
-import TableCell from '../TableCell';
+import { RESPONSIVE_CAPTION_STYLES } from '@/constants/css';
+import { TABLE_ACTIVE_ANIMATION } from '@/constants/side-menu';
 
 interface Props {
-  leftContent: JSX.Element;
-  rightContent: number | JSX.Element;
-  isCustom?: boolean;
-  customCountLeft?: number;
-  customCountRight?: number;
+  src: string;
+  isActive: boolean;
+  count: number;
 }
 
-const rowContainer = { display: 'flex' };
-const container = {
+const rowContainer = { display: 'flex', justifyContent: 'center' };
+const cell = {
+  width: '25%',
   display: 'flex',
-  width: '40%',
-  margin: '0 auto',
-  border: '1px solid white',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: '1px solid grey',
 };
-const defaultCell = { width: '50%', justifyContent: 'center' };
-const leftCustomLabel = { width: '30%', justifyContent: 'flex-end' };
-const rightCustomLabel = { width: '30%' };
+const img = { width: '100%' };
 
-const Row = ({
-  leftContent,
-  rightContent,
-  isCustom,
-  customCountLeft,
-  customCountRight,
-}: Props): JSX.Element => (
-  <Box sx={rowContainer}>
-    {isCustom && (
-      <TableCell content={customCountLeft} customStyle={leftCustomLabel} />
-    )}
-    <Box sx={container}>
-      <TableCell content={leftContent} customStyle={defaultCell} />
-      <TableCell content={rightContent} customStyle={defaultCell} />
+const Row = ({ src, isActive, count }: Props): JSX.Element => {
+  const blink = isActive ? TABLE_ACTIVE_ANIMATION : null;
+
+  return (
+    <Box sx={rowContainer}>
+      <Box sx={{ ...cell, ...blink }}>
+        <img alt={src} src={src} style={img} />
+      </Box>
+      <Box sx={cell}>
+        <Typography sx={{ ...RESPONSIVE_CAPTION_STYLES }}>{count}</Typography>
+      </Box>
     </Box>
-    {isCustom && (
-      <TableCell content={customCountRight} customStyle={rightCustomLabel} />
-    )}
-  </Box>
-);
-
-Row.defaultProps = { isCustom: false, customCountLeft: 0, customCountRight: 0 };
+  );
+};
 
 export default Row;

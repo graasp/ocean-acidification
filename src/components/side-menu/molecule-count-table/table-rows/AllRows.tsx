@@ -3,7 +3,7 @@ import { AllArrowsState, MoleculeCounts } from '@/utils/molecules/types';
 import CarbonDioxideSky from './CarbonDioxideSky';
 import CarbonDioxideWater from './CarbonDioxideWater';
 import CarbonicAcid from './CarbonicAcid';
-import DeProtonationRow from './DeProtonationRow';
+import CustomRow from './CustomRow';
 
 interface Props {
   arrowsState: AllArrowsState;
@@ -19,10 +19,10 @@ const AllRows = ({ arrowsState, moleculesCount }: Props): JSX.Element => {
       <CarbonDioxideSky arrowsState={arrowsState} count={co2Air} />
       <CarbonDioxideWater arrowsState={arrowsState} count={co2Water} />
       <CarbonicAcid arrowsState={arrowsState} count={carbonicAcid} />
-      <DeProtonationRow
+      <CustomRow
         arrowsState={arrowsState}
-        countLeft={bicarbonate}
-        countRight={hydrogen}
+        leftCount={bicarbonate}
+        rightCount={hydrogen}
       />
     </>
   );
