@@ -2,10 +2,6 @@ import { useContext } from 'react';
 
 import { Box } from '@mui/material';
 
-import {
-  ALL_ARROWS_CONTAINER_HEIGHT,
-  ALL_ARROWS_CONTAINER_MARGIN_TOP,
-} from '@/constants/side-menu';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { AllArrowsState } from '@/utils/molecules/types';
 
@@ -13,12 +9,11 @@ import Arrows from './Arrows';
 
 const styles = {
   position: 'absolute',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  width: '90%',
-  height: ALL_ARROWS_CONTAINER_HEIGHT,
-  marginTop: ALL_ARROWS_CONTAINER_MARGIN_TOP,
+  marginTop: '7.5%',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
   zIndex: 1000,
 };
 

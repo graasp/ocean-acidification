@@ -5,7 +5,6 @@ import { Box } from '@mui/material';
 import { t } from 'i18next';
 
 import { CYCLES } from '@/constants/motion/continuous-mode-cycles';
-import { TABLE_HEIGHT } from '@/constants/side-menu';
 import { STATIC_CO2_DISTRIBUTION } from '@/constants/slider-molecules/static-carbon-dioxides';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 import { computeStaticDistribution } from '@/utils/molecules';
@@ -21,7 +20,7 @@ import ArrowsGroup from './table-arrows/ArrowsGroup';
 import AllRows from './table-rows/AllRows';
 
 const container = { width: '100%' };
-const table = { width: '90%', margin: '0 auto', height: TABLE_HEIGHT };
+const table = { width: '90%', margin: '0 auto', position: 'relative' };
 
 interface Props {
   arrowsState: AllArrowsState;

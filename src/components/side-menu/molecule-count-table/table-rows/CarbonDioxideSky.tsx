@@ -1,6 +1,5 @@
 import { AllArrowsState } from '@/utils/molecules/types';
 
-import SideMenuCarbonDioxide from '../side-menu-molecules/SideMenuCarbonDioxide';
 import Row from './Row';
 
 interface Props {
@@ -12,12 +11,7 @@ const CarbonDioxideSky = ({ arrowsState, count }: Props): JSX.Element => {
   const { top } = arrowsState;
   const isActive = top.down || top.up;
 
-  return (
-    <Row
-      leftContent={<SideMenuCarbonDioxide isSky isActive={isActive} />}
-      rightContent={count}
-    />
-  );
+  return <Row src="/co2air.png" isActive={isActive} count={count} />;
 };
 
 export default CarbonDioxideSky;
