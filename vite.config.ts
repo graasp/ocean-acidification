@@ -10,7 +10,7 @@ export default ({ mode }: { mode: string }): UserConfigExport => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
   return defineConfig({
-    base: '',
+    base: '/graasp-app-ocean-acidification/',
     server: {
       port: parseInt(process.env.VITE_PORT, 10) || 4001,
       open: mode !== 'test', // open only when mode is different form test
