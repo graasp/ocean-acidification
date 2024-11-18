@@ -11,7 +11,7 @@ const CarbonDioxideWater = ({ arrowsState, count }: Props): JSX.Element => {
   const { top, middle } = arrowsState;
   const isActive = top.down || top.up || middle.down || middle.up;
 
-  return <Row src="/co2water.png" isActive={isActive} count={count} />;
+  return <Row src="co2water.png" isActive={isActive} count={count} />;
 };
 
 export default CarbonDioxideWater;
