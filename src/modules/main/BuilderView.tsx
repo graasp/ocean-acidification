@@ -1,15 +1,16 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { Tune } from '@mui/icons-material';
 import { Fab, Tooltip } from '@mui/material';
 
 import { t } from 'i18next';
 
+import { setMode } from '@/actions/app-settings';
 import Canvas from '@/components/canvas/Canvas';
 import SideMenuContinuous from '@/components/side-menu/SideMenuContinuous';
 import SideMenuSequential from '@/components/side-menu/SideMenuSequential';
 import { BUILDER_VIEW_CY } from '@/config/selectors';
-import { SEQUENTIAL } from '@/constants/strings';
+import { CONTINUOUS, SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 const openSideMenuFab = {
@@ -21,9 +22,16 @@ const openSideMenuFab = {
 
 const BuilderView = (): JSX.Element => {
   const [showSideMenu, setShowSideMenu] = useState(true);
-  const { state } = useContext(AppSettingsContext);
+  const { state, dispatch } = useContext(AppSettingsContext);
   const { mode } = state;
   const modeSequential = mode === SEQUENTIAL;
+
+  useEffect(() => {
+    const userSetMode = new URLSearchParams(window.location.search).get('mode');
+    if (userSetMode === 'cont' || userSetMode === 'continuous') {
+      dispatch(setMode(CONTINUOUS));
+    }
+  }, [dispatch]);
 
   return (
     <div data-cy={BUILDER_VIEW_CY} style={{ height: '100%', display: 'flex' }}>

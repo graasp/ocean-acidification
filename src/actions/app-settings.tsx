@@ -9,11 +9,11 @@ import {
   SET_DISTRIBUTION,
   SET_EQUILIBRIUM_CARBON_DIOXIDE,
   SET_INTERVAL_COUNT_DIRECTLY,
+  SET_MODE,
   SET_PH_CARBON_DIOXIDE,
   SET_SLIDER_CARBON_DIOXIDE,
   SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
-  TOGGLE_MODE,
   TOGGLE_PLAY,
   TOGGLE_SHOW_SCALE,
 } from '@/types/app-settings';
@@ -41,8 +41,9 @@ export const resetSettings = (): appSettingsActionType => ({
   type: RESET_SETTINGS,
 });
 
-export const toggleMode = (): appSettingsActionType => ({
-  type: TOGGLE_MODE,
+export const setMode = (payload: string): appSettingsActionType => ({
+  type: SET_MODE,
+  payload,
 });
 
 export const setAnimationIndex = (payload: number): appSettingsActionType => ({
