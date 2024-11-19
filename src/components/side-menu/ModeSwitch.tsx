@@ -2,7 +2,8 @@ import { useContext } from 'react';
 
 import { t } from 'i18next';
 
-import { toggleMode } from '@/actions/app-settings';
+import { setMode } from '@/actions/app-settings';
+import { CONTINUOUS, SEQUENTIAL } from '@/constants/strings';
 import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 
 import TwoSidedSwitch from './common/TwoSidedSwitch';
@@ -13,12 +14,13 @@ interface Props {
 
 const ModeSwitch = ({ modeSequential }: Props): JSX.Element => {
   const { state, dispatch } = useContext(AppSettingsContext);
-  const { animationInMotion, isPlaying } = state;
+  const { animationInMotion, isPlaying, mode } = state;
 
   const disabled = animationInMotion || isPlaying;
 
   const handleToggle = (): void => {
-    dispatch(toggleMode());
+    if (mode === SEQUENTIAL) dispatch(setMode(CONTINUOUS));
+    else dispatch(setMode(SEQUENTIAL));
   };
 
   return (

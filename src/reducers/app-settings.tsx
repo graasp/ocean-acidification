@@ -1,7 +1,7 @@
 import { MOTION_INTERVAL } from '@/constants/motion/motion-intervals';
 import { DEFAULT_CO2, DEFAULT_YEAR } from '@/constants/side-menu';
 import { ACTIVE_CO2_DISTRIBUTION } from '@/constants/slider-molecules/active-molecules';
-import { CONTINUOUS, SEQUENTIAL } from '@/constants/strings';
+import { SEQUENTIAL } from '@/constants/strings';
 import { computeEquilibriumDistribution } from '@/utils/molecules';
 import { ActiveMoleculesType } from '@/utils/molecules/types';
 
@@ -15,11 +15,11 @@ import {
   SET_DISTRIBUTION,
   SET_EQUILIBRIUM_CARBON_DIOXIDE,
   SET_INTERVAL_COUNT_DIRECTLY,
+  SET_MODE,
   SET_PH_CARBON_DIOXIDE,
   SET_SLIDER_CARBON_DIOXIDE,
   SET_YEAR,
   TOGGLE_ANIMATION_IN_MOTION,
-  TOGGLE_MODE,
   TOGGLE_PLAY,
   TOGGLE_SHOW_SCALE,
 } from '../types/app-settings';
@@ -99,11 +99,11 @@ export const appSettingsReducer = (
         dimensions: { ...state.dimensions },
         mode: state.mode,
       };
-    case TOGGLE_MODE: {
+    case SET_MODE: {
       return {
         ...initialAppSettings,
         dimensions: { ...state.dimensions },
-        mode: state.mode === SEQUENTIAL ? CONTINUOUS : SEQUENTIAL,
+        mode: payload,
       };
     }
     case SET_ANIMATION_INDEX: {
