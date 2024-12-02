@@ -5,7 +5,8 @@ import CustomHelpIcon from '../molecule-count-table/info-modal/HelpIcon';
 
 const container = {
   width: '90%',
-  margin: '10px auto',
+  margin: '0 auto',
+  marginBottom: '5px',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',

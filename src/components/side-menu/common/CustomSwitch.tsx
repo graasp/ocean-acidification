@@ -18,7 +18,6 @@ const styles = {
   alignItems: 'center',
   justifyContent: 'space-between',
   margin: '0 auto',
-  marginTop: '1em',
 };
 
 const CustomSwitch = ({
