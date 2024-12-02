@@ -9,8 +9,7 @@ import { AppSettingsContext } from '@/contexts/AppSettingsProvider';
 const container = {
   width: '90%',
   margin: '0 auto',
-  marginTop: '1em',
-  marginBottom: '2em',
+  marginTop: '0.5em',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
