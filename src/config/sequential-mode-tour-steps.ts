@@ -26,23 +26,7 @@ const SEQUENTIAL_MODE_TOUR_STEPS = [
       'Switch to Continuous mode to simulate all reactions occurring simultaneously',
     ),
   },
-];
-
-const updateTranslations = (): void => {
-  SEQUENTIAL_MODE_TOUR_STEPS.forEach((step, index) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const translatedStep = i18n.t<any>(step.content);
-    SEQUENTIAL_MODE_TOUR_STEPS[index].content = translatedStep;
-  });
-};
-
-if (i18n.isInitialized) {
-  updateTranslations();
-}
-
-i18n.on('languageChanged', () => {
-  updateTranslations();
-});
+] as const;
 
 export const SEQUENTIAL_TOUR_INITIAL_STATE = {
   run: false,

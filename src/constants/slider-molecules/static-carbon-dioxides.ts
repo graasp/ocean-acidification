@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import shuffle from 'lodash.shuffle';
 
 import { distributeMoleculesOnRow } from '@/utils/molecules';
 
@@ -27,7 +27,7 @@ const INITIAL_DISTRIBUTION = new Array(STATIC_CO2_NUM_ROWS)
   )
   .flat();
 
-const SHUFFLED_DISTRIBUTION = _.shuffle(INITIAL_DISTRIBUTION);
+const SHUFFLED_DISTRIBUTION = shuffle(INITIAL_DISTRIBUTION);
 
 export const STATIC_CO2_DISTRIBUTION = SHUFFLED_DISTRIBUTION.map(
   (coordinates) => ({ coordinates, show: false }),

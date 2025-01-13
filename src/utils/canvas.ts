@@ -1,4 +1,4 @@
-import { Context } from 'konva/lib/Context';
+import type { Context } from 'konva/lib/Context';
 
 import {
   REEF_HOLES_BEGIN_X,

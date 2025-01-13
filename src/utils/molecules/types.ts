@@ -3,8 +3,7 @@ export interface MoleculeCenter {
   y: number;
 }
 
-const coordinates = ['x', 'y', 'rotation'] as const;
-export type Coordinate = (typeof coordinates)[number];
+export type Coordinate = 'x' | 'y' | 'rotation';
 
 export interface PointWithoutRotation {
   x: number;

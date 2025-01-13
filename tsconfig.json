@@ -5,18 +5,18 @@
     "lib": ["DOM", "DOM.Iterable", "ESNext", "ES2021.String"],
     "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
+    /* Bundler mode */
+    "moduleResolution": "bundler",
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "typeRoots": ["node_modules", "node_modules/@types", "./src/@types"],
-    "types": ["vite/client", "cypress"],
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
     "baseUrl": "./src",
     "paths": {
       "@/*": ["./*"]
