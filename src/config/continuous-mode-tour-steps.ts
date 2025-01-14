@@ -4,7 +4,7 @@ const CONTINUOUS_MODE_TOUR_STEPS = [
   {
     target: '.continuous-mode-1',
     content: i18n.t(
-      'Continuous mode simulates all the chemical reactions seen in Sequential mode occuring simultaneously',
+      'Continuous mode simulates all the chemical reactions seen in Sequential mode occurring simultaneously',
     ),
     disableBeacon: true,
   },
@@ -22,9 +22,7 @@ const CONTINUOUS_MODE_TOUR_STEPS = [
   },
   {
     target: '.continuous-mode-4',
-    content: i18n.t(
-      'This scale indicates whether the system is at equilibrium or not',
-    ),
+    content: 'This scale indicates whether the system is at equilibrium or not',
   },
   {
     target: '.continuous-mode-5',
@@ -44,23 +42,7 @@ const CONTINUOUS_MODE_TOUR_STEPS = [
       'The water pH and its potential effects on corals, shells, and aquatic animals are shown when this switch is on',
     ),
   },
-];
-
-const updateTranslations = (): void => {
-  CONTINUOUS_MODE_TOUR_STEPS.forEach((step, index) => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const translatedStep = i18n.t<any>(step.content);
-    CONTINUOUS_MODE_TOUR_STEPS[index].content = translatedStep;
-  });
-};
-
-if (i18n.isInitialized) {
-  updateTranslations();
-}
-
-i18n.on('languageChanged', () => {
-  updateTranslations();
-});
+] as const;
 
 export const CONTINUOUS_TOUR_INITIAL_STATE = {
   run: false,

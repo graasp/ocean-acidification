@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import shuffle from 'lodash.shuffle';
 
 import {
   determineCarbonicAcidEnds,
@@ -35,7 +35,7 @@ const INITIAL_DISTRIBUTION = new Array(ACTIVE_CO2_NUM_ROWS)
   )
   .flat();
 
-const SHUFFLED_DISTRIBUTION = _.shuffle(INITIAL_DISTRIBUTION);
+const SHUFFLED_DISTRIBUTION = shuffle(INITIAL_DISTRIBUTION);
 
 export const ACTIVE_CO2_DISTRIBUTION = SHUFFLED_DISTRIBUTION.map(
   (coordinates, index) => {

@@ -1,21 +1,10 @@
-import { FC } from 'react';
 import { I18nextProvider } from 'react-i18next';
 
 import { CssBaseline, ThemeProvider, createTheme, styled } from '@mui/material';
 import { grey, orange, pink } from '@mui/material/colors';
 import { StyledEngineProvider } from '@mui/material/styles';
 
-import { withContext, withToken } from '@graasp/apps-query-client';
-
-import Loader from '@/modules/common/Loader';
-
 import i18nConfig from '../config/i18n';
-import {
-  QueryClientProvider,
-  ReactQueryDevtools,
-  hooks,
-  queryClient,
-} from '../config/queryClient';
 import App from './main/App';
 
 // declare the module to enable theme modification
@@ -62,48 +51,18 @@ const RootDiv = styled('div')({
   height: '100%',
 });
 
-const Root: FC = () => {
-  const AppWithContext = withToken(App, {
-    LoadingComponent: <Loader />,
-    useAuthToken: hooks.useAuthToken,
-    onError:
-      /* istanbul ignore next */
-      () => {
-        // eslint-disable-next-line no-console
-        console.error('An error occurred while requesting the token.');
-      },
-  });
-  // Disabled on initial commit/app bootstrap because it threw error
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const AppWithContextAndToken = withContext(AppWithContext, {
-    LoadingComponent: <Loader />,
-    useGetLocalContext: hooks.useGetLocalContext,
-    useAutoResize: hooks.useAutoResize,
-    onError:
-      /* istanbul ignore next */
-      () => {
-        // eslint-disable-next-line no-console
-        console.error('An error occurred while fetching the context.');
-      },
-  });
-  return (
-    <RootDiv>
-      {/* Used to define the order of injected properties between JSS and emotion */}
-      <StyledEngineProvider injectFirst>
-        <ThemeProvider theme={theme}>
-          <CssBaseline enableColorScheme />
-          <I18nextProvider i18n={i18nConfig}>
-            <QueryClientProvider client={queryClient}>
-              <App />
-              {import.meta.env.MODE === 'development' && (
-                <ReactQueryDevtools position="bottom-left" />
-              )}
-            </QueryClientProvider>
-          </I18nextProvider>
-        </ThemeProvider>
-      </StyledEngineProvider>
-    </RootDiv>
-  );
-};
+const Root = (): JSX.Element => (
+  <RootDiv>
+    {/* Used to define the order of injected properties between JSS and emotion */}
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <CssBaseline enableColorScheme />
+        <I18nextProvider i18n={i18nConfig}>
+          <App />
+        </I18nextProvider>
+      </ThemeProvider>
+    </StyledEngineProvider>
+  </RootDiv>
+);
 
 export default Root;
